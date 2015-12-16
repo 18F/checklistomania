@@ -1,0 +1,15 @@
+{
+  "name": "checklistomania",
+  "version": "1.0.0",
+  "description": "You know, for managing checklists.",
+  "main": "app.js",
+  "dependencies": {
+    "tingodb": "^0.4.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Anthony Garvan",
+  "license": "ISC"
+}

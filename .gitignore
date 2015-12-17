@@ -1,1 +1,3 @@
 node_modules/*
+api/db/*
+api/.DS_Store

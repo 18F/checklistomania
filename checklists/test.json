@@ -1,0 +1,14 @@
+{"checkListName": "test",
+"items": 
+	{"dayZero": { 
+		"displayName": "Start Date", 
+		"daysToComplete": 0, 
+		"dependsOn": []
+	},
+	"signUp": { 
+		"displayName": "Sign Up", 
+		"daysToComplete": 5, 
+		"dependsOn": ["dayZero"]
+	}
+	}
+}

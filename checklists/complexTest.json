@@ -1,0 +1,24 @@
+{"checkListName": "complexTest",
+"items": 
+	{"dayZero": { 
+		"displayName": "Start Date", 
+		"daysToComplete": 0, 
+		"dependsOn": []
+	},
+	"signUp": { 
+		"displayName": "Sign Up", 
+		"daysToComplete": 5, 
+		"dependsOn": ["dayZero"]
+	},
+	"course1": { 
+		"displayName": "Course One", 
+		"daysToComplete": 10, 
+		"dependsOn": ["signUp"]
+	},
+	"course2": { 
+		"displayName": "Course Two", 
+		"daysToComplete": 30, 
+		"dependsOn": ["signUp"]
+	}
+	}
+}

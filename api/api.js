@@ -7,13 +7,18 @@ var fs = require('fs');
 var dbPath = __dirname + '/db';
 mkdirp(dbPath, function(err) {
   db = new Engine.Db(dbPath, {});
-  checklists = db.collection("checklists");
-  fs.readFile('checklists/test.json', 'utf8',
-  	function(err, data) {
-  		checklist = JSON.parse(data);
-  		checklists.update({"checklistName": checklist.name}, checklist, {"upsert": true});
-  	})
   items = db.collection("items");
+  checklists = db.collection("checklists");
+  fs.readdir('./checklists', function(err, files) {
+  	files.forEach(function(fileName) {
+	  var filePath = 'checklists/' + fileName;
+	  fs.readFile(filePath, 'utf8',
+	  	function(err, data) {
+	  		checklist = JSON.parse(data);
+	  		checklists.update({"checkListName": checklist.checkListName}, checklist, {"upsert": true});
+	  	})		
+  	});
+  });
 })
 
 var router = express.Router();
@@ -28,7 +33,6 @@ router.get('/isalive', function (req, res) {
 
 router.get('/assign-checklist', function (req, res) {
 	var dayZeroDate = new Date(parseInt(req.query.dayZeroDate));
-	console.log(req.query.checkListName);
 	checklists.findOne({checkListName: req.query.checkListName}, function(err, checklist) {
 		checklist.items.dayZero["completedDate"] = dayZeroDate;
 		for(var itemId in checklist.items){
@@ -39,11 +43,10 @@ router.get('/assign-checklist', function (req, res) {
 			item["checkListName"] = req.query.checkListName;
 
 			if(item.dependsOn.indexOf("dayZero") >= 0) {
-				dueDate = new Date();
+				var dueDate = new Date();
 				dueDate.setDate(dayZeroDate.getDate() + item.daysToComplete);
 				item["dueDate"] = dueDate;
 			};
-			console.log(item);	
 			items.update({itemId: itemId, checkListName: req.query.checkListName, owner: req.user.username},
 				item, {upsert: true});
 		}
@@ -57,6 +60,50 @@ router.get('/get-items', function(req, res) {
 		.toArray(function(err, userItems) {
 			res.json({items: userItems});		
 		});
+});
+
+router.get('/get-checklists', function(req, res) {
+	checklists.find({}, {sort: [["checkListName", 1]]})
+		.toArray(function(err, checkLists) {
+			res.json({checkLists: checkLists});		
+		});
+});
+
+router.get('/get-users', function(req, res) {
+	items.find({}).toArray(function(err, allItems) {
+		users = {};
+		allItems.forEach(function(item) {
+			if(!(item.owner in users)) {
+				users[item.owner] = {earliestDueDate: new Date().setYear(3000)};
+			}
+
+			if(!item.completedDate && item.dueDate < users[item.owner].earliestDueDate) {
+				users[item.owner].earliestDueDate = item.dueDate;
+			}
+		})
+		res.json({users: users});
+	})
 })
+
+router.get('/complete-item', function(req, res) {
+	items.find({owner: req.user.username, checkListName: req.query.checkListName})
+		.toArray(function(err, userItems) {
+			userItems.forEach(function(item) {
+				if(item.itemId === req.query.itemId) {
+					item["completedDate"] = new Date();
+					items.update({_id: item._id}, item)
+				};
+
+				if(item.dependsOn.indexOf(req.query.itemId) >= 0) {
+					var dueDate = new Date();
+					dueDate.setDate(new Date().getDate() + item.daysToComplete);
+					item["dueDate"] = dueDate;
+					items.update({_id: item._id}, item)
+				}	
+			});
+			res.json({success: true});
+	});
+		
+});
 
 module.exports = {router: router};

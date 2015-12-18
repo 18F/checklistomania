@@ -1,5 +1,5 @@
-{"checkListName": "test",
-"checkListDescription": "You know, for testing.",
+{"checklistName": "test",
+"checklistDescription": "You know, for testing.",
 "items": 
 	{"dayZero": { 
 		"displayName": "Start Date", 

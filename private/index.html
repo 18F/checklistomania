@@ -13,18 +13,19 @@
 </head>
 
 <body ng-app="app" ng-controller="todoCtrl">
-<h1 class="md-display-1 md-padding"><span><img src="/private/img/logo-18f.png" height="60" width="60"></span>  Checklistomania</h1>
+<h1 class="md-display-1 md-padding"><span><img src="/private/img/logo-18f.png" height="40" width="40"></span>  checklistomania</h1>
   <div class="tabsdemoDynamicHeight">
   <md-content>
     <md-tabs md-dynamic-height="" md-border-bottom="">
       <md-tab label="Todos">
         <md-content class="md-padding">
-          <h1 class="md-display-2">Todos</h1>
+          <h2 class="md-display-1">Todos</h2>
+          <p ng-show="items.length == 0">Nothing to do! Pat yourself on the back (or assign yourself some new checklists from the checklists tab)!</p>
           <md-card ng-repeat="item in items">
             <md-card-title>
               <md-card-title-text>
                 <span class="md-headline">{{ item.displayName }}</span>
-                <span class="md-subhead">From checklist {{ item.checkListName }}, due on {{ item.dueDate.toLocaleDateString() }}</span>
+                <span class="md-subhead">From checklist {{ item.checklistName }}, due on {{ item.dueDate.toLocaleDateString() }}</span>
               </md-card-title-text>
               <md-card-title-media>
                 <div class="md-media-sm card-media"></div>
@@ -39,27 +40,43 @@
       </md-tab>
       <md-tab label="checklists">
         <md-content class="md-padding">
-          <h1 class="md-display-2">Checklists</h1>
-          <md-card ng-repeat="checkList in checkLists">
+          <h2 class="md-display-1">checklists</h2>
+          <md-card ng-repeat="checklist in checklists">
             <md-card-title>
               <md-card-title-text>
-                <span class="md-headline">{{ checkList.checkListName }}</span>
-                <span class="md-subhead">{{checkList.checkListDescription}}</span>
+                <span class="md-headline">{{ checklist.checklistName }}</span>
+                <span class="md-subhead">{{checklist.checklistDescription}}</span>
               </md-card-title-text>
               <md-card-title-media>
                 <div class="md-media-sm card-media"></div>
               </md-card-title-media>
             </md-card-title>
             <md-card-actions layout="row" layout-align="end center">
-              <md-button ng-click="assignToMe(checkList.checkListName)">Assign To Me</md-button>
+              <md-datepicker ng-model="checklist.dayZeroDate" md-placeholder="{{checklist.items.dayZero.displayName}}"></md-datepicker>
+              <md-button ng-click="assignToMe(checklist)">Assign To Me</md-button>
             </md-card-actions>
           </md-card>
         </md-content>
       </md-tab>
       <md-tab label="users">
         <md-content class="md-padding">
-          <h1 class="md-display-2">Users</h1>
-          <p>here are some users</p>
+          <h2 class="md-display-1">Users</h2>
+          <md-card ng-repeat="user in users">
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">{{ user.username }}</span>
+                <span class="md-subhead" ng-show="user.date.getFullYear() < 3000">next due date: {{user.date.toLocaleDateString()}}</span>
+              </md-card-title-text>
+              <md-card-title-media>
+                <div class="md-media-sm card-media"></div>
+              </md-card-title-media>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center">
+              <md-button>View</md-button>
+            </md-card-actions>
+          </md-card>
+          <p >, 
+          </p>
         </md-content>
       </md-tab>
     </md-tabs>

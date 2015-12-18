@@ -15,7 +15,7 @@ mkdirp(dbPath, function(err) {
 	  fs.readFile(filePath, 'utf8',
 	  	function(err, data) {
 	  		checklist = JSON.parse(data);
-	  		checklists.update({"checkListName": checklist.checkListName}, checklist, {"upsert": true});
+	  		checklists.update({"checklistName": checklist.checklistName}, checklist, {"upsert": true});
 	  	})		
   	});
   });
@@ -33,24 +33,24 @@ router.get('/isalive', function (req, res) {
 
 router.get('/assign-checklist', function (req, res) {
 	var dayZeroDate = new Date(parseInt(req.query.dayZeroDate));
-	checklists.findOne({checkListName: req.query.checkListName}, function(err, checklist) {
+	checklists.findOne({checklistName: req.query.checklistName}, function(err, checklist) {
 		checklist.items.dayZero["completedDate"] = dayZeroDate;
 		for(var itemId in checklist.items){
 			var item = checklist.items[itemId];
 
 			item["itemId"] = itemId;
 			item["owner"] = req.user.username;
-			item["checkListName"] = req.query.checkListName;
+			item["checklistName"] = req.query.checklistName;
 
 			if(item.dependsOn.indexOf("dayZero") >= 0) {
 				var dueDate = new Date();
 				dueDate.setDate(dayZeroDate.getDate() + item.daysToComplete);
 				item["dueDate"] = dueDate;
 			};
-			items.update({itemId: itemId, checkListName: req.query.checkListName, owner: req.user.username},
+			items.update({itemId: itemId, checklistName: req.query.checklistName, owner: req.user.username},
 				item, {upsert: true});
 		}
-		res.json({"checkListName": req.query.checkListName, "dayZero": dayZeroDate.toISOString()});
+		res.json({"checklistName": req.query.checklistName, "dayZero": dayZeroDate.toISOString()});
 	});
 });
 
@@ -63,9 +63,9 @@ router.get('/get-items', function(req, res) {
 });
 
 router.get('/get-checklists', function(req, res) {
-	checklists.find({}, {sort: [["checkListName", 1]]})
-		.toArray(function(err, checkLists) {
-			res.json({checkLists: checkLists});		
+	checklists.find({}, {sort: [["checklistName", 1]]})
+		.toArray(function(err, checklists) {
+			res.json({checklists: checklists});		
 		});
 });
 
@@ -86,7 +86,7 @@ router.get('/get-users', function(req, res) {
 })
 
 router.get('/complete-item', function(req, res) {
-	items.find({owner: req.user.username, checkListName: req.query.checkListName})
+	items.find({owner: req.user.username, checklistName: req.query.checklistName})
 		.toArray(function(err, userItems) {
 			userItems.forEach(function(item) {
 				if(item.itemId === req.query.itemId) {

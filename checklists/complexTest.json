@@ -1,4 +1,5 @@
 {"checkListName": "complexTest",
+"checkListDescription": "A complex test with many dependencies.",
 "items": 
 	{"dayZero": { 
 		"displayName": "Start Date", 

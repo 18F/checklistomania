@@ -56,7 +56,7 @@ router.get('/assign-checklist', function (req, res) {
 
 router.get('/get-items', function(req, res) {
 	var username = req.query.username || req.user.username;
-	items.find({owner: username}, {sort: [["dueDate", 1]]})
+	items.find({owner: username, dueDate: {$exists: true}, completedDate: {$exists: false}}, {sort: [["dueDate", 1]]})
 		.toArray(function(err, userItems) {
 			res.json({items: userItems});		
 		});

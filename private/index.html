@@ -20,13 +20,40 @@
       <md-tab label="Todos">
         <md-content class="md-padding">
           <h1 class="md-display-2">Todos</h1>
-          <p>Here</p>
+          <md-card ng-repeat="item in items">
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">{{ item.displayName }}</span>
+                <span class="md-subhead">From checklist {{ item.checkListName }}, due on {{ item.dueDate.toLocaleDateString() }}</span>
+              </md-card-title-text>
+              <md-card-title-media>
+                <div class="md-media-sm card-media"></div>
+              </md-card-title-media>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center">
+              <md-button ng-click="markDone(item)" ng-hide="item.completedDate">Mark Done</md-button>
+              <md-button ng-click="markDone(item)" ng-show="item.completedDate">Undo</md-button>
+            </md-card-actions>
+          </md-card>
         </md-content>
       </md-tab>
       <md-tab label="checklists">
         <md-content class="md-padding">
           <h1 class="md-display-2">Checklists</h1>
-          <p>here are some checklists.</p>
+          <md-card ng-repeat="checkList in checkLists">
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">{{ checkList.checkListName }}</span>
+                <span class="md-subhead">{{checkList.checkListDescription}}</span>
+              </md-card-title-text>
+              <md-card-title-media>
+                <div class="md-media-sm card-media"></div>
+              </md-card-title-media>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center">
+              <md-button ng-click="assignToMe(checkList.checkListName)">Assign To Me</md-button>
+            </md-card-actions>
+          </md-card>
         </md-content>
       </md-tab>
       <md-tab label="users">

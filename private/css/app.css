@@ -7,3 +7,21 @@
       background: white; }
   .tabsdemoDynamicHeight md-content h1:first-child {
     margin-top: 0; }
+
+
+ .trafficLight {
+	border-radius: 15px;
+	text-align: center;
+	border: 3px solid black;
+ }
+ .redLight {
+ 	background-color: pink;
+ }
+
+ .yellowLight {
+ 	background-color: yellow;
+ }
+
+ .greenLight {
+ 	background-color: lightgreen;
+ }

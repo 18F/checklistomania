@@ -40,6 +40,8 @@ router.get('/assign-checklist', function (req, res) {
 
 			item["itemId"] = itemId;
 			item["owner"] = req.user.username;
+			item["ownerName"] = req.user._json.name;
+			item["ownerImgUrl"] = req.user._json.avatar_url;
 			item["checklistName"] = req.query.checklistName;
 
 			if(item.dependsOn.indexOf("dayZero") >= 0) {
@@ -47,6 +49,7 @@ router.get('/assign-checklist', function (req, res) {
 				dueDate.setDate(dayZeroDate.getDate() + item.daysToComplete);
 				item["dueDate"] = dueDate;
 			};
+
 			items.update({itemId: itemId, checklistName: req.query.checklistName, owner: req.user.username},
 				item, {upsert: true});
 		}
@@ -74,7 +77,8 @@ router.get('/get-users', function(req, res) {
 		users = {};
 		allItems.forEach(function(item) {
 			if(!(item.owner in users)) {
-				users[item.owner] = {earliestDueDate: new Date().setYear(3000)};
+				users[item.owner] = {earliestDueDate: new Date().setYear(3000), fullName: item.ownerName, 
+					imgUrl: item.ownerImgUrl};
 			}
 
 			if(!item.completedDate && item.dueDate < users[item.owner].earliestDueDate) {

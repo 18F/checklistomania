@@ -29,7 +29,7 @@
                 <span class="md-subhead">From checklist {{ item.checklistName }}, due on {{ item.dueDate.toLocaleDateString() }}</span>
               </md-card-title-text>
               <md-card-title-media>
-                <div class="md-media-sm card-media"></div>
+                <div class="md-media-sm card-media md-display-1 trafficLight" ng-class="item.trafficLight">{{ item.daysUntilDue }} days</div>
               </md-card-title-media>
             </md-card-title>
             <md-card-content ng-show="item.expand"><p ng-bind-html="item.descriptionHtml"></p></md-card-content>
@@ -67,15 +67,15 @@
           <md-card ng-repeat="user in users">
             <md-card-title>
               <md-card-title-text>
-                <span class="md-headline">{{ user.username }}</span>
+                <span class="md-headline">{{ user.fullName }}</span>
                 <span class="md-subhead" ng-show="user.date.getFullYear() < 3000">next due date: {{user.date.toLocaleDateString()}}</span>
               </md-card-title-text>
               <md-card-title-media>
-                <div class="md-media-sm card-media"></div>
+                <div class="md-media-sm card-media"><img src="{{ user.imgUrl }}"></div>
               </md-card-title-media>
             </md-card-title>
             <md-card-actions layout="row" layout-align="end center">
-              <md-button>View</md-button>
+              <md-button>Details</md-button>
             </md-card-actions>
           </md-card>
           <p >, 

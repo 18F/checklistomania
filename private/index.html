@@ -22,7 +22,8 @@
         <md-content class="md-padding">
           <div class="md-display-1">Todos</div>
           <p ng-show="items.length == 0">Nothing to do! Pat yourself on the back (or assign yourself some new checklists from the checklists tab)!</p>
-          <md-card ng-repeat="item in items">
+          <div layout="row" layout-wrap layout-align="center">
+          <md-card ng-repeat="item in items" flex="45">
             <md-card-title>
               <md-card-title-text>
                 <span class="md-headline">{{ item.displayName }}</span>
@@ -39,12 +40,14 @@
               <md-button ng-click="markDone(item)" ng-hide="item.completedDate">Mark Done</md-button>
             </md-card-actions>
           </md-card>
+          </div>
         </md-content>
       </md-tab>
       <md-tab label="checklists">
         <md-content class="md-padding">
           <div class="md-display-1">Checklists</div>
-          <md-card ng-repeat="checklist in checklists">
+          <div layout="row" layout-wrap layout-align="center">
+          <md-card ng-repeat="checklist in checklists" flex="45">
             <md-card-title>
               <md-card-title-text>
                 <span class="md-headline">{{ checklist.checklistName }}</span>
@@ -56,6 +59,7 @@
               <md-button ng-click="assignToMe(checklist)">Assign To Me</md-button>
             </md-card-actions>
           </md-card>
+          </div>
         </md-content>
       </md-tab>
       <md-tab label="users">
@@ -72,6 +76,7 @@
               </md-card-title-media>
             </md-card-title>
             <md-card-content ng-show="user.expanded">
+              <p ng-show="user.items.length == 0">User has no todo items.</p>
               <md-list layout="row" layout-wrap>
               <md-list-item class="md-3-line" flex="25" ng-repeat="item in user.items">
                 <md-card-title-media class="md-padding">

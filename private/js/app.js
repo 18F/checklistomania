@@ -2,6 +2,20 @@ var app = angular.module("app", ['ngMaterial']);
 
 app.controller("todoCtrl", function($scope, $http, $sce) {
 
+	var getTrafficLight = function(daysLeft) {
+		if(daysLeft <= 0) return "redLight";
+		if(daysLeft <=2) return "yellowLight";
+		return "greenLight";
+	}
+
+	var formatItem = function(item) {
+		item.dueDate = new Date(item.dueDate);
+		item.daysUntilDue = Math.round((item.dueDate.getTime() - new Date().getTime())/(24*60*60*1000));
+		item.descriptionHtml = $sce.trustAsHtml(item.description);
+		item.trafficLight = getTrafficLight(item.daysUntilDue);		
+		return item;
+	}
+	
 	$http.get('/api/get-checklists').then(function(response) {
 		$scope.checklists = [];
 		response.data.checklists.forEach(function(checklist) {
@@ -22,21 +36,11 @@ app.controller("todoCtrl", function($scope, $http, $sce) {
 		});		
 	}
 
-	var getTrafficLight = function(daysLeft) {
-		if(daysLeft <= 0) return "redLight";
-		if(daysLeft <=2) return "yellowLight";
-		return "greenLight";
-	}
-
 	var getItems = function() {
 		$http.get('/api/get-items').then(function(response) {
 			$scope.items = [];
 			response.data.items.forEach(function(item) {
-				item.dueDate = new Date(item.dueDate);
-				item.daysUntilDue = Math.round((item.dueDate.getTime() - new Date().getTime())/(24*60*60*1000));
-				item.descriptionHtml = $sce.trustAsHtml(item.description);
-				item.trafficLight = getTrafficLight(item.daysUntilDue);
-				$scope.items.push(item);
+				$scope.items.push(formatItem(item));
 			});
 	})}
 
@@ -62,12 +66,8 @@ app.controller("todoCtrl", function($scope, $http, $sce) {
 		$http.get('/api/get-items', {params: {username: user.username}}).then(function(response) {
 					user.expanded = true;
 					user.items = [];
-					response.data.items.forEach(function(item) {
-						item.dueDate = new Date(item.dueDate);
-						item.daysUntilDue = Math.round((item.dueDate.getTime() - new Date().getTime())/(24*60*60*1000));
-						item.descriptionHtml = $sce.trustAsHtml(item.description);
-						item.trafficLight = getTrafficLight(item.daysUntilDue);
-						user.items.push(item);
+					response.data.items.forEach(function(item) {	
+						user.items.push(formatItem(item));
 					});})
 	}
 

@@ -46,7 +46,7 @@ router.get('/assign-checklist', function (req, res) {
 
 			if(item.dependsOn.indexOf("dayZero") >= 0) {
 				var dueDate = new Date();
-				dueDate.setDate(dayZeroDate.getDate() + item.daysToComplete);
+				dueDate.setTime(dayZeroDate.getTime() + item.daysToComplete*24*60*60*1000 + 1);
 				item["dueDate"] = dueDate;
 			};
 

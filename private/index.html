@@ -14,13 +14,13 @@
 </head>
 
 <body ng-app="app" ng-controller="todoCtrl">
-<h1 class="md-display-1 md-padding"><span><img src="/private/img/logo-18f.png" height="40" width="40"></span>  Checklistomania</h1>
+<div class="md-display-1"><span><img src="/private/img/logo-18f.png" height="40" width="40"></span>  Checklistomania</div>
   <div class="tabsdemoDynamicHeight">
   <md-content>
     <md-tabs md-dynamic-height="" md-border-bottom="">
       <md-tab label="Todos">
         <md-content class="md-padding">
-          <h2 class="md-display-1">Todos</h2>
+          <div class="md-display-1">Todos</div>
           <p ng-show="items.length == 0">Nothing to do! Pat yourself on the back (or assign yourself some new checklists from the checklists tab)!</p>
           <md-card ng-repeat="item in items">
             <md-card-title>
@@ -43,16 +43,13 @@
       </md-tab>
       <md-tab label="checklists">
         <md-content class="md-padding">
-          <h2 class="md-display-1">Checklists</h2>
+          <div class="md-display-1">Checklists</div>
           <md-card ng-repeat="checklist in checklists">
             <md-card-title>
               <md-card-title-text>
                 <span class="md-headline">{{ checklist.checklistName }}</span>
                 <span class="md-subhead">{{checklist.checklistDescription}}</span>
               </md-card-title-text>
-              <md-card-title-media>
-                <div class="md-media-sm card-media"></div>
-              </md-card-title-media>
             </md-card-title>
             <md-card-actions layout="row" layout-align="end center">
               <md-datepicker ng-model="checklist.dayZeroDate" md-placeholder="{{checklist.items.dayZero.displayName}}"></md-datepicker>
@@ -63,7 +60,7 @@
       </md-tab>
       <md-tab label="users">
         <md-content class="md-padding">
-          <h2 class="md-display-1">Users</h2>
+          <div class="md-display-1">Users</div>
           <md-card ng-repeat="user in users">
             <md-card-title>
               <md-card-title-text>

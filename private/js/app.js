@@ -1,6 +1,6 @@
 var app = angular.module("app", ['ngMaterial']);
 
-app.controller("todoCtrl", function($scope, $http) {
+app.controller("todoCtrl", function($scope, $http, $sce) {
 
 	$http.get('/api/get-checklists').then(function(response) {
 		$scope.checklists = [];
@@ -25,12 +25,13 @@ app.controller("todoCtrl", function($scope, $http) {
 			$scope.items= [];
 			response.data.items.forEach(function(item) {
 				item.dueDate = new Date(item.dueDate);
+				item.descriptionHtml = $sce.trustAsHtml(item.description);
 				$scope.items.push(item);
 			});
 	})}
 
 	$scope.assignToMe = function(checklist) {
-		var dayZeroDate = checklist.dayZeroDate || new Date();
+		checklist.dayZeroDate = checklist.dayZeroDate || new Date();
 		$http.get('/api/assign-checklist', 
 			{params: {checklistName: checklist.checklistName, dayZeroDate: checklist.dayZeroDate.valueOf()}})
 			.then(function(response) {

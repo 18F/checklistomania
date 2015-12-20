@@ -1,0 +1,71 @@
+{"checklistName": "buddy",
+"checklistDescription": "TODO Items for the buddy of a new hire.",
+"items": 
+	{"dayZero": { 
+		"displayName": "Start Date", 
+		"description": "First day on the job.",
+		"daysToComplete": 0, 
+		"dependsOn": []
+	},
+	"findEmail": { 
+		"displayName": "Find Email Address", 
+		"description": "Find your new buddy's email address.",
+		"daysToComplete": -4, 
+		"dependsOn": ["dayZero"]
+	},
+	"introduceYourself": { 
+		"displayName": "Introduce Yourself", 
+		"description": "Email them, using <a href=\"https://docs.google.com/document/d/1Ya85y3SPfBliAPDw5UznnC9h333204pDn-KeD2KEQwY/edit\">this</a> email template.",
+		"daysToComplete": 0, 
+		"dependsOn": ["findEmail"]
+	},
+	"showUp": { 
+		"displayName": "Show Up To Work",
+		"description": "Reminder: Show up to work on Monday and Tuesday for your buddy if they are in the same office as you.", 
+		"daysToComplete": 0, 
+		"dependsOn": ["dayZero"]
+	},
+	"greetThem": { 
+		"displayName": "Greet your buddy",
+		"description": "Today’s going to be crazy for them, so the best thing to do is just say hi to them, ask them what questions they have, and see how you can help. The time they leave orientation varies based on their location. Chicago gets out at 4:30 PM CT. DC gets out at 11/12PM ET. NY new hires get out around 9AM ET. And in SF, orientation starts at 8AM and lasts roughly an hour.", 
+		"daysToComplete": 0, 
+		"dependsOn": ["dayZero"]
+	},
+	"allHands": { 
+		"displayName": "All Hands!",
+		"description": "Join your buddy in attending all hands on Tuesday.", 
+		"daysToComplete": 1, 
+		"dependsOn": ["dayZero"]
+	},
+	"addToLists": { 
+		"displayName": "Add to lists and calendars.",
+		"description": "Add your buddy to location-based mailing lists and calendars", 
+		"daysToComplete": 1, 
+		"dependsOn": ["dayZero"]
+	},
+	"officeTour": { 
+		"displayName": "Give an office tour.",
+		"description": "Sometimes the #teamops member in the office gives the tour instead, as in SF. Also make sure they have a copy of their office guide: <ul><li><a href=\"https://github.com/18F/handbook/blob/staging/articles/2-about-us/offices/chicago.md\">Chicago</a></li><li><a href=\"https://github.com/18F/handbook/blob/staging/articles/2-about-us/offices/new-york-city.md\">New York</a></li><li><a href=\"https://github.com/18F/handbook/blob/staging/articles/2-about-us/offices/washington-dc.md\">Washington DC</a></li><li><a href=\"https://github.com/18F/handbook/blob/staging/articles/2-about-us/offices/san-francisco.md\">San Francisco</a></li><li><a href=\"https://github.com/18F/handbook/blob/staging/articles/2-about-us/offices/distributed.md\">Distributed</a></li></ul>",
+
+		"daysToComplete": 1, 
+		"dependsOn": ["dayZero"]
+	},
+	"licenses": { 
+		"displayName": "Make sure they have software & licenses.",
+		"description": "Ask in #teamops or consult #design if you need specific licenses", 
+		"daysToComplete": 2, 
+		"dependsOn": ["dayZero"]
+	},
+	"confirmLists": { 
+		"displayName": "Make sure they are on the right calendars and listserves.",
+		"description": "List of <a href=\"https://github.com/18F/handbook/blob/staging/articles/4-how-we-work/tools/google-calendar.md\">Calendars</a> and <a href=\"https://github.com/18F/handbook/blob/staging/articles/5-training-and-professional-development/classes/intro-to-product-and-open-source.md#listservs-and-communities\">Listserves</a>",
+		"daysToComplete": 4, 
+		"dependsOn": ["dayZero"]
+	},
+	"licenses": { 
+		"displayName": "Invite them to the project intake meeting.",
+		"description": "The meetings take place on Thursday at 12 EST", 
+		"daysToComplete": 30, 
+		"dependsOn": ["dayZero"]
+	}}
+}

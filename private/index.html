@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en" >
 <head>
   <!-- Angular Material style sheet -->
@@ -13,7 +14,7 @@
 </head>
 
 <body ng-app="app" ng-controller="todoCtrl">
-<h1 class="md-display-1 md-padding"><span><img src="/private/img/logo-18f.png" height="40" width="40"></span>  checklistomania</h1>
+<h1 class="md-display-1 md-padding"><span><img src="/private/img/logo-18f.png" height="40" width="40"></span>  Checklistomania</h1>
   <div class="tabsdemoDynamicHeight">
   <md-content>
     <md-tabs md-dynamic-height="" md-border-bottom="">
@@ -31,16 +32,18 @@
                 <div class="md-media-sm card-media"></div>
               </md-card-title-media>
             </md-card-title>
+            <md-card-content ng-show="item.expand"><p ng-bind-html="item.descriptionHtml"></p></md-card-content>
             <md-card-actions layout="row" layout-align="end center">
+              <md-button ng-show="!item.expand" ng-click="item.expand = true">Expand</md-button>
+              <md-button ng-show="item.expand" ng-click="item.expand = false">Collapse</md-button>
               <md-button ng-click="markDone(item)" ng-hide="item.completedDate">Mark Done</md-button>
-              <md-button ng-click="markDone(item)" ng-show="item.completedDate">Undo</md-button>
             </md-card-actions>
           </md-card>
         </md-content>
       </md-tab>
       <md-tab label="checklists">
         <md-content class="md-padding">
-          <h2 class="md-display-1">checklists</h2>
+          <h2 class="md-display-1">Checklists</h2>
           <md-card ng-repeat="checklist in checklists">
             <md-card-title>
               <md-card-title-text>

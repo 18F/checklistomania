@@ -30,7 +30,7 @@ app.controller("todoCtrl", function($scope, $http, $sce) {
 
 	var getItems = function() {
 		$http.get('/api/get-items').then(function(response) {
-			$scope.items= [];
+			$scope.items = [];
 			response.data.items.forEach(function(item) {
 				item.dueDate = new Date(item.dueDate);
 				item.daysUntilDue = Math.round((item.dueDate.getTime() - new Date().getTime())/(24*60*60*1000));
@@ -56,6 +56,19 @@ app.controller("todoCtrl", function($scope, $http, $sce) {
 				getItems();
 				getUsers();
 			})
+	}
+
+	$scope.getUserDetails = function(user) {
+		$http.get('/api/get-items', {params: {username: user.username}}).then(function(response) {
+					user.expanded = true;
+					user.items = [];
+					response.data.items.forEach(function(item) {
+						item.dueDate = new Date(item.dueDate);
+						item.daysUntilDue = Math.round((item.dueDate.getTime() - new Date().getTime())/(24*60*60*1000));
+						item.descriptionHtml = $sce.trustAsHtml(item.description);
+						item.trafficLight = getTrafficLight(item.daysUntilDue);
+						user.items.push(item);
+					});})
 	}
 
 	getItems();

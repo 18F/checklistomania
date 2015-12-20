@@ -71,8 +71,23 @@
                 <div class="md-media-sm card-media"><img src="{{ user.imgUrl }}"></div>
               </md-card-title-media>
             </md-card-title>
+            <md-card-content ng-show="user.expanded">
+              <md-list layout="row" layout-wrap>
+              <md-list-item class="md-3-line" flex="25" ng-repeat="item in user.items">
+                <md-card-title-media class="md-padding">
+                <div class="md-media-sm card-media md-display-1 md-padding trafficLight" ng-class="item.trafficLight">{{ item.daysUntilDue }}</div>
+              </md-card-title-media>
+                <div class="md-list-item-text" layout="column">
+                  <h3>{{ item.displayName }}</h3>
+                  <h4>{{ item.checklistName }}</h4>
+                  <p>{{ item.dueDate.toLocaleDateString() }}</p>
+                </div>
+              </md-list-item>
+              </md-list>
+            </md-card-content>
             <md-card-actions layout="row" layout-align="end center">
-              <md-button>Details</md-button>
+              <md-button ng-show="!user.expanded" ng-click="getUserDetails(user)">Details</md-button>
+              <md-button ng-show="user.expanded" ng-click="user.expanded = false">Collapse</md-button>
             </md-card-actions>
           </md-card>
           <p >, 

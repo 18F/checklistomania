@@ -8,6 +8,10 @@
   .tabsdemoDynamicHeight md-content h1:first-child {
     margin-top: 0; }
 
+.todoHeader {
+  background-color: #18F;
+  color: white;
+}
 
  .trafficLight {
 	border-radius: 15px;

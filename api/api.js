@@ -50,8 +50,7 @@ router.get('/assign-checklist', function (req, res) {
 				item["dueDate"] = dueDate;
 			};
 
-			items.update({itemId: itemId, checklistName: req.query.checklistName, owner: req.user.username},
-				item, {upsert: true});
+			items.insert(item);
 		}
 		res.json({"checklistName": req.query.checklistName, "dayZero": dayZeroDate.toISOString()});
 	});

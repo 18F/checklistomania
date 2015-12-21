@@ -1,0 +1,82 @@
+{"checklistName": "Engineering Facilitator of New Hire",
+"checklistDescription": "TODO Items for an engineering facilitator of a new hire.",
+"items": 
+	{"dayZero": { 
+		"displayName": "Start Date", 
+		"description": "First day on the job.",
+		"daysToComplete": 0, 
+		"dependsOn": []
+	},
+	"intro": { 
+		"displayName": "Introductory check in", 
+		"description": "Have an introductory check in with them",
+		"daysToComplete": 5, 
+		"dependsOn": ["dayZero"]
+	},
+	"addToCalendar": { 
+		"displayName": "Add to calendar", 
+		"description": "Add new hire to engineering calendar",
+		"daysToComplete": 5, 
+		"dependsOn": ["dayZero"]
+	},
+	"addToDevList": { 
+		"displayName": "Add to Dev List", 
+		"description": "Add new hire to <a href=\"https://groups.google.com/a/gsa.gov/forum/#!managemembers/18fdev/add\"> 18F developers list</a>. Also look through <a href=\"https://groups.google.com/a/gsa.gov/forum/#!forum/18fdev\">recent emails </a> to see if there are any updates they need.",
+		"daysToComplete": 5, 
+		"dependsOn": ["dayZero"]
+	},
+	"devIntro": { 
+		"displayName": "Dev Introduction", 
+		"description": "Intro them to the #dev team via Slack",
+		"daysToComplete": 5, 
+		"dependsOn": ["dayZero"]
+	},
+	"groupIntro": { 
+		"displayName": "Group Intro", 
+		"description": "Intro them to their small engineering group via Slack",
+		"daysToComplete": 5, 
+		"dependsOn": ["dayZero"]
+	},
+	"facilitatorInvite": { 
+		"displayName": "Facilitator Group Invite", 
+		"description": "Invite them to the facilitator group meeting",
+		"daysToComplete": 5, 
+		"dependsOn": ["dayZero"]
+	},
+	"setGoals": { 
+		"displayName": "Set Goals & OKRs", 
+		"description": "Set a meeting to create goals and OKRs",
+		"daysToComplete": 30, 
+		"dependsOn": ["dayZero"]
+	},
+	"findMentor": { 
+		"displayName": "Find Mentor", 
+		"description": "Give them a clear mentor on their project work",
+		"daysToComplete": 30, 
+		"dependsOn": ["dayZero"]
+	},
+	"findSpecialtyMentor": { 
+		"displayName": "Find Specialty Mentor", 
+		"description": "Give them a clear mentor on their specialty, likely outside of project",
+		"daysToComplete": 30, 
+		"dependsOn": ["dayZero"]
+	},
+	"fastDeploy": { 
+		"displayName": "Fast Deployment", 
+		"description": "Make sure the project mentor helps them deploy a change in the first two days of being on that project",
+		"daysToComplete": 0, 
+		"dependsOn": ["findMentor"]
+	},
+	"awsOnboarding": { 
+		"displayName": "AWS Onboarding", 
+		"description": "File an issue in the DevOps repo for AWS onboarding",
+		"daysToComplete": 30, 
+		"dependsOn": ["dayZero"]
+	},
+	"teamTalk": { 
+		"displayName": "Team Talk Invitation", 
+		"description": "Send link to the engineering team talk signup and invite them to put a talk down",
+		"daysToComplete": 30, 
+		"dependsOn": ["dayZero"]
+	}}
+}

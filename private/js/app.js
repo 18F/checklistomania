@@ -1,6 +1,6 @@
 var app = angular.module("app", ['ngMaterial']);
 
-app.controller("todoCtrl", function($scope, $http, $sce) {
+app.controller("todoCtrl", function($scope, $http, $sce, $mdToast) {
 
 	var getTrafficLight = function(daysLeft) {
 		if(daysLeft <= 0) return "redLight";
@@ -15,7 +15,7 @@ app.controller("todoCtrl", function($scope, $http, $sce) {
 		item.trafficLight = getTrafficLight(item.daysUntilDue);		
 		return item;
 	}
-	
+
 	$http.get('/api/get-checklists').then(function(response) {
 		$scope.checklists = [];
 		response.data.checklists.forEach(function(checklist) {
@@ -23,6 +23,15 @@ app.controller("todoCtrl", function($scope, $http, $sce) {
 			$scope.checklists.push(checklist);
 		})
 	});
+
+	var showSimpleToast = function(msg) {
+	    $mdToast.show(
+	      $mdToast.simple()
+	        .textContent(msg)
+	        .position("top right")
+	        .hideDelay(2000)
+	    );
+	  };
 
 	var getUsers = function() {
 		$http.get('/api/get-users').then(function(response) {
@@ -51,6 +60,7 @@ app.controller("todoCtrl", function($scope, $http, $sce) {
 			.then(function(response) {
 				getItems();
 				getUsers();
+				showSimpleToast(checklist.checklistName + ' added to your TODOs!');
 			});
 	};
 

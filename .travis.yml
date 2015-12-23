@@ -8,3 +8,5 @@ script:
     - "npm test"
 env:
     - GITHUB_CLIENT_ID=test GITHUB_CLIENT_SECRET=testSecret SKIP_AUTH=true
+services:
+  - mongodb

@@ -4,6 +4,7 @@ node_js:
 before_script:
     - "npm i -g jasmine-node"
     - "nohup npm start &"
+    - "sleep 5"
 script:
     - "npm test"
 env:

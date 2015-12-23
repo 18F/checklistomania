@@ -1,25 +1,32 @@
 var express = require('express');
-
-var Engine = require('tingodb')()
+var MongoClient = require('mongodb').MongoClient;
 var mkdirp = require('mkdirp');
 var fs = require('fs');
 
-var dbPath = __dirname + '/db';
-mkdirp(dbPath, function(err) {
-  db = new Engine.Db(dbPath, {});
-  items = db.collection("items");
-  checklists = db.collection("checklists");
-  fs.readdir('./checklists', function(err, files) {
-  	files.forEach(function(fileName) {
+console.log(process.env.VCAP_SERVICES);
+
+var url;
+if(process.env.VCAP_SERVICES) {
+	vcapServices = JSON.parse(process.env.VCAP_SERVICES);
+	url = vcapServices["mongodb26-swarm"][0].credentials.uri	
+} else {
+	url = 'mongodb://localhost:27017/checklistomania';
+}
+
+MongoClient.connect(url, function(err, db) {
+	items = db.collection("items");
+	checklists = db.collection("checklists");
+	fs.readdir('./checklists', function(err, files) {
+		files.forEach(function(fileName) {
 	  var filePath = 'checklists/' + fileName;
 	  fs.readFile(filePath, 'utf8',
 	  	function(err, data) {
 	  		checklist = JSON.parse(data);
 	  		checklists.update({"checklistName": checklist.checklistName}, checklist, {"upsert": true});
 	  	})		
-  	});
-  });
-})
+		});
+	});
+});
 
 var router = express.Router();
 

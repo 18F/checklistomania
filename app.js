@@ -37,9 +37,16 @@ app.use(session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use( "/private", [ ensureAuthenticated, ensureGithubOrg, express.static( "private" ) ] );
+if(process.env.SKIP_AUTH && process.env.SKIP_AUTH === 'true') {
+  console.log('skipping authentication...');
+  app.use( "/private", express.static( "private" ));
+  app.use('/api', api.router);  
+} else {
+  app.use( "/private", [ ensureAuthenticated, ensureGithubOrg, express.static( "private" ) ] );
+  app.use('/api', [ensureAuthenticated, ensureGithubOrg, api.router]);  
+}
+
 app.use( "/", express.static( "public" ) );
-app.use('/api', [ensureAuthenticated, ensureGithubOrg, api.router]);
 
 app.get('/', function(req, res){
   res.send("Welcome!");
@@ -78,7 +85,6 @@ function ensureGithubOrg(req, res, next) {
     inOrg = false;
     if (!error && response.statusCode == 200) {
       var orgs = JSON.parse(body);
-      console.log(orgs);
       orgs.forEach(function(org) {
         if(org.login == '18F'){
           inOrg = true;

@@ -3,8 +3,6 @@ var MongoClient = require('mongodb').MongoClient;
 var mkdirp = require('mkdirp');
 var fs = require('fs');
 
-console.log(process.env.VCAP_SERVICES);
-
 var url;
 if(process.env.VCAP_SERVICES) {
 	vcapServices = JSON.parse(process.env.VCAP_SERVICES);

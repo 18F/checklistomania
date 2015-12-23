@@ -23,6 +23,12 @@
 	text-align: center;
 	border: 3px solid black;
  }
+
+ #tableTrafficLight {
+  text-align: center;
+  font-size: 1.2em;
+  padding: 0px;
+ }
  .redLight {
  	background-color: pink;
  }
@@ -33,4 +39,9 @@
 
  .greenLight {
  	background-color: lightgreen;
+ }
+
+ td {
+  min-width: 5em;
+  text-align: center;
  }

@@ -100,8 +100,7 @@ function ensureAuthenticated(req, res, next) {
 function ensureGithubOrg(req, res, next) {
   github.orgs.getFromUser({user: req.user.username}, 
     function(err, orgs) {
-        inOrg = false;
-          //var orgs = JSON.parse(body);
+        var inOrg = false;
           orgs.forEach(function(org) {
             if(org.login == '18F'){
               inOrg = true;

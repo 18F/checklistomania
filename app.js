@@ -6,7 +6,8 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var GitHubStrategy = require('passport-github2').Strategy;
 var api = require('./api/api.js');
-
+var request = require('request');
+  
 passport.serializeUser(function(user, done) {
   done(null, user);
 });
@@ -37,9 +38,9 @@ app.use(session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use( "/private", [ ensureAuthenticated, express.static( "private" ) ] );
+app.use( "/private", [ ensureAuthenticated, ensureGithubOrg, express.static( "private" ) ] );
 app.use( "/", express.static( "public" ) );
-app.use('/api', [ensureAuthenticated, api.router]);
+app.use('/api', [ensureAuthenticated, ensureGithubOrg, api.router]);
 
 app.get('/', function(req, res){
   res.send("Welcome!");
@@ -65,5 +66,29 @@ function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
   res.redirect('/auth');
 };
+
+function ensureGithubOrg(req, res, next) {
+  var options = {
+    url: req.user._json.organizations_url,
+    headers: {
+      'User-Agent': 'checklistomania'
+    }
+  };
+
+  request(options, function (error, response, body) {
+    inOrg = false;
+    if (!error && response.statusCode == 200) {
+      var orgs = JSON.parse(body);
+      console.log(orgs);
+      orgs.forEach(function(org) {
+        if(org.login == '18F'){
+          inOrg = true;
+        }
+      });
+    } else {console.log(response);};
+    if(inOrg) {next()}
+    else {res.redirect('/not-authorized.html');}
+  })
+}
 
 app.listen(process.env.PORT || 3000)

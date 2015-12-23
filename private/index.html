@@ -22,7 +22,10 @@
     <md-tabs md-dynamic-height="" md-border-bottom="">
       <md-tab label="Todos">
         <md-content class="md-padding">
-          <div class="md-display-1">Todos</div>
+          <div class="md-display-1">Todos 
+            <md-button class="toggleView" ng-click="viewTable=true" ng-show="!viewTable && items.length > 0">View As Table</md-button>
+            <md-button class="toggleView" ng-click="viewTable=false" ng-show="viewTable && items.length > 0">View As Cards</md-button>
+          </div>
           <p ng-show="items.length == 0">Nothing to do! Pat yourself on the back (or assign yourself some new checklists from the checklists tab)!</p>
           <div layout="row" layout-wrap layout-align="center">
           <md-card ng-repeat="item in items" flex="30">

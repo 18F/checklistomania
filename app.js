@@ -7,7 +7,9 @@ var methodOverride = require('method-override');
 var GitHubStrategy = require('passport-github2').Strategy;
 var api = require('./api/api.js');
 var request = require('request');
-  
+var GitHubApi = require("github");
+
+
 passport.serializeUser(function(user, done) {
   done(null, user);
 });
@@ -28,6 +30,8 @@ passport.use(new GitHubStrategy({
   }
 ));
 
+
+
 var app = express();
 
 
@@ -42,6 +46,26 @@ if(process.env.SKIP_AUTH && process.env.SKIP_AUTH === 'true') {
   app.use( "/private", express.static( "private" ));
   app.use('/api', api.router);  
 } else {
+  var github = new GitHubApi({
+      // required
+      version: "3.0.0",
+      // optional
+      //debug: true,
+      protocol: "https",
+      host: "api.github.com", // should be api.github.com for GitHub
+      //pathPrefix: "/api/v3", // for some GHEs; none for GitHub
+      timeout: 5000,
+      headers: {
+          "user-agent": "checklistomania" // GitHub is happy with a unique user agent
+      }
+  });
+
+  github.authenticate({
+      type: "oauth",
+      key: process.env.GITHUB_CLIENT_ID,
+      secret: process.env.GITHUB_CLIENT_SECRET
+  })
+
   app.use( "/private", [ ensureAuthenticated, ensureGithubOrg, express.static( "private" ) ] );
   app.use('/api', [ensureAuthenticated, ensureGithubOrg, api.router]);  
 }
@@ -74,26 +98,18 @@ function ensureAuthenticated(req, res, next) {
 };
 
 function ensureGithubOrg(req, res, next) {
-  var options = {
-    url: req.user._json.organizations_url,
-    headers: {
-      'User-Agent': 'checklistomania'
-    }
-  };
-
-  request(options, function (error, response, body) {
-    inOrg = false;
-    if (!error && response.statusCode == 200) {
-      var orgs = JSON.parse(body);
-      orgs.forEach(function(org) {
-        if(org.login == '18F'){
-          inOrg = true;
-        }
-      });
-    } else {console.log(response);};
-    if(inOrg) {next()}
-    else {res.redirect('/not-authorized.html');}
-  })
+  github.orgs.getFromUser({user: req.user.username}, 
+    function(err, orgs) {
+        inOrg = false;
+          //var orgs = JSON.parse(body);
+          orgs.forEach(function(org) {
+            if(org.login == '18F'){
+              inOrg = true;
+            }
+          });
+        if(inOrg) {next()}
+        else {res.redirect('/not-authorized.html');}
+    }); 
 }
 
 app.listen(process.env.PORT || 3000)

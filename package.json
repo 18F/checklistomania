@@ -7,6 +7,7 @@
     "body-parser": "^1.14.1",
     "express": ">= 0.0.0",
     "express-session": "^1.11.3",
+    "github": "^0.2.4",
     "jasmine-node": "^1.14.5",
     "method-override": "^2.3.5",
     "mkdirp": "^0.5.1",

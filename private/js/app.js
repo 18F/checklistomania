@@ -1,7 +1,6 @@
 var app = angular.module("app", ['ngMaterial']);
 
 app.controller("todoCtrl", function($scope, $http, $sce, $mdToast) {
-
 	var getTrafficLight = function(daysLeft) {
 		if(daysLeft <= 0) return "redLight";
 		if(daysLeft <=2) return "yellowLight";

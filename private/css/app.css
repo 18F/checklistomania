@@ -13,6 +13,11 @@
   color: white;
 }
 
+.toggleView {
+  font-size: .5em;
+  color: gray;
+}
+
  .trafficLight {
 	border-radius: 15px;
 	text-align: center;

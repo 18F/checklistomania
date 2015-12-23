@@ -3,5 +3,6 @@ node_js:
     - 0.12
 before_script:
     - "npm i -g jasmine-node"
+    - "npm start"
 script:
     - "npm test"

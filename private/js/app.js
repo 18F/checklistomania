@@ -1,6 +1,7 @@
-var app = angular.module("app", ['ngMaterial']);
+var app = angular.module("app", ['ngMaterial', 'ngCookies']);
 
-app.controller("todoCtrl", function($scope, $http, $sce, $mdToast, $mdDialog, $mdMedia) {
+app.controller("todoCtrl", function($scope, $http, $sce, $mdToast, 
+	$mdDialog, $mdMedia, $cookies) {
 	var getTrafficLight = function(daysLeft) {
 		if(daysLeft <= 0) return "redLight";
 		if(daysLeft <=2) return "yellowLight";
@@ -64,6 +65,18 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast, $mdDialog, $m
 				showSimpleToast(checklist.checklistName + ' added to your TODOs!');
 			});
 	};
+
+	$scope.selectedTabIndex = parseInt($cookies.get('selectedTabIndex')) || 0;
+	$scope.viewTable = ($cookies.get('viewTable') == 'true');
+
+	$scope.setViewTable = function(tableViewOn) {
+		$cookies.put('viewTable', tableViewOn);
+		$scope.viewTable = tableViewOn;
+	}
+
+	$scope.setTabCookie = function(tabIndex) {
+		$cookies.put('selectedTabIndex', tabIndex);
+	}
 
 	$scope.markDone = function(item) {
 		$http.get('/api/complete-item', {params: {itemId: item.itemId, checklistName: item.checklistName, 

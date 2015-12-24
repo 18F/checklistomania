@@ -1,6 +1,6 @@
 var app = angular.module("app", ['ngMaterial']);
 
-app.controller("todoCtrl", function($scope, $http, $sce, $mdToast) {
+app.controller("todoCtrl", function($scope, $http, $sce, $mdToast, $mdDialog, $mdMedia) {
 	var getTrafficLight = function(daysLeft) {
 		if(daysLeft <= 0) return "redLight";
 		if(daysLeft <=2) return "yellowLight";
@@ -52,19 +52,22 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast) {
 			});
 	})}
 
-	$scope.assignToMe = function(checklist) {
+	var assignToMe = function(checklist) {
 		checklist.dayZeroDate = checklist.dayZeroDate || new Date();
 		$http.get('/api/assign-checklist', 
-			{params: {checklistName: checklist.checklistName, dayZeroDate: checklist.dayZeroDate.valueOf()}})
+			{params: {checklistName: checklist.checklistName, dayZeroDate: checklist.dayZeroDate.valueOf(), 
+				notes: checklist.notes}})
 			.then(function(response) {
 				getItems();
 				getUsers();
+				$mdDialog.hide()
 				showSimpleToast(checklist.checklistName + ' added to your TODOs!');
 			});
 	};
 
 	$scope.markDone = function(item) {
-		$http.get('/api/complete-item', {params: {itemId: item.itemId, checklistName: item.checklistName}})
+		$http.get('/api/complete-item', {params: {itemId: item.itemId, checklistName: item.checklistName, 
+			id: item._id, timestamp: item.timestamp}})
 			.then(function(response) {
 				getItems();
 				getUsers();
@@ -80,6 +83,39 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast) {
 					});})
 	}
 
+	$scope.showAdvanced = function(ev, checklist) {
+	    var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+	    $mdDialog.show({
+	      controller: DialogController,
+	      templateUrl: 'assign-dialog.tmpl.html',
+	      parent: angular.element(document.body),
+	      targetEvent: ev,
+	      clickOutsideToClose:true,
+	      fullscreen: useFullScreen,
+	      locals: {checklist: checklist}
+	    })
+	    .then(function(checklist) {
+	      assignToMe(checklist);
+	    });
+	    
+	    $scope.$watch(function() {
+	      return $mdMedia('xs') || $mdMedia('sm');
+	    }, function(wantsFullScreen) {
+	      $scope.customFullscreen = (wantsFullScreen === true);
+	    });
+  };
+
 	getItems();
 	getUsers();
 });
+
+function DialogController($scope, $mdDialog, checklist) {
+	$scope.checklist = checklist;
+
+	$scope.cancel = function() {
+		$mdDialog.cancel()
+	}
+	$scope.assign = function() {
+	  	$mdDialog.hide(checklist);
+	};
+}

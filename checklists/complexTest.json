@@ -20,6 +20,11 @@
 		"displayName": "Course Two", 
 		"daysToComplete": 30, 
 		"dependsOn": ["signUp"]
+	},
+	"finale": {
+		"displayName": "The Finale",
+		"daysToComplete": 2,
+		"dependsOn": ["course1", "course2"]
 	}
 	}
 }

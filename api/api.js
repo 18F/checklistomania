@@ -40,6 +40,7 @@ router.get('/assign-checklist', function (req, res) {
 	var dayZeroDate = new Date(parseInt(req.query.dayZeroDate));
 	checklists.findOne({checklistName: req.query.checklistName}, function(err, checklist) {
 		checklist.items.dayZero["completedDate"] = dayZeroDate;
+		timestamp = new Date().getTime();
 		for(var itemId in checklist.items){
 			var item = checklist.items[itemId];
 
@@ -48,6 +49,8 @@ router.get('/assign-checklist', function (req, res) {
 			item["ownerName"] = req.user._json.name;
 			item["ownerImgUrl"] = req.user._json.avatar_url;
 			item["checklistName"] = req.query.checklistName;
+			item["notes"] = req.query.notes;
+			item["timestamp"] = timestamp;
 
 			if(item.dependsOn.indexOf("dayZero") >= 0) {
 				var dueDate = new Date();
@@ -94,18 +97,27 @@ router.get('/get-users', function(req, res) {
 })
 
 router.get('/complete-item', function(req, res) {
-	items.find({owner: req.user.username, checklistName: req.query.checklistName})
+	var query = {owner: req.user.username, checklistName: req.query.checklistName, 
+		timestamp: parseInt(req.query.timestamp)};
+	
+	items.find(query)
 		.toArray(function(err, userItems) {
 			userItems.forEach(function(item) {
-				if(item.itemId === req.query.itemId) {
+				if(item._id == req.query.id) {
 					item["completedDate"] = new Date();
 					items.update({_id: item._id}, item)
 				};
 
-				if(item.dependsOn.indexOf(req.query.itemId) >= 0) {
-					var dueDate = new Date();
-					dueDate.setDate(new Date().getDate() + item.daysToComplete);
-					item["dueDate"] = dueDate;
+				dependentIndex = item.dependsOn.indexOf(req.query.itemId);
+				if(dependentIndex >= 0) {
+					item.dependsOn.splice(dependentIndex, 1);
+
+					if(item.dependsOn.length === 0) {
+						var dueDate = new Date();
+						dueDate.setDate(new Date().getDate() + item.daysToComplete);
+						item["dueDate"] = dueDate;						
+					}
+					
 					items.update({_id: item._id}, item)
 				}	
 			});

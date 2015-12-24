@@ -30,11 +30,12 @@
           <p ng-show="items.length == 0">Nothing to do! Pat yourself on the back (or assign yourself some new checklists from the checklists tab)!</p>
           
           <div layout="row" layout-wrap layout-align="center" ng-show="!viewTable">
-          <md-card ng-repeat="item in items" flex="30">
+          <md-card ng-repeat="item in items" flex="45">
             <md-card-title>
               <md-card-title-text>
                 <span class="md-headline">{{ item.displayName }}</span>
                 <span class="md-subhead">From checklist {{ item.checklistName }}, due on {{ item.dueDate.toLocaleDateString() }}</span>
+                <span class="md-subhead" ng-show="item.notes">{{ item.notes }}</span>
               </md-card-title-text>
               <md-card-title-media>
                 <div class="md-media-sm card-media md-display-1 trafficLight" ng-class="item.trafficLight">{{ item.daysUntilDue }} days</div>
@@ -53,10 +54,11 @@
           <md-data-table-container>
             <table md-data-table class="md-primary" md-row-select="selected" md-progress="deferred">
               <thead>
-                <td>Done?</td>
+                <td>Mark Done</td>
                 <td ng-class="item.trafficLight">Days Left</td>
                 <td>Task</td>
                 <td>Checklist</td>
+                <td>Notes</td>
                 <td>Due Date</td>
                 <td>Description</td>                
               </thead>
@@ -65,7 +67,8 @@
                 <td><md-button class="md-icon-button" href="#" ng-click="markDone(item)" ng-hide="item.completedDate">&#10003;</md-button></td>
                 <td id="tableTrafficLight" ng-class="item.trafficLight">{{ item.daysUntilDue }}</td>
                 <td>{{ item.displayName }}</td>
-                <td>{{ item.checklistName}}</td>
+                <td>{{ item.checklistName }}</td>
+                <td>{{ item.notes }}</td>
                 <td>{{ item.dueDate.toLocaleDateString() }}</td>
                 <td><p ng-bind-html="item.descriptionHtml"></p></td>
               </tr>
@@ -73,6 +76,7 @@
             </table>
             </md-data-table-container>
           </div>
+
         </md-content>
       </md-tab>
       <md-tab label="checklists">
@@ -87,8 +91,7 @@
               </md-card-title-text>
             </md-card-title>
             <md-card-actions layout="row" layout-align="end center">
-              <md-datepicker ng-model="checklist.dayZeroDate" md-placeholder="{{checklist.items.dayZero.displayName}}"></md-datepicker>
-              <md-button ng-click="assignToMe(checklist)">Assign To Me</md-button>
+              <md-button ng-click="showAdvanced($event, checklist)">Assign To Me</md-button>
             </md-card-actions>
           </md-card>
           </div>

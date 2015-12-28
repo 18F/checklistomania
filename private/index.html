@@ -1,32 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" >
-<head>
-  <title>Checklistomania</title>
-  <!-- Angular Material style sheet -->
-  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-cookies.min.js"></script>
-  <script src="/private/js/app.js"></script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
-  <link rel="stylesheet" href="/private/css/app.css">
-  <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="https://rawgit.com/daniel-nagy/md-data-table/master/dist/md-data-table.css">
-</head>
+<html lang="en">
+  
+  <head>
+    <title>Checklistomania</title>
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-cookies.min.js"></script>
+    <script src="/private/js/app.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link rel="stylesheet" href="/private/css/app.css">
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://rawgit.com/daniel-nagy/md-data-table/master/dist/md-data-table.css">
+  </head>
+  
+  <body ng-app="app" ng-controller="todoCtrl">
+    <div class="md-display-1 todoHeader"><span><img src="/private/img/logo-18f.png" height="40" width="40"></span> Checklistomania</div>
+    <div
+    class="tabsdemoDynamicHeight">
+      <md-content>
+        <md-tabs md-dynamic-height="" md-border-bottom="" md-selected="selectedTabIndex">
+          <ng-include src="'tmpl/todos.tmpl.html'"></ng-include>
+          <ng-include src="'tmpl/checklists.tmpl.html'"></ng-include>
+          <ng-include src="'tmpl/users.tmpl.html'"></ng-include>
+        </md-tabs>
+      </md-content>
+      </div>
+  </body>
 
-<body ng-app="app" ng-controller="todoCtrl">
-<div class="md-display-1 todoHeader"><span><img src="/private/img/logo-18f.png" height="40" width="40"></span>  Checklistomania</div>
-  <div class="tabsdemoDynamicHeight">
-  <md-content>
-    <md-tabs md-dynamic-height="" md-border-bottom="" md-selected="selectedTabIndex">
-      <ng-include src="'tmpl/todos.tmpl.html'"></ng-include>      
-      <ng-include src="'tmpl/checklists.tmpl.html'"></ng-include>
-      <ng-include src="'tmpl/users.tmpl.html'"></ng-include>
-    </md-tabs>
-  </md-content>
-</div>
-</body>
 </html>

@@ -2,17 +2,17 @@
   <md-content class="md-padding">
     <div class="md-display-1">Checklists</div>
     <div layout="row" layout-wrap layout-align="center">
-    <md-card ng-repeat="checklist in checklists" flex="45">
-      <md-card-title>
-        <md-card-title-text>
-          <span class="md-headline">{{ checklist.checklistName }}</span>
-          <span class="md-subhead">{{checklist.checklistDescription}}</span>
-        </md-card-title-text>
-      </md-card-title>
-      <md-card-actions layout="row" layout-align="end center">
-        <md-button ng-click="showAdvanced($event, checklist)">Assign To Me</md-button>
-      </md-card-actions>
-    </md-card>
+      <md-card ng-repeat="checklist in checklists" flex="45">
+        <md-card-title>
+          <md-card-title-text> <span class="md-headline">{{ checklist.checklistName }}</span>
+ <span class="md-subhead">{{checklist.checklistDescription}}</span>
+
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button ng-click="showAdvanced($event, checklist)">Assign To Me</md-button>
+        </md-card-actions>
+      </md-card>
     </div>
   </md-content>
-  </md-tab>
+</md-tab>

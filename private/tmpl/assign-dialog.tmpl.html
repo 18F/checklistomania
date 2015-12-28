@@ -1,30 +1,28 @@
-<md-dialog aria-label="assigning checklist"  ng-cloak>
+<md-dialog aria-label="assigning checklist" ng-cloak>
   <form>
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>Assign Checklist</h2>
+         <h2>Assign Checklist</h2>
+
       </div>
     </md-toolbar>
     <md-dialog-content>
       <div class="md-dialog-content">
         <p>Assigning Checklist "{{ checklist.checklistName }}"</p>
-        <md-input-container layout="column">
+        <md-input-container
+        layout="column">
           <label>Notes</label>
           <input ng-model="checklist.notes">
-        </md-input-container>
-        <label for="datepicker">Choose {{checklist.items.dayZero.displayName}}</label>
-        <md-datepicker id="datepicker" ng-model="checklist.dayZeroDate" md-placeholder="{{checklist.items.dayZero.displayName}}">
-              </md-datepicker>
+          </md-input-container>
+          <label for="datepicker">Choose {{checklist.items.dayZero.displayName}}</label>
+          <md-datepicker id="datepicker"
+          ng-model="checklist.dayZeroDate" md-placeholder="{{checklist.items.dayZero.displayName}}"></md-datepicker>
       </div>
     </md-dialog-content>
-    <md-dialog-actions layout="row">
-      <span flex></span>
-      <md-button ng-click="cancel()">
-        Cancel
-      </md-button>
-      <md-button ng-click="assign()" style="margin-right:20px;">
-        Assign To Me
-      </md-button>
+    <md-dialog-actions layout="row"> <span flex></span>
+
+      <md-button ng-click="cancel()">Cancel</md-button>
+      <md-button ng-click="assign()" style="margin-right:20px;">Assign To Me</md-button>
     </md-dialog-actions>
   </form>
 </md-dialog>

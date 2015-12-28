@@ -1,30 +1,32 @@
-<html lang="en" >
-<head>
-  <!-- Angular Material style sheet -->
-  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
-</head>
-<body ng-app="publicApp" ng-cloak>
-  <div layout="row" layout-align="center">
-    <div layout="column">
-      <h1>Sorry, you are not authorized.</h1>
-      <p> You must be a member of the 18F team on github to access this app.</p>
-      <h2>If you'd like you can <a href="private/index.html">try to log in again using github.</a></h2>
-    </div>
-  </div>
-  <!-- Angular Material requires Angular.js Libraries -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+<html lang="en">
+  
+  <head>
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+  </head>
+  
+  <body ng-app="publicApp" ng-cloak>
+    <div layout="row" layout-align="center">
+      <div layout="column">
+         <h1>Sorry, you are not authorized.</h1>
 
-  <!-- Angular Material Library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
-  
-  <!-- Your application bootstrap  -->
-  <script type="text/javascript">    
-    //angular.module('BlankApp', ['ngMaterial']);
-    angular.module('publicApp', ['ngMaterial']);
-  </script>
-  
-</body>
+        <p>You must be a member of the 18F team on github to access this app.</p>
+         <h2>If you'd like you can <a href="private/index.html">try to log in again using github.</a></h2>
+
+      </div>
+    </div>
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+    <!-- Angular Material Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+    <!-- Your application bootstrap -->
+    <script type="text/javascript">
+      //angular.module('BlankApp', ['ngMaterial']);
+      angular.module('publicApp', ['ngMaterial']);
+    </script>
+  </body>
+
 </html>

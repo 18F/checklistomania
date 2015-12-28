@@ -3,7 +3,7 @@ node_js:
     - 0.12
 before_script:
     - "npm i -g jasmine-node"
-    - "nohup npm start &"
+    - "nohup node app.js --skip-auth &"
     - "sleep 5"
 script:
     - "npm test"

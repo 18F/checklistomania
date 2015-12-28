@@ -41,22 +41,18 @@ app.use(session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-if(process.env.SKIP_AUTH && process.env.SKIP_AUTH === 'true') {
+if(process.argv[2] === '--skip-auth') {
   console.log('skipping authentication...');
-  app.use( "/private", express.static( "private" ));
-  app.use('/api', api.router);  
+  app.use( "/private", [ mockAuthentication, express.static( "private" )]);
+  app.use('/api', [ mockAuthentication, api.router]);  
 } else {
   var github = new GitHubApi({
-      // required
       version: "3.0.0",
-      // optional
-      //debug: true,
       protocol: "https",
-      host: "api.github.com", // should be api.github.com for GitHub
-      //pathPrefix: "/api/v3", // for some GHEs; none for GitHub
+      host: "api.github.com",
       timeout: 5000,
       headers: {
-          "user-agent": "checklistomania" // GitHub is happy with a unique user agent
+          "user-agent": "checklistomania" 
       }
   });
 
@@ -109,6 +105,11 @@ function ensureGithubOrg(req, res, next) {
         if(inOrg) {next()}
         else {res.redirect('/not-authorized.html');}
     }); 
+}
+
+function mockAuthentication(req, res, next) {
+  req.user = req.query.user;
+  next();
 }
 
 app.listen(process.env.PORT || 3000)

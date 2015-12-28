@@ -1,0 +1,58 @@
+<md-tab label="Todos" md-on-select="setTabCookie(0)">
+        <md-content class="md-padding">
+          <div class="md-display-1">Todos 
+            <md-button class="toggleView" ng-click="setViewTable(true)" ng-show="!viewTable && items.length > 0">View As Table</md-button>
+            <md-button class="toggleView" ng-click="setViewTable(false)" ng-show="viewTable && items.length > 0">View As Cards</md-button>
+          </div>
+          <p ng-show="items.length == 0">Nothing to do! Pat yourself on the back (or assign yourself some new checklists from the checklists tab)!</p>
+          
+          <div layout="row" layout-wrap layout-align="center" ng-show="!viewTable">
+          <md-card ng-repeat="item in items" flex="45">
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">{{ item.displayName }}</span>
+                <span class="md-subhead">From checklist {{ item.checklistName }}, due on {{ item.dueDate.toLocaleDateString() }}</span>
+                <span class="md-subhead" ng-show="item.notes">{{ item.notes }}</span>
+              </md-card-title-text>
+              <md-card-title-media>
+                <div class="md-media-sm card-media md-display-1 trafficLight" ng-class="item.trafficLight">{{ item.daysUntilDue }} days</div>
+              </md-card-title-media>
+            </md-card-title>
+            <md-card-content ng-show="item.expand"><p ng-bind-html="item.descriptionHtml"></p></md-card-content>
+            <md-card-actions layout="row" layout-align="end center">
+              <md-button ng-show="!item.expand" ng-click="item.expand = true">Expand</md-button>
+              <md-button ng-show="item.expand" ng-click="item.expand = false">Collapse</md-button>
+              <md-button ng-click="markDone(item)" ng-hide="item.completedDate">Mark Done</md-button>
+            </md-card-actions>
+          </md-card>
+          </div>
+
+          <div ng-show="viewTable && items.length > 0">
+          <md-data-table-container>
+            <table md-data-table class="md-primary" md-row-select="selected" md-progress="deferred">
+              <thead>
+                <td>Mark Done</td>
+                <td ng-class="item.trafficLight">Days Left</td>
+                <td>Task</td>
+                <td>Checklist</td>
+                <td>Notes</td>
+                <td>Due Date</td>
+                <td>Description</td>                
+              </thead>
+              <tbody>
+              <tr ng-repeat="item in items">
+                <td><md-button class="md-icon-button" href="#" ng-click="markDone(item)" ng-hide="item.completedDate">&#10003;</md-button></td>
+                <td id="tableTrafficLight" ng-class="item.trafficLight">{{ item.daysUntilDue }}</td>
+                <td>{{ item.displayName }}</td>
+                <td>{{ item.checklistName }}</td>
+                <td>{{ item.notes }}</td>
+                <td>{{ item.dueDate.toLocaleDateString() }}</td>
+                <td><p ng-bind-html="item.descriptionHtml"></p></td>
+              </tr>
+              </tbody>
+            </table>
+            </md-data-table-container>
+          </div>
+
+        </md-content>
+      </md-tab>

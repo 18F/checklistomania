@@ -3,3 +3,5 @@ api/db/*
 api/.DS_Store
 manifest*
 npm-debug.log
+.DS_Store
+cf-ssh.yml

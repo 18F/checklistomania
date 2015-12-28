@@ -100,7 +100,7 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 	    var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
 	    $mdDialog.show({
 	      controller: DialogController,
-	      templateUrl: 'assign-dialog.tmpl.html',
+	      templateUrl: 'tmpl/assign-dialog.tmpl.html',
 	      parent: angular.element(document.body),
 	      targetEvent: ev,
 	      clickOutsideToClose:true,

@@ -11,7 +11,6 @@ if(process.env.VCAP_SERVICES) {
 	url = 'mongodb://localhost:27017/checklistomania';
 }
 
-var checklistomaniaDb;
 MongoClient.connect(url, function(err, db) {
 	module.exports.db = db;
 	items = db.collection("items");
@@ -101,18 +100,21 @@ router.get('/get-users', function(req, res) {
 router.get('/complete-item', function(req, res) {
 	var query = {owner: req.user.username, checklistName: req.query.checklistName, 
 		timestamp: parseInt(req.query.timestamp)};
-	
+
 	items.find(query)
 		.toArray(function(err, userItems) {
+			var updatedItemCount = 0
 			userItems.forEach(function(item) {
 				if(item._id == req.query.id) {
 					item["completedDate"] = new Date();
 					items.update({_id: item._id}, item)
+					updatedItemCount += 1;
 				};
 
 				dependentIndex = item.dependsOn.indexOf(req.query.itemId);
 				if(dependentIndex >= 0) {
 					item.dependsOn.splice(dependentIndex, 1);
+					updatedItemCount += 1;
 
 					if(item.dependsOn.length === 0) {
 						var dueDate = new Date();
@@ -123,7 +125,7 @@ router.get('/complete-item', function(req, res) {
 					items.update({_id: item._id}, item)
 				}	
 			});
-			res.json({success: true});
+			res.json({updatedItemCount: updatedItemCount});
 	});
 		
 });

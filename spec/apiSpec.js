@@ -7,7 +7,7 @@ describe("API is fully functional", function() {
   var assignChecklist = function(callback) {
     var options = {
         url: "http://localhost:3000/api/assign-checklist",
-        qs: {dayZeroDate: new Date().valueOf(), checklistName: 'Simple Test', notes: 'notesHere',
+        qs: {dayZeroDate: new Date().valueOf(), checklistName: 'Complex Test', notes: 'notesHere',
               user: user}
       };
 
@@ -49,14 +49,14 @@ describe("API is fully functional", function() {
   it("assigns to a checklist", function(done) {
       var options = {
         url: "http://localhost:3000/api/assign-checklist",
-        qs: {dayZeroDate: new Date().valueOf(), checklistName: 'Simple Test', notes: 'notesHere',
+        qs: {dayZeroDate: new Date().valueOf(), checklistName: 'Complex Test', notes: 'notesHere',
               user: user}
       };
 
       request.get(options, function(err, response, body) {
           expect(!err && response.statusCode == 200).toBe(true);
           bodyObj = JSON.parse(body);
-          expect(bodyObj.checklistName).toBe('Simple Test');
+          expect(bodyObj.checklistName).toBe('Complex Test');
           done();
       }); 
   });
@@ -96,15 +96,18 @@ describe("API is fully functional", function() {
 
           request.get(options, function(err, response, body) {
                 item = JSON.parse(body).items[0];
+                console.log(item);
                 var options = {
                   url: "http://localhost:3000/api/complete-item",
-                  qs: {user: user, timestamp: item.timestamp, id: item._id}
+                  qs: {user: user, timestamp: item.timestamp, 
+                    id: item._id, checklistName: item.checklistName,
+                    itemId: item.itemId}
                 }
 
                 request.get(options, function(err, response, body) {
                   expect(!err && response.statusCode == 200).toBe(true);
                   bodyObj = JSON.parse(body);
-                  expect(bodyObj.success).toBe(true);
+                  expect(bodyObj.updatedItemCount > 0).toBe(true);
                   done();
                 });
           })

@@ -11,7 +11,9 @@ if(process.env.VCAP_SERVICES) {
 	url = 'mongodb://localhost:27017/checklistomania';
 }
 
+var checklistomaniaDb;
 MongoClient.connect(url, function(err, db) {
+	module.exports.db = db;
 	items = db.collection("items");
 	checklists = db.collection("checklists");
 	fs.readdir('./checklists', function(err, files) {
@@ -126,4 +128,4 @@ router.get('/complete-item', function(req, res) {
 		
 });
 
-module.exports = {router: router};
+module.exports.router = router;

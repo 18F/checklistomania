@@ -3,11 +3,13 @@ node_js:
     - 0.12
 before_script:
     - "npm i -g jasmine-node"
-    - "nohup node app.js --skip-auth &"
     - "sleep 5"
 script:
     - "npm test"
+    - "npm run-script coverage"
+after_success:
+    - "npm run-script coveralls"
 env:
-    - GITHUB_CLIENT_ID=test GITHUB_CLIENT_SECRET=testSecret SKIP_AUTH=true
+    - GITHUB_CLIENT_ID=test GITHUB_CLIENT_SECRET=testSecret
 services:
   - mongodb

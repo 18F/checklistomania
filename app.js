@@ -41,7 +41,7 @@ app.use(session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-if(process.argv[2] === '--skip-auth') {
+if(process.argv[2] === '--test') {
   console.log('skipping authentication...');
   app.use( "/private", [ mockAuthentication, express.static( "private" )]);
   app.use('/api', [ mockAuthentication, api.router]);  
@@ -112,4 +112,27 @@ function mockAuthentication(req, res, next) {
   next();
 }
 
-app.listen(process.env.PORT || 3000)
+if(process.argv[2] === '--test') {
+  var server = require('http').createServer(app);
+  server.listen(3000, function () {
+    var spawn = require('child_process').spawn;
+
+    console.log('Test server started...');
+    
+    var jasmineNode = spawn('node', ['node_modules/jasmine-node/bin/jasmine-node', '.']);
+    function logToConsole(data) {
+        console.log(String(data));
+    }
+    jasmineNode.stdout.on('data', logToConsole);
+    jasmineNode.stderr.on('data', logToConsole);
+
+    jasmineNode.on('exit', function(exitCode) {
+        console.log("closing server...");
+        api.db.close();
+        server.close();
+    });
+
+  });
+} else {
+  app.listen(process.env.PORT || 3000)  
+}

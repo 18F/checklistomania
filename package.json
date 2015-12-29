@@ -23,7 +23,7 @@
   "scripts": {
     "test": "node app.js --test",
     "start": "node app.js",
-    "coverage": "istanbul cover --include-all-sources --verbose app.js -- --test",
+    "coverage": "istanbul cover --include-all-sources -x spec/* --verbose app.js -- --test",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "author": "Anthony Garvan",

@@ -1,5 +1,6 @@
 # Checklistomania
 [![Build Status](https://travis-ci.org/18F/checklistomania.svg?branch=master)](https://travis-ci.org/18F/checklistomania)
+[![Coverage Status](https://coveralls.io/repos/18F/checklistomania/badge.svg?branch=master&service=github)](https://coveralls.io/github/18F/checklistomania?branch=master)
 
 This tool is a checklist manager with some neat-O features:
 * Focus on what is actionable: central page is a simple list of things you can take action on now, in order of urgency.

@@ -96,7 +96,6 @@ describe("API is fully functional", function() {
 
           request.get(options, function(err, response, body) {
                 item = JSON.parse(body).items[0];
-                console.log(item);
                 var options = {
                   url: "http://localhost:3000/api/complete-item",
                   qs: {user: user, timestamp: item.timestamp, 

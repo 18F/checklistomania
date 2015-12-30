@@ -32,36 +32,38 @@
       </md-card>
     </div>
     <div ng-show="viewTable && items.length > 0">
+      <md-card>
       <md-table-container>
-        <table md-table class="md-primary" md-row-select="selected" md-progress="deferred">
-          <thead md-head>
-            <tr md-row>
-              <th md-column>Mark Done</th>
-              <th md-column ng-class="item.trafficLight">Days Left</th>
-              <th md-column>Task</th>
-              <th md-column>Checklist</th>
-              <th md-column>Notes</th>
-              <th md-column>Due Date</th>
-              <th md-column>Description</th>
+        <table class="md-primary md-table" md-row-select="selected" md-progress="deferred">
+          <thead class="md-head">
+            <tr class="md-row">
+              <th class="md-column">Mark Done</th>
+              <th class="md-column" ng-class="item.trafficLight">Days Left</th>
+              <th class="md-column">Task</th>
+              <th class="md-column">Checklist</th>
+              <th class="md-column">Notes</th>
+              <th class="md-column">Due Date</th>
+              <th class="md-column">Description</th>
             </tr>
           </thead>
-          <tbody md-body>
-            <tr md-row ng-repeat="item in items">
-              <td md-cell>
+          <tbody class="md-body">
+            <tr class="md-row" ng-repeat="item in items">
+              <td class="md-cell">
                 <md-button class="md-icon-button" href="#" ng-click="markDone(item)" ng-hide="item.completedDate">&#10003;</md-button>
               </td>
-              <td md-cell id="tableTrafficLight" ng-class="item.trafficLight">{{ item.daysUntilDue }}</td>
-              <td md-cell>{{ item.displayName }}</td>
-              <td md-cell>{{ item.checklistName }}</td>
-              <td md-cell>{{ item.notes }}</td>
-              <td md-cell>{{ item.dueDate.toLocaleDateString() }}</td>
-              <td md-cell>
+              <td class="md-cell" id="tableTrafficLight" ng-class="item.trafficLight">{{ item.daysUntilDue }}</td>
+              <td class="md-cell">{{ item.displayName }}</td>
+              <td class="md-cell">{{ item.checklistName }}</td>
+              <td class="md-cell">{{ item.notes }}</td>
+              <td class="md-cell">{{ item.dueDate.toLocaleDateString() }}</td>
+              <td class="md-cell">
                 <p ng-bind-html="item.descriptionHtml"></p>
               </td>
             </tr>
           </tbody>
         </table>
       </md-table-container>
+      </md-card>
     </div>
   </md-content>
 </md-tab>

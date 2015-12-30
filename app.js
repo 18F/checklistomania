@@ -43,8 +43,8 @@ app.use(passport.session());
 
 if(process.argv[2] === '--test') {
   console.log('skipping authentication...');
-  app.use( "/private", [ mockAuthentication, express.static( "private" )]);
-  app.use('/api', [ mockAuthentication, api.router]);  
+  app.use( "/private", [ mockAuthentication, addToUsers, express.static( "private" )]);
+  app.use('/api', [ mockAuthentication, addToUsers, api.router]);  
 } else {
   var github = new GitHubApi({
       version: "3.0.0",
@@ -62,8 +62,8 @@ if(process.argv[2] === '--test') {
       secret: process.env.GITHUB_CLIENT_SECRET
   })
 
-  app.use( "/private", [ ensureAuthenticated, ensureGithubOrg, express.static( "private" ) ] );
-  app.use('/api', [ensureAuthenticated, ensureGithubOrg, api.router]);  
+  app.use( "/private", [ ensureAuthenticated, ensureGithubOrg, addToUsers, express.static( "private" ) ] );
+  app.use('/api', [ensureAuthenticated, ensureGithubOrg, addToUsers, api.router]);  
 }
 
 app.use( "/", express.static( "public" ) );
@@ -112,6 +112,15 @@ function mockAuthentication(req, res, next) {
   next();
 }
 
+function addToUsers(req, res, next) {
+  var user = {username: req.user.username, 
+    earliestDueDate: new Date().setYear(3000),
+    fullName: req.user._json.name,
+    imgUrl: req.user._json.avatar_url};
+    api.db.collection('users').update({username: user.username}, user, {upsert: true})
+    next();
+}
+
 if(process.argv[2] === '--test') {
   var server = require('http').createServer(app);
   server.listen(3000, function () {
@@ -130,6 +139,7 @@ if(process.argv[2] === '--test') {
         console.log("closing server...");
         api.db.collection("items").remove({});
         api.db.collection("checklists").remove({});
+        api.db.collection("users").remove({});
         api.db.close();
         server.close();
     });

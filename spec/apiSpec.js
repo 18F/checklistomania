@@ -17,14 +17,20 @@ describe("API is fully functional", function() {
   };
 
   it("returns something from api root", function(done) {
-      request.get("http://localhost:3000/api/", function(err, response, body) {
+      var options = {
+        url: "http://localhost:3000/api/",
+        qs: {user: user}};
+      request.get(options, function(err, response, body) {
             expect(!err && response.statusCode == 200).toBe(true);
             done();
       })
   });
 
   it("returns isalive", function(done) {
-      request.get("http://localhost:3000/api/isalive", function(err, response, body) {
+      var options = {
+        url: "http://localhost:3000/api/isalive",
+        qs: {user: user}};
+      request.get(options, function(err, response, body) {
             expect(!err && response.statusCode == 200 && body == 'OK').toBe(true);
             done();
       })
@@ -64,9 +70,10 @@ describe("API is fully functional", function() {
   it("gets checklists", function(done) {
       var options = {
         url: "http://localhost:3000/api/get-checklists",
+        qs: {user: user}
       };
 
-      request.get("http://localhost:3000/api/get-checklists", function(err, response, body) {
+      request.get(options, function(err, response, body) {
           expect(!err && response.statusCode == 200).toBe(true);
           bodyObj = JSON.parse(body);
           expect(bodyObj.checklists.length > 0).toBe(true);
@@ -74,15 +81,17 @@ describe("API is fully functional", function() {
       }); 
   });
 
+
   it("gets users", function(done) {
       var options = {
         url: "http://localhost:3000/api/get-users",
+        qs: {user: user}
       };
 
       request.get(options, function(err, response, body) {
           expect(!err && response.statusCode == 200).toBe(true);
           bodyObj = JSON.parse(body);
-          expect(user.username in bodyObj.users).toBe(true);
+          expect(bodyObj.users[0].username === 'testUser').toBe(true);
           done();
       }); 
   });

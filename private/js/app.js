@@ -35,13 +35,7 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 
 	var getUsers = function() {
 		$http.get('/api/get-users').then(function(response) {
-			$scope.users = [];
-			for(var user in response.data.users){
-				$scope.users.push({username: user, 
-					date: new Date(response.data.users[user].earliestDueDate),
-					fullName: response.data.users[user].fullName,
-					imgUrl: response.data.users[user].imgUrl});
-			}
+			$scope.users = response.data.users;
 		});		
 	}
 

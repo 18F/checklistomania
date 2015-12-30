@@ -15,6 +15,7 @@ MongoClient.connect(url, function(err, db) {
 	module.exports.db = db;
 	items = db.collection("items");
 	checklists = db.collection("checklists");
+	users = db.collection("users");
 	fs.readdir('./checklists', function(err, files) {
 		files.forEach(function(fileName) {
 	  var filePath = 'checklists/' + fileName;
@@ -47,8 +48,6 @@ router.get('/assign-checklist', function (req, res) {
 
 			item["itemId"] = itemId;
 			item["owner"] = req.user.username;
-			item["ownerName"] = req.user._json.name;
-			item["ownerImgUrl"] = req.user._json.avatar_url;
 			item["checklistName"] = req.query.checklistName;
 			item["notes"] = req.query.notes;
 			item["timestamp"] = timestamp;
@@ -91,20 +90,9 @@ router.get('/get-checklists', function(req, res) {
 });
 
 router.get('/get-users', function(req, res) {
-	items.find({}).toArray(function(err, allItems) {
-		users = {};
-		allItems.forEach(function(item) {
-			if(!(item.owner in users)) {
-				users[item.owner] = {earliestDueDate: new Date().setYear(3000), fullName: item.ownerName, 
-					imgUrl: item.ownerImgUrl};
-			}
-
-			if(!item.completedDate && item.dueDate < users[item.owner].earliestDueDate) {
-				users[item.owner].earliestDueDate = item.dueDate;
-			}
-		})
+	users.find({}).toArray(function(err, users) {
 		res.json({users: users});
-	})
+	});
 })
 
 router.get('/complete-item', function(req, res) {

@@ -7,7 +7,6 @@ This tool is a checklist manager with some neat-O features:
 * Checklists are centrally defined, allowing any member to subscribe to the authoritative checklist
 * Checklist items deadlines can be set according to a fixed date or relative to completion of other items
 * All members of team can view other peoples checklists, so admins can see everyone's status at a glance
-* Future feature: email reminders for items nearing deadline
 
 # Requirements
 - Mongodb
@@ -27,7 +26,7 @@ Setup a github application to obtain a github client Id and secret Id by registe
 
 Run locally with:
 ```
->>> node app.js
+>>> npm start
 ```
 
 And visit [http://localhost:3000/](http://localhost:3000/)

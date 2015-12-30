@@ -1,0 +1,82 @@
+{"checklistName": "Product Team Director for New Hire",
+"checklistDescription": "TODO Items for the product team director for a new hire.",
+"items": 
+	{"dayZero": { 
+		"displayName": "Start Date", 
+		"description": "First day on the job.",
+		"daysToComplete": 0, 
+		"dependsOn": []
+	},
+	"sayHi": { 
+		"displayName": "Say Hi!", 
+		"description": "Reaches out to new hire to say hello and set up coffee chat",
+		"daysToComplete": 0, 
+		"dependsOn": ["dayZero"]
+	},
+	"giveChecklist": { 
+		"displayName": "Give Checklist", 
+		"description": "Gives new hire team-based checklist",
+		"daysToComplete": 3, 
+		"dependsOn": ["dayZero"]
+	},
+	"explainBillableHours": { 
+		"displayName": "Explain Billable Hours", 
+		"description": "Explain billable hours during coffee chat- emphasize your policy re: billable hours. (Many new staff members will need to be reassured on this point.",
+		"daysToComplete": 0, 
+		"dependsOn": ["sayHi"]
+	},
+	"welcomeEmail": { 
+		"displayName": "Send Welcome Email", 
+		"description": "Send out welcome email to new hire",
+		"daysToComplete": 5, 
+		"dependsOn": ["dayZero"]
+	},
+	"oneOnOne": { 
+		"displayName": "Schedule 1:1", 
+		"description": "Schedule 1:1 with new hire",
+		"daysToComplete": 5, 
+		"dependsOn": ["dayZero"]
+	},
+	"productTeamCoffee": { 
+		"displayName": "Add To Product Team Coffee", 
+		"description": "",
+		"daysToComplete": 5, 
+		"dependsOn": ["dayZero"]
+	},
+	"sharePmGuide": { 
+		"displayName": "Share PM Guide", 
+		"description": "",
+		"daysToComplete": 5, 
+		"dependsOn": ["dayZero"]
+	},
+	"addToOrgChart": { 
+		"displayName": "Add To Org Chart", 
+		"description": "",
+		"daysToComplete": 5, 
+		"dependsOn": ["dayZero"]
+	},
+	"addToSlackChannels": { 
+		"displayName": "Add To Slack Channels", 
+		"description": "Add to #product, #product-team-private and #product-team",
+		"daysToComplete": 5, 
+		"dependsOn": ["dayZero"]
+	},
+	"assignToMember": { 
+		"displayName": "Assign Product Team member to shadow & pair with", 
+		"description": "",
+		"daysToComplete": 12, 
+		"dependsOn": ["dayZero"]
+	},
+	"performancePlan": { 
+		"displayName": "Performance Plan / IDPs", 
+		"description": "",
+		"daysToComplete": 90, 
+		"dependsOn": ["dayZero"]
+	},
+	"addToTrello": { 
+		"displayName": "Add To Team Trello Board", 
+		"description": "",
+		"daysToComplete": 12, 
+		"dependsOn": ["dayZero"]
+	}
+}}	

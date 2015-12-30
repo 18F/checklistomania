@@ -1,0 +1,35 @@
+{"checklistName": "Any Director of a New Hire after Selection",
+"checklistDescription": "TODO Items for any director of a new hire.",
+"items": 
+	{"dayZero": { 
+		"displayName": "Selection Date", 
+		"description": "Date of selection.",
+		"daysToComplete": 0, 
+		"dependsOn": []
+	},
+	"conveySupervisorToTalent": { 
+		"displayName": "Conveys supervisor information to Talent POC", 
+		"description": "",
+		"daysToComplete": 0, 
+		"dependsOn": ["dayZero"]
+	},
+	"conveyTeamToTalent": { 
+		"displayName": "Conveys team information to Talent POC", 
+		"description": "",
+		"daysToComplete": 0, 
+		"dependsOn": ["dayZero"]
+	},
+	"conveyLocationToTalent": { 
+		"displayName": "Conveys location information to Talent POC", 
+		"description": "",
+		"daysToComplete": 0, 
+		"dependsOn": ["dayZero"]
+	},
+	"congratsEmail": { 
+		"displayName": "Write Congrats Email", 
+		"description": "Writes congrats email to candidate and requests references and documents / cc's Leah Glitter + Talent POC on email",
+		"daysToComplete": 3, 
+		"dependsOn": ["dayZero"]
+	}
+}
+}

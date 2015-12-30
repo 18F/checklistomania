@@ -76,6 +76,16 @@ router.get('/get-items', function(req, res) {
 router.get('/get-checklists', function(req, res) {
 	checklists.find({}, {sort: [["checklistName", 1]]})
 		.toArray(function(err, checklists) {
+			if(process.argv[2] !== '--test') {
+				noTestChecklist = []
+				checklists.forEach(function(checklist) {
+					if(checklist.checklistName !== 'Simple Test' 
+						&& checklist.checklistName !== 'Complex Test') {
+						noTestChecklist.push(checklist);
+					}
+				});
+				checklists = noTestChecklist;
+			}
 			res.json({checklists: checklists});		
 		});
 });

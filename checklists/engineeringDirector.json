@@ -1,0 +1,64 @@
+{"checklistName": "Product Team Director for New Hire",
+"checklistDescription": "TODO Items for the engineering team director for a new hire.",
+"items": 
+	{"dayZero": { 
+		"displayName": "Start Date", 
+		"description": "First day on the job.",
+		"daysToComplete": 0, 
+		"dependsOn": []
+	},
+	"sayHi": { 
+		"displayName": "Say Hi!", 
+		"description": "Reaches out to new hire to say hello and set up coffee chat",
+		"daysToComplete": 0, 
+		"dependsOn": ["dayZero"]
+	},
+	"giveChecklist": { 
+		"displayName": "Give Checklist", 
+		"description": "Gives new hire team-based checklist",
+		"daysToComplete": 3, 
+		"dependsOn": ["dayZero"]
+	},
+	"explainBillableHours": { 
+		"displayName": "Explain Billable Hours", 
+		"description": "Explain billable hours during coffee chat- emphasize your policy re: billable hours. (Many new staff members will need to be reassured on this point.",
+		"daysToComplete": 0, 
+		"dependsOn": ["sayHi"]
+	},
+	"assignFacilitator": { 
+		"displayName": "Assign Facilitator", 
+		"description": "Assign them and introduce them to their engineering team facilitator and Team via Slack",
+		"daysToComplete": 5, 
+		"dependsOn": ["dayZero"]
+	},
+	"skillsSpreadsheet": { 
+		"displayName": "Skills Spreadsheet", 
+		"description": "Send them the staff skills spreadsheet and ask them to fill it out",
+		"daysToComplete": 12, 
+		"dependsOn": ["dayZero"]
+	},
+	"introductoryCheckin": { 
+		"displayName": "Introductory Check In", 
+		"description": "Have an introductory check in with them",
+		"daysToComplete": 5, 
+		"dependsOn": ["dayZero"]
+	},
+	"hiringFeedback": { 
+		"displayName": "Hiring Process Feedback", 
+		"description": "Get feedback from new hire on hiring process",
+		"daysToComplete": 30, 
+		"dependsOn": ["dayZero"]
+	},
+	"introductoryCheckin": { 
+		"displayName": "Introductory Check In", 
+		"description": "Have an introductory check in with them",
+		"daysToComplete": 5, 
+		"dependsOn": ["dayZero"]
+	},
+	"setupForInterviews": { 
+		"displayName": "Set Up for Interviews", 
+		"description": "If candidate is comfortable, set them up doing interviews with a veteran interviewer",
+		"daysToComplete": 30, 
+		"dependsOn": ["dayZero"]
+	}
+}}

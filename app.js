@@ -128,6 +128,8 @@ if(process.argv[2] === '--test') {
 
     jasmineNode.on('exit', function(exitCode) {
         console.log("closing server...");
+        api.db.collection("items").remove({});
+        api.db.collection("checklists").remove({});
         api.db.close();
         server.close();
     });

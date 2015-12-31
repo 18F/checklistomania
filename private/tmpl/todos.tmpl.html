@@ -1,8 +1,8 @@
 <md-tab label="Todos" md-on-select="setTabCookie(0)">
   <md-content class="md-padding">
     <div class="md-display-1">Todos
-      <md-button class="toggleView" ng-click="setViewTable(true)" ng-show="!viewTable && items.length > 0">View As Table</md-button>
-      <md-button class="toggleView" ng-click="setViewTable(false)"
+      <md-button class="toggleView" ng-click="viewTable = true" ng-show="!viewTable && items.length > 0">View As Table</md-button>
+      <md-button class="toggleView" ng-click="viewTable = false"
       ng-show="viewTable && items.length > 0">View As Cards</md-button>
     </div>
     <p ng-show="items.length == 0">Nothing to do! Pat yourself on the back (or assign yourself some new checklists

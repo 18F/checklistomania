@@ -5,7 +5,7 @@
       <md-card-title>
         <md-card-title-text> <span class="md-headline">{{ user.fullName }}</span>
  <span class="md-subhead"
-          ng-show="user.date.getFullYear() < 3000">next due date: {{user.date.toLocaleDateString()}}</span>
+          ng-show="user.earliestDueDate.getFullYear() < 3000">next due date: {{user.earliestDueDate.toLocaleDateString()}}</span>
 
         </md-card-title-text>
         <md-card-title-media>

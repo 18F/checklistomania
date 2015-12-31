@@ -113,12 +113,17 @@ function mockAuthentication(req, res, next) {
 }
 
 function addToUsers(req, res, next) {
-  var user = {username: req.user.username, 
-    earliestDueDate: new Date().setYear(3000),
-    fullName: req.user._json.name,
-    imgUrl: req.user._json.avatar_url};
-    api.db.collection('users').update({username: user.username}, user, {upsert: true})
-    next();
+  api.db.collection('users').findOne({username: req.user.username},
+    function(err, user) {
+      if(!user) {
+        var user = {username: req.user.username, 
+          earliestDueDate: new Date().setYear(3000),
+          fullName: req.user._json.name,
+          imgUrl: req.user._json.avatar_url};
+        api.db.collection('users').insert(user)  
+      }
+      next();    
+    });
 }
 
 if(process.argv[2] === '--test') {
@@ -137,9 +142,7 @@ if(process.argv[2] === '--test') {
 
     jasmineNode.on('exit', function(exitCode) {
         console.log("closing server...");
-        api.db.collection("items").remove({});
-        api.db.collection("checklists").remove({});
-        api.db.collection("users").remove({});
+        api.db.dropDatabase();
         api.db.close();
         server.close();
     });

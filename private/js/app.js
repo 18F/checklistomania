@@ -121,14 +121,8 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 	      fullscreen: useFullScreen
 	    })
 	    .then(function(username) {
-	      $http.get('/api/add-user', {params: {username: username}})
-	      .then(function(response) {
-			if(response.data.success) {
-				showSimpleToast('Added user "' + username + '"!');
-				getUsers();
-			} else {
-				alert("Could not find username, please verify on github.");
-			}});
+	      	showSimpleToast('Added user "' + username + '"!');
+			getUsers();
 	    });
 	    
 	    $scope.$watch(function() {
@@ -153,15 +147,23 @@ function DialogController($scope, $mdDialog, checklist) {
 	};
 }
 
-function AddUserDialogController($scope, $mdDialog) {
+function AddUserDialogController($scope, $mdDialog, $http) {
 	$scope.cancel = function() {
 		$mdDialog.cancel()
 	}
 	$scope.addUser = function() {
+		$scope.warning = null;
+
 		if($scope.username) {
-	  		$mdDialog.hide($scope.username);			
+	  		$http.get('/api/add-user', {params: {username: $scope.username}})
+		      .then(function(response) {
+				if(response.data.success) {
+					$mdDialog.hide($scope.username);
+				} else {
+					$scope.warning = "Could not find username on github.";
+			}});			
 		} else {
-			alert("You must enter a github username.");
+			$scope.warning = "You must enter a github username."; 
 		}
 	};
 }

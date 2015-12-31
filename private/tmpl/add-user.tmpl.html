@@ -5,6 +5,11 @@
          <h2>Add User</h2>
       </div>
     </md-toolbar>
+    <md-toolbar class="md-warn" ng-show="warning">
+      <div class="md-toolbar-tools">
+        <h2 class="md-flex">{{ warning }}</h2>
+      </div>
+    </md-toolbar>
     <md-dialog-content>
       <div class="md-dialog-content">
         <p style="width: 300px">All member of 18F org are automatically included. Use this dialog to add users that are not yet part of the 18F org on github.</p>

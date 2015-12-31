@@ -2,6 +2,7 @@ var express = require('express');
 var MongoClient = require('mongodb').MongoClient;
 var mkdirp = require('mkdirp');
 var fs = require('fs');
+var github = require('./github.js').github;
 
 var url;
 if(process.env.VCAP_SERVICES) {
@@ -143,5 +144,21 @@ router.get('/complete-item', function(req, res) {
 		});
 	});	
 });
+
+router.get('/add-user', function(req, res) {
+	github.user.getFrom({user: req.query.username}, function(err, ghUser) {
+		if(ghUser) {
+			var user = {username: ghUser.login, 
+			          earliestDueDate: new Date().setYear(3000),
+			          fullName: ghUser.name,
+			          imgUrl: ghUser.avatar_url};
+			users.update({username: user.username}, user, {upsert: true});
+			res.json({success: true});
+		}
+		else {
+			res.json({success: false});
+		}
+	});
+})
 
 module.exports.router = router;

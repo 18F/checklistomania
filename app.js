@@ -7,7 +7,7 @@ var methodOverride = require('method-override');
 var GitHubStrategy = require('passport-github2').Strategy;
 var api = require('./api/api.js');
 var request = require('request');
-var GitHubApi = require("github");
+var github = require('./api/github.js').github;
 
 
 passport.serializeUser(function(user, done) {
@@ -46,22 +46,6 @@ if(process.argv[2] === '--test') {
   app.use( "/private", [ mockAuthentication, addToUsers, express.static( "private" )]);
   app.use('/api', [ mockAuthentication, addToUsers, api.router]);  
 } else {
-  var github = new GitHubApi({
-      version: "3.0.0",
-      protocol: "https",
-      host: "api.github.com",
-      timeout: 5000,
-      headers: {
-          "user-agent": "checklistomania" 
-      }
-  });
-
-  github.authenticate({
-      type: "oauth",
-      key: process.env.GITHUB_CLIENT_ID,
-      secret: process.env.GITHUB_CLIENT_SECRET
-  })
-
   app.use( "/private", [ ensureAuthenticated, ensureGithubOrg, addToUsers, express.static( "private" ) ] );
   app.use('/api', [ensureAuthenticated, ensureGithubOrg, addToUsers, api.router]);  
 }
@@ -94,17 +78,23 @@ function ensureAuthenticated(req, res, next) {
 };
 
 function ensureGithubOrg(req, res, next) {
-  github.orgs.getFromUser({user: req.user.username}, 
-    function(err, orgs) {
-        var inOrg = false;
-          orgs.forEach(function(org) {
-            if(org.login == '18F'){
-              inOrg = true;
-            }
-          });
-        if(inOrg) {next()}
-        else {res.redirect('/not-authorized.html');}
-    }); 
+  api.db.collection('users').findOne({username: req.user.username},
+    function(err, user) {
+        if(user) {next()}
+        else {
+          github.orgs.getFromUser({user: req.user.username}, 
+            function(err, orgs) {
+                var inOrg = false;
+                  orgs.forEach(function(org) {
+                    if(org.login == '18F'){
+                      inOrg = true;
+                    }
+                  });
+                if(inOrg) {next()}
+                else {res.redirect('/not-authorized.html');}
+            });
+        }; 
+});
 }
 
 function mockAuthentication(req, res, next) {

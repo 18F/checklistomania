@@ -24,6 +24,10 @@
 	border: 3px solid black;
  }
 
+ .userImg {
+  padding: 8px;
+ }
+
  #tableTrafficLight {
   text-align: center;
   font-size: 1.2em;

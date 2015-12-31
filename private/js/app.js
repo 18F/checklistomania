@@ -2,6 +2,11 @@ var app = angular.module("app", ['ngMaterial', 'ngCookies']);
 
 app.controller("todoCtrl", function($scope, $http, $sce, $mdToast, 
 	$mdDialog, $mdMedia, $cookies) {
+	
+	var getDaysUntilDue = function(dueDate) {
+		return Math.round((dueDate.getTime() - new Date().getTime())/(24*60*60*1000));
+	}
+
 	var getTrafficLight = function(daysLeft) {
 		if(daysLeft <= 0) return "redLight";
 		if(daysLeft <=2) return "yellowLight";
@@ -10,7 +15,7 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 
 	var formatItem = function(item) {
 		item.dueDate = new Date(item.dueDate);
-		item.daysUntilDue = Math.round((item.dueDate.getTime() - new Date().getTime())/(24*60*60*1000));
+		item.daysUntilDue = getDaysUntilDue(item.dueDate);
 		item.descriptionHtml = $sce.trustAsHtml(item.description);
 		item.trafficLight = getTrafficLight(item.daysUntilDue);		
 		return item;
@@ -38,6 +43,7 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 			$scope.users = [];
 			response.data.users.forEach(function(user) {
 				user.earliestDueDate = new Date(user.earliestDueDate);
+				user.trafficLight = getTrafficLight(getDaysUntilDue(user.earliestDueDate));
 				$scope.users.push(user);
 			});
 		});		
@@ -116,6 +122,34 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 	    });
   };
 
+  $scope.showAddUserDialog = function(ev) {
+	    var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+	    $mdDialog.show({
+	      controller: AddUserDialogController,
+	      templateUrl: 'tmpl/add-user.tmpl.html',
+	      parent: angular.element(document.body),
+	      targetEvent: ev,
+	      clickOutsideToClose:true,
+	      fullscreen: useFullScreen
+	    })
+	    .then(function(username) {
+	      $http.get('/api/add-user', {params: {username: username}})
+	      .then(function(response) {
+			if(response.data.success) {
+				showSimpleToast('Added user "' + username + '"!');
+				getUsers();
+			} else {
+				alert("Could not find username, please verify on github.");
+			}});
+	    });
+	    
+	    $scope.$watch(function() {
+	      return $mdMedia('xs') || $mdMedia('sm');
+	    }, function(wantsFullScreen) {
+	      $scope.customFullscreen = (wantsFullScreen === true);
+	    });
+  };
+
 	getItems();
 	getUsers();
 });
@@ -128,5 +162,18 @@ function DialogController($scope, $mdDialog, checklist) {
 	}
 	$scope.assign = function() {
 	  	$mdDialog.hide(checklist);
+	};
+}
+
+function AddUserDialogController($scope, $mdDialog) {
+	$scope.cancel = function() {
+		$mdDialog.cancel()
+	}
+	$scope.addUser = function() {
+		if($scope.username) {
+	  		$mdDialog.hide($scope.username);			
+		} else {
+			alert("You must enter a github username.");
+		}
 	};
 }

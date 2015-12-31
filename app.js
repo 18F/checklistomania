@@ -30,10 +30,7 @@ passport.use(new GitHubStrategy({
   }
 ));
 
-
-
 var app = express();
-
 
 app.use(bodyParser());
 app.use(methodOverride());

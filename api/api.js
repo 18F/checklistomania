@@ -114,6 +114,7 @@ router.get('/complete-item', function(req, res) {
 		items.find(query)
 			.toArray(function(err, userItems) {
 				var updatedItemCount = 0
+				user.earliestDueDate = new Date().setYear(3000);
 				userItems.forEach(function(item) {
 					if(item._id == req.query.id) {
 						item["completedDate"] = new Date();
@@ -131,15 +132,15 @@ router.get('/complete-item', function(req, res) {
 							dueDate.setDate(new Date().getDate() + item.daysToComplete);
 							item["dueDate"] = dueDate;						
 						}
-
-						if(item.dueDate < user.earliestDueDate) {
-							user.earliestDueDate = dueDate;
-							users.update({username: user.username}, user);
-						}
 						
 						items.update({_id: item._id}, item)
+					}
+
+					if(item.dueDate < user.earliestDueDate && !item.completedDate) {
+						user.earliestDueDate = item.dueDate;
 					}	
 				});
+				users.update({username: user.username}, user);
 				res.json({updatedItemCount: updatedItemCount});
 		});
 	});	

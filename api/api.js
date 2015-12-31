@@ -61,15 +61,15 @@ router.get('/assign-checklist', function (req, res) {
 						var dueDate = new Date();
 						dueDate.setTime(dayZeroDate.getTime() + item.daysToComplete*24*60*60*1000 + 1);
 						item["dueDate"] = dueDate;
-						if(dueDate < user.earliestDueDate) {
-							user.earliestDueDate = dueDate;
-							users.update({username: user.username}, user);
-						}
 					};
 
 					items.insert(item);
 				}
-				res.json({"checklistName": req.query.checklistName, "dayZero": dayZeroDate.toISOString()});
+				setEarliestDueDate(req.user.username, function() {
+					res.json({"checklistName": req.query.checklistName, 
+						"dayZero": dayZeroDate.toISOString()});
+				});
+				
 			});	
 	});
 });
@@ -114,7 +114,6 @@ router.get('/complete-item', function(req, res) {
 		items.find(query)
 			.toArray(function(err, userItems) {
 				var updatedItemCount = 0
-				user.earliestDueDate = new Date().setYear(3000);
 				userItems.forEach(function(item) {
 					if(item._id == req.query.id) {
 						item["completedDate"] = new Date();
@@ -135,13 +134,11 @@ router.get('/complete-item', function(req, res) {
 						
 						items.update({_id: item._id}, item)
 					}
-
-					if(item.dueDate < user.earliestDueDate && !item.completedDate) {
-						user.earliestDueDate = item.dueDate;
-					}	
 				});
-				users.update({username: user.username}, user);
-				res.json({updatedItemCount: updatedItemCount});
+
+				setEarliestDueDate(req.user.username, function() {
+					res.json({updatedItemCount: updatedItemCount});	
+				});
 		});
 	});	
 });
@@ -160,6 +157,22 @@ router.get('/add-user', function(req, res) {
 			res.json({success: false});
 		}
 	});
-})
+});
+
+var setEarliestDueDate = function(username, callback) {
+	items.aggregate([{$match: {owner: 'anthonygarvan', 
+		dueDate: {$exists: true},  completedDate: {$exists: false}}}, 
+		{$group: {_id: '$owner', earliestDueDate: {$min: '$dueDate'}}}],
+		function(err, result) {
+			if(result[0]) {
+				users.update({username: username}, 
+					{$set: {earliestDueDate: result[0].earliestDueDate}})				
+			} else {
+				users.update({username: username}, 
+					{$set: {earliestDueDate: new Date().setYear(3000)}})	
+			}
+			callback();
+		})
+}
 
 module.exports.router = router;

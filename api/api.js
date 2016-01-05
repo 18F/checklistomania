@@ -20,6 +20,10 @@ MongoClient.connect(url, function(err, db) {
 	items = db.collection("items");
 	checklists = db.collection("checklists");
 	users = db.collection("users");
+
+	items.ensureIndex('owner');
+	users.ensureIndex('username');
+	
 	fs.readdir('./checklists', function(err, files) {
 		files.forEach(function(fileName) {
 	  var filePath = 'checklists/' + fileName;

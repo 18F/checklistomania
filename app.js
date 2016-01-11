@@ -95,6 +95,7 @@ function ensureGithubOrg(req, res, next) {
 }
 
 function mockAuthentication(req, res, next) {
+  console.log(req.url);  
   req.user = req.query.user;
   next();
 }
@@ -120,20 +121,29 @@ if(process.argv[2] === '--test') {
 
     console.log('Test server started...');
     
-    var jasmineNode = spawn('node', ['node_modules/jasmine-node/bin/jasmine-node', '.']);
-    function logToConsole(data) {
-        console.log(String(data));
+    var shutDownServer = function() {
+      console.log("closing server...");
+      api.db.dropDatabase();
+      api.db.close();
+      server.close();
     }
-    jasmineNode.stdout.on('data', logToConsole);
-    jasmineNode.stderr.on('data', logToConsole);
 
-    jasmineNode.on('exit', function(exitCode) {
-        console.log("closing server...");
-        api.db.dropDatabase();
-        api.db.close();
-        server.close();
+    var spawnProcess = function(args, callback) {
+      var newProc = spawn('node', args);
+      function logToConsole(data) {
+          console.log(String(data));
+      }
+      newProc.stdout.on('data', logToConsole);
+      newProc.stderr.on('data', logToConsole);
+
+      newProc.on('exit', function(exitCode) {
+          callback();     
+      });  
+    }
+    
+    spawnProcess(['node_modules/phantomjs2/bin/phantomjs', 'spec/frontEndTests.js'], function() {
+      spawnProcess(['node_modules/jasmine-node/bin/jasmine-node', '.'], shutDownServer)
     });
-
   });
 } else {
   app.listen(process.env.PORT || 3000)  

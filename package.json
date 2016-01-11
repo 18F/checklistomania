@@ -16,6 +16,7 @@
     "mongodb": "^2.1.2",
     "passport": "^0.3.2",
     "passport-github2": "^0.1.9",
+    "phantomjs2": "^2.0.2",
     "request": "^2.67.0",
     "router": "^1.1.3"
   },
@@ -23,7 +24,7 @@
   "scripts": {
     "test": "node app.js --test",
     "start": "node app.js",
-    "coverage": "istanbul cover --include-all-sources -x spec/* --verbose app.js -- --test",
+    "coverage": "istanbul cover --include-all-sources -x spec/apiSpec.js -x frontEndTests.js --verbose app.js -- --test",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "author": "Anthony Garvan",

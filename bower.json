@@ -1,0 +1,14 @@
+{
+  "name": "checklistomania",
+  "description": "You know, for checklists.",
+  "version": "0.0.0",
+  "homepage": "https://github.com/18f/checklistomania",
+  "license": "CC0",
+  "private": false,
+  "dependencies": {
+    "angular": "~1.4.8",
+    "angular-loader": "~1.4.8",
+    "angular-mocks": "~1.4.8",
+    "angular-material": "~1.0.2"
+  }
+}

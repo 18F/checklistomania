@@ -1,0 +1,4 @@
+verbose: true
+instrumentation:
+   excludes: ['spec/*Spec.js', '**/bower_components/**']
+   include-all-sources: true

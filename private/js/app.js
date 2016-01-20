@@ -7,7 +7,7 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 		return Math.round((dueDate.getTime() - new Date().getTime())/(24*60*60*1000));
 	}
 
-	var getTrafficLight = function(daysLeft) {
+	$scope.getTrafficLight = function(daysLeft) {
 		if(daysLeft <= 0) return "redLight";
 		if(daysLeft <=2) return "yellowLight";
 		return "greenLight";
@@ -17,7 +17,7 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 		item.dueDate = new Date(item.dueDate);
 		item.daysUntilDue = getDaysUntilDue(item.dueDate);
 		item.descriptionHtml = $sce.trustAsHtml(item.description);
-		item.trafficLight = getTrafficLight(item.daysUntilDue);		
+		item.trafficLight = $scope.getTrafficLight(item.daysUntilDue);		
 		return item;
 	}
 
@@ -43,7 +43,7 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 			$scope.users = [];
 			response.data.users.forEach(function(user) {
 				user.earliestDueDate = new Date(user.earliestDueDate);
-				user.trafficLight = getTrafficLight(getDaysUntilDue(user.earliestDueDate));
+				user.trafficLight = $scope.getTrafficLight(getDaysUntilDue(user.earliestDueDate));
 				$scope.users.push(user);
 			});
 		});		

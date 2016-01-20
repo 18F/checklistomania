@@ -5,3 +5,4 @@ npm-debug.log
 .DS_Store
 cf-ssh.yml
 coverage/*
+public/bower_components/*

@@ -94,9 +94,14 @@ function ensureGithubOrg(req, res, next) {
 });
 }
 
+var mockUser;
+
 function mockAuthentication(req, res, next) {
-  console.log(req.url);  
-  req.user = req.query.user;
+  if(req.query.user) {
+    mockUser = req.query.user;    
+  } 
+
+  req.user = mockUser;
   next();
 }
 
@@ -140,10 +145,13 @@ if(process.argv[2] === '--test') {
           callback();     
       });  
     }
+    // node_modules/.bin/karma start karma.conf.js --no-auto-watch --single-run --reporters=dots --browsers=Firefox
     
-    spawnProcess(['node_modules/phantomjs2/bin/phantomjs', 'spec/frontEndTests.js'], function() {
-      spawnProcess(['node_modules/jasmine-node/bin/jasmine-node', '.'], shutDownServer)
+    spawnProcess(['node_modules/.bin/karma', 'start', 'karma.conf.js', 
+      '--no-auto-watch', '--single-run', '--reporters=dots', '--browsers=Chrome'], function() {
+      spawnProcess(['node_modules/jasmine-node/bin/jasmine-node', 'spec/apiSpec.js'], shutDownServer)
     });
+    
   });
 } else {
   app.listen(process.env.PORT || 3000)  

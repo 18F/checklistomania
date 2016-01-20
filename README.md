@@ -18,11 +18,12 @@ Install dependecies with:
 >>> npm install
 ```
 
-Setup a github application to obtain a github client Id and secret Id by registering application [here](https://github.com/settings/applications/new), then run:
+Use the developer github client information with: 
 ```
->>> export GITHUB_CLIENT_ID=<your_client_id>
->>> export GITHUB_CLIENT_SECRET=<your_client_secret>
+>>> export GITHUB_CLIENT_ID=c98d47c0bceedb0b45db
+>>> export GITHUB_CLIENT_SECRET=f226a23fd3080703533771da9424dd6741c16543
 ```
+Alternatively, you can setup your own credentials [here](https://github.com/settings/applications/new). 
 
 Run locally with:
 ```

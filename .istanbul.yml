@@ -1,4 +1,6 @@
 verbose: true
 instrumentation:
-   excludes: ['spec/*Spec.js', '**/bower_components/**']
+   excludes: ['spec/*Spec.js',
+                '**/bower_components/**', 'karma.conf.js',
+                'private/js/*.js', 'coverageFrontEnd/**']
    include-all-sources: true

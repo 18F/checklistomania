@@ -10,7 +10,6 @@ module.exports = function(config){
       "public/bower_components/angular-animate/angular-animate.min.js",
       "public/bower_components/angular-aria/angular-aria.min.js",
       "public/bower_components/angular-messages/angular-messages.min.js",
-      'public/components/**/*.js',
       'private/js/app.js',
       'spec/frontEndSpec.js'
     ],
@@ -19,13 +18,27 @@ module.exports = function(config){
 
     frameworks: ['jasmine'],
 
-    browsers : ['Chrome'],
+    browsers : ['PhantomJS'],
 
+    reporters: ['progress', 'coverage'],
+
+    preprocessors: {
+      'private/js/app.js': ['coverage']
+    },
+    
+    coverageReporter: {
+       type : 'lcov',
+       dir : './coverage',
+       subdir: 'phantomjs'
+     },
+    
     plugins : [
             'karma-chrome-launcher',
             'karma-firefox-launcher',
+            'karma-phantomjs-launcher',
             'karma-jasmine',
-            'karma-junit-reporter'
+            'karma-junit-reporter',
+            'karma-coverage'
             ],
 
     junitReporter : {

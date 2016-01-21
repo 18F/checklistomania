@@ -146,11 +146,13 @@ if(process.argv[2] === '--test') {
       });  
     }
     // node_modules/.bin/karma start karma.conf.js --no-auto-watch --single-run --reporters=dots --browsers=Firefox
-    
+    /*
     spawnProcess(['node_modules/.bin/karma', 'start', 'karma.conf.js', 
       '--no-auto-watch', '--single-run', '--reporters=dots', '--browsers=Firefox'], function() {
       spawnProcess(['node_modules/jasmine-node/bin/jasmine-node', 'spec/apiSpec.js'], shutDownServer)
-    });
+      */
+
+      spawnProcess(['node_modules/jasmine-node/bin/jasmine-node', 'spec/apiSpec.js'], shutDownServer);
     
   });
 } else {

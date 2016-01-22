@@ -1,4 +1,5 @@
 var request = require("request");
+var async = require("async");
 
 describe("API is fully functional", function() {
 
@@ -81,6 +82,33 @@ describe("API is fully functional", function() {
       }); 
   });
 
+  it("adds a user", function(done) {
+      var options = {
+        url: "http://localhost:3000/api/add-user",
+        qs: {username: 'testUser'}
+      };
+
+      request.get(options, function(err, response, body) {
+          expect(!err && response.statusCode == 200).toBe(true);
+          bodyObj = JSON.parse(body);
+          expect(bodyObj.success).toBe(true);
+          done();
+      }); 
+  });
+
+  it("doesn't add a null a user", function(done) {
+      var options = {
+        url: "http://localhost:3000/api/add-user",
+        qs: {username: null}
+      };
+
+      request.get(options, function(err, response, body) {
+          expect(!err && response.statusCode == 200).toBe(true);
+          bodyObj = JSON.parse(body);
+          expect(bodyObj.success).toBe(false);
+          done();
+      }); 
+  });
 
   it("gets users", function(done) {
       var options = {
@@ -95,30 +123,38 @@ describe("API is fully functional", function() {
           done();
       }); 
   });
-
+  
   it("Marks items as complete", function(done) {
       assignChecklist(function() {
+          var items;    
+          var markItemComplete = function(item, callback) {
+                  var options = {
+                    url: "http://localhost:3000/api/complete-item",
+                    qs: {user: user, timestamp: item.timestamp, 
+                      id: item._id, checklistName: item.checklistName,
+                      itemId: item.itemId}
+                  };
+
+                  request.get(options, function(err, response, body) {
+                    expect(!err && response.statusCode == 200).toBe(true);
+                    bodyObj = JSON.parse(body);
+                    expect(bodyObj.updatedItemCount > 0).toBe(true);
+                    callback();
+                  });  
+          };
+          
+          var markUndoneItemsComplete = function(callback) {
             var options = {
-            url: "http://localhost:3000/api/get-items",
-            qs: {user: user}
-          }
-
-          request.get(options, function(err, response, body) {
-                item = JSON.parse(body).items[0];
-                var options = {
-                  url: "http://localhost:3000/api/complete-item",
-                  qs: {user: user, timestamp: item.timestamp, 
-                    id: item._id, checklistName: item.checklistName,
-                    itemId: item.itemId}
-                }
-
-                request.get(options, function(err, response, body) {
-                  expect(!err && response.statusCode == 200).toBe(true);
-                  bodyObj = JSON.parse(body);
-                  expect(bodyObj.updatedItemCount > 0).toBe(true);
-                  done();
-                });
-          })
+              url: "http://localhost:3000/api/get-items",
+              qs: {user: user}
+            }
+            request.get(options, function(err, response, body) {
+                  items = JSON.parse(body).items;
+                  async.eachSeries(items, markItemComplete, callback);                    
+          });
+          };
+          
+          async.whilst(function() {return !items || items.length > 0}, markUndoneItemsComplete, done);
       });
   });
 

@@ -92,8 +92,7 @@ router.get('/get-checklists', function(req, res) {
 			if(process.argv[2] !== '--test') {
 				noTestChecklist = []
 				checklists.forEach(function(checklist) {
-					if(checklist.checklistName !== 'Simple Test' 
-						&& checklist.checklistName !== 'Complex Test') {
+					if(checklist.checklistName !== 'Complex Test') {
 						noTestChecklist.push(checklist);
 					}
 				});
@@ -164,7 +163,7 @@ router.get('/add-user', function(req, res) {
 });
 
 var setEarliestDueDate = function(username, callback) {
-	items.aggregate([{$match: {owner: 'anthonygarvan', 
+	items.aggregate([{$match: {owner: username, 
 		dueDate: {$exists: true},  completedDate: {$exists: false}}}, 
 		{$group: {_id: '$owner', earliestDueDate: {$min: '$dueDate'}}}],
 		function(err, result) {

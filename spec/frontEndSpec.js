@@ -66,6 +66,18 @@ describe('todoCtrl', function() {
       $httpBackend.flush();
     })
 
+    it('assigns a checklist with default date if none selected', function() {
+      var checklist = {dayZeroDate: null, checklistName: 'test', notes: 'testNotes'};
+      $mdDialog = {hide: function() {}, show: function(obj) {return {then: function(fn) {fn(checklist)}}}};
+      
+      var controller = createController($mdDialog);
+      $httpBackend.flush();
+      var checklist = {checklistName: 'test', dayZeroDate: null, 
+        notes: 'forTesting'}
+      $rootScope.showAssignToMeDialog(null, checklist);
+      $httpBackend.flush();
+    })
+
     it('adds a new user', function() {
       var username = 'testUser';
       $mdDialog = {hide: function() {}, show: function(obj) {return {then: function(fn) {fn(username)}}}};
@@ -83,5 +95,84 @@ describe('todoCtrl', function() {
       $rootScope.getUserDetails({username: 'testUser'});
       $httpBackend.flush();
     })
+});
 
+describe('AssignDialogController', function() {
+  beforeEach(module('app'));
+  var $controller;
+
+    beforeEach(inject(function($injector) {
+       $rootScope = $injector.get('$rootScope');
+       var $controller = $injector.get('$controller');
+
+       var $mdDialog = {cancel: function() {}, hide: function(checklist) {}}
+       createController = function() {
+         return $controller('AssignDialogController', {$scope : $rootScope, $mdDialog: $mdDialog, 
+            checklist: 'checklistName'});
+       };
+     }));
+
+    it('assigns the checklist', function() {
+      var controller = createController();  
+      expect($rootScope.checklist).toEqual('checklistName');
+    });
+
+    it('cancels the dialog', function() {
+      var controller = createController();  
+      $rootScope.cancel()
+    });
+
+    it('assigns checklist', function() {
+      var controller = createController();  
+      $rootScope.assign()
+    });
+});
+
+describe('AddUserDialogController', function() {
+  beforeEach(module('app'));
+  var $controller;
+
+    beforeEach(inject(function($injector) {
+       $rootScope = $injector.get('$rootScope');
+       var $controller = $injector.get('$controller');
+
+       $httpBackend = $injector.get('$httpBackend');
+
+       var $mdDialog = {hide: function() {}, cancel: function() {}};
+       createController = function() {
+         return $controller('AddUserDialogController', {$scope : $rootScope, $mdDialog: $mdDialog});
+       };
+     }));
+
+    it('adds a user', function() {
+      var controller = createController();  
+      $rootScope.username = 'testUser';
+      $httpBackend.when('GET', /\/api\/add\-user*/)
+                      .respond({ success: true });
+      $rootScope.addUser();
+      $httpBackend.flush();
+      expect($rootScope.warning).toEqual(null);
+    });
+
+    it('provides a warning for invalid username', function() {
+      var controller = createController();  
+      $rootScope.username = 'testUser';
+      $httpBackend.when('GET', /\/api\/add\-user*/)
+                      .respond({ success: false });
+      $rootScope.addUser();
+      $httpBackend.flush();
+      expect($rootScope.warning).toEqual("Could not find username on github.");
+    });
+
+    it('provides a warning when username is not entered', function() {
+      var controller = createController();  
+      $rootScope.username = null;
+      $rootScope.addUser();
+      expect($rootScope.warning).toEqual("You must enter a github username.");
+    });
+
+    it('cancels the dialog', function() {
+      var controller = createController();  
+      $rootScope.cancel()
+    });
 });

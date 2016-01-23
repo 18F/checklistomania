@@ -91,7 +91,7 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 	$scope.showAssignToMeDialog = function(ev, checklist) {
 	    var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
 	    $mdDialog.show({
-	      controller: DialogController,
+	      controller: "AssignDialogController",
 	      templateUrl: 'tmpl/assign-dialog.tmpl.html',
 	      parent: angular.element(document.body),
 	      targetEvent: ev,
@@ -113,7 +113,7 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
   $scope.showAddUserDialog = function(ev) {
 	    var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
 	    $mdDialog.show({
-	      controller: AddUserDialogController,
+	      controller: "AddUserDialogController",
 	      templateUrl: 'tmpl/add-user.tmpl.html',
 	      parent: angular.element(document.body),
 	      targetEvent: ev,
@@ -136,7 +136,7 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 	getUsers();
 });
 
-function DialogController($scope, $mdDialog, checklist) {
+app.controller("AssignDialogController", function ($scope, $mdDialog, checklist) {
 	$scope.checklist = checklist;
 
 	$scope.cancel = function() {
@@ -145,9 +145,9 @@ function DialogController($scope, $mdDialog, checklist) {
 	$scope.assign = function() {
 	  	$mdDialog.hide(checklist);
 	};
-}
+});
 
-function AddUserDialogController($scope, $mdDialog, $http) {
+app.controller("AddUserDialogController", function ($scope, $mdDialog, $http) {
 	$scope.cancel = function() {
 		$mdDialog.cancel()
 	}
@@ -166,4 +166,4 @@ function AddUserDialogController($scope, $mdDialog, $http) {
 			$scope.warning = "You must enter a github username."; 
 		}
 	};
-}
+});

@@ -13,7 +13,7 @@ describe('todoCtrl', function() {
        $httpBackend.when('GET', '/api/get-checklists')
                       .respond({ checklists: [{}] });
 
-      $httpBackend.when('GET', '/api/get-items')
+      $httpBackend.when('GET', /\/api\/get\-items*/)
                       .respond({ items: [{dueDate: new Date().toString(), description: 'test'}] });
 
       $httpBackend.when('GET', '/api/get-users')
@@ -32,10 +32,8 @@ describe('todoCtrl', function() {
        $rootScope = $injector.get('$rootScope');
        // The $controller service is used to create instances of controllers
        var $controller = $injector.get('$controller');
-       var checklist = {dayZeroDate: new Date(), checklistName: 'test', notes: 'testNotes'};
-       $mdDialog = {hide: function() {}, show: function(obj) {return {then: function(fn) {fn(checklist)}}}};
 
-       createController = function() {
+       createController = function($mdDialog) {
          return $controller('todoCtrl', {$scope : $rootScope, $mdDialog: $mdDialog});
        };
      }));
@@ -57,12 +55,32 @@ describe('todoCtrl', function() {
     });
     
     it('assigns a checklist', function() {
-      var controller = createController();
+      var checklist = {dayZeroDate: new Date(), checklistName: 'test', notes: 'testNotes'};
+      $mdDialog = {hide: function() {}, show: function(obj) {return {then: function(fn) {fn(checklist)}}}};
+      
+      var controller = createController($mdDialog);
       $httpBackend.flush();
       var checklist = {checklistName: 'test', dayZeroDate: new Date().valueOf(), 
         notes: 'forTesting'}
-      //spyOn($mdDialog, 'show').andReturn(function() {return {then: function(fn) {fn();}}});
       $rootScope.showAssignToMeDialog(null, checklist);
+      $httpBackend.flush();
+    })
+
+    it('adds a new user', function() {
+      var username = 'testUser';
+      $mdDialog = {hide: function() {}, show: function(obj) {return {then: function(fn) {fn(username)}}}};
+      
+      var controller = createController($mdDialog);
+      $httpBackend.flush();
+
+      $rootScope.showAddUserDialog(null);
+      $httpBackend.flush();
+    })
+
+    it('gets user details', function() {
+      var controller = createController();
+      $httpBackend.flush();
+      $rootScope.getUserDetails({username: 'testUser'});
       $httpBackend.flush();
     })
 

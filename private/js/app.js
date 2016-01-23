@@ -88,7 +88,7 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 					});})
 	}
 
-	$scope.showAdvanced = function(ev, checklist) {
+	$scope.showAssignToMeDialog = function(ev, checklist) {
 	    var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
 	    $mdDialog.show({
 	      controller: DialogController,

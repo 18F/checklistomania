@@ -2,17 +2,14 @@ language: node_js
 node_js:
     - 0.12
 before_script:
-    - export DISPLAY=:99.0
-    - sh -e /etc/init.d/xvfb start
     - "npm i -g jasmine-node"
     - "sleep 5"
 script:
     - "npm test"
-    - "npm run-script testFrontEnd"
     - "npm run-script coverage"
 after_success:
     - "npm run-script coveralls"
 env:
-    - GITHUB_CLIENT_ID=test GITHUB_CLIENT_SECRET=testSecret
+    - GITHUB_CLIENT_ID=test GITHUB_CLIENT_SECRET=testSecret SESSION_SECRET=testSessionSecret
 services:
   - mongodb

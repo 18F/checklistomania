@@ -31,10 +31,11 @@
   },
   "scripts": {
     "postinstall": "bower install",
-    "test": "node app.js --test",
-    "testFrontEnd": "node node_modules/.bin/karma start karma.conf.js --no-auto-watch --single-run",
+    "backEndTests": "node spec/runBackendTests.js",
+    "frontEndTests": "node node_modules/.bin/karma start karma.conf.js --no-auto-watch --single-run",
+    "test": "npm run backEndTests && npm run frontEndTests",
     "start": "node app.js",
-    "coverage": "istanbul cover app.js -- --test",
+    "coverage": "istanbul cover spec/runBackendTests.js",
     "coveralls": "cat ./coverage/lcov.info ./coverage/phantomjs/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "author": "Anthony Garvan",

@@ -23,7 +23,7 @@ MongoClient.connect(url, function(err, db) {
 
 	items.ensureIndex('owner');
 	users.ensureIndex('username');
-	
+
 	fs.readdir('./checklists', function(err, files) {
 		files.forEach(function(fileName) {
 	  var filePath = 'checklists/' + fileName;

@@ -41,10 +41,6 @@ var getApp = function(passport, GitHubStrategy, github) {
 
   app.use( "/", express.static( "public" ) );
 
-  app.get('/', function(req, res){
-    res.send("Welcome!");
-  });
-
   app.get('/auth',
     passport.authenticate('github', { scope: [ 'user:email' ] }),
     function(req, res){

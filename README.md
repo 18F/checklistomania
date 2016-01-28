@@ -28,7 +28,7 @@ Alternatively, you can setup your own credentials [here](https://github.com/sett
 
 Run locally with:
 ```
->>> npm start
+$ npm start
 ```
 
 And visit [http://localhost:3000/](http://localhost:3000/)

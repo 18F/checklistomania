@@ -1,0 +1,79 @@
+{"checklistName": "18F New Hire Checklist",
+"checklistDescription": "TODO Items for all new 18F employees.",
+"items": 
+	{"dayZero": { 
+		"displayName": "Start Date", 
+		"description": "First day on the job.",
+		"daysToComplete": 0, 
+		"dependsOn": []
+	},
+	"gsaOrientation": { 
+		"displayName": "Attend GSA orientation", 
+		"description": "Remember to bring two forms of ID and your I-9 form.",
+		"daysToComplete": 0, 
+		"dependsOn": ["dayZero"]
+	},
+	"oathOfOffice": { 
+		"displayName": "Take Oath of Office", 
+		"description": "The oath is <a href=\"http://archive.opm.gov/constitution_initiative/oath.asp\">here.</a>",
+		"daysToComplete": 0, 
+		"dependsOn": ["dayZero"]
+	},
+	"walkTo18F": { 
+		"displayName": "Call or text your buddy.",
+		"description": "Your buddy will walk with you to 18F.", 
+		"daysToComplete": 0, 
+		"dependsOn": ["dayZero"]
+	},
+	"receiveEquipment": { 
+		"displayName": "Receive your laptop, badge, and phone.",
+		"description": "Instructions will be sent to you via email.", 
+		"daysToComplete": 0, 
+		"dependsOn": ["dayZero"]
+	},
+	"logOnMac": { 
+		"displayName": "Log onto your Mac and change your root password.",
+		"description": "Instructions will be sent to you via email.", 
+		"daysToComplete": 0, 
+		"dependsOn": ["receiveEquipment"]
+	},
+	"connectToNetwork": { 
+		"displayName": "Connect to GSA’s secure network.",
+		"description": "Instructions will be sent to you via email.", 
+		"daysToComplete": 0, 
+		"dependsOn": ["logOnMac"]
+	},
+	"changeENT": { 
+		"displayName": "Change your ENT (enterprise) password.",
+		"description": " This is your password for signing into systems administered by GSA, including your email, calendar, and Google Drive. Instructions will be mailed to you via email.",
+
+		"daysToComplete": 0, 
+		"dependsOn": ["connectToNetwork"]
+	},
+	"setUpEmail": { 
+		"displayName": "Sign into your work email.",
+		"description": "Instructions will be sent to you via email.", 
+		"daysToComplete": 0, 
+		"dependsOn": ["changeENT"]
+	},
+	"setUp2FA": { 
+		"displayName": "Set up GSA’s 2FA.",
+		"description": "Note: You must complete this task inside a federal building. Instructions are sent via email and also <a href=\"https://handbook.18f.gov/distributed/#set-up-my-computer\">here.</a>",
+		"daysToComplete": 0, 
+		"dependsOn": ["connectToNetwork"]
+	},
+	"setUpSlack": { 
+		"displayName": "Set up Slack.",
+		"description": "Slack is our chat program, so that you can communicate with your colleagues.", 
+		"daysToComplete": 0, 
+		"dependsOn": ["setUpEmail"]
+	},
+	"setUpGitHub": { 
+		"displayName": "Set up GitHub", 
+		"description": "Instructions will be sent to you by Dolores, our onboarding bot, at 3:45 PM (in your timezone).",
+		"daysToComplete": 0, 
+		"dependsOn": ["setUpSlack"]
+	},
+
+	}}
+}

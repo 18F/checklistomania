@@ -64,16 +64,75 @@
 	},
 	"setUpSlack": { 
 		"displayName": "Set up Slack.",
-		"description": "Slack is our chat program, so that you can communicate with your colleagues.", 
+		"description": "Slack is our chat program, so that you can communicate with your colleagues. Instructions to set up 2FA will be sent to you by Dolores, our onboarding bot, at 3PM in your timezone.", 
 		"daysToComplete": 0, 
 		"dependsOn": ["setUpEmail"]
 	},
 	"setUpGitHub": { 
 		"displayName": "Set up GitHub", 
-		"description": "Instructions will be sent to you by Dolores, our onboarding bot, at 3:45 PM (in your timezone).",
+		"description": "Instructions will be sent to you by Dolores, our onboarding bot, at 3:45 PM in your timezone.",
 		"daysToComplete": 0, 
 		"dependsOn": ["setUpSlack"]
 	},
+	"addContactInformation": { 
+		"displayName": "Add yourself to the 18F Staff Contact Directory", 
+		"description": "You can add yourself to the spreadsheet <a href=\"https://docs.google.com/spreadsheets/d/1QqqS_-V44MHyVqRIyHj6Eojg1Oz5EC3fS3j1e3mDrkg/edit\">here.</a>",
+		"daysToComplete": 4, 
+		"dependsOn": ["dayZero"]
+	},
+	"startOrientationClasses": { 
+		"displayName": "Orientation classes begin on day 2", 
+		"description": "You will begin taking a variety of Slack-based classes in the #18F-classes Slack channel. Classes will take place in <a href=\"https://18f.slack.com/archives/18f-classes\">#18F-Classes</a> | <a href=\"https://handbook.18f.gov/classes\">Class Schedule</a> and <a href=\"https://www.google.com/calendar/embed?src=gsa.gov_vpfql4425bt1kj5fatahokgg94%40group.calendar.google.com&ctz=America/New_York\">Google Calendar Schedule of Classes</a> and Class Checklist",
+		"daysToComplete": 1, 
+		"dependsOn": ["dayZero"]
+	},
+	"secureLaptop": { 
+		"displayName": "Make sure your laptop is secure.", 
+		"description": "<a href=\"https://handbook.18f.gov/equipment/#laptop\">Instructions.</a>",
+		"daysToComplete": 1, 
+		"dependsOn": ["dayZero"]
+	},
+	"checkCalendars": { 
+		"displayName": "Double check to make sure you have access to 18F Calendars.", 
+		"description": "<a href=\"https://handbook.18f.gov/equipment/#google-calendar\">Instructions.</a>",
+		"daysToComplete": 1, 
+		"dependsOn": ["dayZero"]
+	},
+	"checkEmail": { 
+		"displayName": "Double check access to 18F team email.", 
+		"description": "Check your inbox to make sure you've received a note from 18f-team@gsa.gov. If not, head to #talent to make sure you've been added to our team email account.",
+		"daysToComplete": 5, 
+		"dependsOn": ["dayZero"]
+	},
+	"readOfficeGuide": { 
+		"displayName": "Read your office guide.", 
+		"description": "The office guides will tell you more about your office location. (There's one for distributed teams, too.) <a href=\"https://handbook.18f.gov/offices\">Office Guides</a>",
+		"daysToComplete": 1, 
+		"dependsOn": ["dayZero"]
+	},
+	"attendAllHands": { 
+		"displayName": "Attend weekly all-hands meeting.", 
+		"description": "<a href=\"https://handbook.18f.gov/distributed/#listen-to-and-participate-in-the-weekly-tuesday-all-hands-meeting\">Instructions for distributed employees.</a> Other employees should ask their in-office buddy.",
+		"daysToComplete": 1, 
+		"dependsOn": ["dayZero"]
+	},
+	"transitSubsidy": { 
+		"displayName": "Fill out transit subsidy", 
+		"description": "<a href=\"https://handbook.18f.gov/gsa-tools-equipment-and-transit/#transit-benefits\">Instructions if you take public transit to work.</a>",
+		"daysToComplete": 2, 
+		"dependsOn": ["dayZero"]
+	},
+	"avatarSelection": { 
+		"displayName": "Change your Slack and Google avatars.", 
+		"description": "Make sure your Slack avatar and Google avatar contain a picture.<a href=\"https://handbook.18f.gov/slack/#rules\">Slack Instructions</a> and <a href=\"https://support.google.com/mail/answer/35529?hl=en\">Google instructions</a>",
+		"daysToComplete": 1, 
+		"dependsOn": ["dayZero"]
+	},
+	"avatarSelection": { 
+		"displayName": "Change your Slack and Google avatars.", 
+		"description": "Make sure your Slack avatar and Google avatar contain a picture.<a href=\"https://handbook.18f.gov/slack/#rules\">Slack Instructions</a> and <a href=\"https://support.google.com/mail/answer/35529?hl=en\">Google instructions</a>",
+		"daysToComplete": 4, 
+		"dependsOn": ["dayZero"]
 
 	}}
 }

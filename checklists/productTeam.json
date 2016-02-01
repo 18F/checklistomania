@@ -1,0 +1,59 @@
+{"checklistName": "Product Team Member",
+"checklistDescription": "TODO Items for new members of product team.",
+"items": 
+	{"dayZero": { 
+		"displayName": "Start Date", 
+		"description": "First day on the job.",
+		"daysToComplete": 0, 
+		"dependsOn": []
+	},
+	"joinSlackChannels": { 
+		"displayName": "Join Slack channels", 
+		"description": "Join the Slack channels #product and #project-intake.",
+		"daysToComplete": 1, 
+		"dependsOn": ["dayZero"]
+	},
+	"readGuide": { 
+		"displayName": "Read Product guide", 
+		"description": "This is the new <a href=\"https://github.com/18F/product-guide\">Product Lead Guide.</a>  Don’t worry if this doesn’t make sense yet. Bookmark it and plan to look at it again.",
+		"daysToComplete": 4, 
+		"dependsOn": ["dayZero"]
+	},
+	"virtualCoffee": { 
+		"displayName": "Virtual coffee with director", 
+		"description": "You won’t know what to talk about, but that’s okay. It’s reassuring to know you’re not expected to know what’s going on yet.",
+		"daysToComplete": 4, 
+		"dependsOn": ["dayZero"]
+	},
+	"virtualPMcoffee": { 
+		"displayName": "Virtual coffees with PMs", 
+		"description": "Have virtual coffees (or real ones!) with other PMs. Ask tons of questions. Listen a lot. And don’t be worried about reaching out. Everyone was a new hire.",
+		"daysToComplete": 9, 
+		"dependsOn": ["dayZero"]
+	},
+	"readTrelloBoard": { 
+		"displayName": "Read PM Trello board", 
+		"description": "The Trello board is here <a href=\"https://trello.com/b/9HJTqrjP/18f-pm-guide\">here</a> Don’t worry. This won’t make a lot of sense yet either. Bookmark it and plan to keep an eye on it..",
+		"daysToComplete": 9, 
+		"dependsOn": ["dayZero"]
+	},
+	"secondCoffee": { 
+		"displayName": "Second coffee with Josh", 
+		"description": "Set up a second coffee with Josh. (You’ll be ready to start thinking about looking for a product now.)",
+		"daysToComplete": 13, 
+		"dependsOn": ["virtualCoffee"]
+	},
+	"learnGitHub": { 
+		"displayName": "Learn GitHub and other tools", 
+		"description": "If you're not familiar with GitHub, Mural.ly, Trello and Slack - now's the time to learn. (Try searching the Handbook for help.)",
+		"daysToComplete": 20, 
+		"dependsOn": ["dayZero"]
+	},
+	"moreCoffees": { 
+		"displayName": "More virtual coffees with PMs", 
+		"description": "Schedule more virtual coffees (or real ones) with other PMS to learn more.",
+		"daysToComplete": 20, 
+		"dependsOn": ["virtualPMcoffee"]
+
+	}}
+}

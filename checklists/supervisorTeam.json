@@ -1,0 +1,52 @@
+{"checklistName": "New Director/Manager/Supervisor",
+"checklistDescription": "TODO Items for new directors, managers and/or supervisors.",
+"items": 
+	{"dayZero": { 
+		"displayName": "Start Date", 
+		"description": "First day on the job.",
+		"daysToComplete": 0, 
+		"dependsOn": []
+	},
+	"addToCalendar": { 
+		"displayName": "Add to calendar, Slack, and email", 
+		"description": "Make sure you're added to the 18f-supervisors@gsa.gov listserv, Slack rooms, and Google Calendar.",
+		"daysToComplete": 1, 
+		"dependsOn": ["dayZero"]
+	},
+	"readGuide": { 
+		"displayName": "Read your team's guide", 
+		"description": "Guides are located in the 18F Handbook. Please update your team's handbook page with your information and any changes you'd like to make. File a pull request and changes will be merged.",
+		"daysToComplete": 4, 
+		"dependsOn": ["dayZero"]
+	},
+	"attendManagementMeeting": { 
+		"displayName": "Attend Management meeting", 
+		"description": "Information will be on your Google Calendar.",
+		"daysToComplete": 4, 
+		"dependsOn": ["dayZero"]
+	},
+	"meetTalentTeam": { 
+		"displayName": "Review hiring process with Talent.", 
+		"description": "Meet with Team Talent to review hiring process for your team",
+		"daysToComplete": 9, 
+		"dependsOn": ["dayZero"]
+	},
+	"changeCHRIS": { 
+		"displayName": "Change CHRIS plans", 
+		"description": "Change the main appraiser on the CHRIS performance plans for your direct reports to yourself. Note: if you're new to 18F, this will take 4-6 weeks to set up.",
+		"daysToComplete": 22, 
+		"dependsOn": ["dayZero"]
+	},
+	"readAppraisals": { 
+		"displayName": "Read appraisals", 
+		"description": "Read the performance appraisals for your direct reports on CHRIS.",
+		"daysToComplete": 13, 
+		"dependsOn": ["changeCHRIS"]
+	},
+	"addTools": { 
+		"displayName": "Add to private tools", 
+		"description": "Different roles will have access to different private slack channels, google groups, trello boards, etc. Prompt your boss and peers for what those are and access.",
+		"daysToComplete": 20, 
+		"dependsOn": ["dayZero"]
+	}}
+}

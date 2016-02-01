@@ -1,0 +1,40 @@
+{"checklistName": "Design Team Member",
+"checklistDescription": "TODO Items for new members of design team.",
+"items": 
+	{"dayZero": { 
+		"displayName": "Start Date", 
+		"description": "First day on the job.",
+		"daysToComplete": 0, 
+		"dependsOn": []
+	},
+	"addToListserv": { 
+		"displayName": "Add to listserv", 
+		"description": "Make sure you're added to the design team listserv and calendar. Ask your buddy and director to ensure you're on both.",
+		"daysToComplete": 1, 
+		"dependsOn": ["dayZero"]
+	},
+	"readGuide": { 
+		"displayName": "Read design team guide", 
+		"description": "<a href=\"https://handbook.18f.gov/design\">Design Team Onboarding Guide</a>.",
+		"daysToComplete": 4, 
+		"dependsOn": ["dayZero"]
+	},
+	"attendMeeting": { 
+		"displayName": "Attend weekly meeting",
+		"description": "The team meets virtually <a href=\"https://join.mycospace.com/invited.sf?id=254162370\">here</a> on Mondays at 2:30 ET.", 
+		"daysToComplete": 5, 
+		"dependsOn": ["dayZero"]
+	},
+	"meetDirector": { 
+		"displayName": "Meet design director.",
+		"description": "You'll have time to say hello and walk through project assignments", 
+		"daysToComplete": 9, 
+		"dependsOn": ["dayZero"]
+	},
+	"meetLead": { 
+		"displayName": "Meet design lead.",
+		"description": "You'll have time to say hello and walk through project assignments", 
+		"daysToComplete": 9, 
+		"dependsOn": ["dayZero"]
+	}}
+}

@@ -15,13 +15,13 @@
 	},
 	"readGuide": { 
 		"displayName": "Read consulting guide", 
-		"description": "<a href=\"https://hub.18f.gov/consulting/onboarding/\">Consulting Team Onboarding Guide</a>.",
+		"description": "<a href=\"https://handbook.18f.gov/consulting\">Consulting Team Onboarding Guide</a>.",
 		"daysToComplete": 4, 
 		"dependsOn": ["dayZero"]
 	},
 	"attendMeeting": { 
 		"displayName": "Attend weekly meeting",
-		"description": "Information in the <a href=\"https://hub.18f.gov/consulting/onboarding/\">Consulting Team Onboarding Guide</a>", 
+		"description": "Information in the <a href=\"https://handbook.18f.gov/consulting\">Consulting Team Onboarding Guide</a>", 
 		"daysToComplete": 1, 
 		"dependsOn": ["dayZero"]
 	},

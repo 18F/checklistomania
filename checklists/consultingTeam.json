@@ -1,0 +1,34 @@
+{"checklistName": "Consulting Team Member",
+"checklistDescription": "TODO Items for new members of consulting team.",
+"items": 
+	{"dayZero": { 
+		"displayName": "Start Date", 
+		"description": "First day on the job.",
+		"daysToComplete": 0, 
+		"dependsOn": []
+	},
+	"addToListserv": { 
+		"displayName": "Add to listserv", 
+		"description": "Make sure you're added to the Consulting team listserv and calendar. Ask your buddy to ensure you're on both.",
+		"daysToComplete": 1, 
+		"dependsOn": ["dayZero"]
+	},
+	"readGuide": { 
+		"displayName": "Read consulting guide", 
+		"description": "<a href=\"https://handbook.18f.gov/consulting\">Consulting Team Onboarding Guide</a>.",
+		"daysToComplete": 4, 
+		"dependsOn": ["dayZero"]
+	},
+	"attendMeeting": { 
+		"displayName": "Attend weekly meeting",
+		"description": "Information in the <a href=\"https://handbook.18f.gov/consulting\">Consulting Team Onboarding Guide</a>", 
+		"daysToComplete": 1, 
+		"dependsOn": ["dayZero"]
+	},
+	"readBriefs": { 
+		"displayName": "Read project briefs",
+		"description": "Information in the <a href=\"https://drive.google.com/drive/u/1/folders/0B497BYqz8M4-fnNZbmN6TGdhN1MtYTZHVjI4d3M0aXVCMkYxdExpTFlCbzVLV0dacVVmVlU\">Google Drive</a>", 
+		"daysToComplete": 9, 
+		"dependsOn": ["dayZero"]
+	}}
+}

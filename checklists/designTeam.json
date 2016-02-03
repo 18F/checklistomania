@@ -36,5 +36,11 @@
 		"description": "You'll have time to say hello and walk through project assignments", 
 		"daysToComplete": 9, 
 		"dependsOn": ["dayZero"]
+	},
+	"ReadBeforeYouShip": { 
+		"displayName": "Read Before you Ship", 
+		"description": "We require anyone who works with dev, devops, product, infrastucture, and design to read our  <a href=\"https://pages.18f.gov/before-you-ship/\">Before you Ship guide.</a> Please make sure you've read the section on ATOs and if you have any questions, please ask in #devops.",
+		"daysToComplete": 5, 
+		"dependsOn": ["dayZero"]
 	}}
 }

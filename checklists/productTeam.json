@@ -61,6 +61,12 @@
 		"description": "Schedule more virtual coffees (or real ones) with other PMS to learn more. Ask tons of questions. Listen a lot. Don’t be nervous to reach out to people. Everyone was once in your shoes.",
 		"daysToComplete": 20, 
 		"dependsOn": ["virtualPMcoffee"]
+	},
+	"ReadBeforeYouShip": { 
+		"displayName": "Read Before you Ship", 
+		"description": "We require anyone who works with dev, devops, product, infrastucture, and design to read our  <a href=\"https://pages.18f.gov/before-you-ship/\">Before you Ship guide.</a> Please make sure you've read the section on ATOs and if you have any questions, please ask in #devops.",
+		"daysToComplete": 5, 
+		"dependsOn": ["dayZero"]
 
 	}}
 }

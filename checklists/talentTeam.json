@@ -1,0 +1,70 @@
+{"checklistName": "Talent Team Member",
+"checklistDescription": "TODO Items for new members of talent team.",
+"items": 
+	{"dayZero": { 
+		"displayName": "Start Date", 
+		"description": "First day on the job.",
+		"daysToComplete": 0, 
+		"dependsOn": []
+	},
+	"addToSlack": { 
+		"displayName": "Slack channels.", 
+		"description": "Make sure you're added to the following slack channels: #talent , #teamtalentonly, and any team channels you will be the person-of-contact for. (#teamtalentonly can help you with this.)",
+		"daysToComplete": 1, 
+		"dependsOn": ["dayZero"]
+	},
+	"learnTalent": { 
+		"displayName": "Learn about talent team.", 
+		"description": "Your director or buddy will walk you through the differences between 18F's Talent Team and GSA's HR.",
+		"daysToComplete": 4, 
+		"dependsOn": ["dayZero"]
+	},
+	"haveDocs": { 
+		"displayName": "Access docs",
+		"description": "You should have access to the Talent folder and docs on Google Drive. Ask your buddy to make sure you've been added to the proper folders and documents.", 
+		"daysToComplete": 5, 
+		"dependsOn": ["dayZero"]
+	},
+	"weeklyMeeting": { 
+		"displayName": "Access meetings.",
+		"description": "Make sure you're added to the Talent Team's weekly meeting invite.", 
+		"daysToComplete": 4, 
+		"dependsOn": ["dayZero"]
+	},
+	"meetDirector": { 
+		"displayName": "Meet director.",
+		"description": "You'll meet with the director and go over your performance plan.", 
+		"daysToComplete": 9, 
+		"dependsOn": ["dayZero"]
+	},
+	"meetTeam": { 
+		"displayName": "meetTeam", 
+		"description": "You'll meet each person in #teamtalentonly for a 1:1 during your first two weeks.",
+		"daysToComplete": 9, 
+		"dependsOn": ["dayZero"]
+	},
+	"introLever": { 
+		"displayName": "Intro to Lever", 
+		"description": "You'll receive Lever training in your second weel from Bill. He will also set up additional training with you.",
+		"daysToComplete": 9, 
+		"dependsOn": ["dayZero"]
+	},
+	"reviewTock": { 
+		"displayName": "Review Tock", 
+		"description": "Review time entry and project selection in Tock. Your buddy will help you with this.",
+		"daysToComplete": 9, 
+		"dependsOn": ["dayZero"]
+	},
+	"meetTeamDirector": { 
+		"displayName": "Meet the director of your team.", 
+		"description": "Set up 1:1 with Director of team you will be Talent POC for.",
+		"daysToComplete": 9, 
+		"dependsOn": ["dayZero"]
+	},
+	"setUpConcur": { 
+		"displayName": "Set up Concur account for travel.", 
+		"description": "Jenn Moran will help you do this.",
+		"daysToComplete": 9, 
+		"dependsOn": ["dayZero"]
+	}}
+}

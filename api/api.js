@@ -19,6 +19,7 @@ MongoClient.connect(url, function(err, db) {
 	module.exports.db = db;
 	items = db.collection("items");
 	checklists = db.collection("checklists");
+	checklists.remove({})
 	users = db.collection("users");
 
 	items.ensureIndex('owner');

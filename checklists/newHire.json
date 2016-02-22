@@ -15,55 +15,55 @@
 	},
 	"oathOfOffice": { 
 		"displayName": "Take Oath of Office", 
-		"description": "The oath is <a href=\"http://archive.opm.gov/constitution_initiative/oath.asp\">here.</a>",
+		"description": "The oath is <a href=\"http://archive.opm.gov/constitution_initiative/oath.asp\">here</a>.",
 		"daysToComplete": 0, 
 		"dependsOn": ["dayZero"]
 	},
 	"walkTo18F": { 
-		"displayName": "Call or text your buddy.",
-		"description": "Your buddy will walk with you to 18F.", 
+		"displayName": "Call or text your buddy",
+		"description": "Your buddy will welcome you to 18F.", 
 		"daysToComplete": 0, 
 		"dependsOn": ["dayZero"]
 	},
 	"receiveEquipment": { 
-		"displayName": "Receive your laptop, badge, and phone.",
-		"description": "Instructions will be sent to you via email.", 
+		"displayName": "Receive your laptop, badge, and phone",
+		"description": "You'll receive instructions via email.", 
 		"daysToComplete": 0, 
 		"dependsOn": ["dayZero"]
 	},
 	"logOnMac": { 
-		"displayName": "Log onto your Mac and change your root password.",
-		"description": "Instructions will be sent to you via email.", 
+		"displayName": "Log onto your Mac and change your root password",
+		"description": "You'll receive instructions via email.", 
 		"daysToComplete": 0, 
 		"dependsOn": ["receiveEquipment"]
 	},
 	"connectToNetwork": { 
-		"displayName": "Connect to GSA’s secure network.",
-		"description": "Instructions will be sent to you via email.", 
+		"displayName": "Connect to GSA’s secure network",
+		"description": "You'll receive instructions via email.", 
 		"daysToComplete": 0, 
 		"dependsOn": ["logOnMac"]
 	},
 	"changeENT": { 
-		"displayName": "Change your ENT (enterprise) password.",
-		"description": " This is your password for signing into systems administered by GSA, including your email, calendar, and Google Drive. Instructions will be mailed to you via email.",
+		"displayName": "Change your ENT (enterprise) password",
+		"description": "This is your password for signing into systems administered by GSA, including your email, calendar, and Google Drive. You'll receive instructions via email.",
 		"daysToComplete": 0, 
 		"dependsOn": ["connectToNetwork"]
 	},
 	"setUpEmail": { 
-		"displayName": "Sign into your work email.",
-		"description": "Instructions will be sent to you via email.", 
+		"displayName": "Sign into your work email",
+		"description": "You'll receive instructions via email.", 
 		"daysToComplete": 0, 
 		"dependsOn": ["changeENT"]
 	},
 	"setUp2FA": { 
-		"displayName": "Set up GSA’s 2FA.",
-		"description": "Note: You must complete this task inside a federal building. Instructions are sent via email and also <a href=\"https://handbook.18f.gov/distributed/#set-up-my-computer\">here.</a>",
+		"displayName": "Set up GSA’s 2FA",
+		"description": "Note: You must set up two-factor authentication inside a federal building. Instructions are sent via email and <a href=\"https://handbook.18f.gov/distributed/#set-up-my-computer\">here</a>.",
 		"daysToComplete": 0, 
 		"dependsOn": ["connectToNetwork"]
 	},
 	"setUpSlack": { 
-		"displayName": "Set up Slack.",
-		"description": "Slack is our chat program, so that you can communicate with your colleagues. Instructions to set up 2FA will be sent to you by Dolores, our onboarding bot, at 3PM in your timezone.", 
+		"displayName": "Set up Slack",
+		"description": "Slack is our chat program. Instructions to set up 2FA will be sent to you by Dolores, our onboarding bot, at 3PM in your timezone. Update your settings <a href=\"https://my.slack.com/account/settings#two_factor\">here</a>.", 
 		"daysToComplete": 0, 
 		"dependsOn": ["setUpEmail"]
 	},
@@ -75,162 +75,162 @@
 	},
 	"addContactInformation": { 
 		"displayName": "Add yourself to the 18F Staff Contact Directory", 
-		"description": "You can add yourself to the spreadsheet <a href=\"https://docs.google.com/spreadsheets/d/1QqqS_-V44MHyVqRIyHj6Eojg1Oz5EC3fS3j1e3mDrkg/edit\">here.</a>",
+		"description": "Update the <a href=\"https://docs.google.com/spreadsheets/d/1QqqS_-V44MHyVqRIyHj6Eojg1Oz5EC3fS3j1e3mDrkg/edit\">spreadsheet</a> with your information.",
 		"daysToComplete": 4, 
 		"dependsOn": ["dayZero"]
 	},
 	"startOrientationClasses": { 
 		"displayName": "Orientation classes begin on day 2", 
-		"description": "You will begin taking a variety of Slack-based classes in the #18F-classes Slack channel. Classes will take place in <a href=\"https://18f.slack.com/archives/18f-classes\">#18F-Classes</a> | <a href=\"https://handbook.18f.gov/classes\">Class Schedule</a> and <a href=\"https://www.google.com/calendar/embed?src=gsa.gov_vpfql4425bt1kj5fatahokgg94%40group.calendar.google.com&ctz=America/New_York\">Google Calendar Schedule of Classes</a> and Class Checklist",
+		"description": "You will begin taking a variety of Slack-based classes in <a href=\"https://18f.slack.com/archives/18f-classes\">#18f-classes</a>. See the <a href=\"https://handbook.18f.gov/classes\">class schedule</a> and <a href=\"https://www.google.com/calendar/embed?src=gsa.gov_vpfql4425bt1kj5fatahokgg94%40group.calendar.google.com&ctz=America/New_York\">Google Calendar</a> for details.",
 		"daysToComplete": 1, 
 		"dependsOn": ["dayZero"]
 	},
 	"secureLaptop": { 
-		"displayName": "Make sure your laptop is secure.", 
-		"description": "<a href=\"https://handbook.18f.gov/equipment/#laptop\">Instructions.</a>",
+		"displayName": "Secure your laptop", 
+		"description": "<a href=\"https://handbook.18f.gov/equipment/#laptop\">Instructions</a>",
 		"daysToComplete": 1, 
 		"dependsOn": ["dayZero"]
 	},
 	"checkCalendars": { 
-		"displayName": "Double check to make sure you have access to 18F Calendars.", 
-		"description": "<a href=\"https://handbook.18f.gov/equipment/#google-calendar\">Instructions.</a>",
+		"displayName": "Make sure you can access 18F Calendars", 
+		"description": "<a href=\"https://handbook.18f.gov/equipment/#google-calendar\">Instructions</a>",
 		"daysToComplete": 1, 
 		"dependsOn": ["dayZero"]
 	},
 	"checkEmail": { 
-		"displayName": "Double check access to 18F team email.", 
-		"description": "Check your inbox to make sure you've received a note from 18f-team@gsa.gov. If not, head to #talent to make sure you've been added to our team email account.",
+		"displayName": "Double check access to 18F team email", 
+		"description": "Check your inbox for a note from 18f-team@gsa.gov. If not, head to #talent to make sure you've been added to our team email account.",
 		"daysToComplete": 5, 
 		"dependsOn": ["dayZero"]
 	},
 	"readOfficeGuide": { 
-		"displayName": "Read your office guide.", 
-		"description": "The office guides will tell you more about your office location. (There's one for distributed teams, too.) <a href=\"https://handbook.18f.gov/offices\">Office Guides</a>",
+		"displayName": "Read your office guide", 
+		"description": "Get to know your <a href=\"https://handbook.18f.gov/offices\">office</a>. (There's one for distributed teams, too.)",
 		"daysToComplete": 1, 
 		"dependsOn": ["dayZero"]
 	},
 	"attendAllHands": { 
-		"displayName": "Attend weekly all-hands meeting.", 
-		"description": "<a href=\"https://handbook.18f.gov/distributed/#listen-to-and-participate-in-the-weekly-tuesday-all-hands-meeting\">Instructions for distributed employees.</a> Other employees should ask their in-office buddy.",
+		"displayName": "Attend the weekly all-hands", 
+		"description": "Join our weekly meeting <a href=\"https://handbook.18f.gov/distributed/#heading-2\">online</a>, or ask your in-office buddy for details.",
 		"daysToComplete": 1, 
 		"dependsOn": ["dayZero"]
 	},
 	"transitSubsidy": { 
-		"displayName": "Fill out transit subsidy", 
-		"description": "<a href=\"https://handbook.18f.gov/gsa-tools-equipment-and-transit/#transit-benefits\">Instructions if you take public transit to work.</a>",
+		"displayName": "Get your transit subsidy", 
+		"description": "If you take public transit, <a href=\"https://handbook.18f.gov/gsa-tools-equipment-and-transit/#transit-benefits\">fill out this form</a> to receive your subsidy.",
 		"daysToComplete": 2, 
 		"dependsOn": ["dayZero"]
 	},
 	"avatarSelection": { 
-		"displayName": "Change your Slack and Google avatars.", 
-		"description": "Make sure your Slack avatar and Google avatar contain a picture.<a href=\"https://handbook.18f.gov/slack/#rules\">Slack Instructions</a> and <a href=\"https://support.google.com/mail/answer/35529?hl=en\">Google instructions</a>",
+		"displayName": "Change your Slack and Google avatars", 
+		"description": "Add a photo to your Slack and Google avatars. Instructions: <a href=\"https://handbook.18f.gov/slack/#rules\">Slack</a> and <a href=\"https://support.google.com/mail/answer/35529?hl=en\">Google</a>",
 		"daysToComplete": 1, 
 		"dependsOn": ["dayZero"]
 	},
 	"setupPhone2FA": { 
-		"displayName": "Set up 2FA on your government phone.", 
-		"description": "After receiving your work phone, set up 2FA.<a href=\"https://handbook.18f.gov/equipment/#iphone\">Instructions</a>",
+		"displayName": "Set up 2FA on your government phone", 
+		"description": "After receiving your work phone, <a href=\"https://handbook.18f.gov/equipment/#iphone\">set up two-factor authentication</a>.",
 		"daysToComplete": 4, 
 		"dependsOn": ["receiveEquipment"]
 	},
 	"pickUpBadge": { 
-		"displayName": "Pick up your badge.", 
-		"description": "Your badge should be ready on your first day. If not, please make sure you get it at some point in your first week.<a href=\"https://handbook.18f.gov/equipment/#badge\">Instructions</a>",
+		"displayName": "Pick up your badge", 
+		"description": "Your badge should be ready on your first day. If not, please make sure you <a href=\"https://handbook.18f.gov/equipment/#badge\">get it at some point in your first week</a>.",
 		"daysToComplete": 4, 
 		"dependsOn": ["dayZero"]
 	},
 	"setUpVPN": { 
-		"displayName": "Set up VPN.", 
-		"description": "This will allow you to access GSA sites from outside the network.<a href=\"https://handbook.18f.gov/networks#virtual-networks\">Instructions</a>",
+		"displayName": "Set up VPN", 
+		"description": "This will allow you to <a href=\"https://handbook.18f.gov/networks#virtual-networks\">access GSA sites from outside the network</a>.",
 		"daysToComplete": 4, 
 		"dependsOn": ["dayZero"]
 	},
 	"setUpPrinter": { 
-		"displayName": "Set up printer.", 
-		"description": "Instructions are in your <a href=\"https://handbook.18f.gov/offices\">office guide.</a>",
+		"displayName": "Set up printer", 
+		"description": "Instructions are in your <a href=\"https://handbook.18f.gov/offices\">office guide</a>.",
 		"daysToComplete": 4, 
 		"dependsOn": ["dayZero"]
 	},
 	"listservsSignUp": { 
-		"displayName": "Sign up for listservs.", 
-		"description": "Instructions are in your <a href=\"https://handbook.18f.gov/general-contacts-and-listservs/#listservs-and-slack-groups\">here.</a>",
+		"displayName": "Sign up for listservs", 
+		"description": "A full list of newsletters and listservs is <a href=\"https://handbook.18f.gov/general-contacts-and-listservs/#listservs-and-slack-groups\">here</a>.",
 		"daysToComplete": 4, 
 		"dependsOn": ["dayZero"]
 	},
 	"meetDirector": { 
-		"displayName": "Meet with your director.", 
+		"displayName": "Meet with your director", 
 		"description": "They'll likely schedule a first meeting during your first week.",
 		"daysToComplete": 9, 
 		"dependsOn": ["dayZero"]
 	},
 	"writeBio": { 
-		"displayName": "Write website bio.", 
+		"displayName": "Write website bio", 
 		"description": "<a href=\"https://handbook.18f.gov/github-and-18f-site/#your-bio-and-photo\">Instructions</a>",
 		"daysToComplete": 9, 
 		"dependsOn": ["dayZero"]
 	},
 	"submitToTeamAPI": { 
-		"displayName": "Add yourself to Team API.", 
+		"displayName": "Add yourself to Team API", 
 		"description": "<a href=\"https://github.com/18F/team-api.18f.gov/blob/master/README.md#new-18f-team-members\">Instructions</a>",
 		"daysToComplete": 9, 
 		"dependsOn": ["dayZero"]
 	},
 	"fillOutForm": { 
-		"displayName": "Fill out OGE 450.", 
-		"description": "<a href=\"https://handbook.18f.gov/hatch-act-foia-ethics-code-of-conduct/#new-here-youll-need-to-fill-out-these-forms\">Instructions</a>",
+		"displayName": "Fill out SF-450", 
+		"description": "<a href=\"https://handbook.18f.gov/hatch-act-foia-ethics-code-of-conduct/#heading-2\">Instructions</a>",
 		"daysToComplete": 20, 
 		"dependsOn": ["dayZero"]
 	},
 	"virtualTea": { 
-		"displayName": "Schedule virtual tea.", 
-		"description": "You can use one of the video tools you've learned about: <a href=\"https://handbook.18f.gov/acano\">Acano</a> or <a href=\"https://handbook.18f.gov/google-hangouts\">Google Hangouts</a>or <a href=\"https://handbook.18f.gov/appearin\">Appear.in</a>",
+		"displayName": "Schedule virtual teas", 
+		"description": "Get to know your teammates over video chat. You can use <a href=\"https://handbook.18f.gov/acano\">Acano</a>, <a href=\"https://handbook.18f.gov/google-hangouts\">Google Hangouts</a>, or <a href=\"https://handbook.18f.gov/appearin\">Appear.in</a>.",
 		"daysToComplete": 20, 
 		"dependsOn": ["dayZero"]
 	},
 	"receiveSoftwareLicenses": { 
 		"displayName": "Receive software licenses", 
-		"description": "Please read the instructions for <a href=\"https://github.com/18F/handbook/search?utf8=%E2%9C%93&q=license\">specific software licenses.</a> If yours isn't on that list, ask in #devops and then in #teamops",
+		"description": "Please read the instructions for <a href=\"https://github.com/18F/handbook/search?utf8=%E2%9C%93&q=license\">specific software licenses</a>. If yours isn't on the list, ask in #devops and then in #teamops.",
 		"daysToComplete": 20, 
 		"dependsOn": ["dayZero"]
 	},
 	"readOrgChart": { 
 		"displayName": "Read org chart", 
-		"description": "Learn about 18F's organizational structure and relationship to OCSIT. <a href=\"https://handbook.18f.gov/org-chart\">Org Chart</a> | <a href=\"https://handbook.18f.gov/welcome-from-phaedra-and-aaron\">Relationship to OCSIT</a>",
+		"description": "Learn about 18F's <a href=\"https://handbook.18f.gov/org-chart\">organizational structure</a> and <a href=\"https://handbook.18f.gov/welcome-from-phaedra-and-aaron\">relationship to OCSIT</a>.",
 		"daysToComplete": 20, 
 		"dependsOn": ["dayZero"]
 	},
 	"confirmCHRIS": { 
 		"displayName": "Confirm CHRIS account", 
-		"description": "Your CHRIS account is what you'll use to access your personnel file online. This may take 4-6 weeks. <a href=\"https://handbook.18f.gov/gsa-tools-equipment-and-transit/#chris\">Instructions</a>",
+		"description": "Your CHRIS account lets you access your personnel file. This may take 4-6 weeks. <a href=\"https://handbook.18f.gov/gsa-tools-equipment-and-transit/#chris\">Instructions</a>",
 		"daysToComplete": 20, 
 		"dependsOn": ["dayZero"]
 	},
 	"signIntoEmployeeExpress": { 
 		"displayName": "Sign into Employee Express", 
-		"description": "This is available after your first paycheck. <a href=\"handbook.18f.gov/gsa-tools-equipment-and-transit/#employee-express\">Instructions.",
+		"description": "This is available after your first paycheck. <a href=\"handbook.18f.gov/gsa-tools-equipment-and-transit/#employee-express\">Instructions</a>",
 		"daysToComplete": 20, 
 		"dependsOn": ["dayZero"]
 	},
 	"confirmOLU": { 
-		"displayName": "Confirm your OLU account and take classes.", 
-		"description": "GSA’s mandatory training for employees. This will be available after your <a href=\"https://handbook.18f.gov/gsa-tools-equipment-and-transit/#chris\">CHRIS account</a> is set up.",
+		"displayName": "Confirm your OLU account and take classes", 
+		"description": "OLU is where you’ll take mandatory training for GSA employees. This will be available after your <a href=\"https://handbook.18f.gov/gsa-tools-equipment-and-transit/#chris\">CHRIS account</a> is set up.",
 		"daysToComplete": 20, 
 		"dependsOn": ["confirmCHRIS"]
 	},
 	"confirmBenefits": { 
-		"displayName": "Confirm benefits.", 
-		"description": "It's a good idea to check to make sure all of your submitted <a href=\"https://handbook.18f.gov/benefits\">Benefits information<a/> is correct.",
+		"displayName": "Confirm benefits", 
+		"description": "Make sure your <a href=\"https://handbook.18f.gov/benefits\">benefits<a/> are set up correctly.",
 		"daysToComplete": 20, 
 		"dependsOn": ["dayZero"]
 	},
 	"travelTraining": { 
-		"displayName": "Take travel training so that you can travel.", 
-		"description": "<a href=\"https://handbook.18f.gov/travel-101\">Instructions.</a>",
+		"displayName": "Take travel training", 
+		"description": "<a href=\"https://handbook.18f.gov/travel-101\">Instructions</a>",
 		"daysToComplete": 25, 
 		"dependsOn": ["confirmCHRIS"]
 	},
 	"completeOLU": { 
-		"displayName": "Complete OLU training.", 
+		"displayName": "Complete OLU training", 
 		"description": "<a href=\"https://handbook.18f.gov/professional-development-and-training/#mandatory-training\">Instructions</a>",
 		"daysToComplete": 20, 
 		"dependsOn": ["confirmOLU"]
@@ -243,13 +243,13 @@
 		},
 	"learnAboutOffsite": { 
 		"displayName": "Learn about next offsite.", 
-		"description": "Ask in Slack when the next offsite is: \"When is the next offsite?\" (Slackbot should respond.) And if you want to make a message for Slackbot to respond, follow the instructions <a href=\"https://18f.slack.com/customize/slackbot\">here</a>",
+		"description": "Ask in Slack when the next offsite is: \"When is the next 18F-irl?\" (Slackbot should respond.) And if you want to make a message for Slackbot to respond, follow the instructions <a href=\"https://18f.slack.com/customize/slackbot\">here</a>.",
 		"daysToComplete": 20, 
 		"dependsOn": ["dayZero"]
 		},
 	"addToTrello": { 
-		"displayName": "18F Trello boards", 
-		"description": "Ask in #admins-trello to be added to the 18F Trello board.",
+		"displayName": "Get Trello access", 
+		"description": "Ask #admins-trello to add you to the 18F Trello board.",
 		"daysToComplete": 20, 
 		"dependsOn": ["dayZero"]
 

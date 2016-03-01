@@ -37,27 +37,23 @@
         <table class="md-primary md-table" md-row-select="selected" md-progress="deferred">
           <thead class="md-head">
             <tr class="md-row">
-              <th class="md-column">Mark Done</th>
-              <th class="md-column" ng-class="item.trafficLight">Days Left</th>
               <th class="md-column">Task</th>
-              <th class="md-column">Checklist</th>
-              <th class="md-column">Notes</th>
               <th class="md-column">Due Date</th>
+              <th class="md-column">Checklist</th>
               <th class="md-column">Description</th>
+              <th class="md-column">Mark Done</th>
             </tr>
           </thead>
           <tbody class="md-body">
-            <tr class="md-row" ng-repeat="item in items">
-              <td class="md-cell">
-                <md-button class="md-icon-button" href="#" ng-click="markDone(item)" ng-hide="item.completedDate">&#10003;</md-button>
-              </td>
-              <td class="md-cell" id="tableTrafficLight" ng-class="item.trafficLight">{{ item.daysUntilDue }}</td>
+            <tr class="md-row" ng-repeat="item in items" ng-class="item.trafficLight">
               <td class="md-cell">{{ item.displayName }}</td>
-              <td class="md-cell">{{ item.checklistName }}</td>
-              <td class="md-cell">{{ item.notes }}</td>
-              <td class="md-cell">{{ item.dueDate.toLocaleDateString() }}</td>
+              <td class="md-cell">{{ item.dueDate.toLocaleDateString() }} ({{ item.daysUntilDue }} days)</td>
+              <td class="md-cell">{{ item.checklistName }}<span ng-show="item.notes">. Notes: {{ item.notes }}</span></td>
               <td class="md-cell">
                 <p ng-bind-html="item.descriptionHtml"></p>
+              </td>
+              <td class="md-cell">
+                <md-button class="md-icon-button" href="#" ng-click="markDone(item)" ng-hide="item.completedDate" id="markDoneCheck">&#10003;</md-button>
               </td>
             </tr>
           </tbody>

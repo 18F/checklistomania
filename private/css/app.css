@@ -35,18 +35,22 @@
   padding: 0px;
  }
  .redLight {
- 	background-color: pink;
+ 	background-color: rgba(255,0,0,0.2);
  }
 
  .yellowLight {
- 	background-color: yellow;
+ 	background-color: rgba(255,255,0,0.2);
  }
 
  .greenLight {
- 	background-color: lightgreen;
+ 	background-color: rgba(0,255,0,0.2);
  }
 
 .md-cell {
-  min-width: 5em;
+  min-width: 10em;
   text-align: center;
+ }
+
+ #markDoneCheck {
+  font-size: 28px;
  }

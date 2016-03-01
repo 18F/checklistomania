@@ -20,14 +20,14 @@
         <table ng-show="user.items.length > 0" class="md-primary md-table" md-row-select="selected" md-progress="deferred">
           <thead class="md-head">
             <tr class="md-row">
-              <th class="md-column" ng-class="item.trafficLight">Days Left</th>
+              <th class="md-column" ng-class="item.trafficLight">Due Date</th>
               <th class="md-column">Checklist</th>
               <th class="md-column">Item</th>
             </tr>
           </thead>
           <tbody class="md-body">
-            <tr class="md-row" ng-repeat="item in items">
-              <td class="md-cell" id="tableTrafficLight" ng-class="item.trafficLight">{{ item.daysUntilDue }}</td>
+            <tr class="md-row" ng-repeat="item in items" ng-class="item.trafficLight">
+              <td class="md-cell">{{ item.dueDate.toLocaleDateString() }} ({{ item.daysUntilDue }} days)</td>
               <td class="md-cell">{{ item.checklistName }}</td>
               <td class="md-cell">{{ item.displayName }}</td>
             </tr>

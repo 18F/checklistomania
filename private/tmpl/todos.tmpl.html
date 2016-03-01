@@ -1,14 +1,14 @@
-<md-tab label="Todos" md-on-select="setTabCookie(0)">
+<md-tab label="Todos">
   <md-content class="md-padding">
     <div class="md-display-1">Todos
-      <md-button class="toggleView" ng-click="viewTable = true" ng-show="!viewTable && items.length > 0">View As Table</md-button>
-      <md-button class="toggleView" ng-click="viewTable = false"
-      ng-show="viewTable && items.length > 0">View As Cards</md-button>
+      <md-button class="toggleView" ng-click="viewCards = true"
+      ng-show="!viewCards && items.length > 0">View As Cards</md-button>
+      <md-button class="toggleView" ng-click="viewCards = false" ng-show="viewCards && items.length > 0">View As Table</md-button>
     </div>
     <p ng-show="items.length == 0">Nothing to do! Pat yourself on the back (or assign yourself some new checklists
       from the checklists tab)!</p>
     <div layout="row" layout-wrap layout-align="center"
-    ng-show="!viewTable">
+    ng-show="viewCards">
       <md-card ng-repeat="item in items" flex="45">
         <md-card-title>
           <md-card-title-text> <span class="md-headline">{{ item.displayName }}</span>
@@ -31,7 +31,7 @@
         </md-card-actions>
       </md-card>
     </div>
-    <div ng-show="viewTable && items.length > 0">
+    <div ng-show="!viewCards && items.length > 0">
       <md-card>
       <md-table-container>
         <table class="md-primary md-table" md-row-select="selected" md-progress="deferred">

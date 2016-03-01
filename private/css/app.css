@@ -46,11 +46,20 @@
  	background-color: rgba(0,255,0,0.2);
  }
 
+ .greyLight {
+  background-color: rgba(0, 0, 0, .2);
+ }
+
+ .clearLight {
+  background-color: rgba(255, 255, 255, .05);
+  text-decoration: line-through;
+ }
+
 .md-cell {
   min-width: 10em;
   text-align: center;
  }
 
- #markDoneCheck {
+ .markDoneCheck {
   font-size: 28px;
  }

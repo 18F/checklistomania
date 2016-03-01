@@ -10,7 +10,7 @@ This tool is a checklist manager with some neat-O features:
 
 Here's some screenshots to give you a sense of the look & feel:
 
-The ToDo's tab provides a centralized place for all your to items:
+The ToDo's tab provides a centralized place for all your todo items:
 ![Todos](/public/img/todoTable.png?raw=true "Todos")
 
 The checklists tab is where you assign yourself a new pre-defined checklist:

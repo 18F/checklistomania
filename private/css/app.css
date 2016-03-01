@@ -46,7 +46,7 @@
  	background-color: lightgreen;
  }
 
- td {
+.md-cell {
   min-width: 5em;
   text-align: center;
  }

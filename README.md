@@ -8,6 +8,12 @@ This tool is a checklist manager with some neat-O features:
 * Checklist items deadlines can be set according to a fixed date or relative to completion of other items
 * All members of team can view other peoples checklists, so admins can see everyone's status at a glance
 
+Here's some screenshots to give you a sense of the look & feel:
+
+![Todos](/public/img/todoTable.png?raw=true "Todos")
+![Checklists](/public/img/checklsits.png?raw=true "Checklists")
+![Users](/public/img/users.png?raw=true "Users")
+
 # Requirements
 - Mongodb
 - nodejs

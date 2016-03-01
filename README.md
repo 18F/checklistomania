@@ -10,8 +10,13 @@ This tool is a checklist manager with some neat-O features:
 
 Here's some screenshots to give you a sense of the look & feel:
 
+The ToDo's tab provides a centralized place for all your to items:
 ![Todos](/public/img/todoTable.png?raw=true "Todos")
-![Checklists](/public/img/checklsits.png?raw=true "Checklists")
+
+The checklists tab is where you assign yourself a new pre-defined checklist:
+![Checklists](/public/img/checklists.png?raw=true "Checklists")
+
+The users tab is where you can view the status of other team members action items, helpful if you want a hint or if you are an admin keeping track of where everyone is:
 ![Users](/public/img/users.png?raw=true "Users")
 
 # Requirements

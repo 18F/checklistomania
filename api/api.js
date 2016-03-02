@@ -19,6 +19,7 @@ MongoClient.connect(url, function(err, db) {
 	module.exports.db = db;
 	items = db.collection("items");
 	checklists = db.collection("checklists");
+	checklists.remove({})
 	users = db.collection("users");
 
 	items.ensureIndex('owner');
@@ -83,6 +84,44 @@ router.get('/get-items', function(req, res) {
 	items.find({owner: username, dueDate: {$exists: true}, completedDate: {$exists: false}}, {sort: [["dueDate", 1]]})
 		.toArray(function(err, userItems) {
 			res.json({items: userItems});		
+		});
+});
+
+router.get('/clear-done', function(req, res) {
+	var username = req.query.username || req.user.username;
+	items.remove({owner: username, completedDate: {$exists: true}}, function(err, response) {
+		res.json({success: true});
+	})
+})
+
+router.get('/get-all-items', function(req, res) {
+	var username = req.query.username || req.user.username;
+	items.find({owner: username})
+		.toArray(function(err, userItems) {
+			var todos = userItems.filter(function(item) {return (item.dueDate && !item.completedDate)});
+			todos.sort(function(item1,item2) {return item1.dueDate.valueOf() - item2.dueDate.valueOf()})
+			var notActionable = userItems.filter(function(item) {return (item.dueDate === undefined 
+																		&& item.itemId !== 'dayZero')});
+			var done = userItems.filter(function(item) {return item.completedDate && item.itemId !== 'dayZero'})
+
+			var allItems = [];
+
+			allItems.push.apply(allItems, todos);
+			notActionable.forEach(function(notActionableItem) {
+				insertIdx = -1;
+				allItems.forEach(function(item, i) {
+					var itemIndex = notActionableItem.dependsOn.indexOf(item.itemId);
+					if(itemIndex >= 0) {
+						notActionableItem.dependsOn.splice(itemIndex, 1);
+						if(notActionableItem.dependsOn.length == 0) {
+							insertIdx = i
+						}
+					}
+				});
+				allItems.splice(insertIdx + 1, 0, notActionableItem);
+			});
+			allItems.push.apply(allItems, done);
+			res.json({items: allItems});		
 		});
 });
 

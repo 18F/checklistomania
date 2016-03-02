@@ -7,17 +7,24 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 		return Math.round((dueDate.getTime() - new Date().getTime())/(24*60*60*1000));
 	}
 
-	$scope.getTrafficLight = function(daysLeft) {
-		if(daysLeft <= 0) return "redLight";
-		if(daysLeft <=2) return "yellowLight";
+	$scope.getTrafficLight = function(item) {
+		if(item.completedDate) return "clearLight";
+		if(!item.dueDate) return "greyLight";
+		if(item.daysUntilDue <= 0) return "redLight";
+		if(item.daysUntilDue <=2) return "yellowLight";
 		return "greenLight";
 	}
 
 	var formatItem = function(item) {
-		item.dueDate = new Date(item.dueDate);
-		item.daysUntilDue = getDaysUntilDue(item.dueDate);
+		if(item.dueDate) {
+			item.dueDate = new Date(item.dueDate);	
+			item.daysUntilDue = getDaysUntilDue(item.dueDate);
+		} else {
+			item.dueDate = null;
+			item.daysUntilDue = null;
+		}
 		item.descriptionHtml = $sce.trustAsHtml(item.description);
-		item.trafficLight = $scope.getTrafficLight(item.daysUntilDue);		
+		item.trafficLight = $scope.getTrafficLight(item);		
 		return item;
 	}
 
@@ -43,14 +50,14 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 			$scope.users = [];
 			response.data.users.forEach(function(user) {
 				user.earliestDueDate = new Date(user.earliestDueDate);
-				user.trafficLight = $scope.getTrafficLight(getDaysUntilDue(user.earliestDueDate));
+				user.trafficLight = $scope.getTrafficLight({daysUntilDue: getDaysUntilDue(user.earliestDueDate)});
 				$scope.users.push(user);
 			});
 		});		
 	}
 
 	var getItems = function() {
-		$http.get('/api/get-items').then(function(response) {
+		$http.get('/api/get-all-items').then(function(response) {
 			$scope.items = [];
 			response.data.items.forEach(function(item) {
 				$scope.items.push(formatItem(item));
@@ -70,6 +77,8 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 			});
 	};
 
+	$scope.alert = function(msg) {alert(msg);}
+
 	$scope.markDone = function(item) {
 		$http.get('/api/complete-item', {params: {itemId: item.itemId, checklistName: item.checklistName, 
 			id: item._id, timestamp: item.timestamp}})
@@ -77,6 +86,13 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 				getItems();
 				getUsers();
 			})
+	}
+
+	$scope.clearDone = function() {
+		$http.get('/api/clear-done').then(function(response) {
+			getItems();
+			getUsers();
+		})
 	}
 
 	$scope.getUserDetails = function(user) {

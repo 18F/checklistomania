@@ -10,5 +10,8 @@
     "angular-loader": "~1.4.8",
     "angular-mocks": "~1.4.8",
     "angular-material": "~1.0.2"
-  }
+  },
+  "resolutions": {
+    "angular": "~1.4.8"
+}
 }

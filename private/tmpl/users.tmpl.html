@@ -1,4 +1,4 @@
-<md-tab label="users" md-on-select="setTabCookie(2)">
+<md-tab label="users">
   <md-content class="md-padding">
     <div class="md-display-1">Users <md-button ng-click="showAddUserDialog($event)">Add User</md-button></div>
     <md-card ng-repeat="user in users">
@@ -16,21 +16,23 @@
       </md-card-title>
       <md-card-content ng-show="user.expanded">
         <p ng-show="user.items.length == 0">User has no todo items.</p>
-        <md-list layout="row" layout-wrap>
-          <md-list-item class="md-3-line" flex="25" ng-repeat="item in user.items">
-            <md-card-title-media class="md-padding">
-              <div class="md-media-sm card-media md-display-1 md-padding trafficLight"
-              ng-class="item.trafficLight">{{ item.daysUntilDue }}</div>
-            </md-card-title-media>
-            <div class="md-list-item-text" layout="column">
-               <h3>{{ item.displayName }}</h3>
-
-               <h4>{{ item.checklistName }}</h4>
-
-              <p>{{ item.dueDate.toLocaleDateString() }}</p>
-            </div>
-          </md-list-item>
-        </md-list>
+        <md-table-container>
+        <table ng-show="user.items.length > 0" class="md-primary md-table" md-row-select="selected" md-progress="deferred">
+          <thead class="md-head">
+            <tr class="md-row">
+              <th class="md-column" ng-class="item.trafficLight">Due Date</th>
+              <th class="md-column">Checklist</th>
+              <th class="md-column">Item</th>
+            </tr>
+          </thead>
+          <tbody class="md-body">
+            <tr class="md-row" ng-repeat="item in items" ng-class="item.trafficLight">
+              <td class="md-cell">{{ item.dueDate.toLocaleDateString() }} ({{ item.daysUntilDue }} days)</td>
+              <td class="md-cell">{{ item.checklistName }}</td>
+              <td class="md-cell">{{ item.displayName }}</td>
+            </tr>
+          </tbody>
+        </table>
       </md-card-content>
       <md-card-actions layout="row" layout-align="end center">
         <md-button ng-show="!user.expanded" ng-click="getUserDetails(user)">View Todos</md-button>

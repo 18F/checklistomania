@@ -8,6 +8,17 @@ This tool is a checklist manager with some neat-O features:
 * Checklist items deadlines can be set according to a fixed date or relative to completion of other items
 * All members of team can view other peoples checklists, so admins can see everyone's status at a glance
 
+Here's some screenshots to give you a sense of the look & feel:
+
+The ToDo's tab provides a centralized place for all your todo items:
+![Todos](/public/img/todoTable.png?raw=true "Todos")
+
+The checklists tab is where you assign yourself a new pre-defined checklist:
+![Checklists](/public/img/checklists.png?raw=true "Checklists")
+
+The users tab is where you can view the status of other team members action items, helpful if you want a hint or if you are an admin keeping track of where everyone is:
+![Users](/public/img/users.png?raw=true "Users")
+
 # Requirements
 - Mongodb
 - nodejs
@@ -32,6 +43,8 @@ $ npm start
 ```
 
 And visit [http://localhost:3000/](http://localhost:3000/)
+
+For 18Fers: this is deployed on cloud.gov. Get started on cloud.gov by following the instructions [here](https://docs.cloud.gov/). Ask for more details in #checklistomania channel in slack.
 
 ### Public domain
 

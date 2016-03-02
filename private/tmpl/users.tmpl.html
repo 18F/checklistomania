@@ -15,7 +15,7 @@
         </md-card-title-media>
       </md-card-title>
       <md-card-content ng-show="user.expanded">
-        <p ng-show="user.items.length == 0">User has no todo items.</p>
+        <p ng-show="user.items.length == 0">User has no tasks.</p>
         <md-table-container>
         <table ng-show="user.items.length > 0" class="md-primary md-table" md-row-select="selected" md-progress="deferred">
           <thead class="md-head">
@@ -35,7 +35,7 @@
         </table>
       </md-card-content>
       <md-card-actions layout="row" layout-align="end center">
-        <md-button ng-show="!user.expanded" ng-click="getUserDetails(user)">View Todos</md-button>
+        <md-button ng-show="!user.expanded" ng-click="getUserDetails(user)">View Tasks</md-button>
         <md-button ng-show="user.expanded" ng-click="user.expanded = false">Collapse</md-button>
       </md-card-actions>
     </md-card>

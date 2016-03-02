@@ -16,6 +16,9 @@ describe('todoCtrl', function() {
       $httpBackend.when('GET', /\/api\/get\-items*/)
                       .respond({ items: [{dueDate: new Date().toString(), description: 'test'}] });
 
+      $httpBackend.when('GET', /\/api\/get\-all\-items*/)
+                      .respond({ items: [{dueDate: new Date().toString(), description: 'test'}] });
+
       $httpBackend.when('GET', '/api/get-users')
                       .respond({ users: [{earliestDueDate: new Date().toString()}] });
 
@@ -41,9 +44,11 @@ describe('todoCtrl', function() {
     it('shows trafficLight properly', function() {
       var controller = createController();
       $httpBackend.flush();
-      expect($rootScope.getTrafficLight(0)).toEqual('redLight');
-      expect($rootScope.getTrafficLight(2)).toEqual('yellowLight');
-      expect($rootScope.getTrafficLight(3)).toEqual('greenLight');
+      expect($rootScope.getTrafficLight({daysUntilDue: 0, dueDate: new Date()})).toEqual('redLight');
+      expect($rootScope.getTrafficLight({daysUntilDue: 2, dueDate: new Date()})).toEqual('yellowLight');
+      expect($rootScope.getTrafficLight({daysUntilDue: 3, dueDate: new Date()})).toEqual('greenLight');
+      expect($rootScope.getTrafficLight({completedDate: new Date()})).toEqual('clearLight');
+      expect($rootScope.getTrafficLight({dueDate: null})).toEqual('greyLight');
     });
 
     it('marks item complete', function() {

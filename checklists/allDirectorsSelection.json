@@ -30,6 +30,18 @@
 		"description": "Writes congrats email to candidate and requests references and documents / cc's Leah Glitter + Talent POC on email",
 		"daysToComplete": 3, 
 		"dependsOn": ["dayZero"]
+	},
+	"learnStartDate": { 
+		"displayName": "Learn start date", 
+		"description": "Talent will let you know the new hire's start date a week before they start.",
+		"daysToComplete": 40, 
+		"dependsOn": ["dayZero"]
+	},
+	"setUpCoffee": { 
+		"displayName": "Set up coffee", 
+		"description": "Reach out to new hire to say hello and set up coffee. During coffee, explain your policy on billable hours. (Many new hires will be reassurance on this point.)",
+		"daysToComplete": 20, 
+		"dependsOn": ["learnStartDate"]
 	}
 }
 }

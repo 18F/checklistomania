@@ -31,7 +31,7 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 	$http.get('/api/get-checklists').then(function(response) {
 		$scope.checklists = [];
 		response.data.checklists.forEach(function(checklist) {
-			checklist.dayZeroDate = null;
+			checklist.dayZeroDate = new Date();
 			$scope.checklists.push(checklist);
 		})
 	});

@@ -1,8 +1,8 @@
 
   <md-content class="md-padding">
-    <div class="md-display-1">Todos
+    <div class="md-display-1">To-dos
       <md-button class="toggleView" ng-click="clearDone()"
-      ng-show="items.length > 0">Clear Done</md-button>
+      ng-show="items.length > 0">Remove Completed To-dos</md-button>
     </div>
     <p ng-show="items.length == 0">Nothing to do! Pat yourself on the back (or assign yourself some new checklists
       from the checklists tab)!</p>
@@ -29,7 +29,7 @@
                 <p ng-bind-html="item.descriptionHtml"></p>
               </td>
               <td class="md-cell">
-                <md-button class="md-icon-button markDoneCheck" href="#" ng-click="markDone(item)" ng-hide="item.completedDate"><input type="checkbox"></md-button>
+                <md-button class="md-icon-button markDoneCheck" href="#" ng-click="markDone(item)" ng-hide="item.completedDate || !item.dueDate"><input type="checkbox"></md-button>
                 <md-button class="md-icon-button markDoneCheck" href="#" ng-click="alert('Sorry! Undoing is not supported at this time.')" ng-hide="!item.completedDate"><input type="checkbox" checked></md-button>
               </td>
             </tr>

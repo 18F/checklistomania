@@ -82,20 +82,6 @@ describe("API is fully functional", function() {
       }); 
   });
 
-  it("adds a user", function(done) {
-      var options = {
-        url: "http://localhost:3000/api/add-user",
-        qs: {username: 'testUser'}
-      };
-
-      request.get(options, function(err, response, body) {
-          expect(!err && response.statusCode == 200).toBe(true);
-          bodyObj = JSON.parse(body);
-          expect(bodyObj.success).toBe(true);
-          done();
-      }); 
-  });
-
   it("doesn't add a null a user", function(done) {
       var options = {
         url: "http://localhost:3000/api/add-user",
@@ -120,6 +106,20 @@ describe("API is fully functional", function() {
           expect(!err && response.statusCode == 200).toBe(true);
           bodyObj = JSON.parse(body);
           expect(bodyObj.users[0].username === 'testUser').toBe(true);
+          done();
+      }); 
+  });
+
+  it("adds a user", function(done) {
+      var options = {
+        url: "http://localhost:3000/api/add-user",
+        qs: {username: 'testUser'}
+      };
+
+      request.get(options, function(err, response, body) {
+          expect(!err && response.statusCode == 200).toBe(true);
+          bodyObj = JSON.parse(body);
+          expect(bodyObj.success).toBe(true);
           done();
       }); 
   });

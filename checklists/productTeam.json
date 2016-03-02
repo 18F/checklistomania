@@ -13,6 +13,12 @@
 		"daysToComplete": 1, 
 		"dependsOn": ["dayZero"]
 	},
+	"addToListservs": { 
+		"displayName": "Add listserv + calendar", 
+		"description": "Make sure you're added to the Product team listserv and team calendar. Your buddy can help with this as can your director.",
+		"daysToComplete": 1, 
+		"dependsOn": ["dayZero"]
+	},
 	"readGuide": { 
 		"displayName": "Read Product guide", 
 		"description": "This is the new <a href=\"https://github.com/18F/product-guide\">Product Lead Guide.</a>  Don’t worry if this doesn’t make sense yet. Bookmark it and plan to look at it again.",
@@ -21,7 +27,7 @@
 	},
 	"virtualCoffee": { 
 		"displayName": "Virtual coffee with director", 
-		"description": "You won’t know what to talk about, but that’s okay. It’s reassuring to know you’re not expected to know what’s going on yet.",
+		"description": "Come with a list of questions. Even broad ones are okay. You’re not expected to know how everything works just yet, and this conversation with help reassure you of that.",
 		"daysToComplete": 4, 
 		"dependsOn": ["dayZero"]
 	},
@@ -39,19 +45,19 @@
 	},
 	"secondCoffee": { 
 		"displayName": "Second coffee with Josh", 
-		"description": "Set up a second coffee with Josh. (You’ll be ready to start thinking about looking for a product now.)",
+		"description": "Ask the Director what projects you can start pairing with another Product Lead on. They can give you guidance on what this pairing might look like. You may also be ready to start looking for a project now and can discuss your interests with them at this time.",
 		"daysToComplete": 13, 
 		"dependsOn": ["virtualCoffee"]
 	},
 	"learnGitHub": { 
 		"displayName": "Learn GitHub and other tools", 
-		"description": "If you're not familiar with GitHub, Mural.ly, Trello and Slack - now's the time to learn. (Try searching the Handbook for help.)",
+		"description": "Developing a better understanding of these tools and their various time-saving shortcuts will help you feel less lost. We have guides for them located in <a href= \"https://handbook.18f.gov\">our handbook</a>.",
 		"daysToComplete": 20, 
 		"dependsOn": ["dayZero"]
 	},
 	"moreCoffees": { 
 		"displayName": "More virtual coffees with PMs", 
-		"description": "Schedule more virtual coffees (or real ones) with other PMS to learn more.",
+		"description": "Schedule more virtual coffees (or real ones) with other PMS to learn more. Ask tons of questions. Listen a lot. Don’t be nervous to reach out to people. Everyone was once in your shoes.",
 		"daysToComplete": 20, 
 		"dependsOn": ["virtualPMcoffee"]
 

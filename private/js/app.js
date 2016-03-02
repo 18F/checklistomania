@@ -57,12 +57,19 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 		});		
 	}
 
-	var getItems = function() {
+	var getItems = function(setDefaultTab) {
 		$http.get('/api/get-all-items').then(function(response) {
 			$scope.items = [];
 			response.data.items.forEach(function(item) {
 				$scope.items.push(formatItem(item));
 			});
+
+			if(setDefaultTab) {
+				$scope.tabDefaultIndex = function() {
+					if($scope.items.length == 0) return 1;
+					return 0;
+				}();
+			}
 	})}
 
 	var assignToMe = function(checklist) {
@@ -149,7 +156,7 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 	    });
   };
 
-	getItems();
+	getItems(true);
 	getUsers();
 });
 

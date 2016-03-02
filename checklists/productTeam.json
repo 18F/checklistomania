@@ -51,8 +51,7 @@
 	},
 	"learnGitHub": { 
 		"displayName": "Learn GitHub and other tools", 
-		"description": "Developing a better understanding of these tools and their various time-saving shortcuts will help you feel less lost. We have guides for them located in 
-      <a href= \"https://handbook.18f.gov\">our handbook</a>.",
+		"description": "Developing a better understanding of these tools and their various time-saving shortcuts will help you feel less lost. We have guides for them located in <a href= \"https://handbook.18f.gov\">our handbook</a>.",
 		"daysToComplete": 20, 
 		"dependsOn": ["dayZero"]
 	},

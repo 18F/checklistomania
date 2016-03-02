@@ -38,6 +38,10 @@
     "coverage": "istanbul cover spec/runBackendTests.js",
     "coveralls": "cat ./coverage/lcov.info ./coverage/phantomjs/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
+  "engines": {
+    "node": "4.2.5",
+    "npm": "2.14.4"
+  },
   "author": "Anthony Garvan",
   "license": "CC0"
 }

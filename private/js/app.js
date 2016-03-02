@@ -81,7 +81,7 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 				getItems();
 				getUsers();
 				$mdDialog.hide()
-				showSimpleToast(checklist.checklistName + ' added to your TODOs!');
+				showSimpleToast(checklist.checklistName + ' added to your Tasks!');
 			});
 	};
 

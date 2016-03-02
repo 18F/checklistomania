@@ -1,8 +1,5 @@
 var getApp = require('../app.js').getApp;
 
-//var passport = require('passport');
-//var GitHubStrategy = require('passport-github2').Strategy;
-//var github = require('../api/github.js').github;
 var api = require('../api/api.js');
 var http = require('http');
 http.IncomingMessage.prototype.isAuthenticated = function() {return true};
@@ -25,9 +22,9 @@ var GitHubStrategy = function(obj, callback) {callback(null, null, null, functio
 
 var github = {orgs : {getFromUser: function(obj, callback) {
 		var orgs;
-		if(obj.user == 'testUser') {
+		if(obj.user == 'checkyCheckersmith') {
 			orgs = [{login: '18F'}]
-		}
+		} 
 		callback(null, orgs);}}};
 
 var app = getApp(passport, GitHubStrategy, github);

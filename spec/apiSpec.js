@@ -3,7 +3,7 @@ var async = require("async");
 
 describe("API is fully functional", function() {
 
-  var user = {username: 'testUser', _json: {name: 'Test User', avatar_url: 'http://test.png'}};
+  var user = {username: 'checkyCheckersmith', _json: {name: 'Test User', avatar_url: 'http://test.png'}};
   
   var assignChecklist = function(callback) {
     var options = {
@@ -105,7 +105,7 @@ describe("API is fully functional", function() {
       request.get(options, function(err, response, body) {
           expect(!err && response.statusCode == 200).toBe(true);
           bodyObj = JSON.parse(body);
-          expect(bodyObj.users[0].username === 'testUser').toBe(true);
+          expect(bodyObj.users[0].username === 'checkyCheckersmith').toBe(true);
           done();
       }); 
   });
@@ -113,7 +113,7 @@ describe("API is fully functional", function() {
   it("adds a user", function(done) {
       var options = {
         url: "http://localhost:3000/api/add-user",
-        qs: {username: 'testUser'}
+        qs: {username: 'anthonygarvan'}
       };
 
       request.get(options, function(err, response, body) {

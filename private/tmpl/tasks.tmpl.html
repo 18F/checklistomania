@@ -1,0 +1,41 @@
+
+  <md-content class="md-padding">
+    <div class="md-display-1">Tasks
+      <md-button class="toggleView" ng-click="clearDone()"
+      ng-show="items.length > 0">Remove Completed Tasks</md-button>
+    </div>
+    <p ng-show="items.length == 0">Nothing to do! Pat yourself on the back (or assign yourself some new checklists
+      from the checklists tab)!</p>
+    <div ng-show="items.length > 0">
+      <md-card>
+      <md-table-container>
+        <table class="md-primary md-table" md-row-select="selected" md-progress="deferred">
+          <thead class="md-head">
+            <tr class="md-row">
+              <th class="md-column">Task</th>
+              <th class="md-column">Due Date</th>
+              <th class="md-column">Checklist</th>
+              <th class="md-column">Description</th>
+              <th class="md-column">Mark Done</th>
+            </tr>
+          </thead>
+          <tbody class="md-body">
+            <tr class="md-row" ng-repeat="item in items" ng-class="item.trafficLight">
+              <td class="md-cell">{{ item.displayName }}</td>
+              <td class="md-cell" ng-show="item.dueDate">{{ item.dueDate.toLocaleDateString() }} ({{ item.daysUntilDue }} days)</td>
+              <td class="md-cell" ng-show="!item.dueDate">Not yet actionable</td>
+              <td class="md-cell">{{ item.checklistName }}<span ng-show="item.notes">. Notes: {{ item.notes }}</span></td>
+              <td class="md-cell">
+                <p ng-bind-html="item.descriptionHtml"></p>
+              </td>
+              <td class="md-cell">
+                <md-button class="md-icon-button markDoneCheck" href="#" ng-click="markDone(item)" ng-hide="item.completedDate || !item.dueDate"><input type="checkbox"></md-button>
+                <md-button class="md-icon-button markDoneCheck" href="#" ng-click="alert('Sorry! Undoing is not supported at this time.')" ng-hide="!item.completedDate"><input type="checkbox" checked></md-button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </md-table-container>
+      </md-card>
+    </div>
+  </md-content>

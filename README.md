@@ -10,8 +10,8 @@ This tool is a checklist manager with some neat-O features:
 
 Here's some screenshots to give you a sense of the look & feel:
 
-The ToDo's tab provides a centralized place for all your todo items:
-![Todos](/public/img/todos.png?raw=true "Todos")
+The tasks tab provides a centralized place for all your todo items:
+![Todos](/public/img/tasks.png?raw=true "Tasks")
 
 The checklists tab is where you assign yourself a new pre-defined checklist:
 ![Checklists](/public/img/checklists.png?raw=true "Checklists")

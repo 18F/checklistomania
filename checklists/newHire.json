@@ -223,12 +223,6 @@
 		"daysToComplete": 20, 
 		"dependsOn": ["dayZero"]
 	},
-	"travelTraining": { 
-		"displayName": "Take travel training", 
-		"description": "<a href=\"https://handbook.18f.gov/travel-101\">Instructions</a>",
-		"daysToComplete": 25, 
-		"dependsOn": ["confirmCHRIS"]
-	},
 	"completeOLU": { 
 		"displayName": "Complete OLU training", 
 		"description": "<a href=\"https://handbook.18f.gov/professional-development-and-training/#mandatory-training\">Instructions</a>",
@@ -252,6 +246,18 @@
 		"description": "Ask #admins-trello to add you to the 18F Trello board.",
 		"daysToComplete": 20, 
 		"dependsOn": ["dayZero"]
+		},
+	"travelTraining": { 
+		"displayName": "Take travel training", 
+		"description": "<a href=\"https://handbook.18f.gov/travel-101\">Instructions</a>",
+		"daysToComplete": 25, 
+		"dependsOn": ["confirmCHRIS"]
+		},
+	"travelCard": { 
+		"displayName": "Apply for a travel card", 
+		"description": "<a href=\"https://handbook.18f.gov/travel-101/#travel-card\">Instructions</a>",
+		"daysToComplete": 30, 
+		"dependsOn": ["travelTraining"]
 
 	}}
 }

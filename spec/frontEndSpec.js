@@ -16,9 +16,6 @@ describe('todoCtrl', function() {
       $httpBackend.when('GET', /\/api\/get\-items*/)
                       .respond({ items: [{dueDate: new Date().toString(), description: 'test'}] });
 
-      $httpBackend.when('GET', /\/api\/get\-all\-items*/)
-                      .respond({ items: [{dueDate: new Date().toString(), description: 'test'}] });
-
       $httpBackend.when('GET', '/api/get-users')
                       .respond({ users: [{earliestDueDate: new Date().toString()}] });
 

@@ -58,7 +58,7 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 	}
 
 	var getItems = function(setDefaultTab) {
-		$http.get('/api/get-all-items').then(function(response) {
+		$http.get('/api/get-items').then(function(response) {
 			$scope.items = [];
 			response.data.items.forEach(function(item) {
 				$scope.items.push(formatItem(item));

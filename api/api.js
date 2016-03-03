@@ -13,9 +13,6 @@ if(process.env.VCAP_SERVICES) {
 }
 
 MongoClient.connect(url, function(err, db) {
-	if(process.argv[2] === '--test') {
-		db.dropDatabase();
-	};
 	module.exports.db = db;
 	items = db.collection("items");
 	checklists = db.collection("checklists");
@@ -79,14 +76,6 @@ router.get('/assign-checklist', function (req, res) {
 	});
 });
 
-router.get('/get-items', function(req, res) {
-	var username = req.query.username || req.user.username;
-	items.find({owner: username, dueDate: {$exists: true}, completedDate: {$exists: false}}, {sort: [["dueDate", 1]]})
-		.toArray(function(err, userItems) {
-			res.json({items: userItems});		
-		});
-});
-
 router.get('/clear-done', function(req, res) {
 	var username = req.query.username || req.user.username;
 	items.remove({owner: username, completedDate: {$exists: true}}, function(err, response) {
@@ -94,7 +83,7 @@ router.get('/clear-done', function(req, res) {
 	})
 })
 
-router.get('/get-all-items', function(req, res) {
+router.get('/get-items', function(req, res) {
 	var username = req.query.username || req.user.username;
 	items.find({owner: username})
 		.toArray(function(err, userItems) {

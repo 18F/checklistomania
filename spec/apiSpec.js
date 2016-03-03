@@ -39,7 +39,7 @@ describe("API is fully functional", function() {
 
   it("gets items", function(done) {
       assignChecklist(function() {
-            var options = {
+          var options = {
             url: "http://localhost:3000/api/get-items",
             qs: {user: user}
           }
@@ -124,7 +124,7 @@ describe("API is fully functional", function() {
       }); 
   });
   
-  it("Marks items as complete", function(done) {
+  it("Marks items as complete and clears them", function(done) {
       assignChecklist(function() {
           var items;    
           var markItemComplete = function(item, callback) {
@@ -154,7 +154,33 @@ describe("API is fully functional", function() {
           });
           };
           
-          async.whilst(function() {return !items || items.length > 0}, markUndoneItemsComplete, done);
+          function clearItems(callback) {
+            var options = {
+                url: "http://localhost:3000/api/clear-done",
+                qs: {user: user}
+              }
+              request.get(options, function(err, response, body) {
+                expect(!err && response.statusCode == 200).toBe(true);
+                bodyObj = JSON.parse(body);
+                expect(bodyObj.success).toBe(true);
+
+                var options = {
+                  url: "http://localhost:3000/api/get-items",
+                  qs: {user: user}
+                }
+
+                request.get(options, function(err, response, body) {
+                      expect(!err && response.statusCode == 200).toBe(true);
+                      bodyObj = JSON.parse(body);
+                      expect(bodyObj.items.length == 0).toBe(true);
+                      done();
+            })
+            });  
+          }
+
+          async.whilst(function() {return !items || !items[0].completedDate}, markUndoneItemsComplete, 
+            function() {clearItems(done);});
+
       });
   });
 

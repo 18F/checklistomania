@@ -14,7 +14,10 @@ describe('todoCtrl', function() {
                       .respond({ checklists: [{}] });
 
       $httpBackend.when('GET', /\/api\/get\-items*/)
-                      .respond({ items: [{dueDate: new Date().toString(), description: 'test'}] });
+                      .respond({ items: [{dueDate: new Date().toString(), description: 'test'}, 
+                        {dueDate: null, description: "test unactionable items"}] });
+
+      $httpBackend.when('GET', /\/clear-done*/).respond({success: true});
 
       $httpBackend.when('GET', '/api/get-users')
                       .respond({ users: [{earliestDueDate: new Date().toString()}] });
@@ -96,6 +99,19 @@ describe('todoCtrl', function() {
       $httpBackend.flush();
       $rootScope.getUserDetails({username: 'testUser'});
       $httpBackend.flush();
+    })
+
+    it('clears finished tasks', function() {
+      var controller= createController();
+      $httpBackend.flush();
+      $rootScope.clearDone();
+      $httpBackend.flush();
+    })
+
+    it('alerts user when feature is not available', function() {
+      var controller= createController();
+      $httpBackend.flush();
+      $rootScope.alert('msg here');
     })
 });
 

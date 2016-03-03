@@ -184,7 +184,7 @@
 	"virtualTea": { 
 		"displayName": "Schedule virtual teas", 
 		"description": "Get to know your teammates over video chat. You can use <a href=\"https://handbook.18f.gov/acano\">Acano</a>, <a href=\"https://handbook.18f.gov/google-hangouts\">Google Hangouts</a>, or <a href=\"https://handbook.18f.gov/appearin\">Appear.in</a>.",
-		"daysToComplete": 20, 
+		"daysToComplete": 12, 
 		"dependsOn": ["dayZero"]
 	},
 	"receiveSoftwareLicenses": { 

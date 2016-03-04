@@ -17,6 +17,19 @@
           <label for="datepicker">Choose {{checklist.items.dayZero.displayName}}</label>
           <md-datepicker id="datepicker"
           ng-model="checklist.dayZeroDate" md-placeholder="{{checklist.items.dayZero.displayName}}"></md-datepicker>
+          <div ng-repeat="(itemId, item) in checklist.items">
+            <div ng-if="item.prompt">
+                <p>{{ item.prompt }}</p>
+                <md-radio-group ng-model="item.selected" ng-if="item.displayType=='radio'">
+                  <md-radio-button value="{{response.text}}" ng-repeat="response in item.possibleResponses">{{ response.text }}</md-radio-button>
+                </md-radio-group>
+                <div ng-if="item.displayType=='checkbox'">
+                  <md-checkbox ng-model="response.selected" ng-repeat="response in item.possibleResponses">
+                    {{ response.text }}
+                  </md-checkbox>
+                </div>
+            </div>
+            </div>
       </div>
     </md-dialog-content>
     <md-dialog-actions layout="row"> <span flex></span>

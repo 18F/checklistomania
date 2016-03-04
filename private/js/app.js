@@ -36,6 +36,41 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 		})
 	});
 
+	var compileChecklist = function(checklist) {
+		var dayZeroDate = checklist.dayZeroDate;
+		checklist = JSON.parse(JSON.stringify(checklist));
+		checklist.dayZeroDate = dayZeroDate;
+	    compiledItems = {};
+	    Object.keys(checklist.items).forEach(function(itemId) {
+	      var item = checklist.items[itemId];
+	      if(!item.prompt) {
+	        compiledItems[itemId] = item;
+	      }
+
+	      if(item.prompt && item.displayType=='radio' && item.selected) {
+	      	var response = item.possibleResponses.filter(function(response) {
+	      		return response.text == item.selected;})[0];
+	      	Object.keys(response.items).forEach(function(responseItemId) {
+	      		compiledItems[responseItemId] = response.items[responseItemId];	
+	      	});
+	      }
+
+	      if(item.prompt && item.displayType=='checkbox') {
+	      	item.possibleResponses.forEach(function(response) {
+	      		console.log(response.selected);
+	      		if(response.selected) {
+	      			Object.keys(response.items).forEach(function(responseItemId) {
+	      				compiledItems[responseItemId] = response.items[responseItemId];	
+	      		});
+	      		}
+	      	})
+	      }
+	    })
+
+	    checklist.items = compiledItems;
+	    return checklist;
+  	}
+
 	var showSimpleToast = function(msg) {
 	    $mdToast.show(
 	      $mdToast.simple()
@@ -74,9 +109,10 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 
 	var assignToMe = function(checklist) {
 		checklist.dayZeroDate = checklist.dayZeroDate || new Date();
-		$http.get('/api/assign-checklist', 
-			{params: {checklistName: checklist.checklistName, dayZeroDate: checklist.dayZeroDate.valueOf(), 
-				notes: checklist.notes}})
+		checklist = compileChecklist(checklist);
+		$http.post('/api/assign-checklist', 
+			{checklistName: checklist.checklistName, dayZeroDate: checklist.dayZeroDate.valueOf(), 
+				notes: checklist.notes, checklist: checklist})
 			.then(function(response) {
 				getItems();
 				getUsers();

@@ -4,6 +4,70 @@ describe('todoCtrl', function() {
   var $controller;
 
     beforeEach(inject(function($injector) {
+
+      checklist = {"checklistName": "Complex Test",
+                                "checklistDescription": "A complex test with many dependencies.",
+                                "items": 
+                                  {"dayZero": { 
+                                    "displayName": "Start Date", 
+                                    "description": "First day on the job",
+                                    "daysToComplete": 0, 
+                                    "dependsOn": []
+                                  },
+                                  "signUp": { 
+                                    "displayName": "Sign Up", 
+                                    "description": "signing up",
+                                    "daysToComplete": 5, 
+                                    "dependsOn": ["dayZero"]
+                                  },
+                                  "course1": { 
+                                    "displayName": "Course One", 
+                                    "description": "the first course",
+                                    "daysToComplete": 10, 
+                                    "dependsOn": ["signUp"]
+                                  },
+                                  "course2": { 
+                                    "displayName": "Course Two", 
+                                    "description": "the second course",
+                                    "daysToComplete": 30, 
+                                    "dependsOn": ["signUp"]
+                                  },
+                                  "course3": {
+                                    "prompt": "Is it hosted on cloud.gov?",
+                                    "displayType": "radio",
+                                    "possibleResponses": [
+                                        {"text": "Yes, it is.",
+                                         "items": {
+                                            "loadIntoCloud": {
+                                              "displayName": "Load into cloud.gov",
+                                              "daysToComplete": 2,
+                                              "dependsOn": ["dayZero"]
+                                            },
+                                            "mapDomain": {
+                                              "displayName": "Map the domain name.",
+                                              "daysToComplete": 2,
+                                              "dependsOn": ["loadIntoCloud"]
+                                            }
+                                          }
+                                        },
+                                        {"text": "Nope!",
+                                         "items": {
+                                            "installOnServer": {
+                                              "displayName": "Install on a physical server",
+                                              "daysToComplete": 2,
+                                              "dependsOn": ["dayZero"]
+                                            }
+                                          }
+                                        }]
+                                  },
+                                  "finale": {
+                                    "displayName": "The Finale",
+                                    "description": "last thing",
+                                    "daysToComplete": 2,
+                                    "dependsOn": ["course1", "course2"]
+                                  }
+                                  }
+                                }
        // Set up the mock http service responses
        $httpBackend = $injector.get('$httpBackend');
        // backend definition common for all tests
@@ -25,8 +89,9 @@ describe('todoCtrl', function() {
       $httpBackend.when('GET', /\/api\/complete\-item*/)
                       .respond({ updatedItemCount: 1 });
 
-      $httpBackend.when('GET', /\/api\/assign\-checklist*/)
-                      .respond({checklistName: 'test', dayZero: new Date().toISOString()});
+      $httpBackend.when('POST', /\/api\/assign\-checklist*/)
+                      .respond({checklistName: 'test', dayZero: new Date().toISOString(), 
+                                checklist: checklist});
 
       $httpBackend.when('GET', "tmpl/assign-dialog.tmpl.html")
                       .respond('html here');
@@ -60,25 +125,19 @@ describe('todoCtrl', function() {
     });
     
     it('assigns a checklist', function() {
-      var checklist = {dayZeroDate: new Date(), checklistName: 'test', notes: 'testNotes'};
       $mdDialog = {hide: function() {}, show: function(obj) {return {then: function(fn) {fn(checklist)}}}};
       
       var controller = createController($mdDialog);
       $httpBackend.flush();
-      var checklist = {checklistName: 'test', dayZeroDate: new Date().valueOf(), 
-        notes: 'forTesting'}
       $rootScope.showAssignToMeDialog(null, checklist);
       $httpBackend.flush();
     })
 
     it('assigns a checklist with default date if none selected', function() {
-      var checklist = {dayZeroDate: null, checklistName: 'test', notes: 'testNotes'};
       $mdDialog = {hide: function() {}, show: function(obj) {return {then: function(fn) {fn(checklist)}}}};
       
       var controller = createController($mdDialog);
       $httpBackend.flush();
-      var checklist = {checklistName: 'test', dayZeroDate: null, 
-        notes: 'forTesting'}
       $rootScope.showAssignToMeDialog(null, checklist);
       $httpBackend.flush();
     })

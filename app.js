@@ -31,6 +31,7 @@ var getApp = function(passport, GitHubStrategy, github) {
   var app = express();
 
   app.use(bodyParser());
+  app.use(bodyParser.json());
   app.use(methodOverride());
   app.use(session({ secret: process.env.SESSION_SECRET }));
   app.use(passport.initialize());

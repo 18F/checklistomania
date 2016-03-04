@@ -1,0 +1,91 @@
+{"checklistName": "Example Checklist",
+"checklistDescription": "A complex test with many dependencies.",
+"items": 
+	{"dayZero": { 
+		"displayName": "Start Date", 
+		"description": "First day on the job",
+		"daysToComplete": 0, 
+		"dependsOn": []
+	},
+	"signUp": { 
+		"displayName": "Sign Up", 
+		"description": "signing up",
+		"daysToComplete": 5, 
+		"dependsOn": ["dayZero"]
+	},
+	"course1": { 
+		"displayName": "Course One", 
+		"description": "the first course",
+		"daysToComplete": 10, 
+		"dependsOn": ["signUp"]
+	},
+	"course2": { 
+		"displayName": "Course Two", 
+		"description": "the second course",
+		"daysToComplete": 30, 
+		"dependsOn": ["signUp"]
+	},
+	"course3": {
+		"prompt": "Is it hosted on cloud.gov?",
+		"displayType": "radio",
+		"possibleResponses": [
+				{"text": "Yes, it is.",
+				 "items": {
+						"loadIntoCloud": {
+							"displayName": "Load into cloud.gov",
+							"daysToComplete": 2,
+							"dependsOn": ["dayZero"]
+						},
+						"mapDomain": {
+							"displayName": "Map the domain name.",
+							"daysToComplete": 2,
+							"dependsOn": ["loadIntoCloud"]
+						}
+					}
+				},
+				{"text": "Nope!",
+				 "items": {
+						"installOnServer": {
+							"displayName": "Install on a physical server",
+							"daysToComplete": 2,
+							"dependsOn": ["dayZero"]
+						}
+					}
+				}]
+	},
+	"course4": {
+		"prompt": "What topics does this cover?",
+		"displayType": "checkbox",
+		"possibleResponses": [
+				{"text": "Technology",
+				 "items": {
+						"Andrew": {
+							"displayName": "Approver: Andrew",
+							"daysToComplete": 2,
+							"dependsOn": ["dayZero"]
+						},
+						"Tony": {
+							"displayName": "Approver: Tony",
+							"daysToComplete": 2,
+							"dependsOn": ["Andrew"]
+						}
+					}
+				},
+				{"text": "Recruiting",
+				 "items": {
+						"Jen": {
+							"displayName": "Approver: Kaitlin",
+							"daysToComplete": 2,
+							"dependsOn": ["dayZero"]
+						}
+					}
+				}]
+	},
+	"finale": {
+		"displayName": "The Finale",
+		"description": "last thing",
+		"daysToComplete": 2,
+		"dependsOn": ["course1", "course2"]
+	}
+	}
+}

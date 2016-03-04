@@ -20,9 +20,14 @@
           <div ng-repeat="(itemId, item) in checklist.items">
             <div ng-if="item.prompt">
                 <p>{{ item.prompt }}</p>
-                <md-radio-group ng-model="item.selected">
+                <md-radio-group ng-model="item.selected" ng-if="item.displayType=='radio'">
                   <md-radio-button value="{{response.text}}" ng-repeat="response in item.possibleResponses">{{ response.text }}</md-radio-button>
                 </md-radio-group>
+                <div ng-if="item.displayType=='checkbox'">
+                  <md-checkbox ng-model="response.selected" ng-repeat="response in item.possibleResponses">
+                    {{ response.text }}
+                  </md-checkbox>
+                </div>
             </div>
             </div>
       </div>

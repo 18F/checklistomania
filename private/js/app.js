@@ -44,12 +44,23 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 	        compiledItems[itemId] = item;
 	      }
 
-	      if(item.prompt && item.selected) {
+	      if(item.prompt && item.displayType=='radio' && item.selected) {
 	      	var response = item.possibleResponses.filter(function(response) {
 	      		return response.text == item.selected;})[0];
 	      	Object.keys(response.items).forEach(function(responseItemId) {
 	      		compiledItems[responseItemId] = response.items[responseItemId];	
 	      	});
+	      }
+
+	      if(item.prompt && item.displayType=='checkbox') {
+	      	item.possibleResponses.forEach(function(response) {
+	      		console.log(response.selected);
+	      		if(response.selected) {
+	      			Object.keys(response.items).forEach(function(responseItemId) {
+	      				compiledItems[responseItemId] = response.items[responseItemId];	
+	      		});
+	      		}
+	      	})
 	      }
 	    })
 

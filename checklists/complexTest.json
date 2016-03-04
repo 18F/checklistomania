@@ -53,6 +53,34 @@
 					}
 				}]
 	},
+	"course4": {
+		"prompt": "What topics does this cover?",
+		"displayType": "checkbox",
+		"possibleResponses": [
+				{"text": "Technology",
+				 "items": {
+						"Andrew": {
+							"displayName": "Approver: Andrew",
+							"daysToComplete": 2,
+							"dependsOn": ["dayZero"]
+						},
+						"Tony": {
+							"displayName": "Approver: Tony",
+							"daysToComplete": 2,
+							"dependsOn": ["Andrew"]
+						}
+					}
+				},
+				{"text": "Recruiting",
+				 "items": {
+						"Jen": {
+							"displayName": "Approver: Kaitlin",
+							"daysToComplete": 2,
+							"dependsOn": ["dayZero"]
+						}
+					}
+				}]
+	},
 	"finale": {
 		"displayName": "The Finale",
 		"description": "last thing",

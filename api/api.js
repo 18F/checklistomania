@@ -48,6 +48,7 @@ router.post('/assign-checklist', function (req, res) {
 	var timestamp = new Date().getTime();
 	var dayZeroDate = new Date(parseInt(req.body.dayZeroDate));
 	var checklist = req.body.checklist;
+	checklist.items.dayZero["completedDate"] = dayZeroDate;
 	for(var itemId in checklist.items){
 		var item = checklist.items[itemId];
 

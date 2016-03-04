@@ -25,6 +25,34 @@
 		"daysToComplete": 30, 
 		"dependsOn": ["signUp"]
 	},
+	"course3": {
+		"prompt": "Is it hosted on cloud.gov?",
+		"displayType": "radio",
+		"possibleResponses": [
+				{"text": "Yes, it is.",
+				 "items": {
+						"loadIntoCloud": {
+							"displayName": "Load into cloud.gov",
+							"daysToComplete": 2,
+							"dependsOn": ["dayZero"]
+						},
+						"mapDomain": {
+							"displayName": "Map the domain name.",
+							"daysToComplete": 2,
+							"dependsOn": ["loadIntoCloud"]
+						}
+					}
+				},
+				{"text": "Nope!",
+				 "items": {
+						"installOnServer": {
+							"displayName": "Install on a physical server",
+							"daysToComplete": 2,
+							"dependsOn": ["dayZero"]
+						}
+					}
+				}]
+	},
 	"finale": {
 		"displayName": "The Finale",
 		"description": "last thing",

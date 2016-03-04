@@ -6,8 +6,21 @@ describe("API is fully functional", function() {
 
   var user = {username: 'checkyCheckersmith', _json: {name: 'Test User', avatar_url: 'http://test.png'}};
   
+  var compileChecklist = function(checklist) {
+    compiledItems = {};
+    Object.keys(checklist.items).forEach(function(itemId) {
+      if(!checklist.items[itemId].prompt) {
+        compiledItems[itemId] = checklist.items[itemId];
+      }
+    })
+
+    checklist.items = compiledItems;
+    return checklist;
+  }
+
   var assignChecklist = function(callback) {
       var checklist = JSON.parse(fs.readFileSync('checklists/complexTest.json', 'utf8'));
+      checklist = compileChecklist(checklist);
       var options = {
         url: "http://localhost:3000/api/assign-checklist",
         json: {dayZeroDate: new Date().valueOf(), checklist: checklist, notes: 'notesHere',
@@ -57,6 +70,7 @@ describe("API is fully functional", function() {
 
   it("assigns to a checklist", function(done) {
       var checklist = JSON.parse(fs.readFileSync('checklists/complexTest.json', 'utf8'));
+      checklist = compileChecklist(checklist);
       var options = {
         url: "http://localhost:3000/api/assign-checklist",
         json: {dayZeroDate: new Date().valueOf(), checklist: checklist, notes: 'notesHere',
@@ -107,7 +121,8 @@ describe("API is fully functional", function() {
       request.get(options, function(err, response, body) {
           expect(!err && response.statusCode == 200).toBe(true);
           bodyObj = JSON.parse(body);
-          expect(bodyObj.users[0].username === 'checkyCheckersmith').toBe(true);
+          expect(bodyObj.users.filter(function(user) {
+            return user.username === 'checkyCheckersmith'}).length == 1).toBe(true);
           done();
       }); 
   });

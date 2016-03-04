@@ -74,9 +74,9 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 
 	var assignToMe = function(checklist) {
 		checklist.dayZeroDate = checklist.dayZeroDate || new Date();
-		$http.get('/api/assign-checklist', 
-			{params: {checklistName: checklist.checklistName, dayZeroDate: checklist.dayZeroDate.valueOf(), 
-				notes: checklist.notes}})
+		$http.post('/api/assign-checklist', 
+			{checklistName: checklist.checklistName, dayZeroDate: checklist.dayZeroDate.valueOf(), 
+				notes: checklist.notes, checklist: checklist})
 			.then(function(response) {
 				getItems();
 				getUsers();

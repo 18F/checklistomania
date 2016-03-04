@@ -1,18 +1,20 @@
 var request = require("request");
 var async = require("async");
+var fs = require('fs');
 
 describe("API is fully functional", function() {
 
   var user = {username: 'checkyCheckersmith', _json: {name: 'Test User', avatar_url: 'http://test.png'}};
   
   var assignChecklist = function(callback) {
-    var options = {
+      var checklist = JSON.parse(fs.readFileSync('checklists/complexTest.json', 'utf8'));
+      var options = {
         url: "http://localhost:3000/api/assign-checklist",
-        qs: {dayZeroDate: new Date().valueOf(), checklistName: 'Complex Test', notes: 'notesHere',
+        json: {dayZeroDate: new Date().valueOf(), checklist: checklist, notes: 'notesHere',
               user: user}
       };
 
-      request.get(options, function(err, response, body) {
+      request.post(options, function(err, response, body) {
         callback();
       });
   };
@@ -54,16 +56,16 @@ describe("API is fully functional", function() {
   });
 
   it("assigns to a checklist", function(done) {
+      var checklist = JSON.parse(fs.readFileSync('checklists/complexTest.json', 'utf8'));
       var options = {
         url: "http://localhost:3000/api/assign-checklist",
-        qs: {dayZeroDate: new Date().valueOf(), checklistName: 'Complex Test', notes: 'notesHere',
+        json: {dayZeroDate: new Date().valueOf(), checklist: checklist, notes: 'notesHere',
               user: user}
       };
 
-      request.get(options, function(err, response, body) {
+      request.post(options, function(err, response, body) {
           expect(!err && response.statusCode == 200).toBe(true);
-          bodyObj = JSON.parse(body);
-          expect(bodyObj.checklistName).toBe('Complex Test');
+          expect(body.checklistName).toBe('Complex Test');
           done();
       }); 
   });

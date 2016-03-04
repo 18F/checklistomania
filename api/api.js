@@ -44,35 +44,29 @@ router.get('/isalive', function (req, res) {
   res.send('OK');
 });
 
-router.get('/assign-checklist', function (req, res) {
-	var dayZeroDate = new Date(parseInt(req.query.dayZeroDate));
-	users.findOne({username: req.user.username}, function(err, user) {
-		checklists.findOne({checklistName: req.query.checklistName}, function(err, checklist) {
-				checklist.items.dayZero["completedDate"] = dayZeroDate;
-				timestamp = new Date().getTime();
-				for(var itemId in checklist.items){
-					var item = checklist.items[itemId];
+router.post('/assign-checklist', function (req, res) {
+	var timestamp = new Date().getTime();
+	var dayZeroDate = new Date(parseInt(req.body.dayZeroDate));
+	var checklist = req.body.checklist;
+	for(var itemId in checklist.items){
+		var item = checklist.items[itemId];
 
-					item["itemId"] = itemId;
-					item["owner"] = req.user.username;
-					item["checklistName"] = req.query.checklistName;
-					item["notes"] = req.query.notes;
-					item["timestamp"] = timestamp;
+		item["itemId"] = itemId;
+		item["owner"] = req.user.username;
+		item["checklistName"] = checklist.checklistName;
+		item["notes"] = req.body.notes;
+		item["timestamp"] = timestamp;
 
-					if(item.dependsOn.indexOf("dayZero") >= 0) {
-						var dueDate = new Date();
-						dueDate.setTime(dayZeroDate.getTime() + item.daysToComplete*24*60*60*1000 + 1);
-						item["dueDate"] = dueDate;
-					};
-
-					items.insert(item);
-				}
-				setEarliestDueDate(req.user.username, function() {
-					res.json({"checklistName": req.query.checklistName, 
-						"dayZero": dayZeroDate.toISOString()});
-				});
-				
-			});	
+		if(item.dependsOn.indexOf("dayZero") >= 0) {
+			var dueDate = new Date();
+			dueDate.setTime(dayZeroDate.getTime() + item.daysToComplete*24*60*60*1000 + 1);
+			item["dueDate"] = dueDate;
+		};
+		items.insert(item);
+	}
+	setEarliestDueDate(req.user.username, function() {
+		res.json({"checklistName": checklist.checklistName, 
+			"dayZero": dayZeroDate.toISOString()});
 	});
 });
 

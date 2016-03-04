@@ -25,7 +25,7 @@ describe('todoCtrl', function() {
       $httpBackend.when('GET', /\/api\/complete\-item*/)
                       .respond({ updatedItemCount: 1 });
 
-      $httpBackend.when('GET', /\/api\/assign\-checklist*/)
+      $httpBackend.when('POST', /\/api\/assign\-checklist*/)
                       .respond({checklistName: 'test', dayZero: new Date().toISOString()});
 
       $httpBackend.when('GET', "tmpl/assign-dialog.tmpl.html")

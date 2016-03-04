@@ -3,26 +3,31 @@
 "items": 
 	{"dayZero": { 
 		"displayName": "Start Date", 
+		"description": "First day on the job",
 		"daysToComplete": 0, 
 		"dependsOn": []
 	},
 	"signUp": { 
 		"displayName": "Sign Up", 
+		"description": "signing up",
 		"daysToComplete": 5, 
 		"dependsOn": ["dayZero"]
 	},
 	"course1": { 
 		"displayName": "Course One", 
+		"description": "the first course",
 		"daysToComplete": 10, 
 		"dependsOn": ["signUp"]
 	},
 	"course2": { 
 		"displayName": "Course Two", 
+		"description": "the second course",
 		"daysToComplete": 30, 
 		"dependsOn": ["signUp"]
 	},
 	"finale": {
 		"displayName": "The Finale",
+		"description": "last thing",
 		"daysToComplete": 2,
 		"dependsOn": ["course1", "course2"]
 	}

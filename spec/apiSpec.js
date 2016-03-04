@@ -19,7 +19,7 @@ describe("API is fully functional", function() {
   }
 
   var assignChecklist = function(callback) {
-      var checklist = JSON.parse(fs.readFileSync('checklists/complexTest.json', 'utf8'));
+      var checklist = JSON.parse(fs.readFileSync('checklists/example.json', 'utf8'));
       checklist = compileChecklist(checklist);
       var options = {
         url: "http://localhost:3000/api/assign-checklist",
@@ -69,7 +69,7 @@ describe("API is fully functional", function() {
   });
 
   it("assigns to a checklist", function(done) {
-      var checklist = JSON.parse(fs.readFileSync('checklists/complexTest.json', 'utf8'));
+      var checklist = JSON.parse(fs.readFileSync('checklists/example.json', 'utf8'));
       checklist = compileChecklist(checklist);
       var options = {
         url: "http://localhost:3000/api/assign-checklist",
@@ -79,7 +79,7 @@ describe("API is fully functional", function() {
 
       request.post(options, function(err, response, body) {
           expect(!err && response.statusCode == 200).toBe(true);
-          expect(body.checklistName).toBe('Complex Test');
+          expect(body.checklistName).toBe('Example Checklist');
           done();
       }); 
   });

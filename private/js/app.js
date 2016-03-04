@@ -37,6 +37,9 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 	});
 
 	var compileChecklist = function(checklist) {
+		var dayZeroDate = checklist.dayZeroDate;
+		checklist = JSON.parse(JSON.stringify(checklist));
+		checklist.dayZeroDate = dayZeroDate;
 	    compiledItems = {};
 	    Object.keys(checklist.items).forEach(function(itemId) {
 	      var item = checklist.items[itemId];

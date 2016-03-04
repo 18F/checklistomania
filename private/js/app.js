@@ -39,8 +39,17 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 	var compileChecklist = function(checklist) {
 	    compiledItems = {};
 	    Object.keys(checklist.items).forEach(function(itemId) {
-	      if(!checklist.items[itemId].prompt) {
-	        compiledItems[itemId] = checklist.items[itemId];
+	      var item = checklist.items[itemId];
+	      if(!item.prompt) {
+	        compiledItems[itemId] = item;
+	      }
+
+	      if(item.prompt && item.selected) {
+	      	var response = item.possibleResponses.filter(function(response) {
+	      		return response.text == item.selected;})[0];
+	      	Object.keys(response.items).forEach(function(responseItemId) {
+	      		compiledItems[responseItemId] = response.items[responseItemId];	
+	      	});
 	      }
 	    })
 
@@ -87,7 +96,6 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 	var assignToMe = function(checklist) {
 		checklist.dayZeroDate = checklist.dayZeroDate || new Date();
 		checklist = compileChecklist(checklist);
-		console.log(checklist);
 		$http.post('/api/assign-checklist', 
 			{checklistName: checklist.checklistName, dayZeroDate: checklist.dayZeroDate.valueOf(), 
 				notes: checklist.notes, checklist: checklist})

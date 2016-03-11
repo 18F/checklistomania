@@ -44,9 +44,7 @@ router.get('/isalive', function (req, res) {
   res.send('OK');
 });
 
-function getSortedItemIds(checklist) {
-	checklist = JSON.parse(JSON.stringify(checklist));
-	// add the children
+function addChildrenToChecklist(checklist) {
 	Object.keys(checklist.items).forEach(function(itemId) {checklist.items[itemId].children = []});
 	Object.keys(checklist.items).forEach(function(itemId) {
 		checklist.items[itemId].dependsOn.forEach(function(dependencyItemId) {
@@ -55,6 +53,13 @@ function getSortedItemIds(checklist) {
 			};
 		});
 	});
+
+	return checklist;
+}
+
+function getSortedItemIds(checklist) {
+	checklist = JSON.parse(JSON.stringify(checklist));
+
 	// define breadth first search
 	function visit(itemId) {
 		var sorted = [itemId];
@@ -90,7 +95,9 @@ router.post('/assign-checklist', function (req, res) {
 	var timestamp = new Date().getTime();
 	var dayZeroDate = new Date(parseInt(req.body.dayZeroDate));
 	var checklist = req.body.checklist;
-	checklist.items.dayZero["completedDate"] = dayZeroDate;
+	checklist.items.dayZero.completedDate = dayZeroDate;
+	checklist.items.dayZero.estimatedDueDate = dayZeroDate;
+	checklist = addChildrenToChecklist(checklist);
 	sorted = getSortedItemIds(checklist);
 	
 	sorted.forEach(function(itemId, order) {
@@ -101,7 +108,13 @@ router.post('/assign-checklist', function (req, res) {
 		item["checklistName"] = checklist.checklistName;
 		item["notes"] = req.body.notes;
 		item["timestamp"] = timestamp;
-		item["order"] = order;
+		
+		item.children.forEach(function(childItemId) {
+			var estimatedDueDate = new Date();
+			var childItem = checklist.items[childItemId];
+			estimatedDueDate.setTime(item.estimatedDueDate.getTime() + childItem.daysToComplete*24*60*60*1000 + 1);
+			checklist.items[childItemId].estimatedDueDate = estimatedDueDate;
+		})
 
 		if(item.dependsOn.indexOf("dayZero") >= 0) {
 			var dueDate = new Date();
@@ -129,9 +142,9 @@ router.get('/get-items', function(req, res) {
 	items.find({owner: username})
 		.toArray(function(err, userItems) {
 			var undone = userItems.filter(function(item) {return !item.completedDate && item.itemId !== 'dayZero'})
-									.sort(function(item1, item2) {return item1.order - item2.order});
+									.sort(function(item1, item2) {return item1.estimatedDueDate - item2.estimatedDueDate});
 			var done = userItems.filter(function(item) {return item.completedDate && item.itemId !== 'dayZero'})
-									.sort(function(item1, item2) {return item1.order - item2.order});
+									.sort(function(item1, item2) {return item1.estimatedDueDate - item2.estimatedDueDate});
 			
 			var allItems = [];			
 			undone.forEach(function(item) {allItems.push(item);});

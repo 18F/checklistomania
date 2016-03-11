@@ -28,8 +28,8 @@ MongoClient.connect(url, function(err, db) {
 	  fs.readFile(filePath, 'utf8',
 	  	function(err, data) {
 	  		checklist = JSON.parse(data);
-	  		checklists.update({"checklistName": checklist.checklistName}, checklist, {"upsert": true});
-	  	})		
+	  		checklists.insert(checklist);
+	  	});		
 		});
 	});
 });
@@ -44,12 +44,56 @@ router.get('/isalive', function (req, res) {
   res.send('OK');
 });
 
+function getSortedItemIds(checklist) {
+	checklist = JSON.parse(JSON.stringify(checklist));
+	// add the children
+	Object.keys(checklist.items).forEach(function(itemId) {checklist.items[itemId].children = []});
+	Object.keys(checklist.items).forEach(function(itemId) {
+		checklist.items[itemId].dependsOn.forEach(function(dependencyItemId) {
+			if(checklist.items[dependencyItemId].children) {
+				checklist.items[dependencyItemId].children.push(itemId);
+			};
+		});
+	});
+	// define breadth first search
+	function visit(itemId) {
+		var sorted = [itemId];
+		// visit children
+		checklist.items[itemId].children.forEach(function(childItemId) {
+			checklist.items[childItemId].dependsOn.splice(
+				checklist.items[childItemId].dependsOn.indexOf(childItemId), 1);
+		});
+
+		// get actionable
+		var actionable = checklist.items[itemId].children.filter(function(itemId) {
+			return checklist.items[itemId].dependsOn.length === 0;});
+
+		// sort actionable
+		actionable.sort(function(itemId1, itemId2) {
+			return checklist.items[itemId1].daysToComplete - checklist.items[itemId2].daysToComplete;
+		});
+
+		// traverse actionable
+		actionable.forEach(function(itemId) {
+			visit(itemId).forEach(function(traversedChild) {
+				sorted.push(traversedChild);
+			});
+		});
+
+		return sorted
+	}
+
+	return visit('dayZero');
+}
+
 router.post('/assign-checklist', function (req, res) {
 	var timestamp = new Date().getTime();
 	var dayZeroDate = new Date(parseInt(req.body.dayZeroDate));
 	var checklist = req.body.checklist;
 	checklist.items.dayZero["completedDate"] = dayZeroDate;
-	for(var itemId in checklist.items){
+	sorted = getSortedItemIds(checklist);
+	
+	sorted.forEach(function(itemId, order) {
 		var item = checklist.items[itemId];
 
 		item["itemId"] = itemId;
@@ -57,6 +101,7 @@ router.post('/assign-checklist', function (req, res) {
 		item["checklistName"] = checklist.checklistName;
 		item["notes"] = req.body.notes;
 		item["timestamp"] = timestamp;
+		item["order"] = order;
 
 		if(item.dependsOn.indexOf("dayZero") >= 0) {
 			var dueDate = new Date();
@@ -64,7 +109,8 @@ router.post('/assign-checklist', function (req, res) {
 			item["dueDate"] = dueDate;
 		};
 		items.insert(item);
-	}
+	});
+
 	setEarliestDueDate(req.user.username, function() {
 		res.json({"checklistName": checklist.checklistName, 
 			"dayZero": dayZeroDate.toISOString()});
@@ -82,29 +128,15 @@ router.get('/get-items', function(req, res) {
 	var username = req.query.username || req.user.username;
 	items.find({owner: username})
 		.toArray(function(err, userItems) {
-			var todos = userItems.filter(function(item) {return (item.dueDate && !item.completedDate)});
-			todos.sort(function(item1,item2) {return item1.dueDate.valueOf() - item2.dueDate.valueOf()})
-			var notActionable = userItems.filter(function(item) {return (item.dueDate === undefined 
-																		&& item.itemId !== 'dayZero')});
+			var undone = userItems.filter(function(item) {return !item.completedDate && item.itemId !== 'dayZero'})
+									.sort(function(item1, item2) {return item1.order - item2.order});
 			var done = userItems.filter(function(item) {return item.completedDate && item.itemId !== 'dayZero'})
+									.sort(function(item1, item2) {return item1.order - item2.order});
+			
+			var allItems = [];			
+			undone.forEach(function(item) {allItems.push(item);});
+			done.forEach(function(item) {allItems.push(item);});
 
-			var allItems = [];
-
-			allItems.push.apply(allItems, todos);
-			notActionable.forEach(function(notActionableItem) {
-				insertIdx = -1;
-				allItems.forEach(function(item, i) {
-					var itemIndex = notActionableItem.dependsOn.indexOf(item.itemId);
-					if(itemIndex >= 0) {
-						notActionableItem.dependsOn.splice(itemIndex, 1);
-						if(notActionableItem.dependsOn.length == 0) {
-							insertIdx = i
-						}
-					}
-				});
-				allItems.splice(insertIdx + 1, 0, notActionableItem);
-			});
-			allItems.push.apply(allItems, done);
 			res.json({items: allItems});		
 		});
 });

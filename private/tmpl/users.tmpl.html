@@ -26,7 +26,7 @@
             </tr>
           </thead>
           <tbody class="md-body">
-            <tr class="md-row" ng-repeat="item in items" ng-class="item.trafficLight">
+            <tr class="md-row" ng-repeat="item in user.items" ng-class="item.trafficLight">
               <td class="md-cell" ng-show="item.dueDate">{{ item.dueDate.toLocaleDateString() }} ({{ item.daysUntilDue }} days)</td>
               <td class="md-cell" ng-show="!item.dueDate">Not yet actionable</td>
               <td class="md-cell">{{ item.checklistName }}</td>

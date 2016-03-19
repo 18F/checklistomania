@@ -100,7 +100,7 @@ router.post('/assign-checklist', function (req, res) {
 	checklist = addChildrenToChecklist(checklist);
 	sorted = getSortedItemIds(checklist);
 	
-	sorted.forEach(function(itemId, order) {
+	sorted.forEach(function(itemId) {
 		var item = checklist.items[itemId];
 
 		item["itemId"] = itemId;

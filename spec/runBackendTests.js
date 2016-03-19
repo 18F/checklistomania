@@ -58,6 +58,3 @@ server.listen(3000, function () {
     spawnProcess(['node_modules/jasmine-node/bin/jasmine-node', 'spec/apiSpec.js', '--captureExceptions'], shutDownServer);
   
 });
-
-
-

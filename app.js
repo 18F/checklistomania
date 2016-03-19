@@ -8,6 +8,7 @@ var api = require('./api/api.js');
 var request = require('request');
 
 var getApp = function(passport, GitHubStrategy, github) {
+  api.setGithub(github);
   passport.serializeUser(function(user, done) {
     done(null, user);
   });

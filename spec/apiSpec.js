@@ -130,7 +130,7 @@ describe("API is fully functional", function() {
   it("adds a user", function(done) {
       var options = {
         url: "http://localhost:3000/api/add-user",
-        qs: {username: 'anthonygarvan'}
+        qs: {username: 'newChecklistUser'}
       };
 
       request.get(options, function(err, response, body) {

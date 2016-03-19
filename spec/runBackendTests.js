@@ -25,7 +25,16 @@ var github = {orgs : {getFromUser: function(obj, callback) {
 		if(obj.user == 'checkyCheckersmith') {
 			orgs = [{login: '18F'}]
 		} 
-		callback(null, orgs);}}};
+		callback(null, orgs);}},
+    user: {getFrom: function(obj, callback) {
+        var ghUser;
+        if(obj.user) {
+          ghUser = {login: 'newUser', name: 'New User', avatar_url: 'http://testNewUser.png'}
+        } else {
+          ghUser = null;
+        }
+        callback(null, ghUser);
+    }}};
 
 var app = getApp(passport, GitHubStrategy, github);
 var server = require('http').createServer(app);

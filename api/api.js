@@ -2,7 +2,7 @@ var express = require('express');
 var MongoClient = require('mongodb').MongoClient;
 var mkdirp = require('mkdirp');
 var fs = require('fs');
-var github = require('./github.js').github;
+var github;
 
 var url;
 if(process.env.VCAP_SERVICES) {
@@ -238,3 +238,5 @@ var setEarliestDueDate = function(username, callback) {
 }
 
 module.exports.router = router;
+module.exports.setGithub = function(gh) {github = gh};
+

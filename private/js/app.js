@@ -124,6 +124,7 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 	$scope.alert = function(msg) {alert(msg);}
 
 	$scope.markDone = function(item) {
+		$scope.items.splice($scope.items.indexOf(item), 1);
 		$http.get('/api/complete-item', {params: {itemId: item.itemId, checklistName: item.checklistName, 
 			id: item._id, timestamp: item.timestamp}})
 			.then(function(response) {

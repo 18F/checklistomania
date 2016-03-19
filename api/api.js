@@ -139,10 +139,16 @@ router.get('/clear-done', function(req, res) {
 
 router.get('/get-items', function(req, res) {
 	var username = req.query.username || req.user.username;
+
+	function alphaSort(item1, item2) {if(item1.displayName < item2.displayName) return -1;
+								    	if(item1.displayName > item2.displayName) return 1;
+								    	return 0;}
 	items.find({owner: username})
 		.toArray(function(err, userItems) {
 			var undone = userItems.filter(function(item) {return !item.completedDate && item.itemId !== 'dayZero'})
-									.sort(function(item1, item2) {return item1.estimatedDueDate - item2.estimatedDueDate});
+									.sort(function(item1, item2) {
+										return (item1.estimatedDueDate - item2.estimatedDueDate) || alphaSort(item1, item2);
+									});
 			var done = userItems.filter(function(item) {return item.completedDate && item.itemId !== 'dayZero'})
 									.sort(function(item1, item2) {return item1.estimatedDueDate - item2.estimatedDueDate});
 			

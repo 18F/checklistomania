@@ -2,7 +2,7 @@
 "checklistDescription": "TODO Items for all new 18F employees.",
 "items": 
 	{"dayZero": { 
-		"displayName": "Start Date", 
+		"displayName": "New Hire Start Date", 
 		"description": "First day on the job.",
 		"daysToComplete": 0, 
 		"dependsOn": []

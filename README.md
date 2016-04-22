@@ -24,7 +24,7 @@ The users tab is where you can view the status of other team members action item
 - nodejs
 
 # Setup
-Install dependecies with:
+Install dependencies with:
 ```
 $ npm install
 ```
@@ -36,6 +36,8 @@ $ export GITHUB_CLIENT_SECRET=01408892458c92e3514cd96cd6b31e6d91df25d2
 $ export SESSION_SECRET=testSessionSecret
 ```
 Alternatively, you can setup your own credentials [here](https://github.com/settings/applications/new). 
+
+Make sure you have MongoDB running locally.
 
 Run locally with:
 ```

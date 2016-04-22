@@ -177,7 +177,7 @@
 	},
 	"fillOutForm": { 
 		"displayName": "Fill out SF-450", 
-		"description": "<a href=\"https://handbook.18f.gov/hatch-act-foia-ethics-code-of-conduct/#heading-2\">Instructions</a>",
+		"description": "<a href=\"https://handbook.18f.gov/hatch-act-foia-ethics-code-of-conduct/#a-iddocumentationdocumentationa\">Instructions</a>",
 		"daysToComplete": 20, 
 		"dependsOn": ["dayZero"]
 	},

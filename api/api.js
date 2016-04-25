@@ -7,7 +7,7 @@ var github;
 var url;
 if(process.env.VCAP_SERVICES) {
 	vcapServices = JSON.parse(process.env.VCAP_SERVICES);
-	url = vcapServices["mongodb26-swarm"][0].credentials.uri	
+	url = vcapServices["mongodb26-swarm"][0].credentials.uri
 } else {
 	url = 'mongodb://localhost:27017/checklistomania';
 }
@@ -22,14 +22,16 @@ MongoClient.connect(url, function(err, db) {
 	items.ensureIndex('owner');
 	users.ensureIndex('username');
 
-	fs.readdir('./checklists', function(err, files) {
+	fs.readdir(__dirname + '/../checklists', function(err, files) {
 		files.forEach(function(fileName) {
-	  var filePath = 'checklists/' + fileName;
+		console.log(fileName)
+	  var filePath = __dirname + '/../checklists/' + fileName;
+		console.log(filePath)
 	  fs.readFile(filePath, 'utf8',
 	  	function(err, data) {
 	  		checklist = JSON.parse(data);
 	  		checklists.insert(checklist);
-	  	});		
+	  	});
 		});
 	});
 });
@@ -99,7 +101,7 @@ router.post('/assign-checklist', function (req, res) {
 	checklist.items.dayZero.estimatedDueDate = dayZeroDate;
 	checklist = addChildrenToChecklist(checklist);
 	sorted = getSortedItemIds(checklist);
-	
+
 	sorted.forEach(function(itemId) {
 		var item = checklist.items[itemId];
 
@@ -108,7 +110,7 @@ router.post('/assign-checklist', function (req, res) {
 		item["checklistName"] = checklist.checklistName;
 		item["notes"] = req.body.notes;
 		item["timestamp"] = timestamp;
-		
+
 		item.children.forEach(function(childItemId) {
 			var estimatedDueDate = new Date();
 			var childItem = checklist.items[childItemId];
@@ -125,7 +127,7 @@ router.post('/assign-checklist', function (req, res) {
 	});
 
 	setEarliestDueDate(req.user.username, function() {
-		res.json({"checklistName": checklist.checklistName, 
+		res.json({"checklistName": checklist.checklistName,
 			"dayZero": dayZeroDate.toISOString()});
 	});
 });
@@ -151,19 +153,19 @@ router.get('/get-items', function(req, res) {
 									});
 			var done = userItems.filter(function(item) {return item.completedDate && item.itemId !== 'dayZero'})
 									.sort(function(item1, item2) {return item1.estimatedDueDate - item2.estimatedDueDate});
-			
-			var allItems = [];			
+
+			var allItems = [];
 			undone.forEach(function(item) {allItems.push(item);});
 			done.forEach(function(item) {allItems.push(item);});
 
-			res.json({items: allItems});		
+			res.json({items: allItems});
 		});
 });
 
 router.get('/get-checklists', function(req, res) {
 	checklists.find({}, {sort: [["checklistName", 1]]})
 		.toArray(function(err, checklists) {
-			res.json({checklists: checklists});		
+			res.json({checklists: checklists});
 		});
 });
 
@@ -174,9 +176,9 @@ router.get('/get-users', function(req, res) {
 })
 
 router.get('/complete-item', function(req, res) {
-	
+
 	users.findOne({username: req.user.username}, function(err, user) {
-		var query = {owner: req.user.username, checklistName: req.query.checklistName, 
+		var query = {owner: req.user.username, checklistName: req.query.checklistName,
 			timestamp: parseInt(req.query.timestamp)};
 
 		items.find(query)
@@ -197,24 +199,24 @@ router.get('/complete-item', function(req, res) {
 						if(item.dependsOn.length === 0) {
 							var dueDate = new Date();
 							dueDate.setDate(new Date().getDate() + item.daysToComplete);
-							item["dueDate"] = dueDate;						
+							item["dueDate"] = dueDate;
 						}
-						
+
 						items.update({_id: item._id}, item)
 					}
 				});
 
 				setEarliestDueDate(req.user.username, function() {
-					res.json({updatedItemCount: updatedItemCount});	
+					res.json({updatedItemCount: updatedItemCount});
 				});
 		});
-	});	
+	});
 });
 
 router.get('/add-user', function(req, res) {
 	github.user.getFrom({user: req.query.username}, function(err, ghUser) {
 		if(ghUser) {
-			var user = {username: ghUser.login, 
+			var user = {username: ghUser.login,
 			          earliestDueDate: new Date().setYear(3000),
 			          fullName: ghUser.name,
 			          imgUrl: ghUser.avatar_url};
@@ -228,16 +230,16 @@ router.get('/add-user', function(req, res) {
 });
 
 var setEarliestDueDate = function(username, callback) {
-	items.aggregate([{$match: {owner: username, 
-		dueDate: {$exists: true},  completedDate: {$exists: false}}}, 
+	items.aggregate([{$match: {owner: username,
+		dueDate: {$exists: true},  completedDate: {$exists: false}}},
 		{$group: {_id: '$owner', earliestDueDate: {$min: '$dueDate'}}}],
 		function(err, result) {
 			if(result[0]) {
-				users.update({username: username}, 
-					{$set: {earliestDueDate: result[0].earliestDueDate}})				
+				users.update({username: username},
+					{$set: {earliestDueDate: result[0].earliestDueDate}})
 			} else {
-				users.update({username: username}, 
-					{$set: {earliestDueDate: new Date().setYear(3000)}})	
+				users.update({username: username},
+					{$set: {earliestDueDate: new Date().setYear(3000)}})
 			}
 			callback();
 		})
@@ -245,4 +247,3 @@ var setEarliestDueDate = function(username, callback) {
 
 module.exports.router = router;
 module.exports.setGithub = function(gh) {github = gh};
-

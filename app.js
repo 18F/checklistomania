@@ -43,10 +43,10 @@ var getApp = function(passport, GitHubStrategy, github) {
   app.use(passport.initialize());
   app.use(passport.session());
 
-  app.use( "/private", [ ensureAuthenticated, ensureGithubOrg, addToUsers, express.static( "private" ) ] );
+  app.use( "/private", [ ensureAuthenticated, ensureGithubOrg, addToUsers, express.static( __dirname + "/private" ) ] );
   app.use('/api', [ensureAuthenticated, ensureGithubOrg, addToUsers, api.router]);
 
-  app.use( "/", express.static( "public" ) );
+  app.use( "/", express.static( __dirname + "/public" ) );
 
   app.get('/auth',
     passport.authenticate('github', { scope: [ 'user:email' ] }),

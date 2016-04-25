@@ -24,9 +24,7 @@ MongoClient.connect(url, function(err, db) {
 
 	fs.readdir(__dirname + '/../checklists', function(err, files) {
 		files.forEach(function(fileName) {
-		console.log(fileName)
 	  var filePath = __dirname + '/../checklists/' + fileName;
-		console.log(filePath)
 	  fs.readFile(filePath, 'utf8',
 	  	function(err, data) {
 	  		checklist = JSON.parse(data);

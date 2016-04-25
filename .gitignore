@@ -6,3 +6,4 @@ npm-debug.log
 cf-ssh.yml
 coverage/*
 public/bower_components/*
+config/env.json

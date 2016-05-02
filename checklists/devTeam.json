@@ -45,7 +45,7 @@
 	},
 	"addStaffSkills": { 
 		"displayName": "Add staff skills", 
-		"description": "We use Float as a method for tracking skills and work hours across projects. Go to #float-help and make sure you (and your specific skills) have been added. (Your director will add you to Float.) Specific skills can include languages as well as other areas you're knowledgable about. You can see our <a href=\"https://docs.google.com/spreadsheets/d/1X0i53EqWTzh0l3lrs0us-2bZ_2Z6TUGn2Y3lPHmSuXo/edit#gid=0\">deprecated skill list</a> (we no longer use this spreadsheet) if you'd like guidance on what is appropriate to include. (You can err on the side of oversharing.)",
+		"description": "We use Float as a method for tracking work hours across projects. If you have not been given access to Float, go to #admins-float to request access.",
 		"daysToComplete": 9, 
 		"dependsOn": ["dayZero"]
 	},

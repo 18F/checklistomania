@@ -81,7 +81,7 @@
 	},
 	"learnAboutWorkingGroups": { 
 		"displayName": "Join working groups", 
-		"description": "<a href=\"https://github.com/18F/handbook/blob/staging/articles/5-training-and-professional-development/seminars/working-groups-and-guilds-101.md\">Learn about guilds and working groups</a>",
+		"description": "<a href=\"https://handbook.18f.gov/working-groups-and-guilds-101/\">Learn about guilds and working groups</a>",
 		"daysToComplete": 15, 
 		"dependsOn": ["dayZero"]
 	},

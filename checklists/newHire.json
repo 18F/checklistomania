@@ -207,7 +207,7 @@
 	},
 	"signIntoEmployeeExpress": { 
 		"displayName": "Sign into Employee Express", 
-		"description": "This is available after your first paycheck. <a href=\"handbook.18f.gov/gsa-tools-equipment-and-transit/#employee-express\">Instructions</a>",
+		"description": "This is available after your first paycheck. <a href=\"https://handbook.18f.gov/gsa-tools-equipment-and-transit/#employee-express\">Instructions</a>",
 		"daysToComplete": 20, 
 		"dependsOn": ["dayZero"]
 	},

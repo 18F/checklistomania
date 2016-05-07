@@ -29,15 +29,25 @@ Install dependencies with:
 $ npm install
 ```
 
-Use the developer github client information with: 
-```
-$ export GITHUB_CLIENT_ID=0a363c03ec2646619f57
-$ export GITHUB_CLIENT_SECRET=01408892458c92e3514cd96cd6b31e6d91df25d2
-$ export SESSION_SECRET=testSessionSecret
-```
-Alternatively, you can setup your own credentials [here](https://github.com/settings/applications/new). 
+## Environment Variables
+
+To configure this app, you can either set environment variables, or create a
+JSON file in `config/env.json` with the necessary keys. Refer to
+`config/env.json.sample` for an example.
+
+The sample `env.json` also contains useable values for `GITHUB_CLIENT_ID` and
+`GITHUB_CLIENT_SECRET`. If you prefer, you can setup your own credentials
+[here](https://github.com/settings/applications/new).
 
 Make sure you have MongoDB running locally.
+
+## Authorization
+
+This app authorizes uses by their membership in a GitHub organization. You can
+configure the `GITHUB_AUTH_ORG` environment variable to specify what org to
+check for. Note that the user's membership in that org must be publicly visible.
+
+## Running the Server
 
 Run locally with:
 ```

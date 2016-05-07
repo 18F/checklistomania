@@ -10,8 +10,8 @@ var passport = {serializeUser : function(callback) {callback({}, function() {})}
 				initialize: function() {return function(req, res, next) {next();}},
 				session: function() {return function(req, res, next) {
 					if(req.query.user) {
-					      mockUser = req.query.user;    
-					    } 
+					      mockUser = req.query.user;
+					    }
 
 					    req.user = mockUser;
 					    next();
@@ -23,8 +23,8 @@ var GitHubStrategy = function(obj, callback) {callback(null, null, null, functio
 var github = {orgs : {getFromUser: function(obj, callback) {
 		var orgs;
 		if(obj.user == 'checkyCheckersmith') {
-			orgs = [{login: '18F'}]
-		} 
+			orgs = [{login: process.env.GITHUB_AUTH_ORG}]
+		}
 		callback(null, orgs);}},
     user: {getFrom: function(obj, callback) {
         var ghUser;
@@ -43,7 +43,7 @@ server.listen(3000, function () {
   var spawn = require('child_process').spawn;
 
   console.log('Test server started...');
-  
+
   var shutDownServer = function() {
     console.log("closing server...");
     api.db.dropDatabase();
@@ -60,10 +60,10 @@ server.listen(3000, function () {
     newProc.stderr.on('data', logToConsole);
 
     newProc.on('exit', function(exitCode) {
-        callback();     
-    });  
+        callback();
+    });
   }
 
     spawnProcess(['node_modules/jasmine-node/bin/jasmine-node', 'spec/apiSpec.js', '--captureExceptions'], shutDownServer);
-  
+
 });

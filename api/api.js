@@ -227,6 +227,69 @@ router.get('/add-user', function(req, res) {
 	});
 });
 
+//api call to create new checklist
+router.post('/create-checklist/', function(req, res) {
+	
+	//sets checklist title, removes spaces
+	title = req.body.checklistName.replace(/\s+/g, ''); 
+	
+	//#####post processing BEGIN#####
+	//grabs formdata, removes "task" element, convert to JSON
+	data = req.body;
+	delete data.task;
+	
+	data.items.dayZero = {};
+	data.items.dayZero.displayName = "Start Date";
+	data.items.dayZero.description = "First day on the job.";
+	data.items.dayZero.daysToComplete = 0;
+	data.items.dayZero.dependsOn = [];
+	
+	//runs through and adds dependsOn where doesn't exist
+	var count = 0;
+	var key;
+	for(key in data.items){
+		count++;
+	}
+
+	for (i = 1; i < count; i++) {
+		if(eval('!data.items.task'+i+'.hasOwnProperty("dependsOn")')){
+			eval('data.items.task'+i+'.dependsOn = ["dayZero"];')
+		}
+	}
+	
+	data = JSON.stringify(data, null, 4);
+	data = data.replace(/\[\s+\[/g, "[");
+	data = data.replace(/\]\s+\]/g, "]");
+	//#####post processing END#####
+	
+	//writes JSON to file, saves  as [title].json in checklists folder
+	fs.writeFile('checklists/' + title + '.json', data, function (err) {
+		if (err) return console.log(err);
+	},function(err, checklists){
+		if (err) throw err;
+	});
+	
+	//resets checklists on screen to prepare to re-read 
+	//checklists incorporating the newly-created checklist
+	//without this app appends everything, d'oh!
+	checklists.remove({})
+
+	//reads all checklists back into angular template
+	fs.readdir('./checklists', function(err, files) {
+		files.forEach(function(fileName) {
+			var filePath = 'checklists/' + fileName;
+			fs.readFile(filePath, 'utf8',
+			function(err, data) {
+				checklist = JSON.parse(data);
+				checklists.insert(checklist);
+			});
+		});
+	});
+	
+	//res to angular with success, good day!
+	res.json({ success: true });
+});
+
 var setEarliestDueDate = function(username, callback) {
 	items.aggregate([{$match: {owner: username, 
 		dueDate: {$exists: true},  completedDate: {$exists: false}}}, 

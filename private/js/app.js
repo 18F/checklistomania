@@ -192,7 +192,38 @@ app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
 	      $scope.customFullscreen = (wantsFullScreen === true);
 	    });
   };
+  
+  //BEGIN new create checklist dialog
+  $scope.showCreateChecklistDialog = function(ev) {
+	    var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+	    $mdDialog.show({
+	      controller: "CreateChecklistDialogController", //new controller
+	      templateUrl: 'tmpl/create-checklist.tmpl.html', //new template
+	      parent: angular.element(document.body),
+	      targetEvent: ev,
+	      clickOutsideToClose:true,
+	      fullscreen: useFullScreen
+	    })
+	    .then(function(checklist) {
+			$http.get('/api/get-checklists').then(function(response) {
+			$scope.checklists = [];
+			response.data.checklists.forEach(function(checklist) {
+			checklist.dayZeroDate = new Date();
+			$scope.checklists.push(checklist);
+		})
+	});
 
+	      	showSimpleToast('New checklist ' + checklist.checklistName + ' successfully created!'); //new
+	    });
+	    
+	    $scope.$watch(function() {
+	      return $mdMedia('xs') || $mdMedia('sm');
+	    }, function(wantsFullScreen) {
+	      $scope.customFullscreen = (wantsFullScreen === true);
+	    });
+  };
+  //END create checklist dialog
+  
 	getItems(true);
 	getUsers();
 });
@@ -228,3 +259,45 @@ app.controller("AddUserDialogController", function ($scope, $mdDialog, $http) {
 		}
 	};
 });
+
+//BEGIN new controller to create checklist
+app.controller("CreateChecklistDialogController", function ($scope, $mdDialog, $http) {
+	$scope.cancel = function() {
+		$mdDialog.cancel()
+	}
+	//here is the item container for tasks
+	$scope.items = {};
+	//create an array for on-demand task adding
+	$scope.checklistModels = {
+		task : []
+	}; 
+
+	//allows click of 'add task' button to dynamically add next task to new checklist
+	$scope.addTask = function() {
+		var newItemNo = $scope.checklistModels.task.length+1;
+		$scope.checklistModels.task.push(['task'+newItemNo]);
+	};
+    
+	//allows removal of last task in new checklist
+	$scope.removeTask = function() {
+		var lastItem = $scope.checklistModels.task.length-1;
+		$scope.checklistModels.task.splice(lastItem);
+	};
+	
+	//makes api call to node to create checklist
+	$scope.createChecklist = function() {
+		$scope.warning = null;
+		
+		//api call posting all formdata to node
+	  	$http.post('/api/create-checklist', $scope.checklistModels)
+	      .then(function(response) {
+			if(response.data.success) {
+				$mdDialog.hide($scope.checklistModels);
+				getItems();
+			} else {
+				$scope.warning = "Sorry! Please try again";
+		}});			
+
+	};
+});
+//END new controller to create checklist

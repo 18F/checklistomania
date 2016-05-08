@@ -1,0 +1,112 @@
+<md-dialog aria-label="create checklist" ng-cloak>
+
+  <form>
+  
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+         <h2>Create Checklist</h2>
+      </div>
+    </md-toolbar>
+	
+    <md-toolbar class="md-warn" ng-show="warning">
+      <div class="md-toolbar-tools">
+        <h2 class="md-flex">{{ warning }}</h2>
+      </div>
+    </md-toolbar>
+	
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <p style="width: 300px">Get started with a new checklist!</p>
+		
+        <md-input-container
+        layout="column">
+		  <label>Name for Your Checklist?</label>
+          <input ng-model="checklistModels.checklistName" required>
+		</md-input-container>
+		
+        <md-input-container
+        layout="column">
+		  <label>What is this Checklist For?</label>
+          <input ng-model="checklistModels.checklistDescription" required>
+		</md-input-container>
+		
+		<md-input-container
+        layout="column">
+		  <label>Add your first task</label>
+          <input type="text" ng-model="checklistModels.items['task' + 1].displayName" required>
+		</md-input-container>
+		
+	    <md-input-container
+        layout="row">
+		  <label>Add a description for this task</label>
+          <input type="text" ng-model="checklistModels.items['task' + 1].description" required>
+		</md-input-container>
+		
+        <md-input-container
+        layout="row">
+		  <label>How many days until this is due?</label>
+          <input type="number" ng-model="checklistModels.items['task' + 1].daysToComplete" required>
+		</md-input-container>
+        
+        <!-- Repeat each additional task -->		
+		<div ng-repeat="checklistModel in checklistModels.task">
+		
+          <md-input-container
+          layout="row">
+		    <label>Task {{ ($index + 2) }} Name</label>
+            <input type="text" ng-model="checklistModels.items['task' + ($index+2)].displayName" required>
+		  </md-input-container>
+		  
+	      <md-input-container
+          layout="row">
+		    <label>Task {{ ($index + 2) }} Description</label>
+            <input type="text"  ng-model="checklistModels.items['task' + ($index+2)].description" required>
+		  </md-input-container>
+		  
+          <md-input-container
+          layout="row">
+		    <label>How many days until this is due?</label>
+            <input type="number" min="0"  ng-model="checklistModels.items['task' + ($index+2)].daysToComplete" required>
+		  </md-input-container>
+		  
+          <md-input-container style="margin-right: 10px;">
+		    <label>Depends on? (optional)</label>
+            <md-select ng-model="checklistModels.items['task' + ($index+2)].dependsOn">
+			  <md-option ng-value="task" ng-repeat="task in checklistModels.task">
+			    {{task}}
+			  </md-option>
+			</md-select>
+		  </md-input-container>
+		  
+		  <md-button ng-click="checklistModels.items['task' + ($index+2)].dependsOn=[&quot;dayZero&quot;]">
+		    Clear
+		  </md-button>
+		  
+          <md-button class="md-warn" ng-show="$last" ng-click="removeTask()" style="margin-right: 20px;">
+		    Remove task
+		  </md-button>
+		  
+        </div>
+		
+        <md-button ng-click="addTask()" style="margin-right: 20px;">
+		  Add task
+		</md-button>
+		
+      </div>
+    </md-dialog-content>
+	
+    <md-dialog-actions layout="row"> <span flex></span>
+	
+      <md-button ng-click="cancel()">
+	    Cancel
+	  </md-button>
+	  
+      <md-button ng-click="createChecklist()" ng-disabled="form.$invalid" style="margin-right:20px;">
+	    Create Checklist
+	  </md-button>
+	  
+    </md-dialog-actions>
+	
+  </form>
+  
+</md-dialog>

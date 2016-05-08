@@ -1,6 +1,7 @@
 
   <md-content class="md-padding">
-    <div class="md-display-1">Checklists</div>
+	<!--added "Create Checklist" link -->
+    <div class="md-display-1">Checklists <md-button ng-click="showCreateChecklistDialog($event)">Create Checklist</md-button></div>
     <div layout="row" layout-wrap layout-align="center">
       <md-card ng-repeat="checklist in checklists" flex="45">
         <md-card-title>

@@ -1,136 +1,130 @@
 {"checklistName": "Dev Team Member",
 "checklistDescription": "TODO Items for new members of dev team.",
-"items": 
-	{"dayZero": { 
-		"displayName": "Start Date", 
+"items":
+	{"dayZero": {
+		"displayName": "Start Date",
 		"description": "First day on the job.",
-		"daysToComplete": 0, 
+		"daysToComplete": 0,
 		"dependsOn": []
 	},
-	"checkCalendars": { 
-		"displayName": "Check 18F Dev calendar.", 
+	"checkCalendars": {
+		"displayName": "Check 18F Dev Calendar",
 		"description": "Double check with your buddy or facilitator to make sure you have been added to the Dev calendar.",
-		"daysToComplete": 1, 
+		"daysToComplete": 1,
 		"dependsOn": ["dayZero"]
 	},
-	"addToListservs": { 
-		"displayName": "Check listservs", 
+	"addToListservs": {
+		"displayName": "Check Listservs",
 		"description": "Your facilitator should have added you to the #dev listserv. Double check to make sure you've been added.",
-		"daysToComplete": 1, 
+		"daysToComplete": 1,
 		"dependsOn": ["dayZero"]
 	},
-	"firstCheckIn": { 
-		"displayName": "Facilitator Check in", 
-		"description": "Your facilitator will arrange an introductory meeting with you. See <a href=\"https://docs.google.com/document/d/1_NKx-zMwYqBqV48k062j4X2zdhKdYUgYlnM3wMpn5p8/edit#heading=h.oqzmgpl64nct\">topics for introductory meetings</a> if you need inspiration",
-		"daysToComplete": 2, 
+	"firstCheckIn": {
+		"displayName": "Facilitator Check-in",
+		"description": "Your facilitator will arrange an introductory meeting with you. See <a href=\"https://docs.google.com/document/d/1_NKx-zMwYqBqV48k062j4X2zdhKdYUgYlnM3wMpn5p8/edit#heading=h.oqzmgpl64nct\">topics for introductory meetings</a> if you need inspiration.",
+		"daysToComplete": 2,
 		"dependsOn": ["dayZero"]
 	},
-	"runLaptop": { 
-		"displayName": "Run Laptop Script", 
-		"description": "Run the <a href=\"https://github.com/18F/laptop\">laptop script</a>This is not obligatory if you prefer to manage your machine setup a different way.",
-		"daysToComplete": 4, 
+	"runLaptop": {
+		"displayName": "Run Laptop Script",
+		"description": "Run the <a href=\"https://github.com/18F/laptop\">laptop script</a>. This is not obligatory if you prefer to manage your machine setup a different way.",
+		"daysToComplete": 4,
 		"dependsOn": ["dayZero"]
 	},
-	"meetFacilitatorTeam": { 
-		"displayName": "Meet your team", 
+	"meetFacilitatorTeam": {
+		"displayName": "Meet Your Facilitator Team",
 		"description": "Your facilitator will introduce you to your facilitator team.",
-		"daysToComplete": 4, 
+		"daysToComplete": 4,
 		"dependsOn": ["firstCheckIn"]
 	},
-	"readAboutTeam": { 
-		"displayName": "Read about team", 
-		"description": "<a href=\"https://handbook.18f.gov/engineering\">Read about the Engineering Team</a>",
-		"daysToComplete": 4, 
+	"readAboutTeam": {
+		"displayName": "Read about Engineering Chapter",
+		"description": "<a href=\"https://handbook.18f.gov/engineering\">Read about the Engineering Chapter</a>.",
+		"daysToComplete": 4,
 		"dependsOn": ["dayZero"]
 	},
-	"addStaffSkills": { 
-		"displayName": "Add staff skills", 
+	"addStaffSkills": {
+		"displayName": "Add Staff Skills",
 		"description": "We use Float as a method for tracking work hours across projects. If you have not been given access to Float, go to #admins-float to request access.",
-		"daysToComplete": 9, 
+		"daysToComplete": 9,
 		"dependsOn": ["dayZero"]
 	},
-	"setUpGitHub": { 
-		"displayName": "Set up GitHub", 
+	"setUpGitHub": {
+		"displayName": "Setup GitHub",
 		"description": "You should have received instructions via Dolores to set up your 18F GitHub account. <a href=\"https://github.com/18F/handbook/blob/staging/articles/5-training-and-professional-development/seminars/github-and-18f-site.md#1-setting-up-your-account\">Instructions are here.</a>",
-		"daysToComplete": 2, 
+		"daysToComplete": 2,
 		"dependsOn": ["dayZero"]
 	},
-	"readGuide": { 
-		"displayName": "Read Dev guide", 
-		"description": "Read the <a href=\"https://pages.18f.gov/development-guide\">Developer Guide</a>",
-		"daysToComplete": 20, 
+	"readGuide": {
+		"displayName": "Read Dev Guide",
+		"description": "Read the <a href=\"https://pages.18f.gov/development-guide\">Developer Guide</a>.",
+		"daysToComplete": 20,
 		"dependsOn": ["dayZero"]
 	},
-	"learnGitHub": { 
-		"displayName": "Learn GitHub", 
-		"description": "If not already comfortable with Git/GitHub, go through a tutorial (e.g. <a href=\"https://18f.gsa.gov/2015/03/03/how-to-use-github-and-the-terminal-a-guide/\">this one</a>",
-		"daysToComplete": 5, 
+	"learnGitHub": {
+		"displayName": "Learn GitHub",
+		"description": "If not already comfortable with Git/GitHub, go through a tutorial (e.g. <a href=\"https://18f.gsa.gov/2015/03/03/how-to-use-github-and-the-terminal-a-guide/\">this one</a>.",
+		"daysToComplete": 5,
 		"dependsOn": ["setUpGitHub"]
 	},
-	"attendFacilitatorGroupMeeting": { 
-		"displayName": "AttendFacilitatorMeeting", 
+	"attendFacilitatorGroupMeeting": {
+		"displayName": "Attend Facilitator Meeting",
 		"description": "During your first week, you'll meet your Facilitator team and then go to the group meeting.",
-		"daysToComplete": 5, 
+		"daysToComplete": 5,
 		"dependsOn": ["meetFacilitatorTeam"]
 	},
-	"ReadBeforeYouShip": { 
-		"displayName": "Read Before you Ship", 
-		"description": "We require anyone who works with dev, devops, product, infrastucture, and design to read our  <a href=\"https://pages.18f.gov/before-you-ship/\">Before you Ship guide.</a> Please make sure you've read the section on ATOs and if you have any questions, please ask in #devops.",
-		"daysToComplete": 5, 
+	"ReadBeforeYouShip": {
+		"displayName": "Read Before You Ship",
+		"description": "We require anyone who works with dev, devops, product, infrastucture, and design to read our  <a href=\"https://pages.18f.gov/before-you-ship/\">Before You Ship guide.</a> Please make sure you've read the section on ATOs and if you have any questions, please ask in #devops.",
+		"daysToComplete": 5,
 		"dependsOn": ["dayZero"]
 	},
-	"learnAboutWorkingGroups": { 
-		"displayName": "Join working groups", 
-		"description": "<a href=\"https://handbook.18f.gov/working-groups-and-guilds-101/\">Learn about guilds and working groups</a>",
-		"daysToComplete": 15, 
+	"learnAboutWorkingGroups": {
+		"displayName": "Join Working Groups",
+		"description": "<a href=\"https://handbook.18f.gov/working-groups-and-guilds-101/\">Learn about guilds and working groups</a>.",
+		"daysToComplete": 15,
 		"dependsOn": ["dayZero"]
 	},
-	"lookAtProjects": { 
-		"displayName": "Look for projects.", 
-		"description": "Your facilitator and director will talk to you about the project you'll be staffed on. If you are in need of a short-term project, look at <a href=\"https://openopps.digitalgov.gov\">Open Opportunities</a>, specifically <a href=\"https://openopps.digitalgov.gov/tasks?search=18F\">18F's open tasks</a>",
-		"daysToComplete": 15, 
+	"lookAtProjects": {
+		"displayName": "Look for Projects",
+		"description": "Your facilitator and director will talk to you about the project you'll be staffed on. If you are in need of a short-term project, look at <a href=\"https://openopps.digitalgov.gov\">Open Opportunities</a>, specifically <a href=\"https://openopps.digitalgov.gov/tasks?search=18F\">18F's open tasks</a>.",
+		"daysToComplete": 15,
 		"dependsOn": ["firstCheckIn"]
 	},
-	"lookAtProjects": { 
-		"displayName": "Look for projects.", 
-		"description": "Your facilitator and director will talk to you about the project you'll be staffed on. If you are in need of a short-term project, look at <a href=\"https://openopps.digitalgov.gov\">Open Opportunities</a>, specifically <a href=\"https://openopps.digitalgov.gov/tasks?search=18F\">18F's open tasks</a>",
-		"daysToComplete": 15, 
-		"dependsOn": ["firstCheckIn"]
-	},
-	"cloudGov": { 
-		"displayName": "Cloud.gov walkthrough.", 
+	"cloudGov": {
+		"displayName": "Cloud.gov Walkthrough",
 		"description": "Your facilitator and director will talk to you about cloud.gov. Look at <a href=\"https://cloud.gov\">Cloud.gov</a> and go to cloud.gov with questions.",
-		"daysToComplete": 15, 
+		"daysToComplete": 15,
 		"dependsOn": ["firstCheckIn"]
 	},
-	"deploycloudGov": { 
-		"displayName": "Deploy to Cloud Foundry.", 
-		"description": "Your facilitator and director will talk to you about cloud.gov. Look at <a href=\"https://docs.cloud.gov/getting-started/your-first-deploy/\">for instructions</a>.",
-		"daysToComplete": 15, 
+	"deploycloudGov": {
+		"displayName": "Deploy to Cloud Foundry",
+		"description": "Deploy a sample application to learn about Cloud Foundry. <a href=\"https://docs.cloud.gov/getting-started/your-first-deploy/\">Instructions</a>.",
+		"daysToComplete": 15,
 		"dependsOn": ["cloudGov"]
 	},
-	"performancePlanMeeting": { 
-		"displayName": "Performance Plan Meeting.", 
+	"performancePlanMeeting": {
+		"displayName": "Performance Plan Meeting",
 		"description": "You will meet with your director and facilitator to discuss your <a href=\"https://docs.google.com/document/d/1dRsoHGPv12IRjlWHl1uW63pMEad15GcmhP2m7jyU27M/edit\">Performance Plan</a>. You will also meet with your facilitator to create OKRs.",
-		"daysToComplete": 15, 
+		"daysToComplete": 15,
 		"dependsOn": ["firstCheckIn"]
 	},
-	"techTalkSignUp": { 
-		"displayName": "Tech Talks.", 
+	"techTalkSignUp": {
+		"displayName": "Tech Talks",
 		"description": "Sign up for a <a href=\"https://github.com/18F/tech-talks\">tech talk</a>. Ask your facilitator any questions you may have.",
-		"daysToComplete": 20, 
+		"daysToComplete": 20,
 		"dependsOn": ["firstCheckIn"]
 	},
-	"giveHiringFeedback": { 
-		"displayName": "Give Hiring Feedback.", 
+	"giveHiringFeedback": {
+		"displayName": "Give Hiring Feedback",
 		"description": "Your director and facilitator will ask you for feedback on your hiring process, so that they may improve it for others.",
-		"daysToComplete": 20, 
+		"daysToComplete": 20,
 		"dependsOn": ["performancePlanMeeting"]
 	},
-	"becomeInterviewer": { 
-		"displayName": "Become interviewer.", 
+	"becomeInterviewer": {
+		"displayName": "Become an Interviewer",
 		"description": "If and when you're comfortable, your director will set you up with a veteran inteviewer to conduct interviews for 18F.",
-		"daysToComplete": 40, 
+		"daysToComplete": 40,
 		"dependsOn": ["performancePlanMeeting"]
 
 

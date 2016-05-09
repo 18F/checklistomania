@@ -105,7 +105,7 @@
 	},
 	"deploycloudGov": { 
 		"displayName": "Deploy to Cloud Foundry.", 
-		"description": "Your facilitator and director will talk to you about cloud.gov. Look at <a href=\"https://docs.cloud.gov/getting-started/your-first-deploy/\">for instructions</a>.",
+		"description": "<a href=\"https://docs.cloud.gov/getting-started/your-first-deploy/\">Instructions</a>",
 		"daysToComplete": 15, 
 		"dependsOn": ["cloudGov"]
 	},

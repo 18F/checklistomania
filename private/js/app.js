@@ -1,230 +1,230 @@
 var app = angular.module("app", ['ngMaterial']);
 
-app.controller("todoCtrl", function($scope, $http, $sce, $mdToast, 
-	$mdDialog, $mdMedia) {
-	
-	var getDaysUntilDue = function(dueDate) {
-		return Math.round((dueDate.getTime() - new Date().getTime())/(24*60*60*1000));
-	}
+app.controller("todoCtrl", function($scope, $http, $sce, $mdToast,
+  $mdDialog, $mdMedia) {
 
-	$scope.getTrafficLight = function(item) {
-		if(item.completedDate) return "clearLight";
-		if(!item.dueDate) return "greyLight";
-		if(item.daysUntilDue <= 0) return "redLight";
-		if(item.daysUntilDue <=2) return "yellowLight";
-		if(item.daysUntilDue > 2) return "greenLight";
-	}
+  var getDaysUntilDue = function(dueDate) {
+    return Math.round((dueDate.getTime() - new Date().getTime())/(24*60*60*1000));
+  }
 
-	var formatItem = function(item) {
-		if(item.dueDate) {
-			item.dueDate = new Date(item.dueDate);	
-			item.daysUntilDue = getDaysUntilDue(item.dueDate);
-		} else {
-			item.dueDate = null;
-			item.daysUntilDue = null;
-		}
-		item.descriptionHtml = $sce.trustAsHtml(item.description);
-		item.trafficLight = $scope.getTrafficLight(item);		
-		return item;
-	}
+  $scope.getTrafficLight = function(item) {
+    if(item.completedDate) return "clearLight";
+    if(!item.dueDate) return "greyLight";
+    if(item.daysUntilDue <= 0) return "redLight";
+    if(item.daysUntilDue <=2) return "yellowLight";
+    if(item.daysUntilDue > 2) return "greenLight";
+  }
 
-	$http.get('/api/get-checklists').then(function(response) {
-		$scope.checklists = [];
-		response.data.checklists.forEach(function(checklist) {
-			checklist.dayZeroDate = new Date();
-			$scope.checklists.push(checklist);
-		})
-	});
+  var formatItem = function(item) {
+    if(item.dueDate) {
+      item.dueDate = new Date(item.dueDate);
+      item.daysUntilDue = getDaysUntilDue(item.dueDate);
+    } else {
+      item.dueDate = null;
+      item.daysUntilDue = null;
+    }
+    item.descriptionHtml = $sce.trustAsHtml(item.description);
+    item.trafficLight = $scope.getTrafficLight(item);
+    return item;
+  }
 
-	var compileChecklist = function(checklist) {
-		var dayZeroDate = checklist.dayZeroDate;
-		checklist = JSON.parse(JSON.stringify(checklist));
-		checklist.dayZeroDate = dayZeroDate;
-	    compiledItems = {};
-	    Object.keys(checklist.items).forEach(function(itemId) {
-	      var item = checklist.items[itemId];
-	      if(!item.prompt) {
-	        compiledItems[itemId] = item;
-	      }
+  $http.get('/api/get-checklists').then(function(response) {
+    $scope.checklists = [];
+    response.data.checklists.forEach(function(checklist) {
+      checklist.dayZeroDate = new Date();
+      $scope.checklists.push(checklist);
+    })
+  });
 
-	      if(item.prompt && item.displayType=='radio' && item.selected) {
-	      	var response = item.possibleResponses.filter(function(response) {
-	      		return response.text == item.selected;})[0];
-	      	Object.keys(response.items).forEach(function(responseItemId) {
-	      		compiledItems[responseItemId] = response.items[responseItemId];	
-	      	});
-	      }
+  var compileChecklist = function(checklist) {
+    var dayZeroDate = checklist.dayZeroDate;
+    checklist = JSON.parse(JSON.stringify(checklist));
+    checklist.dayZeroDate = dayZeroDate;
+      compiledItems = {};
+      Object.keys(checklist.items).forEach(function(itemId) {
+        var item = checklist.items[itemId];
+        if(!item.prompt) {
+          compiledItems[itemId] = item;
+        }
 
-	      if(item.prompt && item.displayType=='checkbox') {
-	      	item.possibleResponses.forEach(function(response) {
-	      		console.log(response.selected);
-	      		if(response.selected) {
-	      			Object.keys(response.items).forEach(function(responseItemId) {
-	      				compiledItems[responseItemId] = response.items[responseItemId];	
-	      		});
-	      		}
-	      	})
-	      }
-	    })
+        if(item.prompt && item.displayType=='radio' && item.selected) {
+          var response = item.possibleResponses.filter(function(response) {
+            return response.text == item.selected;})[0];
+          Object.keys(response.items).forEach(function(responseItemId) {
+            compiledItems[responseItemId] = response.items[responseItemId];
+          });
+        }
 
-	    checklist.items = compiledItems;
-	    return checklist;
-  	}
+        if(item.prompt && item.displayType=='checkbox') {
+          item.possibleResponses.forEach(function(response) {
+            console.log(response.selected);
+            if(response.selected) {
+              Object.keys(response.items).forEach(function(responseItemId) {
+                compiledItems[responseItemId] = response.items[responseItemId];
+            });
+            }
+          })
+        }
+      })
 
-	var showSimpleToast = function(msg) {
-	    $mdToast.show(
-	      $mdToast.simple()
-	        .textContent(msg)
-	        .position("top right")
-	        .hideDelay(2000)
-	    );
-	  };
+      checklist.items = compiledItems;
+      return checklist;
+    }
 
-	var getUsers = function() {
-		$http.get('/api/get-users').then(function(response) {
-			$scope.users = [];
-			response.data.users.forEach(function(user) {
-				user.earliestDueDate = new Date(user.earliestDueDate);
-				user.trafficLight = $scope.getTrafficLight({daysUntilDue: getDaysUntilDue(user.earliestDueDate), 
-					dueDate: user.earliestDueDate});
-				$scope.users.push(user);
-			});
-		});		
-	}
+  var showSimpleToast = function(msg) {
+      $mdToast.show(
+        $mdToast.simple()
+          .textContent(msg)
+          .position("top right")
+          .hideDelay(2000)
+      );
+    };
 
-	var getItems = function(setDefaultTab) {
-		$http.get('/api/get-items').then(function(response) {
-			$scope.items = [];
-			response.data.items.forEach(function(item) {
-				$scope.items.push(formatItem(item));
-			});
+  var getUsers = function() {
+    $http.get('/api/get-users').then(function(response) {
+      $scope.users = [];
+      response.data.users.forEach(function(user) {
+        user.earliestDueDate = new Date(user.earliestDueDate);
+        user.trafficLight = $scope.getTrafficLight({daysUntilDue: getDaysUntilDue(user.earliestDueDate),
+          dueDate: user.earliestDueDate});
+        $scope.users.push(user);
+      });
+    });
+  }
 
-			if(setDefaultTab) {
-				$scope.tabDefaultIndex = function() {
-					if($scope.items.length == 0) return 1;
-					return 0;
-				}();
-			}
-	})}
+  var getItems = function(setDefaultTab) {
+    $http.get('/api/get-items').then(function(response) {
+      $scope.items = [];
+      response.data.items.forEach(function(item) {
+        $scope.items.push(formatItem(item));
+      });
 
-	var assignToMe = function(checklist) {
-		checklist.dayZeroDate = checklist.dayZeroDate || new Date();
-		checklist = compileChecklist(checklist);
-		$http.post('/api/assign-checklist', 
-			{checklistName: checklist.checklistName, dayZeroDate: checklist.dayZeroDate.valueOf(), 
-				notes: checklist.notes, checklist: checklist})
-			.then(function(response) {
-				getItems();
-				getUsers();
-				$mdDialog.hide()
-				showSimpleToast(checklist.checklistName + ' added to your Tasks!');
-			});
-	};
+      if(setDefaultTab) {
+        $scope.tabDefaultIndex = function() {
+          if($scope.items.length == 0) return 1;
+          return 0;
+        }();
+      }
+  })}
 
-	$scope.alert = function(msg) {alert(msg);}
+  var assignToMe = function(checklist) {
+    checklist.dayZeroDate = checklist.dayZeroDate || new Date();
+    checklist = compileChecklist(checklist);
+    $http.post('/api/assign-checklist',
+      {checklistName: checklist.checklistName, dayZeroDate: checklist.dayZeroDate.valueOf(),
+        notes: checklist.notes, checklist: checklist})
+      .then(function(response) {
+        getItems();
+        getUsers();
+        $mdDialog.hide()
+        showSimpleToast(checklist.checklistName + ' added to your Tasks!');
+      });
+  };
 
-	$scope.markDone = function(item) {
-		$scope.items.splice($scope.items.indexOf(item), 1);
-		$http.get('/api/complete-item', {params: {itemId: item.itemId, checklistName: item.checklistName, 
-			id: item._id, timestamp: item.timestamp}})
-			.then(function(response) {
-				getItems();
-				getUsers();
-			})
-	}
+  $scope.alert = function(msg) {alert(msg);}
 
-	$scope.clearDone = function() {
-		$http.get('/api/clear-done').then(function(response) {
-			getItems();
-			getUsers();
-		})
-	}
+  $scope.markDone = function(item) {
+    $scope.items.splice($scope.items.indexOf(item), 1);
+    $http.get('/api/complete-item', {params: {itemId: item.itemId, checklistName: item.checklistName,
+      id: item._id, timestamp: item.timestamp}})
+      .then(function(response) {
+        getItems();
+        getUsers();
+      })
+  }
 
-	$scope.getUserDetails = function(user) {
-		$http.get('/api/get-items', {params: {username: user.username}}).then(function(response) {
-					user.expanded = true;
-					user.items = [];
-					response.data.items.forEach(function(item) {	
-						user.items.push(formatItem(item));
-					});})
-	}
+  $scope.clearDone = function() {
+    $http.get('/api/clear-done').then(function(response) {
+      getItems();
+      getUsers();
+    })
+  }
 
-	$scope.showAssignToMeDialog = function(ev, checklist) {
-	    var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
-	    $mdDialog.show({
-	      controller: "AssignDialogController",
-	      templateUrl: 'tmpl/assign-dialog.tmpl.html',
-	      parent: angular.element(document.body),
-	      targetEvent: ev,
-	      clickOutsideToClose:true,
-	      fullscreen: useFullScreen,
-	      locals: {checklist: checklist}
-	    })
-	    .then(function(checklist) {
-	      assignToMe(checklist);
-	    });
-	    
-	    $scope.$watch(function() {
-	      return $mdMedia('xs') || $mdMedia('sm');
-	    }, function(wantsFullScreen) {
-	      $scope.customFullscreen = (wantsFullScreen === true);
-	    });
+  $scope.getUserDetails = function(user) {
+    $http.get('/api/get-items', {params: {username: user.username}}).then(function(response) {
+          user.expanded = true;
+          user.items = [];
+          response.data.items.forEach(function(item) {
+            user.items.push(formatItem(item));
+          });})
+  }
+
+  $scope.showAssignToMeDialog = function(ev, checklist) {
+      var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+      $mdDialog.show({
+        controller: "AssignDialogController",
+        templateUrl: 'tmpl/assign-dialog.tmpl.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose:true,
+        fullscreen: useFullScreen,
+        locals: {checklist: checklist}
+      })
+      .then(function(checklist) {
+        assignToMe(checklist);
+      });
+
+      $scope.$watch(function() {
+        return $mdMedia('xs') || $mdMedia('sm');
+      }, function(wantsFullScreen) {
+        $scope.customFullscreen = (wantsFullScreen === true);
+      });
   };
 
   $scope.showAddUserDialog = function(ev) {
-	    var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
-	    $mdDialog.show({
-	      controller: "AddUserDialogController",
-	      templateUrl: 'tmpl/add-user.tmpl.html',
-	      parent: angular.element(document.body),
-	      targetEvent: ev,
-	      clickOutsideToClose:true,
-	      fullscreen: useFullScreen
-	    })
-	    .then(function(username) {
-	      	showSimpleToast('Added user "' + username + '"!');
-			getUsers();
-	    });
-	    
-	    $scope.$watch(function() {
-	      return $mdMedia('xs') || $mdMedia('sm');
-	    }, function(wantsFullScreen) {
-	      $scope.customFullscreen = (wantsFullScreen === true);
-	    });
+      var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+      $mdDialog.show({
+        controller: "AddUserDialogController",
+        templateUrl: 'tmpl/add-user.tmpl.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose:true,
+        fullscreen: useFullScreen
+      })
+      .then(function(username) {
+          showSimpleToast('Added user "' + username + '"!');
+      getUsers();
+      });
+
+      $scope.$watch(function() {
+        return $mdMedia('xs') || $mdMedia('sm');
+      }, function(wantsFullScreen) {
+        $scope.customFullscreen = (wantsFullScreen === true);
+      });
   };
 
-	getItems(true);
-	getUsers();
+  getItems(true);
+  getUsers();
 });
 
 app.controller("AssignDialogController", function ($scope, $mdDialog, checklist) {
-	$scope.checklist = checklist;
+  $scope.checklist = checklist;
 
-	$scope.cancel = function() {
-		$mdDialog.cancel()
-	}
-	$scope.assign = function() {
-	  	$mdDialog.hide(checklist);
-	};
+  $scope.cancel = function() {
+    $mdDialog.cancel()
+  }
+  $scope.assign = function() {
+      $mdDialog.hide(checklist);
+  };
 });
 
 app.controller("AddUserDialogController", function ($scope, $mdDialog, $http) {
-	$scope.cancel = function() {
-		$mdDialog.cancel()
-	}
-	$scope.addUser = function() {
-		$scope.warning = null;
+  $scope.cancel = function() {
+    $mdDialog.cancel()
+  }
+  $scope.addUser = function() {
+    $scope.warning = null;
 
-		if($scope.username) {
-	  		$http.get('/api/add-user', {params: {username: $scope.username}})
-		      .then(function(response) {
-				if(response.data.success) {
-					$mdDialog.hide($scope.username);
-				} else {
-					$scope.warning = "Could not find username on github.";
-			}});			
-		} else {
-			$scope.warning = "You must enter a github username."; 
-		}
-	};
+    if($scope.username) {
+        $http.get('/api/add-user', {params: {username: $scope.username}})
+          .then(function(response) {
+        if(response.data.success) {
+          $mdDialog.hide($scope.username);
+        } else {
+          $scope.warning = "Could not find username on github.";
+      }});
+    } else {
+      $scope.warning = "You must enter a github username.";
+    }
+  };
 });

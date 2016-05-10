@@ -5,27 +5,27 @@ var http = require('http');
 http.IncomingMessage.prototype.isAuthenticated = function() {return true};
 
 var passport = {serializeUser : function(callback) {callback({}, function() {})},
-				deserializeUser: function(callback) {callback({}, function() {})},
-				use: function(strategy) {},
-				initialize: function() {return function(req, res, next) {next();}},
-				session: function() {return function(req, res, next) {
-					if(req.query.user) {
-					      mockUser = req.query.user;
-					    }
+        deserializeUser: function(callback) {callback({}, function() {})},
+        use: function(strategy) {},
+        initialize: function() {return function(req, res, next) {next();}},
+        session: function() {return function(req, res, next) {
+          if(req.query.user) {
+                mockUser = req.query.user;
+              }
 
-					    req.user = mockUser;
-					    next();
-					};},
-				authenticate: function(type, obj) {return function() {}}}
+              req.user = mockUser;
+              next();
+          };},
+        authenticate: function(type, obj) {return function() {}}}
 
 var GitHubStrategy = function(obj, callback) {callback(null, null, null, function() {})};
 
 var github = {orgs : {getFromUser: function(obj, callback) {
-		var orgs;
-		if(obj.user == 'checkyCheckersmith') {
-			orgs = [{login: process.env.GITHUB_ORG}]
-		}
-		callback(null, orgs);}},
+    var orgs;
+    if(obj.user == 'checkyCheckersmith') {
+      orgs = [{login: process.env.GITHUB_ORG}]
+    }
+    callback(null, orgs);}},
     user: {getFrom: function(obj, callback) {
         var ghUser;
         if(obj.user) {

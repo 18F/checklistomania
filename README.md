@@ -19,24 +19,32 @@ The checklists tab is where you assign yourself a new pre-defined checklist:
 The users tab is where you can view the status of other team members action items, helpful if you want a hint or if you are an admin keeping track of where everyone is:
 ![Users](/public/img/users.png?raw=true "Users")
 
-## Requirements
-- Mongodb ([Installation instructions](https://docs.mongodb.com/manual/installation/))
-- nodejs ([Download page](https://nodejs.org/en/download/))
-
 ## Running Checklistomania
-Install application dependencies with:
+Checklistomania is a [NodeJS](https://nodejs.org) application on the back-end, and its front-end is an [AngularJS](https://angularjs.org/) single-page application.
+
+If you'd like to run Checklistomania for development purposes, follow these steps:
+
+First, install NodeJS ([Download page](https://nodejs.org/en/download/)) and MongoDB ([Installation instructions](https://docs.mongodb.com/manual/installation/))
+
+Clone Checklistomania and `cd` into its directory.
+
+Install local node dependencies with:
 ```shell
 npm install
 ```
 
+Checklistomania uses GitHub for user authentication. All users must be registered on GitHub and must be part of a GitHub organization. Users will need to set their organization membership to public (see instructions [here](https://help.github.com/articles/publicizing-or-hiding-organization-membership/))
+
 Specify GitHub application credentials as environment variables.
-You can use the test credentials below, or create your own credentials [here](https://github.com/settings/applications/new) and set `GITHUB_ORG` to an organization of your choice.
+You can use the test credentials below, or create your own credentials [here](https://github.com/settings/applications/new) and set `GITHUB_ORG` to a GitHub organization name of your choice.
 ```shell
 export GITHUB_CLIENT_ID=0a363c03ec2646619f57
 export GITHUB_CLIENT_SECRET=01408892458c92e3514cd96cd6b31e6d91df25d2
 export GITHUB_ORG=18F
 export SESSION_SECRET=testSessionSecret
 ```
+
+In production, make sure to set `SESSION_SECRET` to a long random string.
 
 Make sure you have MongoDB running locally:
 ```shell
@@ -59,7 +67,7 @@ npm test
 ## Deployment
 For 18Fers: this is deployed on cloud.gov. Get started on cloud.gov by following the instructions [here](https://docs.cloud.gov/). Ask for more details in the #checklistomania channel in slack.
 
-### Public domain
+## Public domain
 This project is in the worldwide [public domain](LICENSE.md). As stated in [CONTRIBUTING](CONTRIBUTING.md):
 
 > This project is in the public domain within the United States, and copyright and related rights in the work worldwide are waived through the [CC0 1.0 Universal public domain dedication](https://creativecommons.org/publicdomain/zero/1.0/).

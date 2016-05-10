@@ -7,29 +7,29 @@ describe('todoCtrl', function() {
 
       checklist = {"checklistName": "Complex Test",
                                 "checklistDescription": "A complex test with many dependencies.",
-                                "items": 
-                                  {"dayZero": { 
-                                    "displayName": "Start Date", 
+                                "items":
+                                  {"dayZero": {
+                                    "displayName": "Start Date",
                                     "description": "First day on the job",
-                                    "daysToComplete": 0, 
+                                    "daysToComplete": 0,
                                     "dependsOn": []
                                   },
-                                  "signUp": { 
-                                    "displayName": "Sign Up", 
+                                  "signUp": {
+                                    "displayName": "Sign Up",
                                     "description": "signing up",
-                                    "daysToComplete": 5, 
+                                    "daysToComplete": 5,
                                     "dependsOn": ["dayZero"]
                                   },
-                                  "course1": { 
-                                    "displayName": "Course One", 
+                                  "course1": {
+                                    "displayName": "Course One",
                                     "description": "the first course",
-                                    "daysToComplete": 10, 
+                                    "daysToComplete": 10,
                                     "dependsOn": ["signUp"]
                                   },
-                                  "course2": { 
-                                    "displayName": "Course Two", 
+                                  "course2": {
+                                    "displayName": "Course Two",
                                     "description": "the second course",
-                                    "daysToComplete": 30, 
+                                    "daysToComplete": 30,
                                     "dependsOn": ["signUp"]
                                   },
                                   "course3": {
@@ -78,7 +78,7 @@ describe('todoCtrl', function() {
                       .respond({ checklists: [{}] });
 
       $httpBackend.when('GET', /\/api\/get\-items*/)
-                      .respond({ items: [{dueDate: new Date().toString(), description: 'test'}, 
+                      .respond({ items: [{dueDate: new Date().toString(), description: 'test'},
                         {dueDate: null, description: "test unactionable items"}] });
 
       $httpBackend.when('GET', /\/clear-done*/).respond({success: true});
@@ -90,7 +90,7 @@ describe('todoCtrl', function() {
                       .respond({ updatedItemCount: 1 });
 
       $httpBackend.when('POST', /\/api\/assign\-checklist*/)
-                      .respond({checklistName: 'test', dayZero: new Date().toISOString(), 
+                      .respond({checklistName: 'test', dayZero: new Date().toISOString(),
                                 checklist: checklist});
 
       $httpBackend.when('GET', "tmpl/assign-dialog.tmpl.html")
@@ -123,10 +123,10 @@ describe('todoCtrl', function() {
       $rootScope.markDone(item);
       $httpBackend.flush();
     });
-    
+
     it('assigns a checklist', function() {
       $mdDialog = {hide: function() {}, show: function(obj) {return {then: function(fn) {fn(checklist)}}}};
-      
+
       var controller = createController($mdDialog);
       $httpBackend.flush();
       $rootScope.showAssignToMeDialog(null, checklist);
@@ -135,7 +135,7 @@ describe('todoCtrl', function() {
 
     it('assigns a checklist with default date if none selected', function() {
       $mdDialog = {hide: function() {}, show: function(obj) {return {then: function(fn) {fn(checklist)}}}};
-      
+
       var controller = createController($mdDialog);
       $httpBackend.flush();
       $rootScope.showAssignToMeDialog(null, checklist);
@@ -145,7 +145,7 @@ describe('todoCtrl', function() {
     it('adds a new user', function() {
       var username = 'testUser';
       $mdDialog = {hide: function() {}, show: function(obj) {return {then: function(fn) {fn(username)}}}};
-      
+
       var controller = createController($mdDialog);
       $httpBackend.flush();
 
@@ -184,23 +184,23 @@ describe('AssignDialogController', function() {
 
        var $mdDialog = {cancel: function() {}, hide: function(checklist) {}}
        createController = function() {
-         return $controller('AssignDialogController', {$scope : $rootScope, $mdDialog: $mdDialog, 
+         return $controller('AssignDialogController', {$scope : $rootScope, $mdDialog: $mdDialog,
             checklist: 'checklistName'});
        };
      }));
 
     it('assigns the checklist', function() {
-      var controller = createController();  
+      var controller = createController();
       expect($rootScope.checklist).toEqual('checklistName');
     });
 
     it('cancels the dialog', function() {
-      var controller = createController();  
+      var controller = createController();
       $rootScope.cancel()
     });
 
     it('assigns checklist', function() {
-      var controller = createController();  
+      var controller = createController();
       $rootScope.assign()
     });
 });
@@ -222,7 +222,7 @@ describe('AddUserDialogController', function() {
      }));
 
     it('adds a user', function() {
-      var controller = createController();  
+      var controller = createController();
       $rootScope.username = 'testUser';
       $httpBackend.when('GET', /\/api\/add\-user*/)
                       .respond({ success: true });
@@ -232,7 +232,7 @@ describe('AddUserDialogController', function() {
     });
 
     it('provides a warning for invalid username', function() {
-      var controller = createController();  
+      var controller = createController();
       $rootScope.username = 'testUser';
       $httpBackend.when('GET', /\/api\/add\-user*/)
                       .respond({ success: false });
@@ -242,14 +242,14 @@ describe('AddUserDialogController', function() {
     });
 
     it('provides a warning when username is not entered', function() {
-      var controller = createController();  
+      var controller = createController();
       $rootScope.username = null;
       $rootScope.addUser();
       expect($rootScope.warning).toEqual("You must enter a github username.");
     });
 
     it('cancels the dialog', function() {
-      var controller = createController();  
+      var controller = createController();
       $rootScope.cancel()
     });
 });

@@ -5,7 +5,7 @@ var fs = require('fs');
 describe("API is fully functional", function() {
 
   var user = {username: 'checkyCheckersmith', _json: {name: 'Test User', avatar_url: 'http://test.png'}};
-  
+
   var compileChecklist = function(checklist) {
     compiledItems = {};
     Object.keys(checklist.items).forEach(function(itemId) {
@@ -81,7 +81,7 @@ describe("API is fully functional", function() {
           expect(!err && response.statusCode == 200).toBe(true);
           expect(body.checklistName).toBe('Example Checklist');
           done();
-      }); 
+      });
   });
 
   it("gets checklists", function(done) {
@@ -95,7 +95,7 @@ describe("API is fully functional", function() {
           bodyObj = JSON.parse(body);
           expect(bodyObj.checklists.length > 0).toBe(true);
           done();
-      }); 
+      });
   });
 
   it("doesn't add a null a user", function(done) {
@@ -109,7 +109,7 @@ describe("API is fully functional", function() {
           bodyObj = JSON.parse(body);
           expect(bodyObj.success).toBe(false);
           done();
-      }); 
+      });
   });
 
   it("gets users", function(done) {
@@ -124,7 +124,7 @@ describe("API is fully functional", function() {
           expect(bodyObj.users.filter(function(user) {
             return user.username === 'checkyCheckersmith'}).length == 1).toBe(true);
           done();
-      }); 
+      });
   });
 
   it("adds a user", function(done) {
@@ -138,16 +138,16 @@ describe("API is fully functional", function() {
           bodyObj = JSON.parse(body);
           expect(bodyObj.success).toBe(true);
           done();
-      }); 
+      });
   });
-  
+
   it("Marks items as complete and clears them", function(done) {
       assignChecklist(function() {
-          var items;    
+          var items;
           var markItemComplete = function(item, callback) {
                   var options = {
                     url: "http://localhost:3000/api/complete-item",
-                    qs: {user: user, timestamp: item.timestamp, 
+                    qs: {user: user, timestamp: item.timestamp,
                       id: item._id, checklistName: item.checklistName,
                       itemId: item.itemId}
                   };
@@ -157,9 +157,9 @@ describe("API is fully functional", function() {
                     bodyObj = JSON.parse(body);
                     expect(bodyObj.updatedItemCount > 0).toBe(true);
                     callback();
-                  });  
+                  });
           };
-          
+
           var markUndoneItemsComplete = function(callback) {
             var options = {
               url: "http://localhost:3000/api/get-items",
@@ -167,10 +167,10 @@ describe("API is fully functional", function() {
             }
             request.get(options, function(err, response, body) {
                   items = JSON.parse(body).items;
-                  async.eachSeries(items, markItemComplete, callback);                    
+                  async.eachSeries(items, markItemComplete, callback);
           });
           };
-          
+
           function clearItems(callback) {
             var options = {
                 url: "http://localhost:3000/api/clear-done",
@@ -192,10 +192,10 @@ describe("API is fully functional", function() {
                       expect(bodyObj.items.length == 0).toBe(true);
                       done();
             })
-            });  
+            });
           }
 
-          async.whilst(function() {return !items || !items[0].completedDate}, markUndoneItemsComplete, 
+          async.whilst(function() {return !items || !items[0].completedDate}, markUndoneItemsComplete,
             function() {clearItems(done);});
 
       });

@@ -6,7 +6,7 @@ var github = new GitHubApi({
       host: "api.github.com",
       timeout: 5000,
       headers: {
-          "user-agent": "checklistomania" 
+          "user-agent": "checklistomania"
       }
   });
 

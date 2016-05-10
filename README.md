@@ -20,8 +20,8 @@ The users tab is where you can view the status of other team members action item
 ![Users](/public/img/users.png?raw=true "Users")
 
 ## Requirements
-- Mongodb ([https://docs.mongodb.com/manual/installation/](Installation instructions))
-- nodejs ([https://nodejs.org/en/download/](Download page))
+- Mongodb ([Installation instructions](https://docs.mongodb.com/manual/installation/))
+- nodejs ([Download page](https://nodejs.org/en/download/))
 
 ## Running Checklistomania
 Install application dependencies with:

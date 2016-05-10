@@ -29,13 +29,14 @@ Install dependencies with:
 $ npm install
 ```
 
-Use the developer github client information with: 
+Use the developer github client information with:
 ```
 $ export GITHUB_CLIENT_ID=0a363c03ec2646619f57
 $ export GITHUB_CLIENT_SECRET=01408892458c92e3514cd96cd6b31e6d91df25d2
+$ export GITHUB_ORG=18F
 $ export SESSION_SECRET=testSessionSecret
 ```
-Alternatively, you can setup your own credentials [here](https://github.com/settings/applications/new). 
+Alternatively, you can setup your own credentials [here](https://github.com/settings/applications/new) and set `GITHUB_ORG` to an organization of your choice.
 
 Make sure you have MongoDB running locally.
 

@@ -19,37 +19,46 @@ The checklists tab is where you assign yourself a new pre-defined checklist:
 The users tab is where you can view the status of other team members action items, helpful if you want a hint or if you are an admin keeping track of where everyone is:
 ![Users](/public/img/users.png?raw=true "Users")
 
-# Requirements
-- Mongodb
-- nodejs
+## Requirements
+- Mongodb ([https://docs.mongodb.com/manual/installation/](Installation instructions))
+- nodejs ([https://nodejs.org/en/download/](Download page))
 
-# Setup
-Install dependencies with:
-```
-$ npm install
-```
-
-Use the developer github client information with: 
-```
-$ export GITHUB_CLIENT_ID=0a363c03ec2646619f57
-$ export GITHUB_CLIENT_SECRET=01408892458c92e3514cd96cd6b31e6d91df25d2
-$ export SESSION_SECRET=testSessionSecret
-```
-Alternatively, you can setup your own credentials [here](https://github.com/settings/applications/new). 
-
-Make sure you have MongoDB running locally.
-
-Run locally with:
-```
-$ npm start
+## Running Checklistomania
+Install application dependencies with:
+```shell
+npm install
 ```
 
-And visit [http://localhost:3000/](http://localhost:3000/)
+Specify GitHub application credentials as environment variables.
+You can use the test credentials below, or create your own credentials [here](https://github.com/settings/applications/new).
+```shell
+export GITHUB_CLIENT_ID=0a363c03ec2646619f57
+export GITHUB_CLIENT_SECRET=01408892458c92e3514cd96cd6b31e6d91df25d2
+export SESSION_SECRET=testSessionSecret
+```
 
-For 18Fers: this is deployed on cloud.gov. Get started on cloud.gov by following the instructions [here](https://docs.cloud.gov/). Ask for more details in #checklistomania channel in slack.
+Make sure you have MongoDB running locally:
+```shell
+mongod
+```
+
+Run the Checklistomania application:
+```shell
+npm start
+```
+
+Visit [http://localhost:3000/](http://localhost:3000/) to see the locally running Checklistomania application.
+
+## Testing
+Run tests with:
+```shell
+npm test
+```
+
+## Deployment
+For 18Fers: this is deployed on cloud.gov. Get started on cloud.gov by following the instructions [here](https://docs.cloud.gov/). Ask for more details in the #checklistomania channel in slack.
 
 ### Public domain
-
 This project is in the worldwide [public domain](LICENSE.md). As stated in [CONTRIBUTING](CONTRIBUTING.md):
 
 > This project is in the public domain within the United States, and copyright and related rights in the work worldwide are waived through the [CC0 1.0 Universal public domain dedication](https://creativecommons.org/publicdomain/zero/1.0/).

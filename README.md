@@ -30,10 +30,11 @@ npm install
 ```
 
 Specify GitHub application credentials as environment variables.
-You can use the test credentials below, or create your own credentials [here](https://github.com/settings/applications/new).
+You can use the test credentials below, or create your own credentials [here](https://github.com/settings/applications/new) and set `GITHUB_ORG` to an organization of your choice.
 ```shell
 export GITHUB_CLIENT_ID=0a363c03ec2646619f57
 export GITHUB_CLIENT_SECRET=01408892458c92e3514cd96cd6b31e6d91df25d2
+export GITHUB_ORG=18F
 export SESSION_SECRET=testSessionSecret
 ```
 
@@ -46,6 +47,7 @@ Run the Checklistomania application:
 ```shell
 npm start
 ```
+>>>>>>> master
 
 Visit [http://localhost:3000/](http://localhost:3000/) to see the locally running Checklistomania application.
 

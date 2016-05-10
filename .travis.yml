@@ -10,6 +10,6 @@ script:
 after_success:
     - "npm run-script coveralls"
 env:
-    - GITHUB_CLIENT_ID=test GITHUB_CLIENT_SECRET=testSecret SESSION_SECRET=testSessionSecret
+    - GITHUB_CLIENT_ID=test GITHUB_CLIENT_SECRET=testSecret SESSION_SECRET=testSessionSecret GITHUB_ORG=testOrg
 services:
   - mongodb

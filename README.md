@@ -4,9 +4,9 @@
 
 This tool is a checklist manager with some neat-O features:
 * Focus on what is actionable: central page is a simple list of things you can take action on now, in order of urgency.
-* Checklists are centrally defined, allowing any member to subscribe to the authoritative checklist
-* Checklist items deadlines can be set according to a fixed date or relative to completion of other items
-* All members of team can view other peoples checklists, so admins can see everyone's status at a glance
+* Checklists are centrally defined, allowing any member to subscribe to the authoritative checklist.
+* Checklist items deadlines can be set according to a fixed date or relative to completion of other items.
+* All members of team can view other peoples checklists, so admins can see everyone's status at a glance.
 
 Here's some screenshots to give you a sense of the look & feel:
 
@@ -33,7 +33,7 @@ Install local Node.js dependencies with:
 npm install
 ```
 
-Checklistomania uses GitHub for user authentication. All users must be registered on GitHub and must be part of a GitHub organization. Users will need to set their organization membership to public (see instructions [here](https://help.github.com/articles/publicizing-or-hiding-organization-membership/))
+Checklistomania uses GitHub for user authentication. All users must be registered on GitHub and must be part of a GitHub organization. Users will need to set their organization membership to public (see instructions [here](https://help.github.com/articles/publicizing-or-hiding-organization-membership/)).
 
 Specify GitHub application credentials as environment variables.
 You can use the test credentials below, or create your own credentials [here](https://github.com/settings/applications/new) and set `GITHUB_ORG` to a GitHub organization name of your choice.

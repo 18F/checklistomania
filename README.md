@@ -4,9 +4,9 @@
 
 This tool is a checklist manager with some neat-O features:
 * Focus on what is actionable: central page is a simple list of things you can take action on now, in order of urgency.
-* Checklists are centrally defined, allowing any member to subscribe to the authoritative checklist
-* Checklist items deadlines can be set according to a fixed date or relative to completion of other items
-* All members of team can view other peoples checklists, so admins can see everyone's status at a glance
+* Checklists are centrally defined, allowing any member to subscribe to the authoritative checklist.
+* Checklist items deadlines can be set according to a fixed date or relative to completion of other items.
+* All members of team can view other peoples checklists, so admins can see everyone's status at a glance.
 
 Here's some screenshots to give you a sense of the look & feel:
 
@@ -20,20 +20,20 @@ The users tab is where you can view the status of other team members action item
 ![Users](/public/img/users.png?raw=true "Users")
 
 ## Running Checklistomania
-Checklistomania is a [NodeJS](https://nodejs.org) application on the back-end, and its front-end is an [AngularJS](https://angularjs.org/) single-page application.
+Checklistomania is a [Node.js](https://nodejs.org) application on the back-end, and its front-end is an [AngularJS](https://angularjs.org/) single-page application.
 
 If you'd like to run Checklistomania for development purposes, follow these steps:
 
-First, install NodeJS ([Download page](https://nodejs.org/en/download/)) and MongoDB ([Installation instructions](https://docs.mongodb.com/manual/installation/))
+First, install Node.js ([Download page](https://nodejs.org/en/download/)) and MongoDB ([Installation instructions](https://docs.mongodb.com/manual/installation/)). Make sure you have the same version of Node.js as specified in `package.json`.
 
 Clone Checklistomania and `cd` into its directory.
 
-Install local node dependencies with:
+Install local Node.js dependencies with:
 ```shell
 npm install
 ```
 
-Checklistomania uses GitHub for user authentication. All users must be registered on GitHub and must be part of a GitHub organization. Users will need to set their organization membership to public (see instructions [here](https://help.github.com/articles/publicizing-or-hiding-organization-membership/))
+Checklistomania uses GitHub for user authentication. All users must be registered on GitHub and must be part of a GitHub organization. Users will need to set their organization membership to public (see instructions [here](https://help.github.com/articles/publicizing-or-hiding-organization-membership/)).
 
 Specify GitHub application credentials as environment variables.
 You can use the test credentials below, or create your own credentials [here](https://github.com/settings/applications/new) and set `GITHUB_ORG` to a GitHub organization name of your choice.
@@ -59,6 +59,8 @@ npm start
 Visit [http://localhost:3000/](http://localhost:3000/) to see the locally running Checklistomania application.
 
 ## Testing
+Make sure you have the same version of Node.js as specified in `package.json`, otherwise you may have trouble running the front end tests.
+
 Run tests with:
 ```shell
 npm test

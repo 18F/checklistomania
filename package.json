@@ -39,7 +39,7 @@
     "coveralls": "cat ./coverage/lcov.info ./coverage/phantomjs/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "engines": {
-    "node": "4.4.0",
+    "node": "^4.4.2",
     "npm": "2.14.4"
   },
   "author": "Anthony Garvan",

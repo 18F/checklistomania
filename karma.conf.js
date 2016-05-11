@@ -25,13 +25,13 @@ module.exports = function(config){
     preprocessors: {
       'private/js/app.js': ['coverage']
     },
-    
+
     coverageReporter: {
        type : 'lcov',
        dir : './coverage',
        subdir: 'phantomjs'
      },
-    
+
     plugins : [
             'karma-chrome-launcher',
             'karma-firefox-launcher',

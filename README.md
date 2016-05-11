@@ -20,15 +20,15 @@ The users tab is where you can view the status of other team members action item
 ![Users](/public/img/users.png?raw=true "Users")
 
 ## Running Checklistomania
-Checklistomania is a [NodeJS](https://nodejs.org) application on the back-end, and its front-end is an [AngularJS](https://angularjs.org/) single-page application.
+Checklistomania is a [Node.js](https://nodejs.org) application on the back-end, and its front-end is an [AngularJS](https://angularjs.org/) single-page application.
 
 If you'd like to run Checklistomania for development purposes, follow these steps:
 
-First, install NodeJS ([Download page](https://nodejs.org/en/download/)) and MongoDB ([Installation instructions](https://docs.mongodb.com/manual/installation/))
+First, install Node.js ([Download page](https://nodejs.org/en/download/)) and MongoDB ([Installation instructions](https://docs.mongodb.com/manual/installation/)). Make sure you have the same version of Node.js as specified in `package.json`.
 
 Clone Checklistomania and `cd` into its directory.
 
-Install local node dependencies with:
+Install local Node.js dependencies with:
 ```shell
 npm install
 ```
@@ -59,6 +59,8 @@ npm start
 Visit [http://localhost:3000/](http://localhost:3000/) to see the locally running Checklistomania application.
 
 ## Testing
+Make sure you have the same version of Node.js as specified in `package.json`, otherwise you may have trouble running the front end tests.
+
 Run tests with:
 ```shell
 npm test

@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "You know, for managing checklists.",
   "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/18F/checklistomania.git"
+  },
   "dependencies": {
     "async": "^1.5.2",
     "body-parser": "^1.14.1",
@@ -15,7 +19,6 @@
     "mongodb": "^2.1.2",
     "passport": "^0.3.2",
     "passport-github2": "^0.1.9",
-    "phantomjs": "^1.9.19",
     "request": "^2.67.0",
     "router": "^1.1.3"
   },
@@ -30,7 +33,8 @@
     "karma-firefox-launcher": "^0.1.6",
     "karma-jasmine": "^0.3.5",
     "karma-junit-reporter": "^0.2.2",
-    "karma-phantomjs-launcher": "^0.2.3"
+    "karma-phantomjs-launcher": "^0.2.3",
+    "phantomjs": "^1.9.19"
   },
   "scripts": {
     "postinstall": "bower install",

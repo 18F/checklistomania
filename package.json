@@ -15,7 +15,6 @@
     "express-session": "^1.11.3",
     "github": "^0.2.4",
     "method-override": "^2.3.5",
-    "mkdirp": "^0.5.1",
     "mongodb": "^2.1.2",
     "passport": "^0.3.2",
     "passport-github2": "^0.1.9",

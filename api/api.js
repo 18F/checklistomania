@@ -94,8 +94,6 @@ function addChildrenToChecklist(checklist) {
 function getSortedItemIds(checklist) {
   var actionable;
 
-  checklist = JSON.parse(JSON.stringify(checklist));
-
   // define breadth first search
   function visit(itemId) {
     var sorted = [itemId];

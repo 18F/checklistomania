@@ -24,6 +24,11 @@
   },
   "devDependencies": {
     "coveralls": "^2.11.6",
+    "eslint": "^2.9.0",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.7.0",
+    "eslint-plugin-jsx-a11y": "^1.2.0",
+    "eslint-plugin-react": "^5.1.1",
     "istanbul": "^0.4.1",
     "jasmine-core": "^2.4.1",
     "jasmine-node": "^1.14.5",
@@ -50,12 +55,5 @@
     "npm": "^3.8.3"
   },
   "author": "Anthony Garvan",
-  "license": "CC0",
-  "devDependencies": {
-    "eslint": "^2.9.0",
-    "eslint-config-airbnb": "^9.0.1",
-    "eslint-plugin-import": "^1.7.0",
-    "eslint-plugin-jsx-a11y": "^1.2.0",
-    "eslint-plugin-react": "^5.1.1"
-  }
+  "license": "CC0"
 }

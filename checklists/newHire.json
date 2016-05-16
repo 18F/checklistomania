@@ -153,7 +153,7 @@
 	},
 	"listservsSignUp": { 
 		"displayName": "Sign up for listservs", 
-		"description": "A full list of newsletters and listservs is <a href=\"https://handbook.18f.gov/general-contacts-and-listservs/#listservs-and-slack-groups\">here</a>.",
+		"description": "A full list of newsletters and listservs is <a href=\"https://handbook.18f.gov/general-contacts-and-listservs/#listservs\">here</a>.",
 		"daysToComplete": 4, 
 		"dependsOn": ["dayZero"]
 	},

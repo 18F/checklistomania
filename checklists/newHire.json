@@ -129,7 +129,7 @@
 	},
 	"setupPhone2FA": { 
 		"displayName": "Set up 2FA on your government phone", 
-		"description": "After receiving your work phone, <a href=\"https://handbook.18f.gov/equipment/#iphone\">set up two-factor authentication</a>.",
+		"description": "After receiving your work phone, <a href=\"https://handbook.18f.gov/equipment/#phone\">set up two-factor authentication</a>.",
 		"daysToComplete": 4, 
 		"dependsOn": ["receiveEquipment"]
 	},

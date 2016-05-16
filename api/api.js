@@ -92,25 +92,28 @@ function addChildrenToChecklist(checklist) {
 }
 
 function getSortedItemIds(checklist) {
+  // JSON.parse(JSON.stringify(obj)) produces a copy of the input obj
+  var checklistCopy = JSON.parse(JSON.stringify(checklist));
+
   var actionable;
 
   // define breadth first search
   function visit(itemId) {
     var sorted = [itemId];
     // visit children
-    checklist.items[itemId].children.forEach(function (childItemId) {
-      checklist.items[childItemId].dependsOn.splice(
-        checklist.items[childItemId].dependsOn.indexOf(childItemId), 1);
+    checklistCopy.items[itemId].children.forEach(function (childItemId) {
+      checklistCopy.items[childItemId].dependsOn.splice(
+        checklistCopy.items[childItemId].dependsOn.indexOf(childItemId), 1);
     });
 
     // get actionable
-    actionable = checklist.items[itemId].children.filter(function (id) {
-      return checklist.items[id].dependsOn.length === 0;
+    actionable = checklistCopy.items[itemId].children.filter(function (id) {
+      return checklistCopy.items[id].dependsOn.length === 0;
     });
 
     // sort actionable
     actionable.sort(function (itemId1, itemId2) {
-      return checklist.items[itemId1].daysToComplete - checklist.items[itemId2].daysToComplete;
+      return checklistCopy.items[itemId1].daysToComplete - checklistCopy.items[itemId2].daysToComplete;
     });
 
     // traverse actionable
@@ -131,6 +134,7 @@ router.post('/assign-checklist', function (req, res) {
   var timestamp = new Date().getTime();
   var dayZeroDate = new Date(parseInt(req.body.dayZeroDate, 10));
   var checklist = req.body.checklist;
+
   checklist.items.dayZero.completedDate = dayZeroDate;
   checklist.items.dayZero.estimatedDueDate = dayZeroDate;
   checklist = addChildrenToChecklist(checklist);

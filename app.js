@@ -1,4 +1,5 @@
 
+var ejs = require('ejs');
 var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
@@ -84,6 +85,15 @@ var getApp = function (passport, GitHubStrategy, github) { // eslint-disable-lin
       });
   }
 
+  function includeBranding(req, res, next) {
+    res.locals.logoPath = process.env.BRAND_LOGO_PATH || '/private/img/18F-Logo-M.png';
+    res.locals.headerColor = process.env.BRAND_HEADER_COLOR || '#B3EFFF';
+    next();
+  }
+
+  app.engine('html', ejs.renderFile);
+  app.set('views', process.cwd() + '/views');
+
   app.use(bodyParser());
   app.use(bodyParser.json());
   app.use(methodOverride());
@@ -91,8 +101,16 @@ var getApp = function (passport, GitHubStrategy, github) { // eslint-disable-lin
   app.use(passport.initialize());
   app.use(passport.session());
 
+  app.use('/private/index.html', [ensureAuthenticated, ensureGithubOrg,
+    addToUsers, includeBranding],
+    function (req, res) {
+      res.render('index.html');
+    }
+  );
+
   app.use('/private', [ensureAuthenticated, ensureGithubOrg,
     addToUsers, express.static('private')]);
+
   app.use('/api', [ensureAuthenticated, ensureGithubOrg, addToUsers, api.router]);
 
   app.use('/', express.static('public'));

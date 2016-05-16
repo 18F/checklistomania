@@ -8,9 +8,10 @@
   .tabsdemoDynamicHeight md-content h1:first-child {
     margin-top: 0; }
 
-.todoHeader {
-  background-color: #18F;
-  color: white;
+.headerLogo {
+  height: 48px;
+  width: 48px;
+  vertical-align: text-bottom;
 }
 
 .toggleView {

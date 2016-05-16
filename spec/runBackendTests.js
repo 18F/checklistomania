@@ -2,21 +2,26 @@
 /* eslint-disable no-console */
 var http = require('http');
 var spawn = require('child_process').spawn;
+var mockery = require('mockery');
 
 var api = require('../api/api.js');
-var getApp = require('../app.js').getApp;
-var passport;
-var github;
 var mockUser;
 var app;
 var server;
-var GitHubStrategy = function (obj, callback) {
-  callback(null, null, null, function () {});
-};
 
 http.IncomingMessage.prototype.isAuthenticated = function () { return true; };
 
-passport = {
+mockery.enable({
+  warnOnUnregistered: false
+});
+
+mockery.registerMock('passport-github2', {
+  Strategy: function (obj, callback) {
+    callback(null, null, null, function () {});
+  }
+});
+
+mockery.registerMock('passport', {
   serializeUser: function (callback) { callback({}, function () {}); },
   deserializeUser: function (callback) { callback({}, function () {}); },
   use: function () {},
@@ -36,42 +41,44 @@ passport = {
     };
   },
   authenticate: function () { return function () {}; }
-};
+});
 
-
-github = {
-  orgs: {
-    getFromUser: function (obj, callback) {
-      var orgs;
-      if (obj.user === 'checkyCheckersmith') {
-        orgs = [{ login: process.env.GITHUB_ORG }];
+mockery.registerMock('./api/github.js', {
+  github: {
+    orgs: {
+      getFromUser: function (obj, callback) {
+        var orgs;
+        if (obj.user === 'checkyCheckersmith') {
+          orgs = [{ login: process.env.GITHUB_ORG }];
+        }
+        callback(null, orgs);
       }
-      callback(null, orgs);
-    }
-  },
-  user: {
-    getFrom: function (obj, callback) {
-      var ghUser;
-      if (obj.user) {
-        ghUser = {
-          login: 'newUser',
-          name: 'New User',
-          avatar_url: 'http://testNewUser.png'
-        };
-      } else {
-        ghUser = null;
+    },
+    user: {
+      getFrom: function (obj, callback) {
+        var ghUser;
+        if (obj.user) {
+          ghUser = {
+            login: 'newUser',
+            name: 'New User',
+            avatar_url: 'http://testNewUser.png'
+          };
+        } else {
+          ghUser = null;
+        }
+        callback(null, ghUser);
       }
-      callback(null, ghUser);
     }
   }
-};
+});
 
-app = getApp(passport, GitHubStrategy, github);
-server = require('http').createServer(app);
+app = require('../app.js');
+server = http.createServer(app);
 
 server.listen(3000, function () {
   var shutDownServer = function () {
     console.log('closing server...');
+    mockery.disable();
     api.db.dropDatabase();
     api.db.close();
     server.close();

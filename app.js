@@ -99,7 +99,7 @@ app.use(session({ secret: process.env.SESSION_SECRET }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/private/index.html', [ensureAuthenticated, ensureGithubOrg,
+app.get('/private/index.html', [ensureAuthenticated, ensureGithubOrg,
   addToUsers, includeBranding],
   function (req, res) {
     res.render('index.html');

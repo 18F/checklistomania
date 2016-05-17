@@ -2,38 +2,36 @@
   <form>
     <md-toolbar>
       <div class="md-toolbar-tools">
-         <h2>Assign Checklist</h2>
-
+        <h2>Assign Checklist</h2>
       </div>
     </md-toolbar>
     <md-dialog-content>
       <div class="md-dialog-content">
         <p>Assigning Checklist "{{ checklist.checklistName }}"</p>
-        <md-input-container
-        layout="column">
+        <md-input-container layout="column">
           <label>Notes</label>
           <input ng-model="checklist.notes">
-          </md-input-container>
-          <label for="datepicker">Choose {{checklist.items.dayZero.displayName}}</label>
-          <md-datepicker id="datepicker"
-          ng-model="checklist.dayZeroDate" md-placeholder="{{checklist.items.dayZero.displayName}}"></md-datepicker>
-          <div ng-repeat="(itemId, item) in checklist.items">
-            <div ng-if="item.prompt">
-                <p>{{ item.prompt }}</p>
-                <md-radio-group ng-model="item.selected" ng-if="item.displayType=='radio'">
-                  <md-radio-button value="{{response.text}}" ng-repeat="response in item.possibleResponses">{{ response.text }}</md-radio-button>
-                </md-radio-group>
-                <div ng-if="item.displayType=='checkbox'">
-                  <md-checkbox ng-model="response.selected" ng-repeat="response in item.possibleResponses">
-                    {{ response.text }}
-                  </md-checkbox>
-                </div>
-            </div>
-            </div>
+        </md-input-container>
+        <label for="datepicker">Choose {{checklist.items.dayZero.displayName}}</label>
+        <md-datepicker id="datepicker"
+          ng-model="checklist.dayZeroDate" md-placeholder="{{checklist.items.dayZero.displayName}}">
+        </md-datepicker>
+        <div ng-repeat="(itemId, item) in checklist.items">
+          <div ng-if="item.prompt">
+              <p>{{ item.prompt }}</p>
+              <md-radio-group ng-model="item.selected" ng-if="item.displayType=='radio'">
+                <md-radio-button value="{{response.text}}" ng-repeat="response in item.possibleResponses">{{ response.text }}</md-radio-button>
+              </md-radio-group>
+              <div ng-if="item.displayType=='checkbox'">
+                <md-checkbox ng-model="response.selected" ng-repeat="response in item.possibleResponses">
+                  {{ response.text }}
+                </md-checkbox>
+              </div>
+          </div>
+        </div>
       </div>
     </md-dialog-content>
     <md-dialog-actions layout="row"> <span flex></span>
-
       <md-button ng-click="cancel()">Cancel</md-button>
       <md-button ng-click="assign()" style="margin-right:20px;">Assign To Me</md-button>
     </md-dialog-actions>

@@ -18,7 +18,6 @@
     "mongodb": "^2.1.2",
     "passport": "^0.3.2",
     "passport-github2": "^0.1.9",
-    "request": "^2.67.0",
     "router": "^1.1.3"
   },
   "devDependencies": {

@@ -1,4 +1,5 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
 var fs = require('fs');
 
@@ -68,6 +69,9 @@ MongoClient.connect(url, function (connectErr, db) {
     });
   });
 });
+
+router.use(bodyParser());
+router.use(bodyParser.json());
 
 router.get('/', function (req, res) {
   res.json({ message: 'hooray! welcome to the api!' });

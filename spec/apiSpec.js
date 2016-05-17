@@ -2,7 +2,6 @@
 var async = require('async');
 var fs = require('fs');
 var express = require('express');
-var bodyParser = require('body-parser');
 var supertest = require('supertest');
 var mockery = require('mockery');
 
@@ -63,9 +62,6 @@ mockery.registerMock('./github.js', {
 mockery.enable({
   warnOnUnregistered: false
 });
-
-app.use(bodyParser());
-app.use(bodyParser.json());
 
 // add middleware to add mock authenticated user to requests
 app.use(function (req, res, next) {

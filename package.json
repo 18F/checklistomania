@@ -39,7 +39,8 @@
     "karma-junit-reporter": "^0.2.2",
     "karma-phantomjs-launcher": "^0.2.3",
     "mockery": "^1.7.0",
-    "phantomjs": "^1.9.19"
+    "phantomjs": "^1.9.19",
+    "supertest": "^1.2.0"
   },
   "scripts": {
     "postinstall": "bower install",

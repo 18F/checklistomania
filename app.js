@@ -13,8 +13,6 @@ var github = require('./api/github.js').github;
 var server;
 var app = express();
 
-api.setGithub(github);
-
 passport.serializeUser(function (user, done) {
   done(null, user);
 });

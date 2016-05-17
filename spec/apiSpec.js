@@ -1,239 +1,253 @@
-/* global describe it expect */
-var request = require('request');
+/* global describe:false it:false expect:false */
 var async = require('async');
 var fs = require('fs');
+var express = require('express');
+var bodyParser = require('body-parser');
+var supertest = require('supertest');
+var mockery = require('mockery');
+
+var app = express();
+var api;
+
+var checkyUser = {
+  username: 'checkyCheckersmith',
+  _json: {
+    name: 'Test User',
+    avatar_url: 'http://test.png'
+  }
+};
+
+function getExampleChecklist() {
+  var checklist = JSON.parse(fs.readFileSync('checklists/example.json', 'utf8'));
+
+  var compiledItems = {};
+  Object.keys(checklist.items).forEach(function (itemId) {
+    if (!checklist.items[itemId].prompt) {
+      compiledItems[itemId] = checklist.items[itemId];
+    }
+  });
+
+  checklist.items = compiledItems;
+  return checklist;
+}
+
+mockery.registerMock('./github.js', {
+  github: {
+    orgs: {
+      getFromUser: function (obj, callback) {
+        var orgs;
+        if (obj.user === 'checkyCheckersmith') {
+          orgs = [{ login: process.env.GITHUB_ORG }];
+        }
+        callback(null, orgs);
+      }
+    },
+    user: {
+      getFrom: function (obj, callback) {
+        var ghUser;
+        if (obj.user === 'newUser') {
+          ghUser = {
+            login: 'newUser',
+            name: 'New User',
+            avatar_url: 'http://testNewUser.png'
+          };
+        } else {
+          ghUser = null;
+        }
+        callback(null, ghUser);
+      }
+    }
+  }
+});
+
+mockery.enable({
+  warnOnUnregistered: false
+});
+
+app.use(bodyParser());
+app.use(bodyParser.json());
+
+// add middleware to add mock authenticated user to requests
+app.use(function (req, res, next) {
+  req.user = checkyUser;
+  next();
+});
+
+api = require('../api/api.js');
+app.use('/api', api.router);
 
 describe('API is fully functional', function () {
-  var user = {
-    username: 'checkyCheckersmith',
-    _json: {
-      name: 'Test User',
-      avatar_url: 'http://test.png'
-    }
-  };
-
-  var compileChecklist = function (checklist) {
-    var compiledItems = {};
-    Object.keys(checklist.items).forEach(function (itemId) {
-      if (!checklist.items[itemId].prompt) {
-        compiledItems[itemId] = checklist.items[itemId];
-      }
-    });
-
-    checklist.items = compiledItems;
-    return checklist;
-  };
-
-  var assignChecklist = function (callback) {
-    var options;
-    var checklist = JSON.parse(fs.readFileSync('checklists/example.json', 'utf8'));
-
-    checklist = compileChecklist(checklist);
-    options = {
-      url: 'http://localhost:3000/api/assign-checklist',
-      json: {
-        dayZeroDate: new Date().valueOf(),
-        checklist: checklist,
-        notes: 'notesHere',
-        user: user
-      }
-    };
-
-    request.post(options, function () {
-      callback();
-    });
-  };
-
   it('returns something from api root', function (done) {
-    var options = {
-      url: 'http://localhost:3000/api/',
-      qs: { user: user }
-    };
-    request.get(options, function (err, response) {
-      expect(!err && response.statusCode === 200).toBe(true);
-      done();
-    });
+    supertest(app)
+      .get('/api')
+      .expect(200)
+      .end(done);
   });
 
   it('returns isalive', function (done) {
-    var options = {
-      url: 'http://localhost:3000/api/isalive',
-      qs: { user: user }
-    };
-    request.get(options, function (err, response, body) {
-      expect(!err && response.statusCode === 200 && body === 'OK').toBe(true);
-      done();
-    });
-  });
-
-  it('gets items', function (done) {
-    assignChecklist(function () {
-      var options = {
-        url: 'http://localhost:3000/api/get-items',
-        qs: { user: user }
-      };
-
-      request.get(options, function (err, response, body) {
-        var bodyObj;
-        expect(!err && response.statusCode === 200).toBe(true);
-        bodyObj = JSON.parse(body);
-        expect(bodyObj.items.length > 0).toBe(true);
-        done();
-      });
-    });
+    supertest(app)
+      .get('/api/isalive')
+      .expect(200)
+      .expect('OK')
+      .end(done);
   });
 
   it('assigns to a checklist', function (done) {
-    var options;
-    var checklist = JSON.parse(fs.readFileSync('checklists/example.json', 'utf8'));
-    checklist = compileChecklist(checklist);
-    options = {
-      url: 'http://localhost:3000/api/assign-checklist',
-      json: {
+    var checklist = getExampleChecklist();
+    supertest(app)
+      .post('/api/assign-checklist')
+      .send({
         dayZeroDate: new Date().valueOf(),
         checklist: checklist,
         notes: 'notesHere',
-        user: user
-      }
-    };
+        user: checkyUser
+      })
+      .expect(200)
+      .expect(function (res) {
+        expect(res.body.checklistName === 'Example Checklist').toBe(true);
+      })
+      .end(done);
+  });
 
-    request.post(options, function (err, response, body) {
-      expect(!err && response.statusCode === 200).toBe(true);
-      expect(body.checklistName).toBe('Example Checklist');
-      done();
-    });
+  it('gets items', function (done) {
+    var checklist = getExampleChecklist();
+
+    supertest(app)
+      .post('/api/assign-checklist')
+      .send({
+        dayZeroDate: new Date().valueOf(),
+        checklist: checklist,
+        notes: 'notesHere',
+        user: checkyUser
+      })
+      .expect(200)
+      .end(function () {
+        supertest(app)
+          .get('/api/get-items')
+          .expect(200)
+          .expect(function (res) {
+            expect(res.body.items.length > 0).toBe(true);
+          })
+          .end(done);
+      });
   });
 
   it('gets checklists', function (done) {
-    var options = {
-      url: 'http://localhost:3000/api/get-checklists',
-      qs: { user: user }
-    };
-
-    request.get(options, function (err, response, body) {
-      var bodyObj;
-      expect(!err && response.statusCode === 200).toBe(true);
-      bodyObj = JSON.parse(body);
-      expect(bodyObj.checklists.length > 0).toBe(true);
-      done();
-    });
+    supertest(app)
+      .get('/api/get-checklists')
+      .expect(200)
+      .expect(function (res) {
+        expect(res.body.checklists.length > 0).toBe(true);
+      })
+      .end(done);
   });
 
   it('doesn\'t add a null a user', function (done) {
-    var options = {
-      url: 'http://localhost:3000/api/add-user',
-      qs: { username: null }
-    };
-
-    request.get(options, function (err, response, body) {
-      var bodyObj;
-      expect(!err && response.statusCode === 200).toBe(true);
-      bodyObj = JSON.parse(body);
-      expect(bodyObj.success).toBe(false);
-      done();
-    });
-  });
-
-  it('gets users', function (done) {
-    var options = {
-      url: 'http://localhost:3000/api/get-users',
-      qs: { user: user }
-    };
-
-    request.get(options, function (err, response, body) {
-      var bodyObj;
-      expect(!err && response.statusCode === 200).toBe(true);
-      bodyObj = JSON.parse(body);
-      expect(bodyObj.users.filter(function (u) {
-        return u.username === 'checkyCheckersmith';
-      }).length === 1).toBe(true);
-      done();
-    });
+    supertest(app)
+      .get('/api/add-user')
+      .query({ username: null })
+      .expect(200, {
+        success: false
+      })
+      .end(done);
   });
 
   it('adds a user', function (done) {
-    var options = {
-      url: 'http://localhost:3000/api/add-user',
-      qs: { username: 'newChecklistUser' }
-    };
+    supertest(app)
+      .get('/api/add-user')
+      .query({ username: 'newUser' })
+      .expect(200, {
+        success: true
+      })
+      .end(done);
+  });
 
-    request.get(options, function (err, response, body) {
-      var bodyObj;
-      expect(!err && response.statusCode === 200).toBe(true);
-      bodyObj = JSON.parse(body);
-      expect(bodyObj.success).toBe(true);
-      done();
-    });
+  it('gets users', function (done) {
+    supertest(app)
+      .get('/api/get-users')
+      .expect(200)
+      .expect(function (res) {
+        expect(res.body.users.filter(function (u) {
+          return u.username === 'newUser';
+        }).length === 1).toBe(true);
+      })
+      .end(done);
   });
 
   it('Marks items as complete and clears them', function (done) {
-    assignChecklist(function () {
-      var items;
-      var markItemComplete = function (item, callback) {
-        var options = {
-          url: 'http://localhost:3000/api/complete-item',
-          qs: {
-            user: user,
-            timestamp: item.timestamp,
-            id: item._id,
-            checklistName: item.checklistName,
-            itemId: item.itemId
-          }
+    var checklist = getExampleChecklist();
+    supertest(app)
+      .post('/api/assign-checklist')
+      .send({
+        dayZeroDate: new Date().valueOf(),
+        checklist: checklist,
+        notes: 'notesHere',
+        user: checkyUser
+      })
+      .expect(200)
+      .end(function () {
+        var items;
+        var markItemComplete = function (item, callback) {
+          supertest(app)
+            .get('/api/complete-item')
+            .query({
+              user: checkyUser,
+              timestamp: item.timestamp,
+              id: item._id,
+              checklistName: item.checklistName,
+              itemId: item.itemId
+            })
+            .expect(200)
+            .expect(function (res) {
+              expect(res.body.updatedItemCount > 0).toBe(true);
+            })
+            .end(callback);
         };
 
-        request.get(options, function (err, response, body) {
-          var bodyObj;
-          expect(!err && response.statusCode === 200).toBe(true);
-          bodyObj = JSON.parse(body);
-          expect(bodyObj.updatedItemCount > 0).toBe(true);
-          callback();
-        });
-      };
-
-      var markUndoneItemsComplete = function (callback) {
-        var options = {
-          url: 'http://localhost:3000/api/get-items',
-          qs: { user: user }
+        var markUndoneItemsComplete = function (callback) {
+          supertest(app)
+            .get('/api/get-items')
+            .expect(function (res) {
+              items = res.body.items;
+            })
+            .end(function () {
+              async.eachSeries(items, markItemComplete, callback);
+            });
         };
-        request.get(options, function (err, response, body) {
-          items = JSON.parse(body).items;
-          async.eachSeries(items, markItemComplete, callback);
-        });
-      };
 
-      function clearItems() {
-        var options = {
-          url: 'http://localhost:3000/api/clear-done',
-          qs: { user: user }
-        };
-        request.get(options, function (err, response, body) {
-          var getItemsOptions = {
-            url: 'http://localhost:3000/api/get-items',
-            qs: { user: user }
-          };
-          var bodyObj;
-          expect(!err && response.statusCode === 200).toBe(true);
-          bodyObj = JSON.parse(body);
-          expect(bodyObj.success).toBe(true);
+        function clearItems() {
+          supertest(app)
+            .get('/api/clear-done')
+            .expect(200, {
+              success: true
+            })
+            .end(function () {
+              supertest(app)
+                .get('/api/get-items')
+                .expect(200)
+                .expect(function (res) {
+                  expect(res.body.items.length === 0).toBe(true);
+                })
+                .end(done);
+            });
+        }
 
-          request.get(getItemsOptions, function (getItemsErr, getItemsResponse, getItemsBody) {
-            var getItemsBodyObj;
-            expect(!err && getItemsResponse.statusCode === 200).toBe(true);
-            getItemsBodyObj = JSON.parse(getItemsBody);
-            expect(getItemsBodyObj.items.length === 0).toBe(true);
-            done();
+        async.whilst(
+          function () {
+            return !items || !items[0].completedDate;
+          },
+          markUndoneItemsComplete,
+          function () {
+            clearItems(done);
           });
-        });
-      }
+      });
+  });
 
-      async.whilst(
-        function () {
-          return !items || !items[0].completedDate;
-        },
-        markUndoneItemsComplete,
-        function () {
-          clearItems(done);
-        });
-    });
+  it('Closes the db connection', function (done) {
+    // "test" that closes the db connection
+    // so that the test runner does not hang
+    api.db.dropDatabase();
+    api.db.close();
+    done();
   });
 });

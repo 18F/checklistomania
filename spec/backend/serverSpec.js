@@ -1,7 +1,7 @@
 /* global describe:false it:false expect:false */
 var supertest = require('supertest');
 
-var app = require('../app.js');
+var app = require('../../app.js');
 
 describe('Server is fully functional', function () {
   it('serves from /', function (done) {

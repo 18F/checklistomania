@@ -11,7 +11,7 @@ module.exports = function configKarma(config) {
       'public/bower_components/angular-aria/angular-aria.min.js',
       'public/bower_components/angular-messages/angular-messages.min.js',
       'private/js/app.js',
-      'spec/frontEndSpec.js'
+      'spec/frontend/frontEndSpec.js'
     ],
 
     autoWatch: true,

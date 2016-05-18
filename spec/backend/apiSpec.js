@@ -69,7 +69,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-api = require('../api/api.js');
+api = require('../../api/api.js');
 app.use('/api', api.router);
 
 describe('API is fully functional', function () {

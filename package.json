@@ -43,11 +43,11 @@
   },
   "scripts": {
     "postinstall": "bower install",
-    "backEndTests": "node spec/runBackendTests.js",
+    "backEndTests": "node_modules/jasmine-node/bin/jasmine-node --captureExceptions spec/backend",
     "frontEndTests": "node node_modules/.bin/karma start karma.conf.js --no-auto-watch --single-run",
     "test": "npm run backEndTests && npm run frontEndTests",
     "start": "node app.js",
-    "coverage": "istanbul cover spec/runBackendTests.js",
+    "coverage": "istanbul cover node_modules/jasmine-node/bin/jasmine-node spec/backend",
     "coveralls": "cat ./coverage/lcov.info ./coverage/phantomjs/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "engines": {

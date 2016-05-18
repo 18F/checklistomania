@@ -80,8 +80,6 @@ function addToUsers(req, res, next) {
     });
 }
 
-app.use(bodyParser());
-app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(session({ secret: process.env.SESSION_SECRET }));
 app.use(passport.initialize());

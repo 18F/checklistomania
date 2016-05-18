@@ -20,6 +20,7 @@ var spawnProcess = function (args, callback) {
 
 spawnProcess([
   'node_modules/jasmine-node/bin/jasmine-node',
+  'spec/serverSpec.js',
   'spec/apiSpec.js',
   '--captureExceptions'
 ], endTesting);

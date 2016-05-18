@@ -39,6 +39,7 @@
     "karma-phantomjs-launcher": "^0.2.3",
     "mockery": "^1.7.0",
     "phantomjs": "^1.9.19",
+    "sinon": "^1.17.4",
     "supertest": "^1.2.0"
   },
   "scripts": {

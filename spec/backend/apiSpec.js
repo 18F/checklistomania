@@ -32,15 +32,6 @@ function getExampleChecklist() {
 
 mockery.registerMock('./github.js', {
   github: {
-    orgs: {
-      getFromUser: function (obj, callback) {
-        var orgs;
-        if (obj.user === 'checkyCheckersmith') {
-          orgs = [{ login: process.env.GITHUB_ORG }];
-        }
-        callback(null, orgs);
-      }
-    },
     user: {
       getFrom: function (obj, callback) {
         var ghUser;

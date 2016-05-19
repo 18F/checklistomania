@@ -161,4 +161,34 @@ describe('custom middleware functions', function () {
       expect(next.called).toBe(true);
     });
   });
+
+  describe('includeBranding', function () {
+    it('sets logoPath and headerColor in res.locals, then calls next', function () {
+      var req = {};
+      var res = {
+        locals: {}
+      };
+      var next = sinon.spy();
+
+      middleware.includeBranding(req, res, next);
+      expect(res.locals.logoPath).toBeDefined();
+      expect(res.locals.headerColor).toBeDefined();
+      expect(next.called).toBe(true);
+    });
+
+    it('sets logoPath and headerColor from env variables', function () {
+      var req = {};
+      var res = {
+        locals: {}
+      };
+      var next = sinon.spy();
+      process.env.BRAND_LOGO_PATH = '/testpath.jpg';
+      process.env.BRAND_HEADER_COLOR = 'red';
+
+      middleware.includeBranding(req, res, next);
+      expect(res.locals.logoPath).toEqual('/testpath.jpg');
+      expect(res.locals.headerColor).toEqual('red');
+      expect(next.called).toBe(true);
+    });
+  });
 });

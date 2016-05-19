@@ -2,19 +2,20 @@
 var ejs = require('ejs');
 var express = require('express');
 var session = require('express-session');
-var bodyParser = require('body-parser');
 var http = require('http');
 var methodOverride = require('method-override');
 var passport = require('passport');
 var GitHubStrategy = require('passport-github2').Strategy;
 
 var api = require('./api/api.js');
-var github = require('./api/github.js').github;
+var middleware = require('./lib/middleware.js');
+var ensureAuthenticated = middleware.ensureAuthenticated;
+var ensureGithubOrg = middleware.ensureGithubOrg;
+var addToUsers = middleware.addToUsers;
+var includeBranding = middleware.includeBranding;
 
 var server;
 var app = express();
-
-api.setGithub(github);
 
 passport.serializeUser(function (user, done) {
   done(null, user);
@@ -34,66 +35,9 @@ passport.use(new GitHubStrategy({
   });
 }));
 
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    next();
-    return;
-  }
-  res.redirect('/auth');
-}
-
-function ensureGithubOrg(req, res, next) {
-  api.db.collection('users').findOne({ username: req.user.username },
-    function (err, user) {
-      if (user) {
-        next();
-      } else {
-        github.orgs.getFromUser({ user: req.user.username },
-          function (getFromUserErr, orgs) {
-            var inOrg = false;
-            orgs.forEach(function (org) {
-              if (org.login === process.env.GITHUB_ORG) {
-                inOrg = true;
-              }
-            });
-            if (inOrg) {
-              next();
-            } else {
-              res.redirect('/not-authorized.html');
-            }
-          });
-      }
-    });
-}
-
-function addToUsers(req, res, next) {
-  api.db.collection('users').findOne({ username: req.user.username },
-    function (err, user) {
-      var newUser;
-      if (!user) {
-        newUser = {
-          username: req.user.username,
-          earliestDueDate: new Date().setYear(3000),
-          fullName: req.user._json.name,
-          imgUrl: req.user._json.avatar_url
-        };
-        api.db.collection('users').insert(newUser);
-      }
-      next();
-    });
-}
-
-function includeBranding(req, res, next) {
-  res.locals.logoPath = process.env.BRAND_LOGO_PATH || '/private/img/18F-Logo-M.png';
-  res.locals.headerColor = process.env.BRAND_HEADER_COLOR || '#B3EFFF';
-  next();
-}
-
 app.engine('html', ejs.renderFile);
 app.set('views', process.cwd() + '/views');
 
-app.use(bodyParser());
-app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(session({ secret: process.env.SESSION_SECRET }));
 app.use(passport.initialize());

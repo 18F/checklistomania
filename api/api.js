@@ -1,7 +1,9 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
 var fs = require('fs');
-var github;
+
+var github = require('./github.js').github;
 
 var url;
 var router = express.Router(); // eslint-disable-line new-cap
@@ -68,6 +70,9 @@ MongoClient.connect(url, function (connectErr, db) {
   });
 });
 
+router.use(bodyParser());
+router.use(bodyParser.json());
+
 router.get('/', function (req, res) {
   res.json({ message: 'hooray! welcome to the api!' });
 });
@@ -113,7 +118,8 @@ function getSortedItemIds(checklist) {
 
     // sort actionable
     actionable.sort(function (itemId1, itemId2) {
-      return checklistCopy.items[itemId1].daysToComplete - checklistCopy.items[itemId2].daysToComplete;
+      return (checklistCopy.items[itemId1].daysToComplete
+        - checklistCopy.items[itemId2].daysToComplete);
     });
 
     // traverse actionable
@@ -292,6 +298,4 @@ router.get('/add-user', function (req, res) {
   });
 });
 
-
 module.exports.router = router;
-module.exports.setGithub = function setGithub(gh) { github = gh; };

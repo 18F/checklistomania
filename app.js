@@ -16,6 +16,7 @@ var includeBranding = middleware.includeBranding;
 
 var server;
 var app = express();
+var port = process.env.PORT || 3000;
 
 passport.serializeUser(function (user, done) {
   done(null, user);
@@ -28,7 +29,7 @@ passport.deserializeUser(function (obj, done) {
 passport.use(new GitHubStrategy({
   clientID: process.env.GITHUB_CLIENT_ID,
   clientSecret: process.env.GITHUB_CLIENT_SECRET,
-  callbackURL: process.env.GITHUB_CALLBACK_URL || 'http://localhost:3000/auth/callback'
+  callbackURL: process.env.GITHUB_CALLBACK_URL || 'http://localhost:' + port + '/auth/callback'
 }, function (accessToken, refreshToken, profile, done) {
   process.nextTick(function () {
     return done(null, profile);
@@ -74,5 +75,5 @@ module.exports = app;
 
 if (require.main === module) {
   server = http.createServer(app);
-  server.listen(process.env.PORT || 3000, function () {});
+  server.listen(port, function () {});
 }

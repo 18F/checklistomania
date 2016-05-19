@@ -52,6 +52,11 @@ export BRAND_LOGO_PATH=/private/img/18F-Logo-M.png
 export BRAND_HEADER_COLOR=\#B3EFFF
 ```
 
+You can also customize the port (which defaults to 3000) that the server listens on via:
+```shell
+export PORT=3000
+```
+
 Make sure you have MongoDB running locally:
 ```shell
 mongod

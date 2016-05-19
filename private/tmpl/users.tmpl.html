@@ -3,14 +3,15 @@
     <div class="md-display-1">Users <md-button ng-click="showAddUserDialog($event)">Add User</md-button></div>
     <md-card ng-repeat="user in users">
       <md-card-title>
-        <md-card-title-text> <span class="md-headline">{{ user.fullName }}</span>
- <span class="md-subhead"
-          ng-show="user.earliestDueDate.getFullYear() < 3000">next due date: {{user.earliestDueDate.toLocaleDateString()}}</span>
-
+        <md-card-title-text>
+          <span class="md-headline">{{ user.fullName }}</span>
+          <span class="md-subhead" ng-show="user.earliestDueDate.getFullYear() < 3000">
+            next due date: {{user.earliestDueDate.toLocaleDateString()}}
+          </span>
         </md-card-title-text>
         <md-card-title-media>
           <div class="md-media-sm card-media userImg" ng-class="user.trafficLight">
-            <img src="{{ user.imgUrl }}">
+            <img ng-src="{{ user.imgUrl }}">
           </div>
         </md-card-title-media>
       </md-card-title>

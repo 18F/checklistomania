@@ -1,4 +1,5 @@
 
+var ejs = require('ejs');
 var express = require('express');
 var session = require('express-session');
 var http = require('http');
@@ -11,6 +12,7 @@ var middleware = require('./lib/middleware.js');
 var ensureAuthenticated = middleware.ensureAuthenticated;
 var ensureGithubOrg = middleware.ensureGithubOrg;
 var addToUsers = middleware.addToUsers;
+var includeBranding = middleware.includeBranding;
 
 var server;
 var app = express();
@@ -33,13 +35,24 @@ passport.use(new GitHubStrategy({
   });
 }));
 
+app.engine('html', ejs.renderFile);
+app.set('views', process.cwd() + '/views');
+
 app.use(methodOverride());
 app.use(session({ secret: process.env.SESSION_SECRET }));
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.get('/private/index.html', [ensureAuthenticated, ensureGithubOrg,
+  addToUsers, includeBranding],
+  function (req, res) {
+    res.render('index.html');
+  }
+);
+
 app.use('/private', [ensureAuthenticated, ensureGithubOrg,
   addToUsers, express.static('private')]);
+
 app.use('/api', [ensureAuthenticated, ensureGithubOrg, addToUsers, api.router]);
 
 app.use('/', express.static('public'));

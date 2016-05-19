@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  
+
   <head>
     <title>Checklistomania</title>
     <!-- Angular Material style sheet -->
@@ -17,11 +17,13 @@
     <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/private/css/md-data-table.css">
   </head>
-  
+
   <body ng-app="app" ng-controller="todoCtrl">
-    <div class="md-display-1 todoHeader"><span><img src="/private/img/logo-18f.png" height="40" width="40"></span> Checklistomania</div>
-    <div
-    class="tabsdemoDynamicHeight">
+    <div class="md-display-1 todoHeader" style="background-color: <%= headerColor %>">
+      <img src="<%= logoPath %>" class="headerLogo">
+      Checklistomania
+    </div>
+    <div class="tabsdemoDynamicHeight">
       <md-content>
         <md-tabs md-dynamic-height="" md-border-bottom="" md-selected="tabDefaultIndex">
           <md-tab label="Tasks"><ng-include src="'tmpl/tasks.tmpl.html'"></ng-include></md-tab>
@@ -29,7 +31,7 @@
           <md-tab label="users"><ng-include src="'tmpl/users.tmpl.html'"></ng-include></md-tab>
         </md-tabs>
       </md-content>
-      </div>
+    </div>
   </body>
 
 </html>

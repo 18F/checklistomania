@@ -52,7 +52,7 @@ export BRAND_LOGO_PATH=/private/img/18F-Logo-M.png
 export BRAND_HEADER_COLOR=\#B3EFFF
 ```
 
-You can also customize the port (which defaults to 3000) that the server listens on via:
+You can also customize the port (which defaults to 3000) that the server listens on. If you do change it, make sure your registered GitHub callback matches the new port.
 ```shell
 export PORT=3000
 ```

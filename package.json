@@ -57,5 +57,8 @@
     "npm": "^3.8.3"
   },
   "author": "Anthony Garvan",
+  "contributors": [
+    "James Seppi <james.seppi@gsa.gov>"
+  ],
   "license": "CC0"
 }

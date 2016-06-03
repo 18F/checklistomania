@@ -70,7 +70,6 @@ MongoClient.connect(url, function (connectErr, db) {
   });
 });
 
-router.use(bodyParser());
 router.use(bodyParser.json());
 
 router.get('/', function (req, res) {

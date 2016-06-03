@@ -40,7 +40,11 @@ app.engine('html', ejs.renderFile);
 app.set('views', process.cwd() + '/views');
 
 app.use(methodOverride());
-app.use(session({ secret: process.env.SESSION_SECRET }));
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -75,5 +79,7 @@ module.exports = app;
 
 if (require.main === module) {
   server = http.createServer(app);
-  server.listen(port, function () {});
+  server.listen(port, function () {
+    console.log('Checklistomania started on port ' + port); // eslint-disable-line no-console
+  });
 }

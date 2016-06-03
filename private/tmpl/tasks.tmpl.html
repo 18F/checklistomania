@@ -32,8 +32,18 @@
                   <p ng-bind-html="item.descriptionHtml"></p>
                 </td>
                 <td class="md-cell">
-                  <md-button class="md-icon-button markDoneCheck" href="#" ng-click="markDone(item)" ng-hide="item.completedDate || !item.dueDate"><input type="checkbox"></md-button>
-                  <md-button class="md-icon-button markDoneCheck" href="#" ng-click="alert('Sorry! Undoing is not supported at this time.')" ng-hide="!item.completedDate"><input type="checkbox" checked></md-button>
+                  <md-button class="md-icon-button markDoneCheck"
+                    href="#"
+                    ng-click="markDone(item)"
+                    ng-hide="item.completedDate || !item.dueDate">
+                      <input aria-label="Mark done" type="checkbox">
+                  </md-button>
+                  <md-button class="md-icon-button markDoneCheck"
+                    href="#"
+                    ng-click="alert('Sorry! Undoing is not supported at this time.')"
+                    ng-hide="!item.completedDate">
+                      <input aria-label="Mark not done" type="checkbox" checked>
+                  </md-button>
                 </td>
               </tr>
             </tbody>

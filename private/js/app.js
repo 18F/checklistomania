@@ -266,7 +266,7 @@ app.controller('PreviewChecklistController',
       $mdDialog.cancel();
     };
 
-    $scope.assign = function () {
+    $scope.showAssignToMeDialog = function () {
       $mdDialog.cancel();
       showAssignToMeDialog(null, checklist);
     };

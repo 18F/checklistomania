@@ -319,6 +319,53 @@ describe('AssignDialogController', function () {
   });
 });
 
+describe('PreviewChecklistController', function () {
+  var showDialog = function() {};
+
+  beforeEach(module('app'));
+
+  beforeEach(inject(function ($injector) {
+    var $controller = $injector.get('$controller');
+
+    var $mdDialog = {
+      cancel: function () {},
+      hide: function () {}
+    };
+
+    $rootScope = $injector.get('$rootScope');
+
+    createController = function () {
+      return $controller('PreviewChecklistController', {
+        $scope: $rootScope,
+        $mdDialog: $mdDialog,
+        checklist: {
+          checklistName: 'checklistName',
+          items: [
+            { displayName: 'display name' }
+          ]
+        },
+        showAssignToMeDialog: showDialog
+      });
+    };
+  }));
+
+  it('previews the checklist', function () {
+    createController();
+    expect($rootScope.checklist.checklistName).toEqual('checklistName');
+    expect($rootScope.checklist.items[0].displayName).toEqual('display name');
+  });
+
+  it('closes the dialog', function () {
+    createController();
+    $rootScope.close();
+  });
+
+  it('shows the assign dialog', function () {
+    createController();
+    $rootScope.showAssignToMeDialog();
+  });
+});
+
 describe('AddUserDialogController', function () {
   beforeEach(module('app'));
 

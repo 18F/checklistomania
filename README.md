@@ -46,6 +46,8 @@ export SESSION_SECRET=testSessionSecret
 
 In production, make sure to set `SESSION_SECRET` to a long random string.
 
+You will also need to set `GITHUB_CALLBACK_URL` to the correct callback url for your domain. Its value should be of the form `https://<your-domain>.com/auth/callback`.
+
 If you'd like to customize the look a little, you may specify a logo path and a header color (as a valid HTML hex code or color name) as environment variables as well, otherwise 18F brand defaults will be used:
 ```shell
 export BRAND_LOGO_PATH=/private/img/18F-Logo-M.png

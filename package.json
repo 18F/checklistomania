@@ -39,6 +39,7 @@
     "karma-junit-reporter": "^0.2.2",
     "karma-phantomjs-launcher": "^0.2.3",
     "mockery": "^1.7.0",
+    "nodemon": "^1.9.2",
     "phantomjs": "^1.9.19",
     "sinon": "^1.17.4",
     "supertest": "^1.2.0"
@@ -49,6 +50,7 @@
     "frontEndTests": "node node_modules/.bin/karma start karma.conf.js --no-auto-watch --single-run",
     "test": "npm run backEndTests && npm run frontEndTests",
     "start": "node app.js",
+    "dev-start": "nodemon app.js",
     "coverage": "istanbul cover node_modules/jasmine-node/bin/jasmine-node spec/backend",
     "coveralls": "cat ./coverage/lcov.info ./coverage/phantomjs/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },

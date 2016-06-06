@@ -18,6 +18,16 @@ var server;
 var app = express();
 var port = process.env.PORT || 3000;
 
+var requiredEnv = ['GITHUB_CLIENT_ID', 'GITHUB_CLIENT_SECRET',
+  'GITHUB_ORG', 'SESSION_SECRET'];
+
+requiredEnv.forEach(function (name) {
+  if (!process.env[name]) {
+    throw new Error('Missing required environmental variable: ' + name);
+  }
+});
+
+
 passport.serializeUser(function (user, done) {
   done(null, user);
 });

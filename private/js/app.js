@@ -185,7 +185,10 @@ app.controller('todoCtrl', function ($scope, $http, $sce, $mdToast, $mdDialog, $
       targetEvent: ev,
       clickOutsideToClose: true,
       fullscreen: useFullScreen,
-      locals: { checklist: checklist }
+      locals: {
+        checklist: checklist,
+        showAssignToMeDialog: $scope.showAssignToMeDialog
+      }
     });
   };
 
@@ -248,23 +251,27 @@ app.controller('AssignDialogController', function ($scope, $mdDialog, checklist)
   };
 });
 
-app.controller('PreviewChecklistController', function ($scope, $mdDialog, checklist) {
-  $scope.checklist = checklist;
+app.controller('PreviewChecklistController',
+  function ($scope, $mdDialog, checklist, showAssignToMeDialog) {
+    $scope.checklist = checklist;
 
-  $scope.sortedItems = Object.keys(checklist.items)
-    .map(function (key) { return checklist.items[key]; })
-    .sort(function (a, b) {
-      return a.daysToComplete - b.daysToComplete;
-    });
+    $scope.sortedItems = Object.keys(checklist.items)
+      .filter(function (key) { return key !== 'dayZero'; })
+      .map(function (key) { return checklist.items[key]; })
+      .sort(function (a, b) {
+        return a.daysToComplete - b.daysToComplete;
+      });
 
-  $scope.close = function () {
-    $mdDialog.cancel();
-  };
+    $scope.close = function () {
+      $mdDialog.cancel();
+    };
 
-  $scope.assign = function () {
-    alert('show alert dialog');
-  };
-});
+    $scope.assign = function () {
+      $mdDialog.cancel();
+      showAssignToMeDialog(null, checklist);
+    };
+  }
+);
 
 app.controller('AddUserDialogController', function ($scope, $mdDialog, $http) {
   $scope.cancel = function () {

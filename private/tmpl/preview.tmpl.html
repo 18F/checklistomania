@@ -6,12 +6,14 @@
       </div>
     </md-toolbar>
     <md-dialog-content>
-      <p>Preview Checklist "{{ checklist.checklistName }}"</p>
-      <ul>
-        <li ng-repeat="item in sortedItems">
-          {{ item.displayName }}
-        </li>
-      </ul>
+      <div class="md-dialog-content">
+        <p>Tasks in Checklist "{{ checklist.checklistName }}"</p>
+        <ul>
+          <li ng-repeat="item in sortedItems">
+            {{ item.displayName }}
+          </li>
+        </ul>
+      </div>
     </md-dialog-content>
     <md-dialog-actions layout="row"> <span flex></span>
       <md-button ng-click="close()">Close</md-button>

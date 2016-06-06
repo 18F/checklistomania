@@ -1,8 +1,8 @@
 
   <md-content class="md-padding">
     <div class="md-display-1">Checklists</div>
-    <div layout="row" layout-wrap layout-align="center">
-      <md-card ng-repeat="checklist in checklists" flex="45">
+    <div layout="row" layout-wrap layout-align="center" layout-xs="column">
+      <md-card ng-repeat="checklist in checklists" flex="45" flex-xs="90">
         <md-card-title>
           <md-card-title-text>
             <span class="md-headline">{{ checklist.checklistName }}</span>

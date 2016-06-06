@@ -23,7 +23,7 @@ var requiredEnv = ['GITHUB_CLIENT_ID', 'GITHUB_CLIENT_SECRET',
 
 requiredEnv.forEach(function (name) {
   if (!process.env[name]) {
-    throw new Error('Missing required environmental variable: ' + name);
+    throw new Error('Missing required environment variable: ' + name);
   }
 });
 

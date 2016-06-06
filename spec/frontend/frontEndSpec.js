@@ -40,6 +40,7 @@ describe('todoCtrl', function () {
         course3: {
           prompt: 'Is it hosted on cloud.gov?',
           displayType: 'radio',
+          selected: 'Yes, it is.',
           possibleResponses: [{
             text: 'Yes, it is.',
             items: {
@@ -64,6 +65,38 @@ describe('todoCtrl', function () {
               }
             }
           }]
+        },
+        course4: {
+          prompt: 'What topics does this cover?',
+          displayType: 'checkbox',
+          possibleResponses: [
+            {
+              text: 'Technology',
+              selected: true,
+              items: {
+                Andrew: {
+                  displayName: 'Approver: Andrew',
+                  daysToComplete: 2,
+                  dependsOn: ['dayZero']
+                },
+                Tony: {
+                  displayName: 'Approver: Tony',
+                  daysToComplete: 2,
+                  dependsOn: ['Andrew']
+                }
+              }
+            },
+            {
+              text: 'Recruiting',
+              items: {
+                Jen: {
+                  displayName: 'Approver: Kaitlin',
+                  daysToComplete: 2,
+                  dependsOn: ['dayZero']
+                }
+              }
+            }
+          ]
         },
         finale: {
           displayName: 'The Finale',

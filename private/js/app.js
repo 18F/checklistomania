@@ -176,7 +176,7 @@ app.controller('todoCtrl', function ($scope, $http, $sce, $mdToast, $mdDialog, $
       });
   };
 
-  $scope.showPreview = function (ev, checklist) {
+  $scope.showPreviewDialog = function (ev, checklist) {
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
     $mdDialog.show({
       controller: 'PreviewChecklistController',

@@ -191,6 +191,22 @@ describe('todoCtrl', function () {
     $httpBackend.flush();
   });
 
+  it('previews a checklist', function () {
+    var $mdDialog = {
+      hide: function () {},
+      show: function () {
+        return {
+          then: function (fn) {
+            fn(checklist);
+          }
+        };
+      }
+    };
+
+    createController($mdDialog);
+    $rootScope.showPreviewDialog(null, checklist);
+  });
+
   it('adds a new user', function () {
     var username = 'testUser';
     var $mdDialog = {

@@ -320,7 +320,7 @@ describe('AssignDialogController', function () {
 });
 
 describe('PreviewChecklistController', function () {
-  var showDialog = function() {};
+  var showDialog = function () {};
 
   beforeEach(module('app'));
 

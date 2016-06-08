@@ -10,7 +10,7 @@
         <p>Tasks in Checklist "{{ checklist.checklistName }}"</p>
         <ul>
           <li ng-repeat="item in sortedItems">
-            {{ item.displayName }}
+            {{ item.displayName || item.prompt }}
           </li>
         </ul>
       </div>

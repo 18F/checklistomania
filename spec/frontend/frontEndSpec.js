@@ -40,6 +40,7 @@ describe('todoCtrl', function () {
         course3: {
           prompt: 'Is it hosted on cloud.gov?',
           displayType: 'radio',
+          selected: 'Yes, it is.',
           possibleResponses: [{
             text: 'Yes, it is.',
             items: {
@@ -64,6 +65,38 @@ describe('todoCtrl', function () {
               }
             }
           }]
+        },
+        course4: {
+          prompt: 'What topics does this cover?',
+          displayType: 'checkbox',
+          possibleResponses: [
+            {
+              text: 'Technology',
+              selected: true,
+              items: {
+                Andrew: {
+                  displayName: 'Approver: Andrew',
+                  daysToComplete: 2,
+                  dependsOn: ['dayZero']
+                },
+                Tony: {
+                  displayName: 'Approver: Tony',
+                  daysToComplete: 2,
+                  dependsOn: ['Andrew']
+                }
+              }
+            },
+            {
+              text: 'Recruiting',
+              items: {
+                Jen: {
+                  displayName: 'Approver: Kaitlin',
+                  daysToComplete: 2,
+                  dependsOn: ['dayZero']
+                }
+              }
+            }
+          ]
         },
         finale: {
           displayName: 'The Finale',
@@ -191,6 +224,22 @@ describe('todoCtrl', function () {
     $httpBackend.flush();
   });
 
+  it('previews a checklist', function () {
+    var $mdDialog = {
+      hide: function () {},
+      show: function () {
+        return {
+          then: function (fn) {
+            fn(checklist);
+          }
+        };
+      }
+    };
+
+    createController($mdDialog);
+    $rootScope.showPreviewDialog(null, checklist);
+  });
+
   it('adds a new user', function () {
     var username = 'testUser';
     var $mdDialog = {
@@ -267,6 +316,53 @@ describe('AssignDialogController', function () {
   it('assigns checklist', function () {
     createController();
     $rootScope.assign();
+  });
+});
+
+describe('PreviewChecklistController', function () {
+  var showDialog = function () {};
+
+  beforeEach(module('app'));
+
+  beforeEach(inject(function ($injector) {
+    var $controller = $injector.get('$controller');
+
+    var $mdDialog = {
+      cancel: function () {},
+      hide: function () {}
+    };
+
+    $rootScope = $injector.get('$rootScope');
+
+    createController = function () {
+      return $controller('PreviewChecklistController', {
+        $scope: $rootScope,
+        $mdDialog: $mdDialog,
+        checklist: {
+          checklistName: 'checklistName',
+          items: [
+            { displayName: 'display name' }
+          ]
+        },
+        showAssignToMeDialog: showDialog
+      });
+    };
+  }));
+
+  it('previews the checklist', function () {
+    createController();
+    expect($rootScope.checklist.checklistName).toEqual('checklistName');
+    expect($rootScope.checklist.items[0].displayName).toEqual('display name');
+  });
+
+  it('closes the dialog', function () {
+    createController();
+    $rootScope.close();
+  });
+
+  it('shows the assign dialog', function () {
+    createController();
+    $rootScope.showAssignToMeDialog();
   });
 });
 

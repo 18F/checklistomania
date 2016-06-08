@@ -52,8 +52,8 @@ app.controller('todoCtrl', function ($scope, $http, $sce, $mdToast, $mdDialog, $
       }
     });
 
-    checklist.items = compiledItems;
-    return checklist;
+    checklistCopy.items = compiledItems;
+    return checklistCopy;
   };
 
   var showSimpleToast = function (msg) {
@@ -176,6 +176,22 @@ app.controller('todoCtrl', function ($scope, $http, $sce, $mdToast, $mdDialog, $
       });
   };
 
+  $scope.showPreviewDialog = function (ev, checklist) {
+    var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+    $mdDialog.show({
+      controller: 'PreviewChecklistController',
+      templateUrl: 'tmpl/preview.tmpl.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose: true,
+      fullscreen: useFullScreen,
+      locals: {
+        checklist: checklist,
+        showAssignToMeDialog: $scope.showAssignToMeDialog
+      }
+    });
+  };
+
   $scope.showAssignToMeDialog = function (ev, checklist) {
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
     $mdDialog.show({
@@ -234,6 +250,28 @@ app.controller('AssignDialogController', function ($scope, $mdDialog, checklist)
     $mdDialog.hide(checklist);
   };
 });
+
+app.controller('PreviewChecklistController',
+  function ($scope, $mdDialog, checklist, showAssignToMeDialog) {
+    $scope.checklist = checklist;
+
+    $scope.sortedItems = Object.keys(checklist.items)
+      .filter(function (key) { return key !== 'dayZero'; })
+      .map(function (key) { return checklist.items[key]; })
+      .sort(function (a, b) {
+        return a.daysToComplete - b.daysToComplete;
+      });
+
+    $scope.close = function () {
+      $mdDialog.cancel();
+    };
+
+    $scope.showAssignToMeDialog = function () {
+      $mdDialog.cancel();
+      showAssignToMeDialog(null, checklist);
+    };
+  }
+);
 
 app.controller('AddUserDialogController', function ($scope, $mdDialog, $http) {
   $scope.cancel = function () {

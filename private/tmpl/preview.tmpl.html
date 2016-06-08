@@ -1,0 +1,23 @@
+<md-dialog aria-label="preview checklist" ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Preview Checklist</h2>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <p>Tasks in Checklist "{{ checklist.checklistName }}"</p>
+        <ul>
+          <li ng-repeat="item in sortedItems">
+            {{ item.displayName || item.prompt }}
+          </li>
+        </ul>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row"> <span flex></span>
+      <md-button ng-click="close()">Close</md-button>
+      <md-button ng-click="showAssignToMeDialog()" style="margin-right:20px;">Assign To Me</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

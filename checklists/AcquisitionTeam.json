@@ -21,7 +21,7 @@
 	},
 	"attendMeeting": { 
 		"displayName": "Attend weekly meetings",
-		"description": "Attend team sync on Monday and team Retro on friday", 
+		"description": "Attend team sync on Monday and team retro on Friday", 
 		"daysToComplete": 1, 
 		"dependsOn": ["dayZero"]
 	},

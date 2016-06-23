@@ -1,0 +1,34 @@
+{"checklistName": "Acquisition Team Member",
+"checklistDescription": "TODO Items for new members of the AcqStack team.",
+"items": 
+	{"dayZero": { 
+		"displayName": "Start Date", 
+		"description": "First day on the job.",
+		"daysToComplete": 0, 
+		"dependsOn": []
+	},
+	"addToListserv": { 
+		"displayName": "Join related slack channels", 
+		"description": "Make sure you're added to the AcqStack team listserv, Acano rooms, and calendar. Ask your buddy re: other shared calendars.",
+		"daysToComplete": 1, 
+		"dependsOn": ["dayZero"]
+	},
+	"readGuide": { 
+		"displayName": "Take GitHub training from Steven", 
+		"description": "Ask @stvnlly to help with GitHub, if needed.",
+		"daysToComplete": 4, 
+		"dependsOn": ["dayZero"]
+	},
+	"attendMeeting": { 
+		"displayName": "Attend weekly meetings",
+		"description": "Attend team sync on Monday and team retro on Friday", 
+		"daysToComplete": 1, 
+		"dependsOn": ["dayZero"]
+	},
+	"readBriefs": { 
+		"displayName": "Read project briefs",
+		"description": "Information in the <a href=\"https://drive.google.com/drive/u/1/folders/0B497BYqz8M4-fnNZbmN6TGdhN1MtYTZHVjI4d3M0aXVCMkYxdExpTFlCbzVLV0dacVVmVlU\">Google Drive</a>", 
+		"daysToComplete": 9, 
+		"dependsOn": ["dayZero"]
+	}}
+}

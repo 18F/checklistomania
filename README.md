@@ -79,6 +79,12 @@ Run tests with:
 npm test
 ```
 
+Run eslint either via a code editor plugin (such as Atom's [linter-eslint](https://github.com/AtomLinter/linter-eslint)),
+or from the command line with:
+```shell
+npm run eslint
+```
+
 ## Deployment
 For 18Fers: this is deployed on cloud.gov. Get started on cloud.gov by following the instructions [here](https://docs.cloud.gov/). Ask for more details in the #checklistomania channel in slack.
 

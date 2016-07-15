@@ -159,14 +159,14 @@ router.post('/assign-checklist', function (req, res) {
       var estimatedDueDate = new Date();
       var childItem = checklist.items[childItemId];
       estimatedDueDate.setTime(item.estimatedDueDate.getTime()
-        + childItem.daysToComplete * 24 * 60 * 60 * 1000 + 1
+        + (childItem.daysToComplete * 24 * 60 * 60 * 1000) + 1
       );
       checklist.items[childItemId].estimatedDueDate = estimatedDueDate;
     });
 
     if (item.dependsOn.indexOf('dayZero') >= 0) {
       dueDate = new Date();
-      dueDate.setTime(dayZeroDate.getTime() + item.daysToComplete * 24 * 60 * 60 * 1000 + 1);
+      dueDate.setTime(dayZeroDate.getTime() + (item.daysToComplete * 24 * 60 * 60 * 1000) + 1);
       item.dueDate = dueDate;
     }
     items.insert(item);

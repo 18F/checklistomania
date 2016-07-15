@@ -23,11 +23,9 @@
   },
   "devDependencies": {
     "coveralls": "^2.11.6",
-    "eslint": "^2.9.0",
-    "eslint-config-airbnb": "^9.0.1",
-    "eslint-plugin-import": "^1.7.0",
-    "eslint-plugin-jsx-a11y": "^1.2.0",
-    "eslint-plugin-react": "^5.1.1",
+    "eslint": "^3.1.0",
+    "eslint-config-airbnb-base": "^4.0.2",
+    "eslint-plugin-import": "^1.10.3",
     "istanbul": "^0.4.1",
     "jasmine-core": "^2.4.1",
     "jasmine-node": "^1.14.5",
@@ -51,6 +49,7 @@
     "test": "npm run backEndTests && npm run frontEndTests",
     "start": "node app.js",
     "dev-start": "nodemon app.js",
+    "eslint": "eslint . || true",
     "coverage": "istanbul cover node_modules/jasmine-node/bin/jasmine-node spec/backend",
     "coveralls": "cat ./coverage/lcov.info ./coverage/phantomjs/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
@@ -62,5 +61,5 @@
   "contributors": [
     "James Seppi <james.seppi@gsa.gov>"
   ],
-  "license": "CC0"
+  "license": "CC0-1.0"
 }

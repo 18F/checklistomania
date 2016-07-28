@@ -163,12 +163,6 @@
 		"daysToComplete": 9, 
 		"dependsOn": ["dayZero"]
 	},
-	"writeBio": { 
-		"displayName": "Write website bio", 
-		"description": "<a href=\"https://handbook.18f.gov/github-and-18f-site/#your-bio-and-photo\">Instructions</a>",
-		"daysToComplete": 9, 
-		"dependsOn": ["dayZero"]
-	},
 	"submitToTeamAPI": { 
 		"displayName": "Add yourself to Team API", 
 		"description": "<a href=\"https://github.com/18F/team-api.18f.gov/blob/master/README.md#new-18f-team-members\">Instructions</a>",

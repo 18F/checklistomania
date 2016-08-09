@@ -33,7 +33,7 @@
 	},
 	"logOnMac": { 
 		"displayName": "Log onto your Mac and change your account password",
-		"description": "Instructions <a href=\"https://support.apple.com/en-us/HT202860\"here</a>", 
+		"description": "Instructions <a href=\"https://support.apple.com/en-us/HT202860\">here</a>", 
 		"daysToComplete": 0, 
 		"dependsOn": ["receiveEquipment"]
 	},

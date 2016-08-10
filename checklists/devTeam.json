@@ -51,7 +51,7 @@
 	},
 	"setUpGitHub": {
 		"displayName": "Setup GitHub",
-		"description": "You should have received instructions via Dolores to set up your 18F GitHub account. <a href=\"https://github.com/18F/handbook/blob/staging/articles/5-training-and-professional-development/seminars/github-and-18f-site.md#1-setting-up-your-account\">Instructions are here.</a>",
+		"description": "You should have received instructions via Dolores to set up your 18F GitHub account. <a href=\"https://handbook.18f.gov/github/\">Instructions are here.</a>",
 		"daysToComplete": 2,
 		"dependsOn": ["dayZero"]
 	},

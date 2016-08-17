@@ -11,14 +11,16 @@ RUN \
   mv /tmp/phantomjs-$PHANTOMJS_VERSION-linux-x86_64/ /srv/var/phantomjs && \
   ln -s /srv/var/phantomjs/bin/phantomjs /usr/bin/phantomjs
 
-COPY package.json /checklistomania/
-
-WORKDIR /checklistomania
-
 RUN npm install -g bower
+
+# Based on guidance at http://jdlm.info/articles/2016/03/06/lessons-building-node-app-docker.html
+RUN useradd --user-group --create-home app
+
+ENV HOME=/home/app
+
+COPY package.json bower.json $HOME/checklistomania/
+RUN chown -R app:app $HOME/*
+
+USER app
+WORKDIR $HOME/checklistomania
 RUN npm install
-
-COPY . /checklistomania/
-
-# TODO: check if this works or what
-# RUN bower install

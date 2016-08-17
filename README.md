@@ -55,7 +55,7 @@ For example, to run bash in the app container, run:
 docker-compose run app bash
 ```
 
-In the app container, `/checklistomania` is mapped to your host
+In the app container, `/home/app/checklistomania` is mapped to your host
 machine's checklistomania directory.
 
 To run a command in the mongo container, run:

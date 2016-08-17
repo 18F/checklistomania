@@ -1,9 +1,9 @@
 app:
   build: .
   volumes:
-    - .:/checklistomania
-    # http://stackoverflow.com/a/37898591
-    - /checklistomania/node_modules
+    - .:/home/app/checklistomania
+    # link node_modules to nothing on the host
+    - /home/app/checklistomania/node_modules
   links:
     - mongo
   environment:

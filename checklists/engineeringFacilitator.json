@@ -7,10 +7,10 @@
 		"daysToComplete": 0,
 		"dependsOn": []
 	},
-	"giveChecklist": { 
-		"displayName": "Give Checklist", 
+	"giveChecklist": {
+		"displayName": "Give Checklist",
 		"description": "Gives new hire team-based checklist",
-		"daysToComplete": 3, 
+		"daysToComplete": 3,
 		"dependsOn": ["dayZero"]
 	},
 	"intro": {
@@ -49,10 +49,10 @@
 		"daysToComplete": 30,
 		"dependsOn": ["dayZero"]
 	},
-		"skillsSpreadsheet": { 
-		"displayName": "Skills Spreadsheet", 
+	"skillsSpreadsheet": {
+		"displayName": "Skills Spreadsheet",
 		"description": "Send them the staff skills spreadsheet and ask them to fill it out",
-		"daysToComplete": 12, 
+		"daysToComplete": 12,
 		"dependsOn": ["dayZero"]
 	},
 	"performancePlan": {

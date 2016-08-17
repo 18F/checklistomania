@@ -7,6 +7,12 @@
 		"daysToComplete": 0,
 		"dependsOn": []
 	},
+	"giveChecklist": {
+		"displayName": "Give Checklist",
+		"description": "Gives new hire team-based checklist",
+		"daysToComplete": 3,
+		"dependsOn": ["dayZero"]
+	},
 	"intro": {
 		"displayName": "Introductory check in",
 		"description": "Have an introductory check in with them",
@@ -41,6 +47,12 @@
 		"displayName": "Set Goals & OKRs",
 		"description": "Set a meeting to create goals and OKRs",
 		"daysToComplete": 30,
+		"dependsOn": ["dayZero"]
+	},
+	"skillsSpreadsheet": {
+		"displayName": "Skills Spreadsheet",
+		"description": "Send them the staff skills spreadsheet and ask them to fill it out",
+		"daysToComplete": 12,
 		"dependsOn": ["dayZero"]
 	},
 	"performancePlan": {

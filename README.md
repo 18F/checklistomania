@@ -42,21 +42,21 @@ docker-compose up
 ```
 
 This will start up all required services in containers and output their
-log information to stdout. You should be able to visit http://localhost:3000/
-directly to access the site.
+log information to stdout. You should be able to visit
+[http://localhost:3000/](http://localhost:3000/) to view the site.
 
 To run any arbitrary command in the context of the application container, run:
 ```shell
 docker-compose run app <THE COMMAND>
 ```
 
-In the app container, `/checklistomania` is mapped to your host
-machine's checklistomania directory.
-
 For example, to run bash in the app container, run:
 ```shell
 docker-compose run app bash
 ```
+
+In the app container, `/checklistomania` is mapped to your host
+machine's checklistomania directory.
 
 To run a command in the mongo container, run:
 ```shell

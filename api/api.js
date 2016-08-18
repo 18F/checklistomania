@@ -45,7 +45,7 @@ if (process.env.VCAP_SERVICES) {
   vcapServices = JSON.parse(process.env.VCAP_SERVICES);
   url = vcapServices['mongodb26-swarm'][0].credentials.uri;
 } else {
-  url = 'mongodb://localhost:27017/checklistomania';
+  url = process.env.MONGODB_URI || 'mongodb://localhost:27017/checklistomania';
 }
 
 MongoClient.connect(url, function (connectErr, db) {

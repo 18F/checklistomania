@@ -1,0 +1,24 @@
+app:
+  build: .
+  volumes:
+    - .:/home/app/checklistomania
+    # link node_modules to nothing on the host
+    - /home/app/checklistomania/node_modules
+  links:
+    - mongo
+  environment:
+    - GITHUB_CLIENT_ID=0a363c03ec2646619f57
+    - GITHUB_CLIENT_SECRET=01408892458c92e3514cd96cd6b31e6d91df25d2
+    - GITHUB_ORG=18F
+    - SESSION_SECRET=testSessionSecret
+    - MONGODB_URI=mongodb://mongo:27017/checklistomania
+  command: npm run dev-start
+  ports:
+    - "3000:3000"
+mongo:
+  image: mongo:3.2
+  environment:
+    - POSTGRES_DB=calc
+    - POSTGRES_USER=calc_user
+  ports:
+    - "27017:27017"

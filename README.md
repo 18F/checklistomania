@@ -22,7 +22,55 @@ The users tab is where you can view the status of other team members action item
 ## Running Checklistomania
 Checklistomania is a [Node.js](https://nodejs.org) application on the back-end, and its front-end is an [AngularJS](https://angularjs.org/) single-page application.
 
-If you'd like to run Checklistomania for development purposes, follow these steps:
+### Using Docker for Development
+
+A Docker setup potentially makes development and deployment easier.
+
+To use it, install [Docker][] and [Docker Compose][] and read the
+[18F Docker guide][] if you haven't already.
+
+Then build the Docker images with:
+
+```sh
+docker-compose build
+```
+
+Once the above command finishes, run:
+
+```sh
+docker-compose up
+```
+
+This will start up all required services in containers and output their
+log information to stdout. You should be able to visit
+[http://localhost:3000/](http://localhost:3000/) to view the site.
+
+To run any arbitrary command in the context of the application container, run:
+```shell
+docker-compose run app <THE COMMAND>
+```
+
+For example, to run bash in the app container, run:
+```shell
+docker-compose run app bash
+```
+
+In the app container, `/home/app/checklistomania` is mapped to your host
+machine's checklistomania directory.
+
+To run a command in the mongo container, run:
+```shell
+docker-compose run mongo <THE COMMAND>
+```
+
+To remove all Docker images associated with this project, run
+```shell
+docker-compose down -v
+```
+
+### Running Locally
+
+If you'd like to run Checklistomania locally, follow these steps:
 
 First, install Node.js ([Download page](https://nodejs.org/en/download/)) and MongoDB ([Installation instructions](https://docs.mongodb.com/manual/installation/)). Make sure you have the same version of Node.js as specified in `package.json`.
 
@@ -74,13 +122,23 @@ Visit [http://localhost:3000/](http://localhost:3000/) to see the locally runnin
 ## Testing
 Make sure you have the same version of Node.js as specified in `package.json`, otherwise you may have trouble running the front end tests.
 
-Run tests with:
+If you are using Docker for development, run:
+```shell
+docker-compose run app npm test
+```
+
+If you are running Checklistomania locally, run:
 ```shell
 npm test
 ```
 
 Run eslint either via a code editor plugin (such as Atom's [linter-eslint](https://github.com/AtomLinter/linter-eslint)),
-or from the command line with:
+or from the command line. If you are using Docker, run:
+```shell
+docker-compose run app npm run eslint
+```
+
+If you are running locally, run:
 ```shell
 npm run eslint
 ```
@@ -94,3 +152,7 @@ This project is in the worldwide [public domain](LICENSE.md). As stated in [CONT
 > This project is in the public domain within the United States, and copyright and related rights in the work worldwide are waived through the [CC0 1.0 Universal public domain dedication](https://creativecommons.org/publicdomain/zero/1.0/).
 >
 > All contributions to this project will be released under the CC0 dedication. By submitting a pull request, you are agreeing to comply with this waiver of copyright interest.
+
+[18F Docker guide]: https://pages.18f.gov/dev-environment-standardization/virtualization/docker/
+[Docker]: https://www.docker.com/
+[Docker Compose]: https://docs.docker.com/compose/

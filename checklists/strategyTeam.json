@@ -1,5 +1,5 @@
-{"checklistName": "Consulting Team Member",
-"checklistDescription": "TODO Items for new members of consulting team.",
+{"checklistName": "Strategy Team Member",
+"checklistDescription": "TODO Items for new members of strategy team.",
 "items": 
 	{"dayZero": { 
 		"displayName": "Start Date", 
@@ -9,19 +9,19 @@
 	},
 	"addToListserv": { 
 		"displayName": "Add to listserv", 
-		"description": "Make sure you're added to the Consulting team listserv and calendar. Ask your buddy to ensure you're on both.",
+		"description": "Make sure you're added to the Strategy team listserv and calendar. Ask your buddy to ensure you're on both.",
 		"daysToComplete": 1, 
 		"dependsOn": ["dayZero"]
 	},
 	"readGuide": { 
-		"displayName": "Read consulting guide", 
-		"description": "<a href=\"https://handbook.18f.gov/consulting\">Consulting Team Onboarding Guide</a>.",
+		"displayName": "Read strategy guide", 
+		"description": "<a href=\"https://handbook.18f.gov/strategy\">Strategy Team Onboarding Guide</a>.",
 		"daysToComplete": 4, 
 		"dependsOn": ["dayZero"]
 	},
 	"attendMeeting": { 
 		"displayName": "Attend weekly meeting",
-		"description": "Information in the <a href=\"https://handbook.18f.gov/consulting\">Consulting Team Onboarding Guide</a>", 
+		"description": "Information in the <a href=\"https://handbook.18f.gov/strategy\">Strategy Team Onboarding Guide</a>", 
 		"daysToComplete": 1, 
 		"dependsOn": ["dayZero"]
 	},

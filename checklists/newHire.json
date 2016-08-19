@@ -163,6 +163,12 @@
 		"daysToComplete": 9, 
 		"dependsOn": ["dayZero"]
 	},
+	"fillOutForm": { 
+		"displayName": "Fill out OGE-450", 
+		"description": "You'll need to turn in an <a href=\"https://www.oge.gov/Web/oge.nsf/Resources/OGE+Form+450:+Confidential+Financial+Disclosure+Report">OGE-450</a> form. You can ask questions in the #oge-450 slack channel.",
+		"daysToComplete": 20, 
+		"dependsOn": ["dayZero"]
+	},
 	"virtualTea": { 
 		"displayName": "Schedule virtual teas", 
 		"description": "Get to know your teammates over video chat. You can use <a href=\"https://handbook.18f.gov/acano\">Acano</a>, <a href=\"https://handbook.18f.gov/google-hangouts\">Google Hangouts</a>, or <a href=\"https://handbook.18f.gov/appearin\">Appear.in</a>.",

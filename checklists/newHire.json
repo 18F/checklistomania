@@ -165,7 +165,7 @@
 	},
 	"fillOutForm": { 
 		"displayName": "Fill out OGE-450", 
-		"description": "You'll need to turn in an <a href=\"https://www.oge.gov/Web/oge.nsf/Resources/OGE+Form+450:+Confidential+Financial+Disclosure+Report">OGE-450</a> form. You can ask questions in the #oge-450 slack channel.",
+		"description": "You'll need to turn in an <a href=\"https://www.oge.gov/Web/oge.nsf/Resources/OGE+Form+450:+Confidential+Financial+Disclosure+Report\">OGE-450</a> form. You can ask questions in the #oge-450 slack channel.",
 		"daysToComplete": 20, 
 		"dependsOn": ["dayZero"]
 	},

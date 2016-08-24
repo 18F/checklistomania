@@ -67,11 +67,5 @@
 		"description": "See <a href=\"https://handbook.18f.gov/google-calendar\">Calendars</a> and <a href=\"https://handbook.18f.gov/general-contacts-and-listservs/#listservs\">Listservs</a>",
 		"daysToComplete": 4, 
 		"dependsOn": ["dayZero"]
-	},
-	"licenses": { 
-		"displayName": "Invite them to the Intake meeting",
-		"description": "Meetings take place every other Thursday at 12 EST", 
-		"daysToComplete": 30, 
-		"dependsOn": ["dayZero"]
 	}}
 }

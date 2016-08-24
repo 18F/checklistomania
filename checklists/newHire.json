@@ -163,15 +163,9 @@
 		"daysToComplete": 9, 
 		"dependsOn": ["dayZero"]
 	},
-	"submitToTeamAPI": { 
-		"displayName": "Add yourself to Team API", 
-		"description": "<a href=\"https://github.com/18F/team-api.18f.gov/blob/master/README.md#new-18f-team-members\">Instructions</a>",
-		"daysToComplete": 9, 
-		"dependsOn": ["dayZero"]
-	},
 	"fillOutForm": { 
-		"displayName": "Fill out SF-450", 
-		"description": "<a href=\"https://handbook.18f.gov/hatch-act-foia-ethics-code-of-conduct/#a-iddocumentationdocumentationa\">Instructions</a>",
+		"displayName": "Fill out OGE-450", 
+		"description": "You'll need to turn in an <a href=\"https://www.oge.gov/Web/oge.nsf/Resources/OGE+Form+450:+Confidential+Financial+Disclosure+Report\">OGE-450</a> form. You can ask questions in the #oge-450 slack channel.",
 		"daysToComplete": 20, 
 		"dependsOn": ["dayZero"]
 	},
@@ -179,12 +173,6 @@
 		"displayName": "Schedule virtual teas", 
 		"description": "Get to know your teammates over video chat. You can use <a href=\"https://handbook.18f.gov/acano\">Acano</a>, <a href=\"https://handbook.18f.gov/google-hangouts\">Google Hangouts</a>, or <a href=\"https://handbook.18f.gov/appearin\">Appear.in</a>.",
 		"daysToComplete": 12, 
-		"dependsOn": ["dayZero"]
-	},
-	"receiveSoftwareLicenses": { 
-		"displayName": "Receive software licenses", 
-		"description": "Please read the instructions for <a href=\"https://github.com/18F/handbook/search?utf8=%E2%9C%93&q=license\">specific software licenses</a>. If yours isn't on the list, ask in #devops and then in #teamops.",
-		"daysToComplete": 20, 
 		"dependsOn": ["dayZero"]
 	},
 	"readOrgChart": { 

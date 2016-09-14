@@ -177,7 +177,7 @@
 	},
 	"readOrgChart": { 
 		"displayName": "Read org chart", 
-		"description": "Learn about 18F's <a href=\"https://handbook.18f.gov/org-chart\">organizational structure</a> and <a href=\"https://handbook.18f.gov/welcome-from-phaedra-and-aaron\">relationship to OCSIT</a>.",
+		"description": "Learn about 18F's <a href=\"https://handbook.18f.gov/org-chart\">organizational structure</a> and <a href=\"https://handbook.18f.gov/welcome-from-aaron\">relationship to OCSIT</a>.",
 		"daysToComplete": 20, 
 		"dependsOn": ["dayZero"]
 	},

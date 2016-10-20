@@ -30,5 +30,11 @@
 		"description": "Information in the <a href=\"https://drive.google.com/drive/u/1/folders/0B497BYqz8M4-fnNZbmN6TGdhN1MtYTZHVjI4d3M0aXVCMkYxdExpTFlCbzVLV0dacVVmVlU\">Google Drive</a>", 
 		"daysToComplete": 9, 
 		"dependsOn": ["dayZero"]
+	},
+	"faitasAccount": { 
+		"displayName": "Set up FAITAS account",
+		"description": "In order to complete some required Contracting Officer's Representatives (COR) training, you'll need to set up an account on the <a href=\"https://faitas.army.mil/Faitas/External/Login/?ReturnUrl=%2ffaitas%2f\">Federal Acquisition Institute Training Application System</a> (FAITAS). If you have questions about setting up your FAITAS profile, ask in the Acquisition team Slack channel.", 
+		"daysToComplete": 20, 
+		"dependsOn": ["dayZero"]
 	}}
 }

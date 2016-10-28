@@ -70,13 +70,7 @@
 	},
 	"explainRoles": {
 		"displayName": "Explain roles",
-		"description": "For example, explain the director of engeneering, supervisor and facilitator roles. Before performance meeting.",
-		"daysToComplete": 5,
-		"dependsOn": ["dayZero"]
-	},
-	"performanceProfile": {
-		"displayName": "Explain performance profiles",
-		"description": "Go over the Performance Profile for performance plan evaluation",
+		"description": "For example, explain the director of engineering, supervisor and facilitator roles. Before performance meeting.",
 		"daysToComplete": 5,
 		"dependsOn": ["dayZero"]
 	},

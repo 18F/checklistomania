@@ -213,7 +213,7 @@
 		},
 	"fillOutIDP": {
 		"displayName": "Fill out your IDP",
-		"description": "<a href=\"https://handbook.18f.gov/professional-development-and-training/#individual-development-plans\">Instructions.</a> This will allow you to take external trainings and classes.",
+		"description": "<a href=\"https://handbook.18f.gov/professional-development-and-training/#professional-development-training\">Instructions.</a> This will allow you to take external trainings and classes.",
 		"daysToComplete": 20,
 		"dependsOn": ["dayZero"]
 		},

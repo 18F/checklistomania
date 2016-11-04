@@ -14,8 +14,8 @@
 		"dependsOn": ["dayZero"]
 	},
 	"findEmail": { 
-		"displayName": "Find email address", 
-		"description": "Find your new hire's email address.",
+		"displayName": “Get new hire’s email address", 
+		"description": “Onboarding Lead will send new hire’s personal email via Fugacious”,
 		"daysToComplete": -4, 
 		"dependsOn": ["dayZero"]
 	},
@@ -33,25 +33,25 @@
 	},
 	"greetThem": { 
 		"displayName": "Greet your buddy",
-		"description": "Today will be intense for them, so say hi and offer to answer any questions they have. The time they leave orientation varies based on their location. D.C. gets out around 12PM ET; NY 9AM ET; Chicago 4:30 PM CT; and SF 9AM PT.", 
+		"description": "Today will be intense for them, so say hi and offer to answer any questions they have. The time they leave orientation varies based on their location. D.C. gets out around 12PM ET; NY 9AM ET; Chicago 3:30 PM CT; and SF 9AM PT.", 
 		"daysToComplete": 0, 
 		"dependsOn": ["dayZero"]
 	},
 	"allHands": { 
 		"displayName": "All hands",
-		"description": "Help your buddy find the all hands meeting on Tuesday.", 
+		"description": "Help your buddy attend the all hands meeting on Tuesday.  Leah Gitter will add the new hire to the calendar invite.”, 
 		"daysToComplete": 1, 
 		"dependsOn": ["dayZero"]
 	},
 	"addToLists": { 
 		"displayName": "Add to lists and calendars",
-		"description": "Add your buddy to location-based mailing lists and calendars.", 
+		"description": "Add your buddy to <a href=\"https://handbook.18f.gov/general-contacts-and-listservs\">location-based mailing lists and calendars</a>.", 
 		"daysToComplete": 1, 
 		"dependsOn": ["dayZero"]
 	},
 	"officeTour": { 
 		"displayName": "Give an office tour",
-		"description": "Sometimes the #teamops member in the office gives the tour instead, as in SF. Make sure they have a copy of their office guide: <ul><li><a href=\"https://handbook.18f.gov/chicago\">Chicago</a></li><li><a href=\"https://handbook.18f.gov/new-york-city\">New York</a></li><li><a href=\"https://handbook.18f.gov/washington-dc\">Washington DC</a></li><li><a href=\"https://handbook.18f.gov/san-francisco\">San Francisco</a></li><li><a href=\"https://handbook.18f.gov/distributed\">Distributed</a></li></ul>",
+		"description": "Sometimes the #teamops member in the office gives the tour instead, as in SF. Here's a link to your office guide: <ul><li><a href=\"https://handbook.18f.gov/chicago\">Chicago</a></li><li><a href=\"https://handbook.18f.gov/new-york-city\">New York</a></li><li><a href=\"https://handbook.18f.gov/washington-dc\">Washington DC</a></li><li><a href=\"https://handbook.18f.gov/san-francisco\">San Francisco</a></li><li><a href=\"https://handbook.18f.gov/distributed\">Distributed</a></li></ul>",
 
 		"daysToComplete": 1, 
 		"dependsOn": ["dayZero"]
@@ -62,10 +62,5 @@
 		"daysToComplete": 2, 
 		"dependsOn": ["dayZero"]
 	},
-	"confirmLists": { 
-		"displayName": "Make sure they're on the right calendars and listservs",
-		"description": "See <a href=\"https://handbook.18f.gov/google-calendar\">Calendars</a> and <a href=\"https://handbook.18f.gov/general-contacts-and-listservs/#listservs\">Listservs</a>",
-		"daysToComplete": 4, 
-		"dependsOn": ["dayZero"]
-	}}
+	}
 }

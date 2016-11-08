@@ -1,0 +1,19 @@
+{"checklistName": "New Supervisor Mandatory Training",
+"checklistDescription": "TODO Classes for new supervisors.",
+"items": 
+	{
+  "enroll": { 
+		"displayName": "Enroll at OLU", 
+		"description": "Sign up for all the trainings.",
+		"daysToComplete": 30, 
+		"dependsOn": []
+	},
+	"addToListserv": { 
+		"displayName": "Join related slack channels", 
+		"description": "Make sure you're added to the AcqStack team listserv, Acano rooms, and calendar. Ask your buddy re: other shared calendars.",
+		"daysToComplete": 1, 
+		"dependsOn": ["enroll"]
+	},
+
+  }
+}

@@ -26,5 +26,107 @@
 		"daysToComplete": 360, 
 		"dependsOn": ["enroll"]
 	},
+   "employeeDiscipline": { 
+		"displayName": "Employee Discipline", 
+		"description": " ",
+		"daysToComplete": 360, 
+		"dependsOn": ["enroll"]
+	},	
+   "givingFeedback": { 
+		"displayName": "Giving Feedback", 
+		"description": " ",
+		"daysToComplete": 360, 
+		"dependsOn": ["enroll"]
+	},
+   "mentoringFundamentals": { 
+		"displayName": "Essential Mentoring Techniques: Mentoring Fundamentals", 
+		"description": " ",
+		"daysToComplete": 360, 
+		"dependsOn": ["enroll"]
+	},
+   "maximizingEngagement": { 
+		"displayName": "Maximizing Employee Engagement", 
+		"description": " ",
+		"daysToComplete": 360, 
+		"dependsOn": ["enroll"]
+	},
+   "meritSystem": { 
+		"displayName": "Merit System Principles and Prohibited Personnel Practices (GSA Supervisor Essentials)", 
+		"description": " ",
+		"daysToComplete": 360, 
+		"dependsOn": ["enroll"]
+	},
+   "substanceFree": { 
+		"displayName": "Promoting a Substance Free Workplace", 
+		"description": " ",
+		"daysToComplete": 360, 
+		"dependsOn": ["enroll"]
+	},
+   "userra": { 
+		"displayName": "USERRA: An Overview", 
+		"description": " ",
+		"daysToComplete": 360, 
+		"dependsOn": ["enroll"]
+	},
+   "vetsEmployment": { 
+		"displayName": "Veterans Employment Training for Supervisors", 
+		"description": " ",
+		"daysToComplete": 360, 
+		"dependsOn": ["enroll"]
+	},
+   "bullying": { 
+		"displayName": "Bullying and Violence in the Workplace", 
+		"description": " ",
+		"daysToComplete": 360, 
+		"dependsOn": ["enroll"]
+	},
+   "telework": { 
+		"displayName": "Telework Fundamentals- Manager Training", 
+		"description": " ",
+		"daysToComplete": 360, 
+		"dependsOn": ["enroll"]
+	},
+   "successfulOnboarding": { 
+		"displayName": "Strategies for Successful Employee Onboarding: An Introduction", 
+		"description": " ",
+		"daysToComplete": 360, 
+		"dependsOn": ["enroll"]
+	},
+   "diverseTeam": { 
+		"displayName": "Management Essentials: Managing a Diverse Team", 
+		"description": " ",
+		"daysToComplete": 360, 
+		"dependsOn": ["enroll"]
+	},
+   "workforcePlanning": { 
+		"displayName": "Introduction to Workforce Planning and Analysis (FY 2014)", 
+		"description": " ",
+		"daysToComplete": 360, 
+		"dependsOn": ["enroll"]
+	},
+   "leaveAdministration": { 
+		"displayName": "Leave Administration (GSA Supervisor Essentials)", 
+		"description": " ",
+		"daysToComplete": 360, 
+		"dependsOn": ["enroll"]
+	},
+   "laborRelations": { 
+		"displayName": "Labor Relations", 
+		"description": " ",
+		"daysToComplete": 360, 
+		"dependsOn": ["enroll"]
+	},
+   "idp": { 
+		"displayName": "Individual Development Plans (IDPs)", 
+		"description": " ",
+		"daysToComplete": 360, 
+		"dependsOn": ["enroll"]
+	},
+   "flsa": { 
+		"displayName": "Fair Labor Standards Act- FLSA and the Federal Employee", 
+		"description": " ",
+		"daysToComplete": 360, 
+		"dependsOn": ["enroll"]
+	},
   }
 }

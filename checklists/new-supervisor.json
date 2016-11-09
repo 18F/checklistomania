@@ -8,12 +8,23 @@
 		"daysToComplete": 30, 
 		"dependsOn": []
 	},
-	"addToListserv": { 
-		"displayName": "Join related slack channels", 
-		"description": "Make sure you're added to the AcqStack team listserv, Acano rooms, and calendar. Ask your buddy re: other shared calendars.",
-		"daysToComplete": 1, 
+  "firstTimeManager": { 
+		"displayName": "First Time Manager: Understanding a Manager's Role", 
+		"description": " ",
+		"daysToComplete": 360, 
 		"dependsOn": ["enroll"]
 	},
-
+   "performanceManagementOverview": { 
+		"displayName": "Performance Management Overview (GSA Supervisor Essentials)", 
+		"description": " ",
+		"daysToComplete": 360, 
+		"dependsOn": ["enroll"]
+	},
+   "difficultConversations": { 
+		"displayName": "Difficult Conversations", 
+		"description": " ",
+		"daysToComplete": 360, 
+		"dependsOn": ["enroll"]
+	},
   }
 }

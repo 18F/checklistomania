@@ -127,6 +127,6 @@
 		"description": " ",
 		"daysToComplete": 360, 
 		"dependsOn": ["enroll"]
-	},
+	}
   }
 }

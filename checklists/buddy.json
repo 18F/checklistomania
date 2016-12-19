@@ -14,8 +14,8 @@
 		"dependsOn": ["dayZero"]
 	},
 	"findEmail": { 
-		"displayName": “Get new hire’s email address", 
-		"description": “Onboarding Lead will send new hire’s personal email via Fugacious”,
+		"displayName": "Get new hire’s email address", 
+		"description": "Onboarding Lead will send new hire’s personal email via Fugacious",
 		"daysToComplete": -4, 
 		"dependsOn": ["dayZero"]
 	},

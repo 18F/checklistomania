@@ -1,5 +1,5 @@
 {"checklistName": "18F New Hire Checklist",
-"checklistDescription": "TODO Items for all new 18F employees.",
+"checklistDescription": "Items for all new 18F employees.",
 "items":
 	{"dayZero": {
 		"displayName": "New Hire Start Date",
@@ -27,6 +27,18 @@
 	},
 	"receiveEquipment": {
 		"displayName": "Receive your laptop, badge, and phone",
+		"description": "You'll receive instructions via email.",
+		"daysToComplete": 0,
+		"dependsOn": ["dayZero"]
+       },
+	"receiveEquipment": {
+		"displayName": "Receive your badge",
+		"description": "You'll receive instructions via email.",
+		"daysToComplete": 0,
+		"dependsOn": ["dayZero"]
+	},
+	"receiveEquipment": {
+		"displayName": "Receive your phone",
 		"description": "You'll receive instructions via email.",
 		"daysToComplete": 0,
 		"dependsOn": ["dayZero"]
@@ -93,8 +105,7 @@
 	},
 	"checkCalendars": {
 		"displayName": "Make sure you can access 18F Calendars",
-		"description": "<a href=\"https://handbook.18f.gov/google-calendar/
-\">Instructions</a>",
+		"description": "<a href=\"https://handbook.18f.gov/google-calendar/\">Instructions</a>",
 		"daysToComplete": 1,
 		"dependsOn": ["dayZero"]
 	},
@@ -112,7 +123,7 @@
 	},
 	"attendAllHands": {
 		"displayName": "Attend the weekly all-hands",
-		"description": “The all-hands meeting takes place at 12:30pm ET every Tuesday.  Leah Gitter will add you to the calendar invite.”,
+		"description": "The all-hands meeting takes place at 12:30pm ET every Tuesday.  Qituwra Anderson will add you to the calendar invite.",
 		"daysToComplete": 1,
 		"dependsOn": ["dayZero"]
 	},
@@ -190,7 +201,7 @@
 	},
 	"signIntoEmployeeExpress": {
 		"displayName": "Sign into Employee Express",
-		"description": "This is available after your first paycheck. You will receive an invite email from GSA HR.<a href=\"https://handbook.18f.gov/gsa-tools-equipment-and-transit/#employee-express\">Instructions</a>",
+		"description": "This is available after your first paycheck. You will receive an invite email from GSA HR. <a href=\"https://handbook.18f.gov/gsa-tools-equipment-and-transit/#employee-express\">Instructions</a>",
 		"daysToComplete": 20,
 		"dependsOn": ["dayZero"]
 	},
@@ -235,6 +246,5 @@
 		"description": "<a href=\"https://handbook.18f.gov/travel-101/#travel-card\">Instructions</a>",
 		"daysToComplete": 30,
 		"dependsOn": ["travelTraining"]
-
 	}}
 }

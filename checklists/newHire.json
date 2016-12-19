@@ -1,5 +1,5 @@
 {"checklistName": "18F New Hire Checklist",
-"checklistDescription": "TODO Items for all new 18F employees.",
+"checklistDescription": "Items for all new 18F employees.",
 "items":
 	{"dayZero": {
 		"displayName": "New Hire Start Date",
@@ -27,6 +27,18 @@
 	},
 	"receiveEquipment": {
 		"displayName": "Receive your laptop, badge, and phone",
+		"description": "You'll receive instructions via email.",
+		"daysToComplete": 0,
+		"dependsOn": ["dayZero"]
+       },
+	"receiveEquipment": {
+		"displayName": "Receive your badge",
+		"description": "You'll receive instructions via email.",
+		"daysToComplete": 0,
+		"dependsOn": ["dayZero"]
+	},
+	"receiveEquipment": {
+		"displayName": "Receive your phone",
 		"description": "You'll receive instructions via email.",
 		"daysToComplete": 0,
 		"dependsOn": ["dayZero"]
@@ -93,7 +105,7 @@
 	},
 	"checkCalendars": {
 		"displayName": "Make sure you can access 18F Calendars",
-		"description": "<a href=\"https://handbook.18f.gov/equipment/#google-calendar\">Instructions</a>",
+		"description": "<a href=\"https://handbook.18f.gov/google-calendar/\">Instructions</a>",
 		"daysToComplete": 1,
 		"dependsOn": ["dayZero"]
 	},
@@ -111,7 +123,7 @@
 	},
 	"attendAllHands": {
 		"displayName": "Attend the weekly all-hands",
-		"description": "Join our weekly meeting <a href=\"https://handbook.18f.gov/distributed/#heading-2\">online</a>, or ask your in-office buddy for details.",
+		"description": "The all-hands meeting takes place at 12:30pm ET every Tuesday.  Qituwra Anderson will add you to the calendar invite.",
 		"daysToComplete": 1,
 		"dependsOn": ["dayZero"]
 	},
@@ -177,7 +189,7 @@
 	},
 	"readOrgChart": {
 		"displayName": "Read org chart",
-		"description": "Learn about 18F's <a href=\"https://handbook.18f.gov/org-chart\">organizational structure</a> and <a href=\"https://handbook.18f.gov/welcome-from-aaron\">relationship to OCSIT</a>.",
+		"description": "Learn about 18F's <a href=\"https://handbook.18f.gov/org-chart\">organizational structure</a> and <a href=\"http://www.gsa.gov/portal/category/25729\">relationship to TTS</a>.",
 		"daysToComplete": 20,
 		"dependsOn": ["dayZero"]
 	},
@@ -189,7 +201,7 @@
 	},
 	"signIntoEmployeeExpress": {
 		"displayName": "Sign into Employee Express",
-		"description": "This is available after your first paycheck. <a href=\"https://handbook.18f.gov/gsa-tools-equipment-and-transit/#employee-express\">Instructions</a>",
+		"description": "This is available after your first paycheck. You will receive an invite email from GSA HR. <a href=\"https://handbook.18f.gov/gsa-tools-equipment-and-transit/#employee-express\">Instructions</a>",
 		"daysToComplete": 20,
 		"dependsOn": ["dayZero"]
 	},
@@ -217,12 +229,6 @@
 		"daysToComplete": 20,
 		"dependsOn": ["dayZero"]
 		},
-	"learnAboutOffsite": {
-		"displayName": "Learn about next offsite.",
-		"description": "Ask in Slack when the next offsite is: \"When is the next 18F-irl?\" (Slackbot should respond.) And if you want to make a message for Slackbot to respond, follow the instructions <a href=\"https://18f.slack.com/customize/slackbot\">here</a>.",
-		"daysToComplete": 20,
-		"dependsOn": ["dayZero"]
-		},
 	"addToTrello": {
 		"displayName": "Get Trello access",
 		"description": "Ask #admins-trello to add you to the 18F Trello board.",
@@ -240,6 +246,5 @@
 		"description": "<a href=\"https://handbook.18f.gov/travel-101/#travel-card\">Instructions</a>",
 		"daysToComplete": 30,
 		"dependsOn": ["travelTraining"]
-
 	}}
 }

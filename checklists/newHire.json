@@ -105,8 +105,7 @@
 	},
 	"checkCalendars": {
 		"displayName": "Make sure you can access 18F Calendars",
-		"description": "<a href=\"https://handbook.18f.gov/google-calendar/
-\">Instructions</a>",
+		"description": "<a href=\"https://handbook.18f.gov/google-calendar/\">Instructions</a>",
 		"daysToComplete": 1,
 		"dependsOn": ["dayZero"]
 	},
@@ -247,6 +246,5 @@
 		"description": "<a href=\"https://handbook.18f.gov/travel-101/#travel-card\">Instructions</a>",
 		"daysToComplete": 30,
 		"dependsOn": ["travelTraining"]
-
 	}}
 }

@@ -1,66 +1,64 @@
 {"checklistName": "New Hire Buddy",
 "checklistDescription": "TODO Items for the buddy of a new hire.",
-"items": 
-	{"dayZero": { 
-		"displayName": "Start Date", 
+"items":
+	{"dayZero": {
+		"displayName": "Start Date",
 		"description": "First day on the job.",
-		"daysToComplete": 0, 
+		"daysToComplete": 0,
 		"dependsOn": []
 	},
-	"readHandbook": { 
-		"displayName": "Read the buddy handbook", 
+	"readHandbook": {
+		"displayName": "Read the buddy handbook",
 		"description": "Get to know your <a href=\"https://handbook.18f.gov/buddy-handbook\"</a>duties as a buddy.",
-		"daysToComplete": -4, 
+		"daysToComplete": -4,
 		"dependsOn": ["dayZero"]
 	},
-	"findEmail": { 
-		"displayName": "Get new hire’s email address", 
+	"findEmail": {
+		"displayName": "Get new hire’s email address",
 		"description": "Onboarding Lead will send new hire’s personal email via Fugacious",
-		"daysToComplete": -4, 
+		"daysToComplete": -4,
 		"dependsOn": ["dayZero"]
 	},
-	"introduceYourself": { 
-		"displayName": "Introduce yourself", 
+	"introduceYourself": {
+		"displayName": "Introduce yourself",
 		"description": "Email your new hire with <a href=\"https://docs.google.com/document/d/1Ya85y3SPfBliAPDw5UznnC9h333204pDn-KeD2KEQwY/edit\">this template</a>.",
-		"daysToComplete": 0, 
+		"daysToComplete": 0,
 		"dependsOn": ["findEmail"]
 	},
-	"showUp": { 
+	"showUp": {
 		"displayName": "Show up to work",
 		"description": "Show up to work on Monday and Tuesday if your buddy is in the same office as you, or offer to meet over video chat.",
-		"daysToComplete": 0, 
+		"daysToComplete": 0,
 		"dependsOn": ["dayZero"]
 	},
-	"greetThem": { 
+	"greetThem": {
 		"displayName": "Greet your buddy",
-		"description": "Today will be intense for them, so say hi and offer to answer any questions they have. The time they leave orientation varies based on their location. D.C. gets out around 12PM ET; NY 9AM ET; Chicago 3:30 PM CT; and SF 9AM PT.", 
-		"daysToComplete": 0, 
+		"description": "Today will be intense for them, so say hi and offer to answer any questions they have. The time they leave orientation varies based on their location. D.C. gets out around 12PM ET; NY 9AM ET; Chicago 3:30 PM CT; and SF 9AM PT.",
+		"daysToComplete": 0,
 		"dependsOn": ["dayZero"]
 	},
-	"allHands": { 
+	"allHands": {
 		"displayName": "All hands",
-		"description": "Help your buddy attend the all hands meeting on Tuesday.  Leah Gitter will add the new hire to the calendar invite.”, 
-		"daysToComplete": 1, 
+		"description": "Help your buddy attend the all hands meeting on Tuesday.  Leah Gitter will add the new hire to the calendar invite.",
+		"daysToComplete": 1,
 		"dependsOn": ["dayZero"]
 	},
-	"addToLists": { 
+	"addToLists": {
 		"displayName": "Add to lists and calendars",
-		"description": "Add your buddy to <a href=\"https://handbook.18f.gov/general-contacts-and-listservs\">location-based mailing lists and calendars</a>.", 
-		"daysToComplete": 1, 
+		"description": "Add your buddy to <a href=\"https://handbook.18f.gov/general-contacts-and-listservs\">location-based mailing lists and calendars</a>.",
+		"daysToComplete": 1,
 		"dependsOn": ["dayZero"]
 	},
-	"officeTour": { 
+	"officeTour": {
 		"displayName": "Give an office tour",
 		"description": "Sometimes the #teamops member in the office gives the tour instead, as in SF. Here's a link to your office guide: <ul><li><a href=\"https://handbook.18f.gov/chicago\">Chicago</a></li><li><a href=\"https://handbook.18f.gov/new-york-city\">New York</a></li><li><a href=\"https://handbook.18f.gov/washington-dc\">Washington DC</a></li><li><a href=\"https://handbook.18f.gov/san-francisco\">San Francisco</a></li><li><a href=\"https://handbook.18f.gov/distributed\">Distributed</a></li></ul>",
-
-		"daysToComplete": 1, 
+		"daysToComplete": 1,
 		"dependsOn": ["dayZero"]
 	},
-	"licenses": { 
+	"licenses": {
 		"displayName": "Make sure they have software & licenses",
-		"description": "Ask in #teamops or #design if they need specific licenses", 
-		"daysToComplete": 2, 
+		"description": "Ask in #teamops or #design if they need specific licenses",
+		"daysToComplete": 2,
 		"dependsOn": ["dayZero"]
-	},
-	}
+	}}
 }

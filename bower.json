@@ -10,7 +10,7 @@
     "angular-loader": "1.4.8",
     "angular-mocks": "1.4.8",
     "angular-material": "1.0.2",
-    "angular-animate": "1.5.9"
+    "angular-animate": "1.4.8"
   },
   "resolutions": {
     "angular": "1.4.8"

@@ -25,19 +25,19 @@
 		"daysToComplete": 0,
 		"dependsOn": ["dayZero"]
 	},
-	"receiveEquipment": {
-		"displayName": "Receive your laptop, badge, and phone",
+	"receiveLaptop": {
+		"displayName": "Receive your laptop",
 		"description": "You'll receive instructions via email.",
 		"daysToComplete": 0,
 		"dependsOn": ["dayZero"]
        },
-	"receiveEquipment": {
+	"receiveBadge": {
 		"displayName": "Receive your badge",
 		"description": "You'll receive instructions via email.",
 		"daysToComplete": 0,
 		"dependsOn": ["dayZero"]
 	},
-	"receiveEquipment": {
+	"receivePhone": {
 		"displayName": "Receive your phone",
 		"description": "You'll receive instructions via email.",
 		"daysToComplete": 0,

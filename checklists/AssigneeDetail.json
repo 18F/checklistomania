@@ -1,0 +1,178 @@
+{"checklistName": "Assignee/Detail Joining TTS",
+"checklistDescription": "Items for Assignees and Details who have joined TTS.",
+"items":
+	{"dayZero": {
+		"displayName": "Security Clearance",
+		"description": "First day after being cleared.",
+		"daysToComplete": 0,
+		"dependsOn": []
+	},
+	"receiveLaptop": {
+		"displayName": "Receive your laptop",
+		"description": "You'll receive instructions via email.",
+		"daysToComplete": 0,
+		"dependsOn": ["dayZero"]
+  },
+	"receiveBadge": {
+		"displayName": "Receive your badge",
+		"description": "You'll receive instructions via email.",
+		"daysToComplete": 0,
+		"dependsOn": ["dayZero"]
+	},
+	"receivePhone": {
+		"displayName": "Receive your phone",
+		"description": "You'll receive instructions via email.",
+		"daysToComplete": 0,
+		"dependsOn": ["dayZero"]
+	},
+	"logOnMac": {
+		"displayName": "Log onto your Mac and change your account password",
+		"description": "Instructions <a href=\"https://support.apple.com/en-us/HT202860\">here</a>",
+		"daysToComplete": 0,
+		"dependsOn": ["dayZero"]
+	},
+	"connectToNetwork": {
+		"displayName": "Connect to GSA’s secure network",
+		"description": "You'll receive instructions via email.",
+		"daysToComplete": 0,
+		"dependsOn": ["dayZero"]
+	},
+	"changeENT": {
+		"displayName": "Change your ENT (enterprise) password",
+		"description": "This is your password for signing into systems administered by GSA, including your email, calendar, and Google Drive. You'll receive instructions via email.",
+		"daysToComplete": 0,
+		"dependsOn": ["dayZero"]
+	},
+	"setUpEmail": {
+		"displayName": "Sign into your work email",
+		"description": "You'll receive instructions via email.",
+		"daysToComplete": 0,
+		"dependsOn": ["changeENT"]
+	},
+	"setUp2FA": {
+		"displayName": "Set up GSA’s 2FA",
+		"description": "Note: You must set up two-factor authentication inside a federal building. Instructions are sent via email and <a href=\"https://handbook.18f.gov/distributed/#set-up-my-computer\">here</a>.",
+		"daysToComplete": 0,
+		"dependsOn": ["connectToNetwork"]
+	},
+	"setUpSlack": {
+		"displayName": "Check Slack Access",
+		"description": "Make sure that your Slack account has been changed to full TTS access.  The #admins-slack channel can assist if it hasn't.  If you need to change any other settings or set up two-factor authentication, you can do that <a href=\"https://my.slack.com/account/settings#two_factor\">here</a>.",
+		"daysToComplete": 0,
+		"dependsOn": ["setUpEmail"]
+	},
+	"setUpGitHub": {
+		"displayName": "Update GitHub Profile",
+		"description": "Review the <a href=\"https://handbook.18f.gov/github/#setup\">Github setup</a> to make sure you have full access to GitHub.  #adminds-github can assist if you've made all updates and still don't have access.",
+		"daysToComplete": 0,
+		"dependsOn": ["setUpSlack"]
+	},
+	"secureLaptop": {
+		"displayName": "Secure your laptop",
+		"description": "Review <a href=\"https://handbook.18f.gov/equipment/#laptop\">instructions</a>, then download <a href=\"https://handbook.18f.gov/managed-software-center\">Managed Software Center</a>  and <a href=\"https://handbook.18f.gov/clamxav\">ClamXav</a>",
+		"daysToComplete": 1,
+		"dependsOn": ["dayZero"]
+	},
+	"fillOutTock": {
+		"displayName": "Fill out Tock",
+		"description": "Fill out <a href=\"https://tock.18f.gov\">Tock</a> to track your work time. This should be done weekly.  Reach out to #tock for any Tock-related questions.",
+		"daysToComplete": 5,
+		"dependsOn": ["dayZero"]
+	},
+	"checkCalendars": {
+		"displayName": "Make sure you can access 18F Calendars",
+		"description": "<a href=\"https://handbook.18f.gov/google-calendar/\">Instructions</a>",
+		"daysToComplete": 1,
+		"dependsOn": ["dayZero"]
+	},
+	"checkCalendars": {
+		"displayName": "Check 18F Dev Calendar",
+		"description": "Double check with your facilitator to make sure you have been added to the Dev calendar.",
+		"daysToComplete": 1,
+		"dependsOn": ["dayZero"]
+	},
+	"addToListservs": {
+		"displayName": "Check Listservs",
+		"description": "Your facilitator should have added you to the #dev listserv. Double check to make sure you've been added.",
+		"daysToComplete": 1,
+		"dependsOn": ["dayZero"]
+	},
+	"firstCheckIn": {
+		"displayName": "Facilitator Check-in",
+		"description": "Your facilitator will arrange an introductory meeting with you. See <a href=\"https://docs.google.com/document/d/1_NKx-zMwYqBqV48k062j4X2zdhKdYUgYlnM3wMpn5p8/edit#heading=h.oqzmgpl64nct\">topics for introductory meetings</a> if you need inspiration.",
+		"daysToComplete": 2,
+		"dependsOn": ["dayZero"]
+	},
+	"runLaptop": {
+		"displayName": "Run Laptop Script",
+		"description": "Run the <a href=\"https://github.com/18F/laptop\">laptop script</a>. This is not obligatory if you prefer to manage your machine setup a different way.",
+		"daysToComplete": 4,
+		"dependsOn": ["dayZero"]
+	},
+	"meetFacilitatorTeam": {
+		"displayName": "Meet Your Facilitator Team",
+		"description": "Your facilitator will introduce you to your facilitator team.",
+		"daysToComplete": 4,
+		"dependsOn": ["dayZero"]
+	},
+	"readAboutTeam": {
+		"displayName": "Read about Engineering Chapter",
+		"description": "<a href=\"https://handbook.18f.gov/engineering\">Read about the Engineering Chapter</a>.",
+		"daysToComplete": 4,
+		"dependsOn": ["dayZero"]
+	},
+	"addStaffSkills": {
+		"displayName": "Add Staff Skills",
+		"description": "We use Float as a method for tracking work hours across projects. If you have not been given access to Float, go to #admins-float to request access.",
+		"daysToComplete": 9,
+		"dependsOn": ["dayZero"]
+	},
+	"readGuide": {
+		"displayName": "Read Dev Guide",
+		"description": "Read the <a href=\"https://pages.18f.gov/development-guide\">Developer Guide</a>.",
+		"daysToComplete": 20,
+		"dependsOn": ["dayZero"]
+	},
+	"learnGitHub": {
+		"displayName": "Learn GitHub",
+		"description": "If not already comfortable with Git/GitHub, go through a tutorial (e.g. <a href=\"https://18f.gsa.gov/2015/03/03/how-to-use-github-and-the-terminal-a-guide/\">this one</a>.",
+		"daysToComplete": 5,
+		"dependsOn": ["setUpGitHub"]
+	},
+	"attendFacilitatorGroupMeeting": {
+		"displayName": "Attend Facilitator Meeting",
+		"description": "During your first week, you'll meet your Facilitator team and then go to the group meeting.",
+		"daysToComplete": 5,
+		"dependsOn": ["dayZero"]
+	},
+	"ReadBeforeYouShip": {
+		"displayName": "Read Before You Ship",
+		"description": "We require anyone who works with dev, devops, product, infrastucture, and design to read our  <a href=\"https://pages.18f.gov/before-you-ship/\">Before You Ship guide.</a> Please make sure you've read the section on ATOs and if you have any questions, please ask in #devops.",
+		"daysToComplete": 5,
+		"dependsOn": ["dayZero"]
+	},
+	"learnAboutWorkingGroups": {
+		"displayName": "Join Working Groups",
+		"description": "<a href=\"https://handbook.18f.gov/working-groups-and-guilds-101/\">Learn about guilds and working groups</a>.",
+		"daysToComplete": 15,
+		"dependsOn": ["dayZero"]
+	},
+	"cloudGov": {
+		"displayName": "Cloud.gov Walkthrough",
+		"description": "Your facilitator and director will talk to you about cloud.gov. Look at <a href=\"https://cloud.gov\">Cloud.gov</a> and go to cloud.gov with questions.",
+		"daysToComplete": 15,
+		"dependsOn": ["dayZero"]
+	},
+	"deploycloudGov": {
+		"displayName": "Deploy to Cloud Foundry",
+		"description": "Deploy a sample application to learn about Cloud Foundry. <a href=\"https://docs.cloud.gov/getting-started/your-first-deploy/\">Instructions</a>.",
+		"daysToComplete": 15,
+		"dependsOn": ["dayZero"]
+	},
+	"techTalkSignUp": {
+		"displayName": "Tech Talks",
+		"description": "Sign up for a <a href=\"https://github.com/18F/tech-talks\">tech talk</a>. Ask your facilitator any questions you may have.",
+		"daysToComplete": 20,
+		"dependsOn": ["dayZero"]
+	}}
+}

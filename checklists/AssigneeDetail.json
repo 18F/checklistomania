@@ -69,7 +69,7 @@
 	},
 	"secureLaptop": {
 		"displayName": "Secure your laptop",
-		"description": "Review <a href=\"https://handbook.18f.gov/equipment/#laptop\">instructions</a>, then download <a href=\"https://handbook.18f.gov/managed-software-center\">Managed Software Center</a>  and <a href=\"https://handbook.18f.gov/clamxav\">ClamXav</a>",
+		"description": "Review <a href=\"https://handbook.18f.gov/equipment/#laptop\">instructions</a> then download <a href=\"https://handbook.18f.gov/managed-software-center\">Managed Software Center</a> and <a href=\"https://handbook.18f.gov/clamxav\">ClamXav</a>.",
 		"daysToComplete": 1,
 		"dependsOn": ["dayZero"]
 	},

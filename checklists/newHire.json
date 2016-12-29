@@ -209,7 +209,7 @@
 		"displayName": "Confirm your OLU account and take classes",
 		"description": "OLU is where you’ll take mandatory training for GSA employees. This will be available after your <a href=\"https://handbook.18f.gov/gsa-tools-equipment-and-transit/#chris\">CHRIS account</a> is set up.",
 		"daysToComplete": 20,
-		"dependsOn": ["confirmCHRIS"]
+		"dependsOn": ["dayZero"]
 	},
 	"confirmBenefits": {
 		"displayName": "Confirm benefits",

@@ -47,7 +47,7 @@
 		"displayName": "Log onto your Mac and change your account password",
 		"description": "Instructions <a href=\"https://support.apple.com/en-us/HT202860\">here</a>",
 		"daysToComplete": 0,
-		"dependsOn": ["receiveEquipment"]
+		"dependsOn": ["receiveLaptop"]
 	},
 	"connectToNetwork": {
 		"displayName": "Connect to GSA’s secure network",
@@ -143,7 +143,7 @@
 		"displayName": "Set up 2FA on your government phone",
 		"description": "After receiving your work phone, <a href=\"https://handbook.18f.gov/equipment/#phone\">set up two-factor authentication</a>.",
 		"daysToComplete": 4,
-		"dependsOn": ["receiveEquipment"]
+		"dependsOn": ["receivePhone"]
 	},
 	"pickUpBadge": {
 		"displayName": "Pick up your badge",

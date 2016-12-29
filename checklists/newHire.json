@@ -47,7 +47,7 @@
 		"displayName": "Log onto your Mac and change your account password",
 		"description": "Instructions <a href=\"https://support.apple.com/en-us/HT202860\">here</a>",
 		"daysToComplete": 0,
-		"dependsOn": ["receiveEquipment"]
+		"dependsOn": ["receiveLaptop"]
 	},
 	"connectToNetwork": {
 		"displayName": "Connect to GSA’s secure network",
@@ -75,13 +75,13 @@
 	},
 	"setUpSlack": {
 		"displayName": "Set up Slack",
-		"description": "Slack is our chat program. Instructions to set up 2FA will be sent to you by Dolores, our onboarding bot, at 3PM in your timezone. Update your settings <a href=\"https://my.slack.com/account/settings#two_factor\">here</a>.",
+		"description": "Slack is our chat program. Follow the <a href=\"https://handbook.18f.gov/slack/#setup\">setup instructions</a> and make sure <a href=\"https://my.slack.com/account/settings#two_factor\">two-factor authentication</a> is activated.",
 		"daysToComplete": 0,
 		"dependsOn": ["setUpEmail"]
 	},
 	"setUpGitHub": {
 		"displayName": "Set up GitHub",
-		"description": "Instructions will be sent to you by Dolores, our onboarding bot, at 3:45 PM in your timezone.",
+		"description": "Follow the <a href=\"https://handbook.18f.gov/github/#setup\">Github setup</a> instructions to make sure you have full access to GitHub.  #adminds-github can assist if you've made all updates and still don't have access.",
 		"daysToComplete": 0,
 		"dependsOn": ["setUpSlack"]
 	},
@@ -99,7 +99,7 @@
 	},
 	"secureLaptop": {
 		"displayName": "Secure your laptop",
-		"description": "<a href=\"https://handbook.18f.gov/equipment/#laptop\">Instructions</a>",
+		"description": "Review <a href=\"https://handbook.18f.gov/equipment/#laptop\">instructions</a> then download <a href=\"https://handbook.18f.gov/managed-software-center\">Managed Software Center</a> and <a href=\"https://handbook.18f.gov/clamxav\">ClamXav</a>.",
 		"daysToComplete": 1,
 		"dependsOn": ["dayZero"]
 	},
@@ -143,7 +143,7 @@
 		"displayName": "Set up 2FA on your government phone",
 		"description": "After receiving your work phone, <a href=\"https://handbook.18f.gov/equipment/#phone\">set up two-factor authentication</a>.",
 		"daysToComplete": 4,
-		"dependsOn": ["receiveEquipment"]
+		"dependsOn": ["receivePhone"]
 	},
 	"pickUpBadge": {
 		"displayName": "Pick up your badge",
@@ -209,7 +209,7 @@
 		"displayName": "Confirm your OLU account and take classes",
 		"description": "OLU is where you’ll take mandatory training for GSA employees. This will be available after your <a href=\"https://handbook.18f.gov/gsa-tools-equipment-and-transit/#chris\">CHRIS account</a> is set up.",
 		"daysToComplete": 20,
-		"dependsOn": ["confirmCHRIS"]
+		"dependsOn": ["dayZero"]
 	},
 	"confirmBenefits": {
 		"displayName": "Confirm benefits",

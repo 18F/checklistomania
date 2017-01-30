@@ -1,0 +1,11 @@
+applications:
+- name: checklistomania-dev
+  instances: 1
+  memory: 512M
+  disk_quota: 1024M
+  routes:
+  - route: checklistomania-dev.app.cloud.gov
+  services:
+  - checklistomania-mongodb
+  - checklistomania-env
+  stack: cflinuxfs2

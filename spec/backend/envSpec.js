@@ -7,4 +7,11 @@ describe('env properly loads config values', function () {
     expect(e.MONGODB_URI).toBe('mongodb://localhost:27017/checklistomania');
     done();
   });
+
+  it('loads from VCAP_SERVICES', function (done) {
+    // TODO: load mock VCAP_SERVICES
+    // var vcapString = JSON.stringify()
+    // var = env.load()
+    done();
+  });
 });

@@ -17,7 +17,7 @@ var includeBranding = middleware.includeBranding;
 
 var server;
 var app = express();
-var port = env.PORT || 3000;
+var port = process.env.PORT || 3000;
 
 var requiredEnv = ['GITHUB_CLIENT_ID', 'GITHUB_CLIENT_SECRET',
   'GITHUB_ORG', 'SESSION_SECRET'];

@@ -51,7 +51,7 @@ describe('env properly loads config values', function () {
           SESSION_SECRET: 'sessionSecret'
         }
       }],
-      'mongodb26-swarm': [{
+      'mongodb32': [{
         credentials: {
           uri: 'mongodb://whatever'
         }

@@ -20,8 +20,5 @@ app:
     - "3000:3000"
 mongo:
   image: mongo:3.2
-  environment:
-    - POSTGRES_DB=calc
-    - POSTGRES_USER=calc_user
   ports:
     - "27017:27017"

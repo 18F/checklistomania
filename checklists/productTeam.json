@@ -75,7 +75,7 @@
 	},
 	"lookAtProjects": {
 		"displayName": "Look for Projects",
-		"description": "Your facilitator and director will talk to you about the project you'll be staffed on. For information on upcoming projects, look at <a href=\"https://github.com/18F/staffing-and-resources/issues">18F's staffing repository</a>.",
+		"description": "Your facilitator and director will talk to you about the project you'll be staffed on. For information on upcoming projects, look at <a href=\"https://github.com/18F/staffing-and-resources/issues\">18F's staffing repository</a>.",
 		"daysToComplete": 15,
 		"dependsOn": ["virtualCoffee"]
 	},

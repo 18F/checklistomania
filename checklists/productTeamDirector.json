@@ -91,6 +91,24 @@
 		"daysToComplete": 90, 
 		"dependsOn": ["dayZero"]
 	},
+	"hiringFeedback": { 
+		"displayName": "Hiring Process Feedback", 
+		"description": "Get feedback from new hire on hiring process",
+		"daysToComplete": 30, 
+		"dependsOn": ["dayZero"]
+	},
+	"agileTraining": { 
+		"displayName": "Recommend Agile Training", 
+		"description": "Recommend Agile 101/102/103 training, if appropriate",
+		"daysToComplete": 30, 
+		"dependsOn": ["sayHi"]
+	},
+	"shareOKRs": { 
+		"displayName": "Share OKRs", 
+		"description": "Share the latest Product Team OKRs with the new hire",
+		"daysToComplete": 5, 
+		"dependsOn": ["sayHi"]
+	},
 	"addToTrello": { 
 		"displayName": "Add To Team Trello Board", 
 		"description": "Add the new hire to the Product Team Trello board",

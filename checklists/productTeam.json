@@ -9,25 +9,19 @@
 	},
 	"joinSlackChannels": { 
 		"displayName": "Join Slack channels", 
-		"description": "Join the Slack channels #product and #project-intake.",
-		"daysToComplete": 1, 
-		"dependsOn": ["dayZero"]
-	},
-	"addToListservs": { 
-		"displayName": "Add listserv + calendar", 
-		"description": "Make sure you're added to the Product team listserv and team calendar. Your buddy can help with this as can your director.",
+		"description": "Join the #product Slack channel.",
 		"daysToComplete": 1, 
 		"dependsOn": ["dayZero"]
 	},
 	"readGuide": { 
 		"displayName": "Read Product guide", 
-		"description": "This is the new <a href=\"https://github.com/18F/product-guide\">Product Lead Guide.</a>  Don’t worry if this doesn’t make sense yet. Bookmark it and plan to look at it again.",
+		"description": "Read the <a href=\"https://github.com/18F/product-guide\">Product Lead Guide.</a>  Don’t worry if everything doesn’t make sense yet. Bookmark it and plan to look at it again.",
 		"daysToComplete": 4, 
 		"dependsOn": ["dayZero"]
 	},
 	"virtualCoffee": { 
-		"displayName": "Virtual coffee with director", 
-		"description": "Come with a list of questions. Even broad ones are okay. You’re not expected to know how everything works just yet, and this conversation with help reassure you of that.",
+		"displayName": "Virtual coffee with the Product Director", 
+		"description": "Come with a list of questions. Even broad ones are okay. You’re not expected to know how everything works just yet.",
 		"daysToComplete": 4, 
 		"dependsOn": ["dayZero"]
 	},
@@ -39,12 +33,12 @@
 	},
 	"readTrelloBoard": { 
 		"displayName": "Read PM Trello board", 
-		"description": "The Trello board is here <a href=\"https://trello.com/b/9HJTqrjP/18f-pm-guide\">here</a> Don’t worry. This won’t make a lot of sense yet either. Bookmark it and plan to keep an eye on it..",
+		"description": "The Product Director will share the Product Team Trello board with you. Take a look to get a sense of the team's current priorities.",
 		"daysToComplete": 9, 
 		"dependsOn": ["dayZero"]
 	},
 	"secondCoffee": { 
-		"displayName": "Second coffee with Josh", 
+		"displayName": "Second coffee with the Product Director", 
 		"description": "Ask the Director what projects you can start pairing with another Product Lead on. They can give you guidance on what this pairing might look like. You may also be ready to start looking for a project now and can discuss your interests with them at this time.",
 		"daysToComplete": 13, 
 		"dependsOn": ["virtualCoffee"]
@@ -63,7 +57,7 @@
 	},
 	"ReadBeforeYouShip": { 
 		"displayName": "Read Before you Ship", 
-		"description": "We require anyone who works with dev, devops, product, infrastucture, and design to read our  <a href=\"https://pages.18f.gov/before-you-ship/\">Before you Ship guide.</a> Please make sure you've read the section on ATOs and if you have any questions, please ask in #devops.",
+		"description": "Anyone who works with dev, devops, product, infrastucture, and design is required to read our  <a href=\"https://pages.18f.gov/before-you-ship/\">Before you Ship guide.</a> Make sure you've read the section on ATOs and if you have any questions, please ask in #devops.",
 		"daysToComplete": 5, 
 		"dependsOn": ["dayZero"]
 

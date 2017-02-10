@@ -54,6 +54,36 @@
 		"description": "Schedule more virtual coffees (or real ones) with other PMS to learn more. Ask tons of questions. Listen a lot. Don’t be nervous to reach out to people. Everyone was once in your shoes.",
 		"daysToComplete": 20, 
 		"dependsOn": ["virtualPMcoffee"]
+	},	 
+	"meetFacilitator": {
+		"displayName": "Meet Your Facilitator",
+		"description": "The Product Director will introduce you to your facilitator.",
+		"daysToComplete": 4,
+		"dependsOn": ["virtualCoffee"]
+	},
+	"readHandbook": {
+		"displayName": "Read through the 18F Handbook",
+		"description": "Get familiar with the <a href=\"https://handbook.18f.gov/\">18F Handbook</a>. You don't need to know everything but it's good to know what's in there for future reference.",
+		"daysToComplete": 4,
+		"dependsOn": ["dayZero"]
+	},
+	"attendFacilitatorGroupMeeting": {
+		"displayName": "Attend Facilitator Team Meeting",
+		"description": "Meet your Facilitator team and go to your first group meeting.",
+		"daysToComplete": 10,
+		"dependsOn": ["meetFacilitator"]
+	},
+	"lookAtProjects": {
+		"displayName": "Look for Projects",
+		"description": "Your facilitator and director will talk to you about the project you'll be staffed on. For information on upcoming projects, look at <a href=\"https://github.com/18F/staffing-and-resources/issues">18F's staffing repository</a>.",
+		"daysToComplete": 15,
+		"dependsOn": ["virtualCoffee"]
+	},
+	"listenToCallCenter": {
+		"displayName": "Attend a Call Center Listen In Session",
+		"description": "Attend one of the Call Center Listen In sessions to hear real interactions between the public and the USA.gov call center. Details are in #call-center-listen-in.",
+		"daysToComplete": 15,
+		"dependsOn": ["dayZero"]
 	},
 	"ReadBeforeYouShip": { 
 		"displayName": "Read Before you Ship", 

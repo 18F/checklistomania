@@ -13,6 +13,12 @@
 		"daysToComplete": 0, 
 		"dependsOn": ["dayZero"]
 	},
+	"assignFacilitator": { 
+		"displayName": "Assign Facilitator", 
+		"description": "Assign the new hire to a facilitator group",
+		"daysToComplete": 2, 
+		"dependsOn": ["dayZero"]
+	},
 	"giveChecklist": { 
 		"displayName": "Give Checklist", 
 		"description": "Gives new hire team-based checklist",
@@ -21,61 +27,73 @@
 	},
 	"explainBillableHours": { 
 		"displayName": "Explain Billable Hours", 
-		"description": "Explain billable hours during coffee chat- emphasize your policy re: billable hours. (Many new staff members will need to be reassured on this point.",
+		"description": "Explain billable hours during coffee chat. Discuss billable hour targets, what activities are billable, and setting billable hour expectations with project teams.",
 		"daysToComplete": 0, 
 		"dependsOn": ["sayHi"]
 	},
 	"welcomeEmail": { 
 		"displayName": "Send Welcome Email", 
-		"description": "Send out welcome email to new hire",
+		"description": "Send out welcome email introducting the new hire to the team",
 		"daysToComplete": 5, 
 		"dependsOn": ["dayZero"]
 	},
 	"oneOnOne": { 
-		"displayName": "Schedule 1:1", 
-		"description": "Schedule 1:1 with new hire",
+		"displayName": "Schedule Skip Level 1:1", 
+		"description": "Schedule a recurring skip level meeting with new hire",
 		"daysToComplete": 5, 
 		"dependsOn": ["dayZero"]
 	},
 	"productTeamCoffee": { 
 		"displayName": "Add To Product Team Coffee", 
-		"description": "",
+		"description": "Invite the new hire to the Product Team coffee meeting",
 		"daysToComplete": 5, 
 		"dependsOn": ["dayZero"]
 	},
 	"sharePmGuide": { 
-		"displayName": "Share PM Guide", 
-		"description": "",
+		"displayName": "Share Product Guide", 
+		"description": "Share the Product Guide with the new hire as recommended reading",
 		"daysToComplete": 5, 
 		"dependsOn": ["dayZero"]
 	},
 	"addToOrgChart": { 
 		"displayName": "Add To Org Chart", 
-		"description": "",
+		"description": "Add the new hire to the Org Chart",
 		"daysToComplete": 5, 
 		"dependsOn": ["dayZero"]
 	},
 	"addToSlackChannels": { 
-		"displayName": "Add To Slack Channels", 
-		"description": "Add to #product, #product-team-private and #product-team",
+		"displayName": "Add To Slack Channels and Groups", 
+		"description": "Add to #product, #product-team-private, @product-team, and @product-friends",
+		"daysToComplete": 5, 
+		"dependsOn": ["dayZero"]
+	},
+	"addToGoogleGroup": { 
+		"displayName": "Add To Google Groups", 
+		"description": "Add to the 18f-product and 18f-product-friends Google Groups",
 		"daysToComplete": 5, 
 		"dependsOn": ["dayZero"]
 	},
 	"assignToMember": { 
-		"displayName": "Assign Product Team member to shadow & pair with", 
-		"description": "",
+		"displayName": "Assign a Product Team member to shadow and pair with", 
+		"description": "If the new hire does not yet have a project, assign them a PM to shadow and pair with",
 		"daysToComplete": 12, 
 		"dependsOn": ["dayZero"]
 	},
+	"discussCoaching": { 
+		"displayName": "Discuss the Coaching Program with the new hire", 
+		"description": "Let the new hire know the Coaching Program is available for optional support with their transition into government and their new role",
+		"daysToComplete": 12, 
+		"dependsOn": ["sayHi"]
+	},
 	"performancePlan": { 
 		"displayName": "Performance Plan / IDPs", 
-		"description": "",
+		"description": "Create a performance plan and IDP for the new hire, review with the new hire, and file necessary paperwork",
 		"daysToComplete": 90, 
 		"dependsOn": ["dayZero"]
 	},
 	"addToTrello": { 
 		"displayName": "Add To Team Trello Board", 
-		"description": "",
+		"description": "Add the new hire to the Product Team Trello board",
 		"daysToComplete": 12, 
 		"dependsOn": ["dayZero"]
 	}

@@ -6,6 +6,6 @@ applications:
   routes:
   - route: checklistomania-dev.app.cloud.gov
   services:
-  - checklistomania-mongodb
-  - checklistomania-env
+  - checklistomania-dev-mongodb
+  - checklistomania-dev-env
   stack: cflinuxfs2

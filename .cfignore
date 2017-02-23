@@ -7,4 +7,4 @@ coverage/*
 public/bower_components/*
 Dockerfile
 docker-compose.yml
-
+tmp/

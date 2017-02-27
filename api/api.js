@@ -3,11 +3,10 @@ var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
 var fs = require('fs');
 
-var github = require('./github.js').github;
+var env = require('../lib/env').load();
+var github = require('./github').github;
 
-var url;
 var router = express.Router(); // eslint-disable-line new-cap
-var vcapServices;
 var items;
 var checklists;
 var users;
@@ -41,14 +40,7 @@ var setEarliestDueDate = function (username, callback) {
     });
 };
 
-if (process.env.VCAP_SERVICES) {
-  vcapServices = JSON.parse(process.env.VCAP_SERVICES);
-  url = vcapServices['mongodb26-swarm'][0].credentials.uri;
-} else {
-  url = process.env.MONGODB_URI || 'mongodb://localhost:27017/checklistomania';
-}
-
-MongoClient.connect(url, function (connectErr, db) {
+MongoClient.connect(env.MONGODB_URI, function (connectErr, db) {
   items = db.collection('items');
   checklists = db.collection('checklists');
   users = db.collection('users');

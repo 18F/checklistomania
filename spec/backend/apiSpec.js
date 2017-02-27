@@ -30,7 +30,7 @@ function getExampleChecklist() {
   return checklist;
 }
 
-mockery.registerMock('./github.js', {
+mockery.registerMock('./github', {
   github: {
     user: {
       getFrom: function (obj, callback) {

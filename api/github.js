@@ -1,3 +1,4 @@
+var env = require('../lib/env').load();
 var GitHubApi = require('github');
 
 var github = new GitHubApi({
@@ -12,8 +13,8 @@ var github = new GitHubApi({
 
 github.authenticate({
   type: 'oauth',
-  key: process.env.GITHUB_CLIENT_ID,
-  secret: process.env.GITHUB_CLIENT_SECRET
+  key: env.GITHUB_CLIENT_ID,
+  secret: env.GITHUB_CLIENT_SECRET
 });
 
 module.exports = { github: github };

@@ -1,16 +1,19 @@
 /* global describe:false it:false expect:false */
 var sinon = require('sinon');
 var mockery = require('mockery');
+var _env = require('../../lib/env');
 
 var middleware;
 var userInsert;
+
+var env = _env.load();
 
 mockery.registerMock('../api/github.js', {
   github: {
     orgs: {
       getFromUser: function (params, callback) {
         if (params.user === 'userInOrg') {
-          callback(null, [{ login: process.env.GITHUB_ORG }]);
+          callback(null, [{ login: env.GITHUB_ORG }]);
         } else {
           callback(new Error('user not found'), []);
         }
@@ -182,9 +185,9 @@ describe('custom middleware functions', function () {
         locals: {}
       };
       var next = sinon.spy();
-      process.env.BRAND_LOGO_PATH = '/testpath.jpg';
-      process.env.BRAND_HEADER_COLOR = 'red';
-
+      env.BRAND_LOGO_PATH = '/testpath.jpg';
+      env.BRAND_HEADER_COLOR = 'red';
+      
       middleware.includeBranding(req, res, next);
       expect(res.locals.logoPath).toEqual('/testpath.jpg');
       expect(res.locals.headerColor).toEqual('red');

@@ -1,0 +1,5 @@
+inherit: manifest_base.yml
+applications:
+- name: checklistomania
+  routes:
+  - route: checklistomania-staging.app.cloud.gov

@@ -1,0 +1,7 @@
+instances: 1
+memory: 512M
+disk_quota: 1024M
+stack: cflinuxfs2
+services:
+- checklistomania-mongodb
+- checklistomania-env

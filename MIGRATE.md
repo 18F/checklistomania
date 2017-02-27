@@ -13,7 +13,7 @@
         * `curl -O https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-3.4.2.tgz`
         * `tar -zxvf mongodb-linux-x86_64-3.4.2.tgz`
         * ```export PATH=`pwd`/mongodb-linux-x86_64-3.4.2/bin:$PATH```
-    * Still in `tmp`, do the export: `mongodump -h HOST:PORT -u USERNAME -p PASSWORD -d DBNAME -o . --gz`
+    * Still in `tmp`, do the export: `mongodump -h HOST:PORT -u USERNAME -p PASSWORD -d DBNAME -o . --gzip`
 
       This should create a folder in `tmp` named for the `DBNAME`, containing 
       seven `.gz` files.
@@ -26,6 +26,7 @@
     * `cf files APPNAME app/tmp/clom-export.tar | tail -n +4 > clom-export.tar`
     * `ls -l clom-export.tar` - make sure the file size is more than zero, otherwise
       something's gone wrong! (If this happens, use `cf files APPNAME` to explore the filesystem, as you may have the wrong path)
+  * OK, _now_ you can quit the SSH session.
 
 ## Importing into the GovCloud environment
 
@@ -36,12 +37,13 @@ with the app deployed and the Mongo service bound.
     * Do the `cf login`/`cf target` dance to get to the new shiny space
     * `export IMPORT_APP_GUID=``cf app APPNAME --guid`` `
     * Grab the MongoDB address and credentials:
-        * Run `cf services`
+        * Run `cf env APPNAME`
         * In the output, look for the `mongodb32` hash, and from the
           `credentials` sub-hash, grab `dbname`, `hostname`, `port`,
           `username` and `password`
     * Get a one-time authorization code: `cf ssh-code`
     * SFTP to the app instance: `sftp -P 2222 "cf:$IMPORT_APP_GUID/0@ssh.fr.cloud.gov"`
+        * When asked for the password, enter the one-time authorization code you were given two steps above
         * `cd tmp`
         * `put clom-export.tar`
         * `quit`
@@ -60,5 +62,6 @@ with the app deployed and the Mongo service bound.
             * `db.getCollectionNames()` should now return empty: `[ ]`
         * Restore the export: `mongorestore -h HOST:PORT -u USERNAME -p PASSWORD -d   NEWDBNAME --gzip OLDDBNAME`
         * This should result in several `reading` and `restoring` messages, finally ending with `done`.
+  * And that's all!
 
 

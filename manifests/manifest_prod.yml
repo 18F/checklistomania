@@ -2,4 +2,4 @@ inherit: manifest_base.yml
 applications:
 - name: checklistomania
   routes:
-  - route: checklistomania-dev.app.cloud.gov
+  - route: checklistomania.app.cloud.gov

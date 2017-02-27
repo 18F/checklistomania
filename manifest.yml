@@ -1,0 +1,4 @@
+applications:
+- name: checklistomania
+  services:
+  - checklistomania-mongodb

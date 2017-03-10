@@ -38,6 +38,14 @@ docker-compose build
 Once the above command finishes, run:
 
 ```sh
+docker-compose run app npm install
+```
+
+which will install node and bower dependencies.
+
+Then run:
+
+```sh
 docker-compose up
 ```
 
@@ -50,7 +58,7 @@ To run any arbitrary command in the context of the application container, run:
 docker-compose run app <THE COMMAND>
 ```
 
-For example, to run bash in the app container, run:
+For example, to run bash in the `app` container, run:
 ```shell
 docker-compose run app bash
 ```
@@ -58,7 +66,7 @@ docker-compose run app bash
 In the app container, `/home/app/checklistomania` is mapped to your host
 machine's checklistomania directory.
 
-To run a command in the mongo container, run:
+To run a command in the `mongo` container, run:
 ```shell
 docker-compose run mongo <THE COMMAND>
 ```

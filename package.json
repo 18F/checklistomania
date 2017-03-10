@@ -40,7 +40,7 @@
     "karma-phantomjs-launcher": "^1.0.2",
     "mockery": "^1.7.0",
     "nodemon": "^1.9.2",
-    "phantomjs": "^2.1.7",
+    "phantomjs-prebuilt": "^2.1.14",
     "sinon": "^1.17.4",
     "supertest": "^1.2.0"
   },

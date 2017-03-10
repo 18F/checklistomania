@@ -28,7 +28,7 @@ deploy:
     script: DEPLOY_ENV=dev ./deploy-travis.sh
     skip_cleanup: true
     on:
-      branch: travis-deploys # TODO: change to develop
+      branch: develop
   - provider: script
     script: DEPLOY_ENV=prod ./deploy-travis.sh
     skip_cleanup: true

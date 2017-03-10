@@ -38,6 +38,14 @@ docker-compose build
 Once the above command finishes, run:
 
 ```sh
+docker-compose run app npm install
+```
+
+which will install node and bower dependencies.
+
+Then run:
+
+```sh
 docker-compose up
 ```
 
@@ -50,7 +58,7 @@ To run any arbitrary command in the context of the application container, run:
 docker-compose run app <THE COMMAND>
 ```
 
-For example, to run bash in the app container, run:
+For example, to run bash in the `app` container, run:
 ```shell
 docker-compose run app bash
 ```
@@ -58,7 +66,7 @@ docker-compose run app bash
 In the app container, `/home/app/checklistomania` is mapped to your host
 machine's checklistomania directory.
 
-To run a command in the mongo container, run:
+To run a command in the `mongo` container, run:
 ```shell
 docker-compose run mongo <THE COMMAND>
 ```
@@ -147,7 +155,17 @@ npm run eslint
 ```
 
 ## Deployment
-For 18Fers: this is deployed on cloud.gov. Get started on cloud.gov by following the instructions [here](https://docs.cloud.gov/). Ask for more details in the #checklistomania channel in slack.
+
+For 18Fers: Checklistomania is deployed on cloud.gov. Get started on cloud.gov by following the instructions [here](https://docs.cloud.gov/).
+Deploys are automated via Travis on pushes to the `develop` and `master` branches of the repository.
+
+Org: `gsa-18f-checklistomania`
+
+Pushes/merges to `develop` will deploy to the `dev` space for staging.
+
+Pushes/merges to `master` will deploy to the `prod` space for production.
+
+See `.travis.yml` or ask for more details in the #checklistomania channel in slack.
 
 ## Public domain
 This project is in the worldwide [public domain](LICENSE.md). As stated in [CONTRIBUTING](CONTRIBUTING.md):

@@ -7,12 +7,11 @@
   "private": false,
   "dependencies": {
     "angular": "1.4.8",
+    "angular-aria": "1.4.8",
+    "angular-messages": "1.4.8",
     "angular-loader": "1.4.8",
     "angular-mocks": "1.4.8",
     "angular-material": "1.0.2",
     "angular-animate": "1.4.8"
-  },
-  "resolutions": {
-    "angular": "1.4.8"
   }
 }

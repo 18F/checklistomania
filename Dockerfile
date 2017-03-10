@@ -12,4 +12,3 @@ RUN chown -R app:app $HOME/*
 
 USER app
 WORKDIR $HOME/checklistomania
-RUN npm install --silent

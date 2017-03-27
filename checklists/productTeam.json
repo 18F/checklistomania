@@ -25,6 +25,12 @@
 		"daysToComplete": 4, 
 		"dependsOn": ["dayZero"]
 	},
+	"partnershipPlaybook": { 
+		"displayName": "Read the 18F Partnership Playbook", 
+		"description": "Read the Partnership Playbook to understand the expectations between 18F and our agency partners.",
+		"daysToComplete": 4, 
+		"dependsOn": ["dayZero"]
+	},
 	"virtualPMcoffee": { 
 		"displayName": "Virtual coffees with PMs", 
 		"description": "Have virtual coffees (or real ones!) with other PMs. Ask tons of questions. Listen a lot. And don’t be worried about reaching out. Everyone was a new hire.",

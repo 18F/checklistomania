@@ -246,5 +246,11 @@
 		"description": "<a href=\"https://handbook.18f.gov/travel-101/#travel-card\">Instructions</a>",
 		"daysToComplete": 30,
 		"dependsOn": ["travelTraining"]
+	},
+	"filloutsurvey": {
+		"displayName": "Fill out onboarding survey",
+		"description": "<a href=\"https://goo.gl/forms/mBe4bxLydYHZ9wAe2\">Survey<a/a>",
+		"daysToComplete": 60,
+		"dependsOn": ["fillOutIDP"]
 	}}
 }

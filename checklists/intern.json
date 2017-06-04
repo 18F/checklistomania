@@ -1,0 +1,250 @@
+{"checklistName": "18F New Hire Checklist",
+"checklistDescription": "Items for all new 18F employees.",
+"items":
+	{"dayZero": {
+		"displayName": "New Hire Start Date",
+		"description": "First day on the job.",
+		"daysToComplete": 0,
+		"dependsOn": []
+	},
+	"gsaOrientation": {
+		"displayName": "Attend GSA orientation",
+		"description": "Remember to bring two forms of ID and your I-9 form.",
+		"daysToComplete": 0,
+		"dependsOn": ["dayZero"]
+	},
+	"oathOfOffice": {
+		"displayName": "Take Oath of Office",
+		"description": "The oath is <a href=\"http://archive.opm.gov/constitution_initiative/oath.asp\">here</a>.",
+		"daysToComplete": 0,
+		"dependsOn": ["dayZero"]
+	},
+	"walkTo18F": {
+		"displayName": "Call or text your buddy",
+		"description": "Your buddy will welcome you to 18F.",
+		"daysToComplete": 0,
+		"dependsOn": ["dayZero"]
+	},
+	"receiveLaptop": {
+		"displayName": "Receive your laptop",
+		"description": "You'll receive instructions via email.",
+		"daysToComplete": 0,
+		"dependsOn": ["dayZero"]
+       },
+	"receiveBadge": {
+		"displayName": "Receive your badge",
+		"description": "You'll receive instructions via email.",
+		"daysToComplete": 0,
+		"dependsOn": ["dayZero"]
+	},
+	"receivePhone": {
+		"displayName": "Receive your phone",
+		"description": "You'll receive instructions via email.",
+		"daysToComplete": 0,
+		"dependsOn": ["dayZero"]
+	},
+	"logOnMac": {
+		"displayName": "Log onto your Mac and change your account password",
+		"description": "Instructions <a href=\"https://support.apple.com/en-us/HT202860\">here</a>",
+		"daysToComplete": 0,
+		"dependsOn": ["receiveLaptop"]
+	},
+	"connectToNetwork": {
+		"displayName": "Connect to GSA’s secure network",
+		"description": "You'll receive instructions via email.",
+		"daysToComplete": 0,
+		"dependsOn": ["logOnMac"]
+	},
+	"changeENT": {
+		"displayName": "Change your ENT (enterprise) password",
+		"description": "This is your password for signing into systems administered by GSA, including your email, calendar, and Google Drive. You'll receive instructions via email.",
+		"daysToComplete": 0,
+		"dependsOn": ["connectToNetwork"]
+	},
+	"setUpEmail": {
+		"displayName": "Sign into your work email",
+		"description": "You'll receive instructions via email.",
+		"daysToComplete": 0,
+		"dependsOn": ["changeENT"]
+	},
+	"setUp2FA": {
+		"displayName": "Set up GSA’s 2FA",
+		"description": "Note: You must set up two-factor authentication inside a federal building. Instructions are sent via email and <a href=\"https://handbook.18f.gov/distributed/#set-up-my-computer\">here</a>.",
+		"daysToComplete": 0,
+		"dependsOn": ["connectToNetwork"]
+	},
+	"setUpSlack": {
+		"displayName": "Set up Slack",
+		"description": "Slack is our chat program. Follow the <a href=\"https://handbook.18f.gov/slack/#setup\">setup instructions</a> and make sure <a href=\"https://my.slack.com/account/settings#two_factor\">two-factor authentication</a> is activated.",
+		"daysToComplete": 0,
+		"dependsOn": ["setUpEmail"]
+	},
+	"setUpGitHub": {
+		"displayName": "Set up GitHub",
+		"description": "Follow the <a href=\"https://handbook.18f.gov/github/#setup\">Github setup</a> instructions to make sure you have full access to GitHub.  #adminds-github can assist if you've made all updates and still don't have access.",
+		"daysToComplete": 0,
+		"dependsOn": ["setUpSlack"]
+	},
+	"addContactInformation": {
+		"displayName": "Add yourself to the 18F Staff Contact Directory",
+		"description": "Update the <a href=\"https://docs.google.com/spreadsheets/d/1QqqS_-V44MHyVqRIyHj6Eojg1Oz5EC3fS3j1e3mDrkg/edit\">spreadsheet</a> with your information.",
+		"daysToComplete": 4,
+		"dependsOn": ["dayZero"]
+	},
+	"startOrientationClasses": {
+		"displayName": "Orientation classes begin on day 2",
+		"description": "You will begin taking a variety of Slack-based classes in <a href=\"https://18f.slack.com/archives/18f-classes\">#18f-classes</a>. See the <a href=\"https://handbook.18f.gov/classes\">class schedule</a> and <a href=\"https://www.google.com/calendar/embed?src=gsa.gov_vpfql4425bt1kj5fatahokgg94%40group.calendar.google.com&ctz=America/New_York\">Google Calendar</a> for details.",
+		"daysToComplete": 1,
+		"dependsOn": ["dayZero"]
+	},
+	"secureLaptop": {
+		"displayName": "Secure your laptop",
+		"description": "Review <a href=\"https://handbook.18f.gov/equipment/#laptop\">instructions</a> then download <a href=\"https://handbook.18f.gov/managed-software-center\">Managed Software Center</a> and <a href=\"https://handbook.18f.gov/clamxav\">ClamXav</a>.",
+		"daysToComplete": 1,
+		"dependsOn": ["dayZero"]
+	},
+	"checkCalendars": {
+		"displayName": "Make sure you can access 18F Calendars",
+		"description": "<a href=\"https://handbook.18f.gov/google-calendar/\">Instructions</a>",
+		"daysToComplete": 1,
+		"dependsOn": ["dayZero"]
+	},
+	"checkEmail": {
+		"displayName": "Double check access to 18F team email",
+		"description": "Check your inbox for a note from 18f-team@gsa.gov. If not, head to #talent to make sure you've been added to our team email account.",
+		"daysToComplete": 5,
+		"dependsOn": ["dayZero"]
+	},
+	"readOfficeGuide": {
+		"displayName": "Read your office guide",
+		"description": "Get to know your <a href=\"https://handbook.18f.gov/offices\">office</a>. (There's one for distributed teams, too.)",
+		"daysToComplete": 1,
+		"dependsOn": ["dayZero"]
+	},
+	"attendAllHands": {
+		"displayName": "Attend the weekly all-hands",
+		"description": "The all-hands meeting takes place at 12:30pm ET every Tuesday.  Qituwra Anderson will add you to the calendar invite.",
+		"daysToComplete": 1,
+		"dependsOn": ["dayZero"]
+	},
+	"transitSubsidy": {
+		"displayName": "Get your transit subsidy",
+		"description": "If you take public transit, <a href=\"https://handbook.18f.gov/gsa-tools-equipment-and-transit/#transit-benefits\">fill out this form</a> to receive your subsidy.",
+		"daysToComplete": 2,
+		"dependsOn": ["dayZero"]
+	},
+	"avatarSelection": {
+		"displayName": "Change your Slack and Google avatars",
+		"description": "Add a photo to your Slack and Google avatars. Instructions: <a href=\"https://handbook.18f.gov/slack/#rules\">Slack</a> and <a href=\"https://support.google.com/mail/answer/35529?hl=en\">Google</a>",
+		"daysToComplete": 1,
+		"dependsOn": ["dayZero"]
+	},
+	"setupPhone2FA": {
+		"displayName": "Set up 2FA on your government phone",
+		"description": "After receiving your work phone, <a href=\"https://handbook.18f.gov/equipment/#phone\">set up two-factor authentication</a>.",
+		"daysToComplete": 4,
+		"dependsOn": ["receivePhone"]
+	},
+	"pickUpBadge": {
+		"displayName": "Pick up your badge",
+		"description": "Your badge should be ready on your first day. If not, please make sure you <a href=\"https://handbook.18f.gov/equipment/#badge\">get it at some point in your first week</a>.",
+		"daysToComplete": 4,
+		"dependsOn": ["dayZero"]
+	},
+	"setUpVPN": {
+		"displayName": "Set up VPN",
+		"description": "This will allow you to <a href=\"https://handbook.18f.gov/networks#virtual-networks\">access GSA sites from outside the network</a>.",
+		"daysToComplete": 4,
+		"dependsOn": ["dayZero"]
+	},
+	"setUpPrinter": {
+		"displayName": "Set up printer",
+		"description": "Instructions are in your <a href=\"https://handbook.18f.gov/offices\">office guide</a>.",
+		"daysToComplete": 4,
+		"dependsOn": ["dayZero"]
+	},
+	"listservsSignUp": {
+		"displayName": "Sign up for listservs",
+		"description": "A full list of newsletters and listservs is <a href=\"https://handbook.18f.gov/general-contacts-and-listservs/#listservs\">here</a>.",
+		"daysToComplete": 4,
+		"dependsOn": ["dayZero"]
+	},
+	"meetDirector": {
+		"displayName": "Meet with your director",
+		"description": "They'll likely schedule a first meeting during your first week.",
+		"daysToComplete": 9,
+		"dependsOn": ["dayZero"]
+	},
+	"fillOutForm": {
+		"displayName": "Fill out OGE-450",
+		"description": "You'll need to turn in an <a href=\"https://insite.gsa.gov/portal/mediaId/544198/fileName/Confidential_Financial_Disclosure_Report_(OGE_Form_450).action\">OGE-450</a> form. You can ask questions in the #oge-450 slack channel.",
+		"daysToComplete": 20,
+		"dependsOn": ["dayZero"]
+	},
+	"virtualTea": {
+		"displayName": "Schedule virtual teas",
+		"description": "Get to know your teammates over video chat. You can use <a href=\"https://handbook.18f.gov/acano\">Acano</a>, <a href=\"https://handbook.18f.gov/google-hangouts\">Google Hangouts</a>, or <a href=\"https://handbook.18f.gov/appearin\">Appear.in</a>.",
+		"daysToComplete": 12,
+		"dependsOn": ["dayZero"]
+	},
+	"readOrgChart": {
+		"displayName": "Read org chart",
+		"description": "Learn about 18F's <a href=\"https://handbook.18f.gov/org-chart\">organizational structure</a> and <a href=\"http://www.gsa.gov/portal/category/25729\">relationship to TTS</a>.",
+		"daysToComplete": 20,
+		"dependsOn": ["dayZero"]
+	},
+	"confirmCHRIS": {
+		"displayName": "Confirm CHRIS account",
+		"description": "Your CHRIS account lets you access your personnel file. This may take 4-6 weeks. <a href=\"https://handbook.18f.gov/gsa-tools-equipment-and-transit/#chris\">Instructions</a>",
+		"daysToComplete": 20,
+		"dependsOn": ["dayZero"]
+	},
+	"signIntoEmployeeExpress": {
+		"displayName": "Sign into Employee Express",
+		"description": "This is available after your first paycheck. You will receive an invite email from GSA HR. <a href=\"https://handbook.18f.gov/gsa-tools-equipment-and-transit/#employee-express\">Instructions</a>",
+		"daysToComplete": 20,
+		"dependsOn": ["dayZero"]
+	},
+	"confirmOLU": {
+		"displayName": "Confirm your OLU account and take classes",
+		"description": "OLU is where you’ll take mandatory training for GSA employees. This will be available after your <a href=\"https://handbook.18f.gov/gsa-tools-equipment-and-transit/#chris\">CHRIS account</a> is set up.",
+		"daysToComplete": 20,
+		"dependsOn": ["dayZero"]
+	},
+	"confirmBenefits": {
+		"displayName": "Confirm benefits",
+		"description": "Make sure your <a href=\"https://handbook.18f.gov/benefits\">benefits<a/> are set up correctly.",
+		"daysToComplete": 20,
+		"dependsOn": ["dayZero"]
+	},
+	"completeOLU": {
+		"displayName": "Complete OLU training",
+		"description": "<a href=\"https://handbook.18f.gov/professional-development-and-training/#mandatory-training\">Instructions</a>",
+		"daysToComplete": 20,
+		"dependsOn": ["confirmOLU"]
+		},
+	"fillOutIDP": {
+		"displayName": "Fill out your IDP",
+		"description": "<a href=\"https://handbook.18f.gov/professional-development-and-training/#professional-development-training\">Instructions.</a> This will allow you to take external trainings and classes.",
+		"daysToComplete": 20,
+		"dependsOn": ["dayZero"]
+		},
+	"addToTrello": {
+		"displayName": "Get Trello access",
+		"description": "Ask #admins-trello to add you to the 18F Trello board.",
+		"daysToComplete": 20,
+		"dependsOn": ["dayZero"]
+		},
+	"travelTraining": {
+		"displayName": "Take travel training",
+		"description": "<a href=\"https://handbook.18f.gov/travel-101\">Instructions</a>",
+		"daysToComplete": 25,
+		"dependsOn": ["confirmCHRIS"]
+		},
+	"travelCard": {
+		"displayName": "Apply for a travel card",
+		"description": "<a href=\"https://handbook.18f.gov/travel-101/#travel-card\">Instructions</a>",
+		"daysToComplete": 30,
+		"dependsOn": ["travelTraining"]
+	}}
+}

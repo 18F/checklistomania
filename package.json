@@ -15,6 +15,8 @@
     "express": "^4.13.4",
     "express-session": "^1.11.3",
     "github": "^0.2.4",
+    "lodash.defaults": "^4.2.0",
+    "lodash.get": "^4.4.2",
     "method-override": "^2.3.5",
     "mongodb": "^2.1.2",
     "passport": "^0.3.2",
@@ -38,7 +40,7 @@
     "karma-phantomjs-launcher": "^1.0.2",
     "mockery": "^1.7.0",
     "nodemon": "^1.9.2",
-    "phantomjs": "^2.1.7",
+    "phantomjs-prebuilt": "^2.1.14",
     "sinon": "^1.17.4",
     "supertest": "^1.2.0"
   },

@@ -7,8 +7,9 @@ var methodOverride = require('method-override');
 var passport = require('passport');
 var GitHubStrategy = require('passport-github2').Strategy;
 
-var api = require('./api/api.js');
-var middleware = require('./lib/middleware.js');
+var api = require('./api/api');
+var env = require('./lib/env').load();
+var middleware = require('./lib/middleware');
 var ensureAuthenticated = middleware.ensureAuthenticated;
 var ensureGithubOrg = middleware.ensureGithubOrg;
 var addToUsers = middleware.addToUsers;
@@ -22,7 +23,7 @@ var requiredEnv = ['GITHUB_CLIENT_ID', 'GITHUB_CLIENT_SECRET',
   'GITHUB_ORG', 'SESSION_SECRET'];
 
 requiredEnv.forEach(function (name) {
-  if (!process.env[name]) {
+  if (!env[name]) {
     throw new Error('Missing required environment variable: ' + name);
   }
 });
@@ -37,9 +38,9 @@ passport.deserializeUser(function (obj, done) {
 });
 
 passport.use(new GitHubStrategy({
-  clientID: process.env.GITHUB_CLIENT_ID,
-  clientSecret: process.env.GITHUB_CLIENT_SECRET,
-  callbackURL: process.env.GITHUB_CALLBACK_URL || 'http://localhost:' + port + '/auth/callback'
+  clientID: env.GITHUB_CLIENT_ID,
+  clientSecret: env.GITHUB_CLIENT_SECRET,
+  callbackURL: env.GITHUB_CALLBACK_URL || 'http://localhost:' + port + '/auth/callback'
 }, function (accessToken, refreshToken, profile, done) {
   process.nextTick(function () {
     return done(null, profile);
@@ -51,7 +52,7 @@ app.set('views', process.cwd() + '/views');
 
 app.use(methodOverride());
 app.use(session({
-  secret: process.env.SESSION_SECRET,
+  secret: env.SESSION_SECRET,
   resave: true,
   saveUninitialized: true
 }));

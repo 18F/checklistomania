@@ -1,8 +1,10 @@
 node_modules/*
 api/.DS_Store
-manifest*
 npm-debug.log
 .DS_Store
 cf-ssh.yml
 coverage/*
 public/bower_components/*
+credentials*.json
+docker-compose.override.yml
+tmp/

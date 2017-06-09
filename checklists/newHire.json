@@ -249,7 +249,7 @@
 	},
 	"filloutsurvey": {
 		"displayName": "Fill out onboarding survey",
-		"description": "<a href=\"https://goo.gl/forms/mBe4bxLydYHZ9wAe2\">Survey<a/a>",
+		"description": "<a href=\"https://goo.gl/forms/mBe4bxLydYHZ9wAe2\">Survey</a>",
 		"daysToComplete": 60,
 		"dependsOn": ["fillOutIDP"]
 	}}

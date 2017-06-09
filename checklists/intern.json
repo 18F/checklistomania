@@ -215,6 +215,6 @@
 		"displayName": "Onboarding Survey",
 		"description": "Fill out the <a href=\"https://goo.gl/7U5rNM\">Onboarding Survey</a> to provide feedback on your experience",
 		"daysToComplete": 30,
-		"dependsOn": ["travelTraining"]
+		"dependsOn": ["dayZero"]
 	}}
 }

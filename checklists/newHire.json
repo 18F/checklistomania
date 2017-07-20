@@ -1,5 +1,5 @@
-{"checklistName": "18F New Hire Checklist",
-"checklistDescription": "Items for all new 18F employees.",
+{"checklistName": "TTS New Hire Checklist",
+"checklistDescription": "Items for all new TTS employees.",
 "items":
 	{"dayZero": {
 		"displayName": "New Hire Start Date",
@@ -19,9 +19,9 @@
 		"daysToComplete": 0,
 		"dependsOn": ["dayZero"]
 	},
-	"walkTo18F": {
+	"walkToTTS": {
 		"displayName": "Call or text your buddy",
-		"description": "Your buddy will welcome you to 18F.",
+		"description": "Your buddy will welcome you to TTS.",
 		"daysToComplete": 0,
 		"dependsOn": ["dayZero"]
 	},
@@ -112,6 +112,12 @@
 	"checkEmail": {
 		"displayName": "Double check access to 18F team email",
 		"description": "Check your inbox for a note from 18f-team@gsa.gov. If not, head to #talent to make sure you've been added to our team email account.",
+		"daysToComplete": 5,
+		"dependsOn": ["dayZero"]
+	},
+	"checkTTSEmail": {
+		"displayName": "Double check access to TTS team email",
+		"description": "Check your inbox for a note from tts@gsa.gov. If not, head to #talent to make sure you've been added to our team email account.",
 		"daysToComplete": 5,
 		"dependsOn": ["dayZero"]
 	},
@@ -246,11 +252,5 @@
 		"description": "<a href=\"https://handbook.18f.gov/travel-101/#travel-card\">Instructions</a>",
 		"daysToComplete": 30,
 		"dependsOn": ["travelTraining"]
-	},
-	"filloutsurvey": {
-		"displayName": "Fill out onboarding survey",
-		"description": "<a href=\"https://goo.gl/forms/mBe4bxLydYHZ9wAe2\">Survey</a>",
-		"daysToComplete": 60,
-		"dependsOn": ["fillOutIDP"]
 	}}
 }

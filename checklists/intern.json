@@ -19,12 +19,6 @@
 		"daysToComplete": 0,
 		"dependsOn": ["dayZero"]
 	},
-	"walkToTTS": {
-		"displayName": "Call or text your buddy",
-		"description": "Your buddy will welcome you to TTS.",
-		"daysToComplete": 0,
-		"dependsOn": ["dayZero"]
-	},
 	"receiveLaptop": {
 		"displayName": "Receive your laptop",
 		"description": "You'll receive instructions via email.",
@@ -86,8 +80,8 @@
 		"dependsOn": ["setUpSlack"]
 	},
 	"addContactInformation": {
-		"displayName": "Provide emergency contact information",
-		"description": "Fill out <a href=\"https://goo.gl/forms/O22I646L9Dacg3xY2\">this form</a> with your information.",
+		"displayName": "Add yourself to the TTS Emergency Contact Directory",
+		"description": "Fill out the <a href=\"https://goo.gl/forms/Y9OfbhsyDjoyv08y1\">Emergency Contact Form</a> with your information.",
 		"daysToComplete": 4,
 		"dependsOn": ["dayZero"]
 	},

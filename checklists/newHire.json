@@ -79,12 +79,6 @@
 		"daysToComplete": 0,
 		"dependsOn": ["setUpSlack"]
 	},
-	"addContactInformation": {
-		"displayName": "Add yourself to the TTS Emergency Contact Directory",
-		"description": "Fill out the <a href=\"https://goo.gl/forms/Y9OfbhsyDjoyv08y1\">Emergency Contact Form</a> with your information.",
-		"daysToComplete": 4,
-		"dependsOn": ["dayZero"]
-	},
 	"startOrientationClasses": {
 		"displayName": "Orientation classes begin on day 2",
 		"description": "You will begin taking a variety of Slack-based classes in <a href=\"https://18f.slack.com/archives/18f-classes\">#18f-classes</a>. See the <a href=\"https://handbook.18f.gov/classes\">class schedule</a> and <a href=\"https://www.google.com/calendar/embed?src=gsa.gov_vpfql4425bt1kj5fatahokgg94%40group.calendar.google.com&ctz=America/New_York\">Google Calendar</a> for details.",
@@ -160,6 +154,12 @@
 	"setUpPrinter": {
 		"displayName": "Set up printer",
 		"description": "Instructions are in your <a href=\"https://handbook.18f.gov/offices\">office guide</a>.",
+		"daysToComplete": 4,
+		"dependsOn": ["dayZero"]
+	},
+	"emergencyContact": {
+		"displayName": "Add yourself to the TTS Emergency Contact Directory",
+		"description": "Fill out the <a href=\"https://goo.gl/forms/lnTjdpM5pbtc23ep1\">TTS Emergency Contact Form</a> with your info.",
 		"daysToComplete": 4,
 		"dependsOn": ["dayZero"]
 	},

@@ -60,5 +60,23 @@
 		"description": "Ask in #teamops or #design if they need specific licenses",
 		"daysToComplete": 2,
 		"dependsOn": ["dayZero"]
+	},
+	"explainRoles": {
+		"displayName": "Explain roles",
+		"description": "For example, explain the director of engineering, supervisor and facilitator roles. Before performance meeting.",
+		"daysToComplete": 5,
+		"dependsOn": ["dayZero"]
+	},
+	"performanceProfile": {
+		"displayName": "Explain performance profiles",
+		"description": "Go over the Performance Profile for performance plan evaluation",
+		"daysToComplete": 5,
+		"dependsOn": ["dayZero"]
+	},
+	"idp": {
+		"displayName": "Explain Individual Development Plan",
+		"description": "Go over what an IDP is and how to make use of one.",
+		"daysToComplete": 5,
+		"dependsOn": ["dayZero"]
 	}}
 }

@@ -1,0 +1,46 @@
+version: 2
+jobs:
+  build:
+    docker:
+        - image: circleci/node:6
+        - image: circleci/mongo:3
+      
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - run: npm install --quiet
+      - run:
+          name: Run tests
+          command: npm test
+          environment:
+            GITHUB_CLIENT_ID: test
+            GITHUB_CLIENT_SECRET: testSecret
+            SESSION_SECRET: testSessionSecret
+            GITHUB_ORG: testOrg
+      - run:
+          name: Generate coverage
+          command: |
+            npm run coverage
+            npm run coveralls
+          environment:
+            GITHUB_CLIENT_ID: test
+            GITHUB_CLIENT_SECRET: testSecret
+            SESSION_SECRET: testSessionSecret
+            GITHUB_ORG: testOrg
+            COVERALLS_SERVICE_NAME: circle-ci
+            # COVERALLS_REPO_TOKEN is a secret
+
+      - deploy:
+          name: Deploy
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "develop" ]; then
+              export CF_USERNAME=$CF_USERNAME_DEV
+              export CF_PASSWORD=$CF_PASSWORD_DEV
+              ./deploy-circle.sh dev
+            elif [ "${CIRCLE_BRANCH}" == "master" ]; then
+              export CF_USERNAME=$CF_USERNAME_PROD
+              export CF_PASSWORD=$CF_PASSWORD_PROD
+              ./deploy-circle.sh prod
+            fi

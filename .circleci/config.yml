@@ -23,3 +23,15 @@ jobs:
             GITHUB_CLIENT_SECRET: testSecret
             SESSION_SECRET: testSessionSecret
             GITHUB_ORG: testOrg
+      - run:
+          name: Generate coverage
+          command: |
+            npm run coverage
+            npm run coveralls
+          environment:
+            GITHUB_CLIENT_ID: test
+            GITHUB_CLIENT_SECRET: testSecret
+            SESSION_SECRET: testSessionSecret
+            GITHUB_ORG: testOrg
+            COVERALLS_SERVICE_NAME: circle-ci
+            # COVERALLS_REPO_TOKEN is a secret

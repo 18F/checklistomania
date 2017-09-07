@@ -35,3 +35,15 @@ jobs:
             GITHUB_ORG: testOrg
             COVERALLS_SERVICE_NAME: circle-ci
             # COVERALLS_REPO_TOKEN is a secret
+
+      - deploy:
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "develop" ]; then
+              export CF_USERNAME=$CF_USERNAME_DEV
+              export CF_PASSWORD=$CF_PASSWORD_DEV
+              ./deploy-circle.sh dev
+            elif [ "${CIRCLE_BRANCH}" == "master" ]; then
+              export CF_USERNAME=$CF_USERNAME_PROD
+              export CF_PASSWORD=$CF_PASSWORD_PROD
+              ./deploy-circle.sh prod
+            fi

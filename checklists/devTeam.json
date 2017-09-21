@@ -57,7 +57,7 @@
 	},
 	"readGuide": {
 		"displayName": "Read Dev Guide",
-		"description": "Read the <a href=\"https://pages.18f.gov/development-guide\">Developer Guide</a>.",
+		"description": "Read the <a href=\"https://github.com/18F/development-guide\">Developer Guide</a>.",
 		"daysToComplete": 20,
 		"dependsOn": ["dayZero"]
 	},

@@ -178,6 +178,6 @@ This project is in the worldwide [public domain](LICENSE.md). As stated in [CONT
 >
 > All contributions to this project will be released under the CC0 dedication. By submitting a pull request, you are agreeing to comply with this waiver of copyright interest.
 
-[18F Docker guide]: https://pages.18f.gov/dev-environment-standardization/virtualization/docker/
+[18F Docker guide]: https://github.com/18F/development-guide/tree/master/project_setup/docker
 [Docker]: https://www.docker.com/
 [Docker Compose]: https://docs.docker.com/compose/

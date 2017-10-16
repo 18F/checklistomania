@@ -20,7 +20,11 @@ The users tab is where you can view the status of other team members action item
 ![Users](/public/img/users.png?raw=true "Users")
 
 ## Running Checklistomania
+
 Checklistomania is a [Node.js](https://nodejs.org) application on the back-end, and its front-end is an [AngularJS](https://angularjs.org/) single-page application.
+
+The default setup for local development is with Docker. If you prefer not to use
+Docker you can skip this section and follow the legacy setup docs below.
 
 ### Using Docker for Development
 
@@ -76,7 +80,7 @@ To remove all Docker images associated with this project, run
 docker-compose down -v
 ```
 
-### Running Locally
+### Running Locally without Docker (Legacy)
 
 If you'd like to run Checklistomania locally, follow these steps:
 
@@ -174,6 +178,6 @@ This project is in the worldwide [public domain](LICENSE.md). As stated in [CONT
 >
 > All contributions to this project will be released under the CC0 dedication. By submitting a pull request, you are agreeing to comply with this waiver of copyright interest.
 
-[18F Docker guide]: https://pages.18f.gov/dev-environment-standardization/virtualization/docker/
+[18F Docker guide]: https://github.com/18F/development-guide/tree/master/project_setup/docker
 [Docker]: https://www.docker.com/
 [Docker Compose]: https://docs.docker.com/compose/

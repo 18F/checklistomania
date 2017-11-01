@@ -1,6 +1,4 @@
 # Checklistomania
-[![CircleCI](https://circleci.com/gh/18F/checklistomania.svg?style=svg)](https://circleci.com/gh/18F/checklistomania)
-[![Coverage Status](https://coveralls.io/repos/18F/checklistomania/badge.svg?branch=master&service=github)](https://coveralls.io/github/18F/checklistomania?branch=master)
 
 This tool is a checklist manager with some neat-O features:
 * Focus on what is actionable: central page is a simple list of things you can take action on now, in order of urgency.
@@ -157,19 +155,6 @@ If you are running locally, run:
 ```shell
 npm run eslint
 ```
-
-## Deployment
-
-For 18Fers: Checklistomania is deployed on cloud.gov. Get started on cloud.gov by following the instructions [here](https://docs.cloud.gov/).
-Deploys are automated via CircleCI on pushes to the `develop` and `master` branches of the repository.
-
-Org: `gsa-18f-checklistomania`
-
-Pushes/merges to `develop` will deploy to the `dev` space for staging.
-
-Pushes/merges to `master` will deploy to the `prod` space for production.
-
-See `.circleci/config.yml` or ask for more details in the #checklistomania channel in slack.
 
 ## Public domain
 This project is in the worldwide [public domain](LICENSE.md). As stated in [CONTRIBUTING](CONTRIBUTING.md):
